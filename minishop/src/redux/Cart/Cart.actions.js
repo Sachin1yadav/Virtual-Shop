@@ -1,10 +1,18 @@
-// import React from 'react'
+import {
+    CART_GET_LOADING,
+    CART_GET_SUCCESS,
+    CART_GET_ERROR
+} from "./Cart.actionTypes"
 
-// const Cart.actions = () => {
-//   return (
-//     <div>Cart.actions</div>
-//   )
-// }
+import { getCartAPI } from "./Cart.api"
 
-// export default Cart.actions
-Guys Changes This according to your requirments
+export const CartActions = () => async(dispatch) => {
+    dispatch({type: CART_GET_LOADING});
+    try{
+        let data = await getCartAPI();
+        dispatch({type:CART_GET_SUCCESS,payload:data})
+
+    }catch(e){
+        dispatch({type: CART_GET_ERROR})
+    }
+}
