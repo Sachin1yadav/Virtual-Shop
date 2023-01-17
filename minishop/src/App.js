@@ -1,5 +1,6 @@
  
 import './App.css';
+import SinglePage from './Pages/SinglePage';
 
 function App() {
   return (
