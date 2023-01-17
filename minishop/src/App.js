@@ -1,10 +1,12 @@
- 
-import './App.css';
+ import './App.css';
+import Footer from './components/Footer/Footer';
+ import Navbar from './components/Navbar/Navbar';
 
 function App() {
   return (
     <div className="App">
-    <h1>DO NOT PUSH ANY THING AS PER NOW</h1>
+    <Navbar/>
+    <Footer/>
     </div>
   );
 }
