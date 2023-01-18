@@ -10,7 +10,7 @@ let initialState = {
     orderdata:[]
 }
 
-export const OrderReducer = (state = initialState ,{type,payload})=>{
+export const orderReducer = (state = initialState ,{type,payload})=>{
     switch(type){
         case  ORDER_GET_LOADING:{
             return {
