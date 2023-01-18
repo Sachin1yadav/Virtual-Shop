@@ -1,5 +1,5 @@
-export const SINGLEPAGE_GET_LOADING = "singlepage/get/loading"
+export const SINGLE_GET_LOADING = "singlePage/get/loading"
 
-export const SINGLEPAGE_GET_ERROR = "singlepage/get/error"
+export const SINGLE_GET_ERROR = "singlePage/get/error"
 
-export const SINGLEPAGE_GET_SUCCESS = "singlepage/get/success"
+export const SINGLE_GET_SUCCESS = "singlePage/get/success"
