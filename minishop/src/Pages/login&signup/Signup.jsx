@@ -1,33 +1,28 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { AuthContext } from "./AuthContextProvider";
 
 const userInit = {
   email: "",
   password: "",
-  returnSecureToken: true,
 };
 
 const Signup = () => {
   const [user, setUser] = useState(userInit);
+  const [error, setError] = useState("");
+  const { createUser } = useContext(AuthContext);
 
   const handleChange = (e) => {
     setUser({ ...user, [e.target.type]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    fetch(
-      `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBpXbgsBXj0IdrvrNDfqbAg5dffxClesXo`,
-      {
-        method: "POST",
-        body: JSON.stringify(user),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    )
-      .then((response) => response.json())
-      .then((response) => console.log(response))
-      .catch((e) => console.log(e));
+    try {
+      await createUser(user.email, user.password);
+    } catch (e) {
+      setError(e.message);
+      console.log(e.message);
+    }
   };
 
   return (
@@ -36,8 +31,21 @@ const Signup = () => {
         <h1>Signup</h1>
       </div>
       <form onSubmit={handleSubmit}>
-        <input type="email" value={user.email} onChange={handleChange} />
-        <input type="password" value={user.password} onChange={handleChange} />
+        <input
+          type="email"
+          value={user.email}
+          placeholder="email"
+          onChange={handleChange}
+        />
+        <br />
+        <input
+          type="password"
+          value={user.password}
+          placeholder="password"
+          onChange={handleChange}
+          border="1px solid black"
+        />
+        <br />
         <input type="submit" />
       </form>
     </div>
