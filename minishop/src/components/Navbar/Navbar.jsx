@@ -34,7 +34,7 @@ export default function Navbar (){
     </Box>
     <Spacer />
 {/*--------------------------------   Categories   ----------------------------------------------*/}    
-     <Box p='4'>
+     <Box >
       <Menu isLazy>
      <MenuButton> <Heading size='sm'>CATEGORIES </Heading></MenuButton>
      <MenuList color={'black'} mt={'15px'} >

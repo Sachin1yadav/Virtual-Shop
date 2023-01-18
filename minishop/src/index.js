@@ -10,7 +10,9 @@ root.render(
 
   <BrowserRouter>
   <ChakraProvider>
+   
     <App />
+    
   </ChakraProvider>
   </BrowserRouter>
 
