@@ -7,7 +7,7 @@ import {
 let initialState = {
     loading:false,
     error:false,
-    singleProductData:{}
+    itemDetail:{}
 }
 
 export const singleReducer = (state = initialState ,{type,payload})=>{
@@ -30,7 +30,7 @@ export const singleReducer = (state = initialState ,{type,payload})=>{
             return {
                 ...state,
                 loading:false,
-                singleProductData:payload,
+                itemDetail:payload,
             }
         }
 
