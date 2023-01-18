@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 // import { useParams } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux";
-import { getSingleProduct } from "../redux/SingleProducts/SingleProduct.actions";
+import { getSingleProduct } from "../../redux/SingleProducts/SingleProduct.actions";
 
 
 const SinglePage = () => {
