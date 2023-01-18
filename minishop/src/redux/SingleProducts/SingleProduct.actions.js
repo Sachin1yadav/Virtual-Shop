@@ -1,18 +1,18 @@
 import {
-    SINGLEPAGE_GET_LOADING,
-    SINGLEPAGE_GET_SUCCESS,
-    SINGLEPAGE_GET_ERROR
+    SINGLE_GET_LOADING,
+    SINGLE_GET_SUCCESS,
+    SINGLE_GET_ERROR
 } from "./SingleProduct.actionTypes"
 
 import { getSingleProductAPI } from "./SingleProduct.api"
 
-export const getSingleProduct = () => async(dispatch) => {
-    dispatch({type: SINGLEPAGE_GET_LOADING});
+export const getSingleProduct = (id) => async(dispatch) => {
+    dispatch({type: SINGLE_GET_LOADING});
     try{
-        let data = await getSingleProductAPI();
-        dispatch({type:SINGLEPAGE_GET_SUCCESS,payload:data})
+        let data = await getSingleProductAPI(id);
+        dispatch({type:SINGLE_GET_SUCCESS,payload:data})
 
     }catch(e){
-        dispatch({type: SINGLEPAGE_GET_ERROR})
+        dispatch({type: SINGLE_GET_ERROR})
     }
 }

@@ -5,7 +5,7 @@ const Cart = () => {
     <div>
         {/* Navbar */}
         <div style={{}}>
-
+            hii
         </div>
     </div>
   )

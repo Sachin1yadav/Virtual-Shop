@@ -1,24 +1,24 @@
 import {
-    SINGLEPAGE_GET_LOADING,
-    SINGLEPAGE_GET_SUCCESS,
-    SINGLEPAGE_GET_ERROR
-} from "./SignleProduct.actionTypes"
+    SINGLE_GET_LOADING,
+    SINGLE_GET_SUCCESS,
+    SINGLE_GET_ERROR
+} from "./SingleProduct.actionTypes"
 
 let initialState = {
     loading:false,
     error:false,
-    singleProductData:[]
+    singleProductData:{}
 }
 
-export const singleReducerReducer = (state = initialState ,{type,payload})=>{
+export const singleReducer = (state = initialState ,{type,payload})=>{
     switch(type){
-        case  SINGLEPAGE_GET_LOADING:{
+        case  SINGLE_GET_LOADING:{
             return {
                 ...state,
                 loading:true
             }
         }
-        case  SINGLEPAGE_GET_ERROR:{
+        case  SINGLE_GET_ERROR:{
             return {
                 ...state,
                 loading:false,
@@ -26,7 +26,7 @@ export const singleReducerReducer = (state = initialState ,{type,payload})=>{
             }
         }
 
-        case  SINGLEPAGE_GET_SUCCESS:{
+        case  SINGLE_GET_SUCCESS:{
             return {
                 ...state,
                 loading:false,
