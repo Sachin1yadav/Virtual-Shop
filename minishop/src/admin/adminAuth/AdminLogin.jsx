@@ -11,9 +11,22 @@ import {
     Heading,
     Text,
     useColorModeValue,
+    useToast,
   } from '@chakra-ui/react';
-  
-  export default function SimpleCard() {
+import { useState,} from 'react';
+import {useDispatch,useSelector } from 'react-redux'
+import { getAdminAuth } from '../../redux/admin_auth/admin.actions';
+export default function AdminLogin() {
+  const toast = useToast()
+    const {loading, error, isAuth} =  useSelector(val=>val.adminAuth)
+    const [user, setUser] = useState({email:'',password:""})
+    const dispatch = useDispatch()
+    const handleLogin = ()=>{
+      dispatch(getAdminAuth(user))
+    }
+    const handleChange = (e)=>{
+      setUser({...user, [e.target.name]:e.target.value })
+    }
     return (
       <Flex
         minH={'100vh'}
@@ -22,7 +35,7 @@ import {
         bg={useColorModeValue('gray.50', 'gray.800')}>
         <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
           <Stack align={'center'}>
-            <Heading fontSize={'4xl'}>Sign in to your account</Heading>
+            <Heading fontSize={'4xl'}>Sign in as Admin</Heading>
             <Text fontSize={'lg'} color={'gray.600'}>
               to enjoy all of our cool <Link color={'blue.400'}>features</Link> ✌️
             </Text>
@@ -35,11 +48,11 @@ import {
             <Stack spacing={4}>
               <FormControl id="email">
                 <FormLabel>Email address</FormLabel>
-                <Input type="email" />
+                <Input type="email" value={user.email} name='email' onChange={handleChange} />
               </FormControl>
               <FormControl id="password">
                 <FormLabel>Password</FormLabel>
-                <Input type="password" />
+                <Input type="password" name='password' value={user.password} onChange={handleChange} />
               </FormControl>
               <Stack spacing={10}>
                 <Stack
@@ -50,6 +63,8 @@ import {
                   <Link color={'blue.400'}>Forgot password?</Link>
                 </Stack>
                 <Button
+                  isLoading={loading}
+                  onClick={handleLogin}
                   bg={'blue.400'}
                   color={'white'}
                   _hover={{
@@ -61,6 +76,13 @@ import {
             </Stack>
           </Box>
         </Stack>
+        {
+                  error?toast({
+                    title: `error toast`,
+                    status: 'error',
+                    isClosable: true,
+                  }):null
+                }
       </Flex>
     );
   }
