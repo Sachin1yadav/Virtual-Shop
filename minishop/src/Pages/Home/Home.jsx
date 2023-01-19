@@ -12,7 +12,7 @@ function Home() {
 
   const getHomeData =async () => {
     try {
-        const res = await fetch("https://b-tmart-api-5tjm.vercel.app/data");
+        const res = await fetch("https://lackadaisical-volcano-larch.glitch.me/data");
         const HomeData = await res.json();
         setData(HomeData);  
     } catch (error) {
@@ -28,40 +28,41 @@ function Home() {
   return (
     <Box w='90%' m={'auto'}>
        {/* <PauseOnHover/> */}
-        <Box >
-          <Heading style={{color:"red",textAlign:"start",textDecoration:"underLine"}}>shoes</Heading>
+       <Box>
+          <Heading style={{color:"red",textAlign:"start",textDecoration:"underLine"}}>watch</Heading>
           <HomeProducts
-            data={data.filter((item) => item.catogeries === "shoes")}/>  
-        </Box>
-
-        <Box>
-          <Heading style={{color:"red",textAlign:"start",textDecoration:"underLine"}}>Electronics</Heading>
-          <HomeProducts
-            data={data.filter((item) => item.catogeries === "Electronics")}/>
-        </Box>
-
-        <Box>
-          <Heading style={{color:"red",textAlign:"start",textDecoration:"underLine"}}>Sports</Heading>
-          <HomeProducts
-            data={data.filter((item) => item.catogeries === "Sports")} />
-        </Box>
-
-        <Box>
-          <Heading style={{color:"red",textAlign:"start",textDecoration:"underLine"}}>Mobile</Heading>
-          <HomeProducts
-            data={data.filter((item) => item.catogeries === "phone")}/>
+            data={data.filter((item) => item.Categories === "watch")}/>
            </Box>
+        <Box >
+          <Heading style={{color:"red",textAlign:"start",textDecoration:"underLine"}}>t_shirt</Heading>
+          <HomeProducts
+            data={data.filter((item) => item.Categories === "t_shirt")}/>  
+        </Box>
+
+        <Box>
+          <Heading style={{color:"red",textAlign:"start",textDecoration:"underLine"}}>Jacket</Heading>
+          <HomeProducts
+            data={data.filter((item) => item.Categories === "Jacket")}/>
+        </Box>
+
+        <Box>
+          <Heading style={{color:"red",textAlign:"start",textDecoration:"underLine"}}>bags</Heading>
+          <HomeProducts
+            data={data.filter((item) => item.Categories === "bags")} />
+        </Box>
+
+        
        
         <Box>
           <Heading>Fashion</Heading>
           <HomeProducts
-            data={data.filter((item) => item.catogeries === "fashion")}/>
+            data={data.filter((item) => item.Categories === "fashion")}/>
         </Box>
 
         <Box>
           <Heading style={{color:"red",textAlign:"start",textDecoration:"underLine"}}>Beauty and Cosmetics</Heading>
           <HomeProducts
-            data={data.filter((item) => item.catogeries === "Beauty and Cosmetics" )}/>
+            data={data.filter((item) => item.Categories === "Beauty and Cosmetics" )}/>
         </Box>
       
     </Box>
