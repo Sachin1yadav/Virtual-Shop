@@ -42,7 +42,7 @@ const SinglePage = () => {
 
   useEffect(() => {
     // getitemDetail(id)
-    fetch(`https://b-tmart-api-5tjm.vercel.app/data/${id}`)
+    fetch(`https://lackadaisical-volcano-larch.glitch.me/data/${id}`)
       .then((res) => res.json())
       .then((json) => {
         setItemDetail(json);
