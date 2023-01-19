@@ -14,13 +14,13 @@ function Allroute() {
         {/* <Route path="/cart" element={<Cart/>} /> */}
         {/* <Route path="/products" element={<Products/>}></Route> */}
         <Route path="/data/:id" element={<SinglePage/>}></Route>
-<<<<<<< HEAD
+ 
         {/* demoRoutes........................ */}
           <Route path="/DLogin" element={<DLogin/>} />
         <Route path="/sign" element={<DSign/>} />
-=======
+ 
         <Route path="/admin" element={<Admin/>}></Route>
->>>>>>> e17fd959bf55b932057e4091556bab4189ae8f71
+ 
       </Routes>
     </>
   );

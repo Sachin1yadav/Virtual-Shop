@@ -36,33 +36,6 @@ function Home() {
     <Box>
     {loading ?  <Loaderskeleton/> :  <Navbar items={data} /> }
     <Box w='90%' m={'auto'}>
-<<<<<<< HEAD
-       {/* <PauseOnHover/> */}
-       <Box>
-          <Heading style={{color:"red",textAlign:"start",textDecoration:"underLine"}}>watch</Heading>
-          <HomeProducts
-            data={data.filter((item) => item.Categories === "watch")}/>
-           </Box>
-        <Box >
-          <Heading style={{color:"red",textAlign:"start",textDecoration:"underLine"}}>t_shirt</Heading>
-          <HomeProducts
-            data={data.filter((item) => item.Categories === "t_shirt")}/>  
-        </Box>
-
-        <Box>
-          <Heading style={{color:"red",textAlign:"start",textDecoration:"underLine"}}>Jacket</Heading>
-          <HomeProducts
-            data={data.filter((item) => item.Categories === "Jacket")}/>
-        </Box>
-
-        <Box>
-          <Heading style={{color:"red",textAlign:"start",textDecoration:"underLine"}}>bags</Heading>
-          <HomeProducts
-            data={data.filter((item) => item.Categories === "bags")} />
-        </Box>
-
-        
-=======
 {/*---------------------------------    carousel   ---------------------------------------*/}
         <Carousel  
           dots= {true} infinite= {true}
@@ -110,24 +83,12 @@ function Home() {
           <HomeProducts
             data={data.filter((item) => item.Categories === "watch")}/>
            </Box>}
->>>>>>> e17fd959bf55b932057e4091556bab4189ae8f71
        
            {loading ?  <Loaderskeleton/> :  <Box>
           <Heading>Headphones</Heading>
           <HomeProducts
-<<<<<<< HEAD
-            data={data.filter((item) => item.Categories === "fashion")}/>
-        </Box>
-
-        <Box>
-          <Heading style={{color:"red",textAlign:"start",textDecoration:"underLine"}}>Beauty and Cosmetics</Heading>
-          <HomeProducts
-            data={data.filter((item) => item.Categories === "Beauty and Cosmetics" )}/>
-        </Box>
-=======
             data={data.filter((item) => item.Categories === "Headphones")}/>
         </Box>}
->>>>>>> e17fd959bf55b932057e4091556bab4189ae8f71
       
     </Box>
     <Footer/>
@@ -147,7 +108,6 @@ const imagesTop = ['https://s3.thingpic.com/images/WZ/1ChLD86XEtKdLmpiQHdW1nhF.j
 'https://s3.thingpic.com/images/WZ/1ChLD86XEtKdLmpiQHdW1nhF.jpeg'
 ]
 
-
 const slider2 = ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSr7VY_uPylvuiiTb4AsuCIALXIYGYUH4CfBg&usqp=CAU',
 'https://cdn.pixabay.com/photo/2018/01/16/10/18/headphones-3085681__340.jpg',
 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYrgxY4EB0zTPGhJnsU_sJfLura-clv6pKvw&usqp=CAU',
@@ -156,7 +116,6 @@ const slider2 = ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSr7VY_uP
 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSr7VY_uPylvuiiTb4AsuCIALXIYGYUH4CfBg&usqp=CAU'
 
 ];
-
 
 
 
