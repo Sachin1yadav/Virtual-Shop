@@ -2,10 +2,11 @@ import { Box, Heading, Image, SimpleGrid, Text } from "@chakra-ui/react";
 import { useEffect ,useState} from "react";
  import { Link } from "react-router-dom";
  import React, { Component } from "react";
+ import { BsFillHeartFill } from "react-icons/bs";
 import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-
+// import "slick-carousel/slick/slick.css";
+// import "slick-carousel/slick/slick-theme.css";
+import "./Home.css"
 function Home() {
   const [data, setData] = useState([]);
 
@@ -28,25 +29,25 @@ function Home() {
     <Box w='90%' m={'auto'}>
        {/* <PauseOnHover/> */}
         <Box >
-          <Heading >shoes</Heading>
+          <Heading style={{color:"red",textAlign:"start",textDecoration:"underLine"}}>shoes</Heading>
           <HomeProducts
             data={data.filter((item) => item.catogeries === "shoes")}/>  
         </Box>
 
         <Box>
-          <Heading>Electronics</Heading>
+          <Heading style={{color:"red",textAlign:"start",textDecoration:"underLine"}}>Electronics</Heading>
           <HomeProducts
             data={data.filter((item) => item.catogeries === "Electronics")}/>
         </Box>
 
         <Box>
-          <Heading>Sports</Heading>
+          <Heading style={{color:"red",textAlign:"start",textDecoration:"underLine"}}>Sports</Heading>
           <HomeProducts
             data={data.filter((item) => item.catogeries === "Sports")} />
         </Box>
 
         <Box>
-          <Heading>Mobile</Heading>
+          <Heading style={{color:"red",textAlign:"start",textDecoration:"underLine"}}>Mobile</Heading>
           <HomeProducts
             data={data.filter((item) => item.catogeries === "phone")}/>
            </Box>
@@ -58,7 +59,7 @@ function Home() {
         </Box>
 
         <Box>
-          <Heading>Beauty and Cosmetics</Heading>
+          <Heading style={{color:"red",textAlign:"start",textDecoration:"underLine"}}>Beauty and Cosmetics</Heading>
           <HomeProducts
             data={data.filter((item) => item.catogeries === "Beauty and Cosmetics" )}/>
         </Box>
@@ -75,23 +76,52 @@ export default Home;
 function HomeProducts(data) {
 
   return (
-      <SimpleGrid minChildWidth='300px' spacing='60px' >
+    <div className="container">
         {data.data.map((el, i) => {
-          return (<Box  key={el.id}  height='350px' border='1px' >
-              <Image src={el.image[0]}  alt={el.price} w='50%' margin={'auto'} />
-              <h2> {el.name.length < 8 ? el.name : `${el.name.slice(0, 8)}`} </h2>
-                <Box >
-                  <Box ><Heading fontSize={'14px'} >Price:</Heading><span> {el.price}</span></Box>
-                  <Box ><Heading fontSize={'14px'}>Ratting:</Heading> <span>{el.rating}</span></Box>
-                  <Box >
-                    <Link to={`/${el.id}`} >
-                      <Text>View Details</Text>
+          return (
+            <div key={el.id} className="cord">
+        <div className="imgBox">
+          <img  src={el.image[0]}  alt="" />
+        </div>
+        <div className="details">
+          <div className="nameHeart">
+          <h3>
+          {el.name.length < 8 ? el.name : `${el.name.slice(0, 8)}`}   
+          </h3>
+          <p><BsFillHeartFill className="heart" /></p>
+          </div>
+          <h5>Price:{el.price}</h5>
+          <h5>Rating:{el.rating}</h5>
+          {/* <p> <BsFillHeartFill className="heart" /></p> */}
+          {/* <p>
+            Lorem ipsum dolor sit, orrupti ip consequatur voluptatum facilis
+            animi commodi dolor sed cupiditate quam corrupti quisquam vero,
+            aliquid odio.
+          </p>{" "} */}
+          <div className="btn">
+          <Link to={`/data/${el.id}`} >
+                        <button className="viweBtn">View</button>
                     </Link>
-                  </Box>   
-              </Box>
-          </Box>)
+             
+          </div>
+        </div>
+      </div>
+          )
+          // (<Box  key={el.id}  height='350px' border='1px' >
+          //     <Image src={el.image[0]}  alt={el.price} w='50%' margin={'auto'} />
+          //     <h2> {el.name.length < 8 ? el.name : `${el.name.slice(0, 8)}`} </h2>
+          //       <Box >
+          //         <Box ><Heading fontSize={'14px'} >Price:</Heading><span> {el.price}</span></Box>
+          //         <Box ><Heading fontSize={'14px'}>Ratting:</Heading> <span>{el.rating}</span></Box>
+          //         <Box >
+          //           <Link to={`/data/${el.id}`} >
+          //             <Text>View Details</Text>
+          //           </Link>
+          //         </Box>   
+          //     </Box>
+          // </Box>)
           })}
-      </SimpleGrid>
+       </div>
    
   );
 }

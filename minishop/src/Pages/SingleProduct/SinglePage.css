@@ -1,0 +1,146 @@
+
+
+.maindiv{
+    width: 100%;
+    height: 100vh;
+    /* border: 1px solid red; */
+    display: flex;
+    gap: 30px;
+    padding: 2%;
+}
+
+.imgDiv{
+    width: 40%;
+    height: 90%;
+    margin: auto;
+    /* border: 2px solid rgb(49, 0, 128); */
+    display: flex;
+     flex-direction: column;
+     justify-content: space-around;
+}
+
+ 
+  .imagess{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width:80% ;
+     margin: auto;
+     height: 20%;
+    justify-content: center;
+    /* border: 2px solid rgb(128, 255, 0); */
+    border-radius: 5px;
+    /* margin: auto; */
+    /* background-color: rgb(255, 255, 255); */
+    gap: 5px;
+    align-content: center;
+    /* box-shadow: rgba(255, 254, 254, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px; */
+    padding: 5px;
+ margin-top: 40px;
+
+  }
+  .curimg{
+    /* border: 2px solid rgb(238, 13, 13); */
+    width: 80%;
+    height: 70%;
+    border-radius: 10px;
+ margin-top: -0px;
+ padding: 10px 10px 10px 10px;
+ justify-content: center;
+ /* border: 2px solid rgb(255, 0, 8); */
+ align-content: center;
+ margin: auto;
+ /* background-color: rgb(255, 255, 255); */
+  }
+  .curimg img{
+   justify-content: center;
+ align-content: center;
+ height: 100%;
+ /* border: 1px solid red; */
+ width: 100%;
+ margin: auto;
+ box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+  }
+  .imagess div{
+   /* border: 1px solid red; */
+   width: 100%;
+   justify-content: center;
+   height: 90%;
+   margin: auto;
+   
+  }
+   .imagess div img{
+     width: 100%;
+     height: 100%;
+     cursor: pointer;
+     border-top-left-radius: 10px;
+     box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px;
+     /* box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset; */
+     /* box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset; */
+     margin: auto;
+   }
+
+   .name{
+    font-weight: bolder;
+font-size: 25px;
+color: rgb(247, 55, 55);
+   }
+   .detailsdiv{
+    width: 60%;
+    height: 80%;
+    margin: auto;
+    /* border: 1px solid green; */
+   display: flex;
+   flex-direction: column;
+   text-align: start;
+   padding: 1%;
+}
+.catog{
+    font-weight: bold;
+    font-size: 20px;
+    color: white;
+}
+.price{
+    font-size: 17px;
+    font-weight: bold;
+    color: white;
+    margin-top: 14px;
+}
+.rating{
+    font-size: 17px;
+    font-weight: bold;
+    color: white;
+}
+.discription{
+    font-size: 17px;
+    color: white;
+    letter-spacing: 1px;
+    margin-top: 14px;
+}
+.btnWC{
+    display: flex;
+    margin: auto;
+    width: 50%;
+    justify-content: space-around;
+}
+.wish{
+    border: 1px solid rgb(164, 163, 163);
+    padding: 5px 10px;
+    /* background-color: rgb(126, 125, 125); */
+    border-radius: 5px;
+    color: white;
+}
+.cart{
+    /* border: 1px solid red; */
+    padding: 2px 10px;
+    border-radius: 5px;
+    color: white;
+    background-color: rgb(253, 28, 28);
+}
+.cart:hover{
+    background-color: rgb(212, 11, 11);
+}
+.wish:hover{
+    color: black;
+    background-color: rgb(164, 163, 163);
+}
