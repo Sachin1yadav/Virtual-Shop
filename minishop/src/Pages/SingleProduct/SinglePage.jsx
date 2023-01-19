@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 // import { useParams } from "react-router-dom"
 // import { useDispatch, useSelector } from "react-redux";
 // import { getSingleProduct } from "../../redux/SingleProducts/SingleProduct.actions";
-
+import { BsStarFill } from "react-icons/bs";
 // import axios from "axios";
 
 import { useToast } from "@chakra-ui/react";
@@ -17,12 +17,14 @@ import { useToast } from "@chakra-ui/react";
 // } from "react-icons/md";
 
 import { Link, useParams } from "react-router-dom";
-import "./SinglePage.css";
+import "./SinglePage.scss";
 
 const SinglePage = () => {
   const { id } = useParams();
-  const [img, setImg] = useState(0);
-  let des="Self-Timer | Type C and Mini HDMI, |9 Auto Focus Points | 35x Optical Zoom., Effective Pixels: 18 MP APS-C CMOS sensor-which is 25 times larger than a typical Smartphone sensor., WiFi | Full HD | Video Recording at 1080 p on 30fps."
+  const [img, setImg] = useState(1);
+  let rat = 4.3;
+  let des =
+    "Self-Timer | Type C and Mini HDMI, |9 Auto Focus Points | 35x Optical Zoom., Effective Pixels: 18 MP APS-C CMOS sensor-which is 25 times larger than a typical Smartphone sensor., WiFi | Full HD | Video Recording at 1080 p on 30fps.";
   // let id =1;
   // const {loading , error, itemDetail} = useSelector((store) => store.singleProduct);
   // const dispatch = useDispatch();
@@ -154,16 +156,53 @@ const SinglePage = () => {
           </div>
         </div>
         <div className="detailsdiv">
+          <p className="catog">{itemDetail?.Categories}</p>
           <h3 className="name">{itemDetail?.name}</h3>
-          <p className="catog">{itemDetail?.catogeries}</p>
-          <p className="price">{itemDetail?.price}</p>
-          <p className="rating">{itemDetail?.rating}</p>
-          <p className="discription">{itemDetail?.discription?(itemDetail?.discription):(des)}</p>
+          <p className="price">
+            {" "}
+            Price: ₹{itemDetail?.price} <span>₹{itemDetail?.og_price}</span>
+          </p>
+          <p className="offer">Offer: {itemDetail?.saving}</p>
+
+          <div className="ratingDiv">
+            {" "}
+            <p className="rating">
+              {itemDetail?.rating ? itemDetail?.rating : rat}
+            </p>
+            <span>
+              <BsStarFill />
+            </span>
+          </div>
+
+          <p className="discription">
+            {itemDetail?.discription ? itemDetail?.discription : des}
+          </p>
           <div className="btnWC">
-          <button className="wish">Add To Wishlist!</button>
-          <button className="cart">Add To Cart</button>
+            <button className="wish">Add To Wishlist!</button>
+            <button className="cart">Add To Cart</button>
           </div>
         </div>
+      </div>
+
+      {/* banner */}
+
+      <div className="banner">
+         <img  src="./shippingBanner.PNG" alt="banner" />
+      </div>
+
+      {/* recmended product */}
+
+      <div className="recmend"></div>
+       
+       
+
+      {/* recmended product  footer*/}
+      <div className="recFooter">
+        <p>
+          India's fastest growing audio & wearables brand. The most incredible
+          range of wireless earphones, earbuds, headphones, smart watches, and
+          home audio. From workouts to adventures, boAt will get you sailing!
+        </p>
       </div>
     </div>
   );

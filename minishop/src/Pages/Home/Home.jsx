@@ -119,4 +119,3 @@ const slider2 = ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSr7VY_uP
 
 
 
-
