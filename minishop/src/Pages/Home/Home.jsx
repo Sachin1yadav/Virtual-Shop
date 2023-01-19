@@ -108,6 +108,7 @@ const imagesTop = ['https://s3.thingpic.com/images/WZ/1ChLD86XEtKdLmpiQHdW1nhF.j
 'https://s3.thingpic.com/images/WZ/1ChLD86XEtKdLmpiQHdW1nhF.jpeg'
 ]
 
+
 const slider2 = ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSr7VY_uPylvuiiTb4AsuCIALXIYGYUH4CfBg&usqp=CAU',
 'https://cdn.pixabay.com/photo/2018/01/16/10/18/headphones-3085681__340.jpg',
 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYrgxY4EB0zTPGhJnsU_sJfLura-clv6pKvw&usqp=CAU',
@@ -116,6 +117,7 @@ const slider2 = ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSr7VY_uP
 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSr7VY_uPylvuiiTb4AsuCIALXIYGYUH4CfBg&usqp=CAU'
 
 ];
+
 
 
 
