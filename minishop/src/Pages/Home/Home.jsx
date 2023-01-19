@@ -1,52 +1,65 @@
 import { Box, Heading, Image, SimpleGrid, Text } from "@chakra-ui/react";
-import { useEffect ,useState} from "react";
- import { Link } from "react-router-dom";
- import React, { Component } from "react";
- import { BsFillHeartFill } from "react-icons/bs";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import React, { Component } from "react";
+import { BsFillHeartFill } from "react-icons/bs";
 import Slider from "react-slick";
 // import "slick-carousel/slick/slick.css";
 // import "slick-carousel/slick/slick-theme.css";
-import "./Home.css"
+import "./Home.css";
 function Home() {
   const [data, setData] = useState([]);
 
-  const getHomeData =async () => {
+  const getHomeData = async () => {
     try {
         const res = await fetch("https://b-tmart-api-5tjm.vercel.app/data");
         const HomeData = await res.json();
+      setData(HomeData);
         setData(HomeData);  
+      setData(HomeData);
+        setData(HomeData);  
+      setData(HomeData);
+        setData(HomeData);  
+      setData(HomeData);
+        setData(HomeData);  
+      setData(HomeData);
+        setData(HomeData);  
+      setData(HomeData);
     } catch (error) {
-        console.log("e", error);
+      console.log("e", error);
     }
 }
   useEffect(() => {
-    getHomeData()
+    getHomeData();
   }, []);
 
   //console.log("data", data);
-  
+
   return (
-    <Box w='90%' m={'auto'}>
-       {/* <PauseOnHover/> */}
+    <Box w="90%" m={"auto"}>
+      {/* <PauseOnHover/> */}
         <Box >
           <Heading style={{color:"red",textAlign:"start",textDecoration:"underLine"}}>shoes</Heading>
           <HomeProducts
-            data={data.filter((item) => item.catogeries === "shoes")}/>  
-        </Box>
+          data={data.filter((item) => item.Categories === "t_shirt")}
+        />
+      </Box>
 
-        <Box>
+      <Box>
           <Heading style={{color:"red",textAlign:"start",textDecoration:"underLine"}}>Electronics</Heading>
           <HomeProducts
-            data={data.filter((item) => item.catogeries === "Electronics")}/>
-        </Box>
+          data={data.filter((item) => item.Catogeries === "Electronics")}
+        />
+      </Box>
 
-        <Box>
+      <Box>
           <Heading style={{color:"red",textAlign:"start",textDecoration:"underLine"}}>Sports</Heading>
           <HomeProducts
-            data={data.filter((item) => item.catogeries === "Sports")} />
-        </Box>
+          data={data.filter((item) => item.catogeries === "Sports")}
+        />
+      </Box>
 
-        <Box>
+      <Box>
           <Heading style={{color:"red",textAlign:"start",textDecoration:"underLine"}}>Mobile</Heading>
           <HomeProducts
             data={data.filter((item) => item.catogeries === "phone")}/>
@@ -58,23 +71,20 @@ function Home() {
             data={data.filter((item) => item.catogeries === "fashion")}/>
         </Box>
 
-        <Box>
+      <Box>
           <Heading style={{color:"red",textAlign:"start",textDecoration:"underLine"}}>Beauty and Cosmetics</Heading>
           <HomeProducts
             data={data.filter((item) => item.catogeries === "Beauty and Cosmetics" )}/>
         </Box>
-      
     </Box>
   );
 }
 
 export default Home;
 
-
 //-------------------------------------   Home Products Cards  ------------------------------------//
 
 function HomeProducts(data) {
-
   return (
     <div className="container">
         {data.data.map((el, i) => {
@@ -86,23 +96,30 @@ function HomeProducts(data) {
         <div className="details">
           <div className="nameHeart">
           <h3>
+                  {el.name.length < 8 ? el.name : `${el.name.slice(0, 8)}`}
           {el.name.length < 8 ? el.name : `${el.name.slice(0, 8)}`}   
-          </h3>
-          <p><BsFillHeartFill className="heart" /></p>
-          </div>
-          <h5>Price:{el.price}</h5>
-          <h5>Rating:{el.rating}</h5>
-          {/* <p> <BsFillHeartFill className="heart" /></p> */}
-          {/* <p>
+                  {el.name.length < 8 ? el.name : `${el.name.slice(0, 8)}`}
+          {el.name.length < 8 ? el.name : `${el.name.slice(0, 8)}`}   
+                  {el.name.length < 8 ? el.name : `${el.name.slice(0, 8)}`}
+          {el.name.length < 8 ? el.name : `${el.name.slice(0, 8)}`}   
+                  {el.name.length < 8 ? el.name : `${el.name.slice(0, 8)}`}
+                </h3>
+                <p>
+                  <BsFillHeartFill className="heart" />
+                </p>
+              </div>
+              <h5>Price:{el.price}</h5>
+              <h5>Rating:{el.rating}</h5>
+              {/* <p> <BsFillHeartFill className="heart" /></p> */}
+              {/* <p>
             Lorem ipsum dolor sit, orrupti ip consequatur voluptatum facilis
             animi commodi dolor sed cupiditate quam corrupti quisquam vero,
             aliquid odio.
           </p>{" "} */}
-          <div className="btn">
+              <div className="btn">
           <Link to={`/data/${el.id}`} >
                         <button className="viweBtn">View</button>
                     </Link>
-             
           </div>
         </div>
       </div>
@@ -117,7 +134,9 @@ function HomeProducts(data) {
           //           <Link to={`/data/${el.id}`} >
           //             <Text>View Details</Text>
           //           </Link>
+        //         </Box>
           //         </Box>   
+        //         </Box>
           //     </Box>
           // </Box>)
           })}
