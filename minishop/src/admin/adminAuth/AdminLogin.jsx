@@ -35,9 +35,9 @@ export default function AdminLogin() {
         bg={useColorModeValue('gray.50', 'gray.800')}>
         <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
           <Stack align={'center'}>
-            <Heading fontSize={'4xl'}>Sign in as Admin</Heading>
+            <Heading fontSize={'4xl'}>Admin Sign In </Heading>
             <Text fontSize={'lg'} color={'gray.600'}>
-              to enjoy all of our cool <Link color={'blue.400'}>features</Link> ✌️
+              Make Sure you have Admin Access
             </Text>
           </Stack>
           <Box
@@ -78,7 +78,7 @@ export default function AdminLogin() {
         </Stack>
         {
                   error?toast({
-                    title: `error toast`,
+                    title: `Invalid Credentials !`,
                     status: 'error',
                     isClosable: true,
                   }):null
