@@ -1,0 +1,118 @@
+body{
+    margin: 0;
+    pad: 0;
+ /* border: 1px solid red; */
+  box-sizing: border-box;
+   
+   /* background-image: url("https://cdn.pixabay.com/photo/2016/11/03/14/06/wood-1794340__340.jpg"); */
+  }
+  .container {
+    max-width: 100%;
+    /* margin: 100px auto; */
+    /* border: 1px solid red; */
+    display: flex;
+    gap: 50px;
+    /* background-image: url("https://cdn.pixabay.com/photo/2016/11/03/14/06/wood-1794340__340.jpg"); */
+
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .cord {
+    position: relative;
+    margin: 20px 0;
+    width: 250px;
+    height: 300px;
+    background-color: #fff;
+    transform-style: preserve-3d;
+    transform: perspective(2000px);
+    transition: 1s;
+    /* background-image: url("https://cdn.pixabay.com/photo/2016/11/03/14/06/wood-1794340__340.jpg"); */
+
+    border-top-right-radius: 25px;
+    box-shadow: inset 300px 0 50px rgba(0, 0, 0, 0.5);
+  }
+  .cord:hover {
+      z-index: 1000;
+    transform: perspective(2000px) rotate(-10deg);
+    box-shadow: inset 20px 0 50px rgba(0, 0, 0, 0.5);
+     
+  }
+  .cord .imgBox {
+    position: relative;
+    width: 250px;
+    height: 300px;
+    /* border: 1px solid #000; */
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    transform-origin: left;
+    box-sizing: border-box;
+    background-color: rgb(255, 255, 255);
+    /* background-image: url("https://cdn.pixabay.com/photo/2016/11/03/14/06/wood-1794340__340.jpg"); */
+
+    z-index: 1;
+    transition: 1s;
+    border-top-right-radius: 25px;
+  }
+  .cord .imgBox img {
+    position: absolute;
+    top: 0;
+    cursor: pointer;
+    left: 0;
+    border-top-right-radius: 25px;
+    width: 100%;
+    height: 100%;
+    /* object-fit: cover; */
+  }
+  
+  .cord:hover .imgBox {
+    transform: rotateY(-135deg);
+  }
+  .details {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    width: 100%;
+    border-top-right-radius: 25px;
+    height: 100%;
+    object-fit: cover;
+    justify-content: space-evenly;
+    /* backgroundIMG-https://cdn.pixabay.com/photo/2016/10/22/01/54/wood-1759566__340.jpg */
+     background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTplfV2TcDIiFBpJQrq6671D6nwt0NQvTBYEQ&usqp=CAU");
+  }
+  .details h3{
+    color: rgb(255, 252, 252);
+    font-size: 30px;
+    font-weight: bolder;
+  }
+  .details h5{
+    color: rgb(140, 132, 132);
+    font-size: 25px;
+    font-weight: bolder;
+  }
+  .heart{
+    font-size: 20px;
+    color: rgb(255, 254, 254);
+    cursor: pointer;
+    margin-top: 10px;
+    margin-left: 30px;
+    
+  }
+  .heart:hover{
+    color: red;
+  }
+  .viweBtn{
+    color: white;
+    padding: 5px;
+    background-color: rgb(37, 62, 248);
+    border-radius: 5px;
+     width: 100px;
+  }
+  .nameHeart{
+    display: flex;
+    /* border: 1px solid red; */
+    justify-content: center;
+    align-items: center;
+  }

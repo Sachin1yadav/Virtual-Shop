@@ -1,11 +1,10 @@
 .App {
   text-align: center;
+     background-image: url("https://cdn.pixabay.com/photo/2016/10/22/01/54/wood-1759566__340.jpg");
+ 
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+ 
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
