@@ -37,6 +37,7 @@ const AdminHome = () => {
       return null;
     });
     editData(id, dta[0]);
+    console.log(dta)
   };
   const editData = async (id, data) => {
     try {

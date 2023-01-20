@@ -19,7 +19,8 @@ import {
   Select,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon, MoonIcon, SunIcon, AddIcon } from "@chakra-ui/icons";
-
+import {useDispatch, } from 'react-redux'
+import { adminLogout } from "../../redux/admin_auth/admin.actions";
 const Links = ["Dashboard", "Projects", "Team"];
 
 const NavLink = ({ children }) => (
@@ -43,6 +44,11 @@ export default function AdminNav() {
   const handleCategory = (val)=>{
     console.log(val)
   }
+  const dispatch = useDispatch()
+  const handleSignout = ()=>{
+    dispatch(adminLogout())
+  } 
+
   return (
     <>
       <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
@@ -108,7 +114,7 @@ export default function AdminNav() {
                 <MenuItem>Profile</MenuItem>
                 <MenuItem>Settings</MenuItem>
                 <MenuDivider />
-                <MenuItem>Log-Out</MenuItem>
+                <MenuItem onClick={handleSignout} >Log-Out</MenuItem>
               </MenuList>
             </Menu>
           </Flex>
