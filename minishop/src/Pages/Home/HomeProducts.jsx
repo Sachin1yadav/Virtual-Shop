@@ -1,4 +1,4 @@
-import { BsFillHeartFill } from "react-icons/bs";
+import { BsHeart } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
 export default function HomeProducts(data) {
@@ -8,18 +8,26 @@ export default function HomeProducts(data) {
           {data.data.map((el, i) => {
             return (
               <div key={el.id} className="cord">
+              
           <div className="imgBox">
-            <img  src={el.image[0]}  alt="" />
+            <img  src={el?.image?(el.image?.[1]):("https://media3.giphy.com/media/3oEjI6SIIHBdRxXI40/200w.gif?cid=6c09b9528g3llcf2o3218mjzzpt270ckvllpe9aew6nax25k&rid=200w.gif&ct=g")}  alt="" />
+            
           </div>
+          <h3 className="firstName">
+            {el.name.length < 18 ? el.name : `${el.name.slice(0, 18)}`}   
+            </h3>
+            
           <div className="details">
             <div className="nameHeart">
             <h3>
             {el.name.length < 8 ? el.name : `${el.name.slice(0, 8)}`}   
             </h3>
-            <p><BsFillHeartFill className="heart" /></p>
+            <p><BsHeart className="heart" /></p>
             </div>
+            <div>
             <h5>Price:{el.price}</h5>
             <h5>Rating:{el.rating}</h5>
+            </div>
             {/* <p> <BsFillHeartFill className="heart" /></p> */}
             {/* <p>
               Lorem ipsum dolor sit, orrupti ip consequatur voluptatum facilis

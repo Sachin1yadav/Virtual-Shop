@@ -26,7 +26,7 @@ export  const Carousel = ({dots,
       };
     
     return (
-      <div color="green">
+      <div color="green" width="100%">
         <Slider {...settings}>
          {Img && Img.map((el,i)=>(
         <div key={i} width='100%' >
