@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { BsHeart } from "react-icons/bs";
 
 import { Link, useParams } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux";
@@ -10,10 +11,25 @@ import { BsStarFill } from "react-icons/bs";
 
 import { Heading, useToast } from "@chakra-ui/react";
 
+
 import "./SinglePage.scss";
 import { BsFillHeartFill } from "react-icons/bs";
 
+// import { FaAngleRight, FaHeart, FaAngleDown } from "react-icons/fa";
 
+// import {
+//   MdOutlineCrueltyFree,
+//   MdOutlineWaterDrop,
+//   MdSettings,
+//   MdOutlineAssignmentReturn,
+// } from "react-icons/md";
+
+
+import "./SinglePage.scss";
+import { BsFillHeartFill } from "react-icons/bs";
+
+ 
+ 
 const SinglePage = () => {
   const { id } = useParams();
   const [img, setImg] = useState(1);
@@ -73,20 +89,48 @@ const SinglePage = () => {
 
   
   if(loading) return <h3>Loading...</h3>;
+
+  // const handleAddCart = (id) => {
+  //   return axios.post(`https://b-tmart-api-5tjm.vercel.app/itemDetail/${id}`);
+  // };
+
+  // const hideDiv = {
+  //   display: "none",
+  //   width: "90%",
+  //   margin: "auto",
+  //   marginTop: "20px",
+  // };
+
+  // const [angle, setAngle] = useState(false);
+
+  // const handleReadMore = () => {
+  //   const targetDiv = document.getElementById("disHideDiv");
+  //   // document.getElementById("hideDiv").style.display = "block"
+  //   if (targetDiv.style.display !== "none") {
+  //     targetDiv.style.display = "none";
+  //     setAngle(false);
+  //   } else {
+  //     targetDiv.style.display = "block";
+  //     setAngle(true);
+  //   }
+  // };
+
+  // if(loading) return <h3>Loading...</h3>;
+
   if(error) return <h3>Error...</h3>;
   return (
     <div>
       <div className="maindiv">
         <div className="imgDiv">
           <div className="curimg">
-            <img src={itemDetail?.image?.[img]} alt={itemDetail.name} />
+            <img src={itemDetail?.image?(itemDetail.image?.[img]):("https://media3.giphy.com/media/3oEjI6SIIHBdRxXI40/200w.gif?cid=6c09b9528g3llcf2o3218mjzzpt270ckvllpe9aew6nax25k&rid=200w.gif&ct=g")} alt={itemDetail.name} />
           </div>
           <div className="imagess">
             <div>
               {" "}
               <img
                 onClick={() => setImg(0)}
-                src={itemDetail?.image?.[0]}
+                src={itemDetail?.image?(itemDetail.image?.[0]):("https://media3.giphy.com/media/3oEjI6SIIHBdRxXI40/200w.gif?cid=6c09b9528g3llcf2o3218mjzzpt270ckvllpe9aew6nax25k&rid=200w.gif&ct=g")}
                 alt={itemDetail.name}
               />
             </div>
@@ -94,7 +138,7 @@ const SinglePage = () => {
               {" "}
               <img
                 onClick={() => setImg(1)}
-                src={itemDetail?.image?.[1]}
+                src={itemDetail?.image?(itemDetail.image?.[1]):("https://media3.giphy.com/media/3oEjI6SIIHBdRxXI40/200w.gif?cid=6c09b9528g3llcf2o3218mjzzpt270ckvllpe9aew6nax25k&rid=200w.gif&ct=g")}
                 alt={itemDetail.name}
               />
             </div>
@@ -102,7 +146,7 @@ const SinglePage = () => {
               {" "}
               <img
                 onClick={() => setImg(2)}
-                src={itemDetail?.image?.[2]}
+                src={itemDetail?.image?(itemDetail.image?.[2]):("https://media3.giphy.com/media/3oEjI6SIIHBdRxXI40/200w.gif?cid=6c09b9528g3llcf2o3218mjzzpt270ckvllpe9aew6nax25k&rid=200w.gif&ct=g")}
                 alt={itemDetail.name}
               />
             </div>
@@ -110,7 +154,7 @@ const SinglePage = () => {
               {" "}
               <img
                 onClick={() => setImg(3)}
-                src={itemDetail?.image?.[3]}
+                src={itemDetail?.image?(itemDetail.image?.[3]):("https://media3.giphy.com/media/3oEjI6SIIHBdRxXI40/200w.gif?cid=6c09b9528g3llcf2o3218mjzzpt270ckvllpe9aew6nax25k&rid=200w.gif&ct=g")}
                 alt={itemDetail.name}
               />
             </div>
@@ -140,15 +184,20 @@ const SinglePage = () => {
           </p>
           <div className="btnWC">
 
-          <button className="wish" onClick={()=>likeFuc(itemDetail)}><span style={{
-            fontSize:'20px', textAlign:'center'
-          }} >♡</span> Add To Wishlist!</button>
+          <button className="wish" onClick={()=>likeFuc(itemDetail)}> 
+          <div> <p>Wishlist</p>
+            <span><BsHeart/></span></div>
+           
+         </button>
           <button className="cart" onClick={()=>addToCart(itemDetail)}>Add To Cart</button>
           </div>
         </div>
       </div>
       <div>
-        <Heading color={'white'}>Similar Products</Heading>
+        <div className="banner">
+         <img  src="https://m.media-amazon.com/images/S/al-eu-726f4d26-7fdb/4923d2c3-74ef-4550-99ec-d0b6533b5b22.jpg" alt="banner" />
+      </div>
+        <Heading  className="similar">You might be interested in</Heading>
         <div>
         <SimilarData
             data={similarData.filter((item) => item.Categories === itemDetail.Categories)}/>
@@ -160,6 +209,13 @@ const SinglePage = () => {
       <div className="banner">
          <img  src="./shippingBanner.PNG" alt="banner" />
       </div>
+
+      
+
+      {/* banner */}
+
+      
+
 
       {/* recmended product */}
 

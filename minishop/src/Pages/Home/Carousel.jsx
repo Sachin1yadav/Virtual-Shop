@@ -2,8 +2,6 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { SimpleGrid, Skeleton } from "@chakra-ui/react";
-import { BsFillHeartFill } from "react-icons/bs";
-import { Link } from "react-router-dom";
 import "./Home.css";
 import HomeProducts from "./HomeProducts";
 
@@ -22,11 +20,12 @@ export  const Carousel = ({dots,
         slidesToScroll:slidesToScroll,
         autoplay:autoplay,
         autoplaySpeed:autoplaySpeed,
-        pauseOnHover:pauseOnHover
+        pauseOnHover:pauseOnHover,
+        arrows:false
       };
     
     return (
-      <div color="green">
+      <div color="green" width="100%">
         <Slider {...settings}>
          {Img && Img.map((el,i)=>(
         <div key={i} width='100%' >
