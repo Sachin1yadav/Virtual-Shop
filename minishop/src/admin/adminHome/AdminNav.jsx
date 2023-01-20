@@ -18,37 +18,44 @@ import {
   Image,
   Select,
 } from "@chakra-ui/react";
+import { useRef } from "react";
+import {useNavigate} from 'react-router-dom'
 import { HamburgerIcon, CloseIcon, MoonIcon, SunIcon, AddIcon } from "@chakra-ui/icons";
 import {useDispatch, } from 'react-redux'
 import { adminLogout } from "../../redux/admin_auth/admin.actions";
-const Links = ["Dashboard", "Projects", "Team"];
-
-const NavLink = ({ children }) => (
-  <Link
-    px={2}
-    py={1}
-    rounded={"md"}
-    _hover={{
-      textDecoration: "none",
-      bg: useColorModeValue("gray.200", "gray.700"),
-    }}
-    href={"#"}
-  >
-    {children}
-  </Link>
-);
-
+import AdModal from "../AddProduct/Modal";
 export default function AdminNav({handleCategory}) {
+  const navigate = useNavigate()
+
   const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const dispatch = useDispatch()
+
+  // Log-out functionality 
+
   const handleSignout = ()=>{
     dispatch(adminLogout())
   } 
+  // showUsers functionality
+  const showUsers = ()=>{
+    navigate("/admin/users")
+  }
+
+  // showSellers Functionality 
+  const showSellers=()=>{
+    navigate("/admin/sellers")
+  }
+
+  // Addproduct funcationality 
+  const showModal = useRef(null)
+  const addProd = ()=>{
+  showModal.current.click()
+  }
+
 
   return (
     <>
-      <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
+      <Box position={"fixed"} left='0' right={'0'} bg={useColorModeValue("gray.100", "gray.900")} px={4}>
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
           <IconButton
             size={"md"}
@@ -58,7 +65,7 @@ export default function AdminNav({handleCategory}) {
             onClick={isOpen ? onClose : onOpen}
           />
           <HStack spacing={8} alignItems={"center"}>
-            <Box w="20" cursor={"pointer"} rounded="2xl" overflow="hidden">
+            <Box w="16" cursor={"pointer"} rounded="2xl" onClick={()=>navigate('/admin')} border='1px' overflow="hidden">
               <Image src="https://user-images.githubusercontent.com/80110392/213411141-41dba86a-52b0-44f4-9b7a-79ccbd7e1885.png" />
             </Box>
             <HStack
@@ -66,7 +73,7 @@ export default function AdminNav({handleCategory}) {
               spacing={4}
               display={{ base: "none", md: "flex" }}
             >
-              <NavLink>
+              <Link>
               <Select onChange={handleCategory} placeholder="Select Catagory">
                   <option value="t_shirt">T-shirt</option>
                   <option value="Jacket">Jacket</option>
@@ -76,16 +83,16 @@ export default function AdminNav({handleCategory}) {
                   <option value="bags">Bag</option>
                   <option value="shoes">Shoes</option>
               </Select>
-              </NavLink>
-              <NavLink>
+              </Link>
+              <Link onClick={showUsers} >
                 Users
-              </NavLink>
-              <NavLink>
+              </Link>
+              <Link onClick={showSellers}>
                 Sellers
-              </NavLink>
-              <NavLink>Product
+              </Link>
+              <Link onClick={addProd} >Product
               <AddIcon mx='4' fontSize={'sm'} /> 
-              </NavLink>
+              </Link>
             </HStack>
           </HStack>
           <Flex alignItems={"center"}>
@@ -120,13 +127,15 @@ export default function AdminNav({handleCategory}) {
         {isOpen ? (
           <Box pb={4} display={{ md: "none" }}>
             <Stack as={"nav"} spacing={4}>
-              {Links.map((link) => (
-                <NavLink key={link}>{link}</NavLink>
-              ))}
+                <Link>Users</Link>
+                <Link>Sellers</Link>
+                <Link>Add Product</Link>
+              ))
             </Stack>
           </Box>
         ) : null}
       </Box>
+      <AdModal showModal={showModal} />
     </>
   );
 }
