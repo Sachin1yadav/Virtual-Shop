@@ -9,6 +9,9 @@ import { Carousel, SingleCarousel } from "./Carousel";
 import { Loaderskeleton } from "./Carousel";
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
+import NavScrollExample from "../../components/Navbar/NavbarNew";
+
+
 
 function Home() {
   const [data, setData] = useState([]);
@@ -34,16 +37,25 @@ function Home() {
   
   return (
     <Box>
-    {loading ?  <Loaderskeleton/> :  <Navbar items={data} /> }
-    <Box w='90%' m={'auto'}>
-{/*---------------------------------    carousel   ---------------------------------------*/}
-        <Carousel  
+      
+      <Box w={"100%"} m={"auto"}  >
+      <Carousel  
           dots= {true} infinite= {true}
           slidesToShow = {1}
           slidesToScroll= {1}
           autoplay= {true} autoplaySpeed= {3000} pauseOnHover= {true } 
           Img={imagesTop}
           />
+          </Box>
+    <Box w='90%' m={'auto'}  >
+{/*---------------------------------    carousel   ---------------------------------------*/}
+        {/* <Carousel  
+          dots= {true} infinite= {true}
+          slidesToShow = {1}
+          slidesToScroll= {1}
+          autoplay= {true} autoplaySpeed= {3000} pauseOnHover= {true } 
+          Img={imagesTop}
+          /> */}
  {/*---------------------------------    carousel   ---------------------------------------*/}          
  {loading ?  <Loaderskeleton/> : <Box >
           <Heading style={{color:"black",textAlign:"start" }}>T-Shirt</Heading>
