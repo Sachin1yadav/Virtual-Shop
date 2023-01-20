@@ -13,10 +13,13 @@ import { orderReducer } from './Order/Order.reducer'
 
 import { singleReducer } from './SingleProducts/SingleProduct.reducer'
 
+import { adminAuthReducer } from './admin_auth/admin.reducer'
+
 const rootReducer = combineReducers({
     cart:cartReducer,
     order:orderReducer,
-    singleProduct: singleReducer
+    singleProduct: singleReducer,
+    adminAuth:adminAuthReducer
 })
 
 const composeEnhancer = window._REDUX_DEVTOOLS_EXTENSION_COMPOSE_ || compose;
