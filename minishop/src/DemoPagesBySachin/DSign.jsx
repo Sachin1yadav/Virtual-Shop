@@ -3,22 +3,24 @@ import { useToast, Button } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import "./Sign.css";
 import { AuthContext } from "../Pages/login&signup/AuthContextProvider";
-
+ 
 const userInit = {
   email: "",
   password: "",
 };
-
+ 
 const DSign = () => {
   const toast = useToast();
   const [user, setUser] = useState(userInit);
   const [error, setError] = useState("");
   const { createUser } = useContext(AuthContext);
+ 
 
   const handleChange = (e) => {
     setUser({ ...user, [e.target.type]: e.target.value });
   };
 
+ 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -28,11 +30,13 @@ const DSign = () => {
       console.log(e.message);
     }
   };
+ 
 
   return (
     <div>
       <div className="whole">
         <div className="box glow">
+ 
           <div className="form">
             <form onSubmit={handleSubmit} action="">
               <h2>Register</h2>
@@ -45,7 +49,7 @@ const DSign = () => {
                 <input
                   type="email"
                   value={user.email}
-                  placeholder="email"
+ 
                   onChange={handleChange}
                   required="required"
                 />
@@ -56,21 +60,21 @@ const DSign = () => {
                 <input
                   type="password"
                   value={user.password}
-                  placeholder="password"
+ 
                   onChange={handleChange}
                   required="required"
                 />
                 <span>Password</span>
                 <i></i>
               </div>
-
+ 
               <div className="signDiv">
-                <p>Already have an accountt?</p>
-                <Link to="/sign">
+                <p>Already have an account?</p>
+                <Link to="/DLogin">
                   <h6 className="sign">Login</h6>
                 </Link>
               </div>
-
+ 
               <div>
                   <Button
                   type="submit"
@@ -91,9 +95,10 @@ const DSign = () => {
             </form>
           </div>
         </div>
-      </div>
+ 
+       
     </div>
   );
 };
-
 export default DSign;
+ 

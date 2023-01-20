@@ -1,3 +1,7 @@
+ 
+
+function App() {
+ 
 import './App.css';
 import Allroute from './Routes/AllRoutes';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -7,7 +11,7 @@ import { useEffect, useState } from 'react';
 import { Box } from '@chakra-ui/react';
 function App() {
   
-
+ 
   return (
     <div className="App">
        <Navbar />
