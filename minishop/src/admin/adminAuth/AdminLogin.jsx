@@ -18,7 +18,7 @@ import {useDispatch,useSelector } from 'react-redux'
 import { getAdminAuth } from '../../redux/admin_auth/admin.actions';
 export default function AdminLogin() {
   const toast = useToast()
-    const {loading, error, isAuth} =  useSelector(val=>val.adminAuth)
+    const {loading, error} =  useSelector(val=>val.adminAuth)
     const [user, setUser] = useState({email:'',password:""})
     const dispatch = useDispatch()
     const handleLogin = ()=>{

@@ -51,13 +51,25 @@ const AdminHome = () => {
       setError(true);
     }
   };
+  // Catgory request on Changing category 
 
+  const handleCategory = (e)=>{
+    if(e.target.value===''){
+      getProducts();
+    }else{
+      getCategory(e.target.value)
+    }
+  }
+  const getCategory = async(val)=>{
+    let res = await axios.get(`https://lackadaisical-volcano-larch.glitch.me/data?Categories=${val}`)
+    setAllProd(res.data)
+  }
   if (error) {
     return <Heading>Some Error from Server Occured</Heading>;
   }
   return (
     <>
-      <AdminNav />
+      <AdminNav handleCategory={handleCategory} />
 
       {/* ItemTable  */}
 
