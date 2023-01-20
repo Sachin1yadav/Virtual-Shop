@@ -1,37 +1,40 @@
 .App {
+ 
   text-align: center;
-     background-image: url("https://cdn.pixabay.com/photo/2016/10/22/01/54/wood-1759566__340.jpg");
+     background-image: url("https://media.istockphoto.com/id/586058260/photo/white-wood-panel-texture-background.jpg?s=612x612&w=0&k=20&c=Hcuxx1LJp6O_EHGQAoeN4BNAQX8pIGuQStAOkpwHCBk=");
+ 
+ 
+    text-align: center;
+      background-image: url("https://media.istockphoto.com/id/586058260/photo/white-wood-panel-texture-background.jpg?s=612x612&w=0&k=20&c=Hcuxx1LJp6O_EHGQAoeN4BNAQX8pIGuQStAOkpwHCBk="); 
  
 }
 
- 
-
 @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+    .App-logo {
+        animation: App-logo-spin infinite 20s linear;
+    }
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
 }
 
 .App-link {
-  color: #61dafb;
+    color: #61dafb;
 }
 
 @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
