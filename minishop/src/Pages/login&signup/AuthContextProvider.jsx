@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { createContext } from "react";
 import {
   signOut,
@@ -14,16 +14,19 @@ export const AuthContext = createContext();
 
 const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState({});
+  const [isAuth, setIsAuth] = useState(true);
 
   const createUser = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
   const loginUser = (email, password) => {
+    setIsAuth(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
 
   const logout = () => {
+    setIsAuth(false);
     return signOut(auth);
   };
 
@@ -34,6 +37,7 @@ const AuthContextProvider = ({ children }) => {
   const continueWithGoogle = async () => {
     try {
       await signInWithPopup(auth, provider);
+      setIsAuth(true);
     } catch (error) {
       console.log(error.message);
     }
@@ -50,6 +54,7 @@ const AuthContextProvider = ({ children }) => {
   }, []);
 
   const value = {
+    isAuth,
     createUser,
     logout,
     user,

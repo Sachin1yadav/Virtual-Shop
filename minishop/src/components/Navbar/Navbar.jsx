@@ -1,16 +1,12 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Box,
   Flex,
-  IconButton,
   Menu,
   MenuButton,
   Button,
   MenuList,
   MenuItem,
-  InputGroup,
-  InputLeftElement, 
-  Input,
   Heading,
   Spacer,
   ButtonGroup,
@@ -22,78 +18,119 @@ import {
   DrawerHeader,
   DrawerBody,
 } from '@chakra-ui/react';
-import { SearchIcon , HamburgerIcon} from '@chakra-ui/icons';  
+import {  HamburgerIcon} from '@chakra-ui/icons';  
 import {FaUserCircle} from "react-icons/fa";
 import {HiOutlineShoppingCart} from "react-icons/hi";
-// import { ReactSearchAutocomplete } from 'react-search-autocomplete';
+ import { ReactSearchAutocomplete } from 'react-search-autocomplete';
+import "./Navbar.css";
 
-export default function Navbar ({items}){
-  const { isOpen, onOpen, onClose } = useDisclosure()
-  // const handleOnSearch = (string, results) => {
-  //   console.log(string, results);
-  // };
+export default function Navbar ({display='flex'}){
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [data, setData] = useState([]);
+  
 
-  // const handleOnHover = (result) => {
-  //   console.log(result);
-  // };
+  const getHomeData =async () => {
+   
+    try {
+        const res = await fetch("https://lackadaisical-volcano-larch.glitch.me/data");
+        const HomeData = await res.json();
+        setData(HomeData);  
+        
+    } catch (error) {
+        console.log("e", error);
+    }
+}
+  useEffect(() => {
+    getHomeData()
+  }, []);
+  const handleOnSearch = (string, results) => {
+    // onSearch will have as the first callback parameter
+    // the string searched and for the second the results.
+    console.log(string, results);
+  };
 
-  // const handleOnSelect = (item) => {
-  //   // window.location = `/products/${item.id}`;
-  // };
+  const handleOnHover = (result) => {
+    // the item hovered
+    //console.log(result);
+  };
 
-  // const handleOnFocus = () => {
-  //   console.log("Focused");
-  // };
+  const handleOnSelect = (item) => {
+    // the item selected
+   // console.log(item, item.id);
+    window.location = `/data/${item.id}`;
+  };
+  const handleOnClear = () => {
+    //console.log("Cleared");
+  };
 
-  // const handleOnClear = () => {
-  //   console.log("Cleared");
-  // };
+  const handleOnFocus = () => {
+    //console.log("Focused");
+  };
+
+  const formatResult = (item) => {
+    return (
+      <>
+        <span style={{ display: "block", textAlign: "left" }}>
+          Brand: {item.brand}
+        </span>
+        <span style={{ display: "block", textAlign: "left" }}>
+          name: {item.name}
+        </span>
+      </>
+    );
+  };
 
 
   return (
-    <Flex minWidth='max-content'
+    <Flex width='screen'
      alignItems='center'
       gap='2' 
-        bg={'gray.800'} color={'white'}
+        bg={'gray.800'} color={'white'} position="fixed" zIndex={1} left={"0"} right='0' top='0' 
+        display={display}
         >
+          
 {/*-----------------------------------     Drawer  ----------------------------------*/}
- <Button colorScheme='blue' onClick={onOpen}>
- <IconButton
-            size={'md'}
-            icon= {<HamburgerIcon />}
-            aria-label={'Open Menu'}
-            display={{ md: 'none' }}
-          />
-      </Button>
+<Box p='4'>
+<Button  w={'full'}
+         maxW={'sm'}
+         onClick={onOpen}
+         colorScheme={'white'}
+         leftIcon={<HamburgerIcon fontSize={"27"} />}>
+        
+       </Button>
+      </Box>
+      <Spacer />
       <Drawer placement={'left'} onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay />
         <DrawerContent>
-          <DrawerHeader borderBottomWidth='1px'>Basic Drawer</DrawerHeader>
-          <DrawerBody>
-          <Box>Abrasive</Box>
-    <Box>Appliances</Box>
-    <Box>Bearings</Box>
-    <Box>Cleaning</Box>
-    <Box>Electrical</Box>
-    <Box>Electronic & Robotics</Box>
-    <Box>Fastners</Box>
-    <Box>Hand Tools</Box>
-    <Box>Hardware</Box>
-    <Box>Hydraulics</Box>
-    <Box>LED & Light</Box>
-    <Box>Machinery</Box>
+          <DrawerHeader borderBottomWidth='1px'>Product Categories</DrawerHeader>
+
+          <DrawerBody lineHeight={'38px'} >
+          <Box>T-Shirts</Box>
+          <Box>Jackets</Box>
+          <Box>Bags</Box>
+          <Box>Watch</Box>
+          <Box color="white" >-</Box>
+          <Box color="white">-</Box>
+          <Box   onClick={()=>window.location = `/DLogin`} >Login</Box>
+          <Box  onClick={()=>window.location = `/sign`} >Sign Up</Box>
+          <Box>Cart</Box>
+          <Box>Wishlist</Box>
+          <Box>Google App</Box>
+          <Box>Facebook Page</Box>
           </DrawerBody>
+
         </DrawerContent>
       </Drawer>
-      <Spacer />
+      
      <Box p='4'>
-    <Heading size='lg'>industryBuying</Heading>
+    <Heading size='lg'display={{md:"none",lg:"block",base:"none"}} onClick={()=>window.location = `/`} >industryBuying</Heading>
     </Box>
     <Spacer />
 {/*--------------------------------   Categories   ----------------------------------------------*/}    
      <Box >
       <Menu isLazy>
-     <MenuButton> <Heading size='sm'>CATEGORIES </Heading></MenuButton>
+     <MenuButton> <Heading size='sm' display={{md:"none",lg:"block",base:"none"}}>CATEGORIES </Heading></MenuButton>
      <MenuList color={'black'} mt={'15px'} w='600px' h='300px' >
      {/* MenuItems are not rendered unless Menu is open */}
      <SimpleGrid minChildWidth='100px' spacing='40px' >
@@ -115,44 +152,36 @@ export default function Navbar ({items}){
      </Box>
      <Spacer />
  {/*--------------------------------   INPUT FIELD   ----------------------------------------------*/}
- <Box p='4'>
-          <InputGroup>
-         <InputLeftElement
-           children={<IconButton
-            colorScheme='orange'
-            aria-label='Search database'
-            icon={<SearchIcon />}
-          />}
-            />
-        <Input type='search' placeholder='Search' 
-        size={"md"}  color={'black'} 
-        variant='outline' w={500} bg={'white'} />
-        {/* <ReactSearchAutocomplete
-            items={items}
-            maxResults={15}
+ <Box p='4'  boxSizing='borderBox' className='searchBox' width={{lg:"50%", md:"50%", sm:"80%",base:"80%"}}  >
+          <Box   >
+          <ReactSearchAutocomplete
+            items={data}
+            maxResults={8}
             onSearch={handleOnSearch}
             onHover={handleOnHover}
             onSelect={handleOnSelect}
             onFocus={handleOnFocus}
-            onClear={handleOnClear}
-            fuseOptions={{ keys: ["name", "brand","Categories"] }}
             placeholder="Search for product, brands and more"
+            onClear={handleOnClear}
+            fuseOptions={{ keys: ["name", "brand", "Categories"] }}
+            formatResult={formatResult}
             styling={{
               zIndex: 100,
-              borderRadius: "5px",
+              borderRadius: "10px",
               boxShadow: "none",
-              border: "1px solid #e5e5e5",
-              height: "5vh",
+              
+              height: "32px",
+              
               placeholderFontSize: "2.5vh",
-              fontSize: "2.2vh",
+              fontSize: "2.2vh"
             }}
-            
-          /> */}
-         </InputGroup>
+          />
+          </Box>
+         
         </Box>
         <Spacer />
  {/*--------------------------------   Sign in and Cart buttons  ----------------------------------------------*/}       
-    <Box >
+    <Box  >
     <ButtonGroup gap='2'>
     {/*--------------------------------   Signin Button  ----------------------------------------------*/} 
      
@@ -169,43 +198,28 @@ export default function Navbar ({items}){
          maxW={'sm'}
          colorScheme={'white'}
          leftIcon={<FaUserCircle fontSize={"27"} />}>
-         {/* <Center>
-           <Text>Sign In</Text>
-         </Center> */}
        </Button>
               </MenuButton>
               <MenuList color='black' >
-                <MenuItem>Login</MenuItem>
-                <MenuItem>SignIn</MenuItem>
+                <MenuItem onClick={()=>window.location = `/DLogin`} >Login</MenuItem>
+                <MenuItem onClick={()=>window.location = `/sign`} >SignIn</MenuItem>
                 <MenuItem>Your Orders</MenuItem>
               </MenuList>
             </Menu>
           </Flex>
- {/*--------------------------------   Trck order Button  ----------------------------------------------*/}    
-       {/* <Button
-         w={'full'}
-         maxW={'sm'}
-         colorScheme={'white'}
-         leftIcon={<SlLocationPin fontSize={"27"} />}>
-         <Center>
-           <Text>Track Order</Text>
-         </Center>
-       </Button> */}
-     
+ 
      {/*--------------------------------   Cart Button  ----------------------------------------------*/} 
-     
        <Button
          w={'full'}
          maxW={'sm'}
+         onClick={()=>window.location = `/cart`}
          colorScheme={'white'}
          leftIcon={<HiOutlineShoppingCart fontSize={"27"} />}>
-         {/* <Center>
-           <Text>CART</Text>
-         </Center> */}
        </Button>
      
     </ButtonGroup>
     </Box>
+    
    </Flex>
   )
 }
