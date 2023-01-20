@@ -6,4 +6,4 @@ export const CART_GET_SUCCESS = "cart/get/success"
 
 export const CART_UPDATE_DATA = "cart/update"
 
-export const CART_REMOVE = "cart/remove"
+export const CART_REMOVE = "cart/delete"

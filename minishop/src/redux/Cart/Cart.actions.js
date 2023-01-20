@@ -32,7 +32,7 @@ export const updateCarts = (id,newChanges) => async(dispatch) => {
 
 
 export const deleteCartItem = (id) => async(dispatch) => {
-    let data =  await deleteCart(id);
+    let data1 =  await deleteCart(id);
     dispatch({type:CART_REMOVE,payload:id})
 }
 

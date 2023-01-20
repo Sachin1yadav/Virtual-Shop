@@ -65,10 +65,6 @@ console.log('After UseEffect totalSum:', totalCartPrice)
      console.log("Apply text",apply);
  
      if(apply === "VS300"){
-      //  let dis = (30 / 100);
-      // //  console.log("dis",dis)
-      //  let totalValue = Math.floor(totalCartPrice - (totalCartPrice * dis))
-      //  console.log('VS300:', totalValue);
        setTotalCartPrice(cartData.reduce(
         (acc, el) => acc + (+el.price+152) * el.qty *70/100,
         0
@@ -76,7 +72,6 @@ console.log('After UseEffect totalSum:', totalCartPrice)
        setApply("")
      }else if(apply === "VS500"){
       let dis = (50 / 100);
-      //  console.log("dis",dis)
        let totalValue = Math.floor(totalCartPrice - (totalCartPrice * dis))
        console.log('VS500:', totalValue);
        setTotalCartPrice(totalValue);

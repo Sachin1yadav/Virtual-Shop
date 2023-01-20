@@ -44,7 +44,7 @@ export const cartReducer = (state = initialState ,{type,payload})=>{
 
         case CART_UPDATE_DATA:{
 
-            const updateValue = state.cartData.map((cart) =>{
+            const qtyValue = state.cartData.map((cart) =>{
                 if( cart.id === payload.id){
                     cart.qty = payload.qty
                 }
@@ -53,7 +53,7 @@ export const cartReducer = (state = initialState ,{type,payload})=>{
 
             return {
                 ...state,
-                cartData: updateValue
+                cartData: qtyValue
             }  
         }
 

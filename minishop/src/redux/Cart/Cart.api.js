@@ -14,11 +14,10 @@ export const updateCart =  (id,newValue) => {
 
 export const deleteCart = async(id) => {
     try{
-
         let res =  await axios.delete(`https://lackadaisical-volcano-larch.glitch.me/cart/${id}`);
         return res;
     }catch(err){
-        console.log(err);
+        return err;
     }
 }
    
