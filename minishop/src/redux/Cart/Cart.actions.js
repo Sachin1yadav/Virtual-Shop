@@ -2,10 +2,11 @@ import {
     CART_GET_LOADING,
     CART_GET_SUCCESS,
     CART_GET_ERROR,
-    CART_UPDATE_DATA
+    CART_UPDATE_DATA,
+    CART_REMOVE
 } from "./Cart.actionTypes"
 
-import { getCartAPI, updateCart } from "./Cart.api"
+import { deleteCart, getCartAPI, updateCart } from "./Cart.api"
 
 export const cartActions = () => async(dispatch) => {
     dispatch({type: CART_GET_LOADING});
@@ -27,6 +28,12 @@ export const updateCarts = (id,newChanges) => async(dispatch) => {
     }catch(e){
         dispatch({type:CART_GET_ERROR})
     }
+}
+
+
+export const deleteCartItem = (id) => async(dispatch) => {
+    let data =  await deleteCart(id);
+    dispatch({type:CART_REMOVE,payload:id})
 }
 
 

@@ -5,29 +5,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { getSingleProduct } from "../../redux/SingleProducts/SingleProduct.actions";
 
 import axios from "axios";
-
-// import { useParams } from "react-router-dom"
-// import { useDispatch, useSelector } from "react-redux";
-// import { getSingleProduct } from "../../redux/SingleProducts/SingleProduct.actions";
 import { BsStarFill } from "react-icons/bs";
 
 
 import { Heading, useToast } from "@chakra-ui/react";
 
-// import { FaAngleRight, FaHeart, FaAngleDown } from "react-icons/fa";
-
-// import {
-//   MdOutlineCrueltyFree,
-//   MdOutlineWaterDrop,
-//   MdSettings,
-//   MdOutlineAssignmentReturn,
-// } from "react-icons/md";
-
-
-import "./SinglePage.css";
+import "./SinglePage.scss";
 import { BsFillHeartFill } from "react-icons/bs";
-
-import { Link, useParams } from "react-router-dom";
 
 
 const SinglePage = () => {
@@ -36,7 +20,7 @@ const SinglePage = () => {
   let rat = 4.3;
   let des =
     "Self-Timer | Type C and Mini HDMI, |9 Auto Focus Points | 35x Optical Zoom., Effective Pixels: 18 MP APS-C CMOS sensor-which is 25 times larger than a typical Smartphone sensor., WiFi | Full HD | Video Recording at 1080 p on 30fps.";
-  // let id =1;
+ 
   const {loading , error, itemDetail} = useSelector((store) => store.singleProduct);
   const dispatch = useDispatch();
 
@@ -57,26 +41,6 @@ const SinglePage = () => {
       getSimilarData();
   }, [dispatch, id, img]);
 
-  // const [itemDetail, setItemDetail] = useState({});
-
-  // const getitemDetail = async(id) => {
-  //    let res = await fetch(`https://b-tmart-api-5tjm.vercel.app/itemDetail/${id}`)
-  //    let itemDetail  = await res.json();
-  //    console.log('itemDetail:', itemDetail)
-  //    setItemDetail(itemDetail)
-  // }
-
-  // useEffect(() => {
-  //   // getitemDetail(id)
-  //   // fetch(`https://lackadaisical-volcano-larch.glitch.me/data/${id}`)
-  //   //   .then((res) => res.json())
-  //   //   .then((json) => {
-  //   //     setItemDetail(json);
-  //   //     console.log("singalpage", json);
-  //   //   })
-  //   //   .catch((e) => console.log(e));
-  // }, [id, img]);
-
  
 
   console.log(id);
@@ -86,7 +50,6 @@ const SinglePage = () => {
 
   const likeFuc = (itemDetail) => {
     toast({
-      // colorScheme:'yellow',
       title: "Added to wishlist",
       description: "We've added this item to wishlist",
       variant: "subtle",
@@ -95,10 +58,6 @@ const SinglePage = () => {
     });
     return axios.post(`https://busy-peplum-fawn.cyclic.app/wishList`, itemDetail);
   };
-
-  // const handleWishlist = (item) => {
-  //   return axios.post(`https://busy-peplum-fawn.cyclic.app/wishList`, item);
-  // };
 
   const addToCart = (itemDetail) => {
     toast({
@@ -112,31 +71,7 @@ const SinglePage = () => {
     return axios.post(`https://lackadaisical-volcano-larch.glitch.me/cart`,{...itemDetail,qty:1});
   };
 
-  // const handleAddCart = (id) => {
-  //   return axios.post(`https://b-tmart-api-5tjm.vercel.app/itemDetail/${id}`);
-  // };
-
-  // const hideDiv = {
-  //   display: "none",
-  //   width: "90%",
-  //   margin: "auto",
-  //   marginTop: "20px",
-  // };
-
-  // const [angle, setAngle] = useState(false);
-
-  // const handleReadMore = () => {
-  //   const targetDiv = document.getElementById("disHideDiv");
-  //   // document.getElementById("hideDiv").style.display = "block"
-  //   if (targetDiv.style.display !== "none") {
-  //     targetDiv.style.display = "none";
-  //     setAngle(false);
-  //   } else {
-  //     targetDiv.style.display = "block";
-  //     setAngle(true);
-  //   }
-  // };
-
+  
   if(loading) return <h3>Loading...</h3>;
   if(error) return <h3>Error...</h3>;
   return (
@@ -219,11 +154,9 @@ const SinglePage = () => {
             data={similarData.filter((item) => item.Categories === itemDetail.Categories)}/>
         </div>
           </div>
-        </div>
-      </div>
-
+  
       {/* banner */}
-
+    
       <div className="banner">
          <img  src="./shippingBanner.PNG" alt="banner" />
       </div>
