@@ -9,12 +9,14 @@ import DLogin from"../DemoPagesBySachin/DLogin"
 import Address from "../Pages/checkout/Address";
 import Payment from "../Pages/checkout/Payment";
 import PrivateRoute from "../Pages/login&signup/PrivateRoute";
+
 function Allroute() {
   return (
     <>
       <Routes>
         <Route path="/" element={<Home/>} />
-        
+
+
         <Route path="/data/:id" element={<SinglePage/>}></Route>
         <Route path="/admin" element={<AdminContext><Admin/> </AdminContext> }></Route>
         <Route path="/address" element={<PrivateRoute><Address /></PrivateRoute>} />
