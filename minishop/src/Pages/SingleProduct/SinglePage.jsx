@@ -24,11 +24,11 @@ import { Heading, useToast } from "@chakra-ui/react";
 // } from "react-icons/md";
 
 
-import "./SinglePage.css";
+import "./SinglePage.scss";
 import { BsFillHeartFill } from "react-icons/bs";
 
-import { Link, useParams } from "react-router-dom";
-
+ 
+ 
 
 const SinglePage = () => {
   const { id } = useParams();
@@ -219,8 +219,8 @@ const SinglePage = () => {
             data={similarData.filter((item) => item.Categories === itemDetail.Categories)}/>
         </div>
           </div>
-        </div>
-      </div>
+        
+      
 
       {/* banner */}
 
