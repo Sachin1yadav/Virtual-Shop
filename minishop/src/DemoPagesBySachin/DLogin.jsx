@@ -1,56 +1,204 @@
-import React from 'react'
-import { useToast, Button } from "@chakra-ui/react";
+import React, { useContext, useRef, useState } from "react";
+import {
+  useToast,
+  Button,
+  useDisclosure,
+  Flex,
+  Heading,
+  Text,
+  FormControl,
+  Input,
+  Stack,
+} from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import "./Login.scss"
+import "./Login.scss";
+import GoogleButton from "react-google-button";
+import { AuthContext } from "../Pages/login&signup/AuthContextProvider";
+import {
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalOverlay,
+} from "@chakra-ui/modal";
+
+const userInit = {
+  email: "",
+  password: "",
+};
+
 const DLogin = () => {
   const toast = useToast();
-  return (
-    <div> 
-      <div className='whole'>
-       <div className="box glow">
-       <div className="form">
-          <h2>Login</h2>
+  const [user, setUser] = useState(userInit);
+  const [error, setError] = useState("");
+  // const { logout } = useContext(AuthContext);
+  const emailRef = useRef(null);
 
-          <div className="inputBox">
-            <input required="required" />
-            <span>Email</span>
-            <i></i>
-          </div>
-          <div className="inputBox">
-            <input required="required" />
-            <span>Password</span>
-            <i></i>
-          </div>
+  // const logoutUser = async () => {
+  //   try {
+  //     await logout();
+  //   } catch (error) {
+  //     console.log(error.message);
+  //   }
+  // };
 
-          <div className="signDiv">
-            <p>Have You Not Register Yet?</p>
-            <Link to="/sign">
-              <h6 className="sign">Register</h6>
-            </Link>
-          </div>
+  const { loginUser, forgotPassword, continueWithGoogle } =
+    useContext(AuthContext);
 
-          <div>
-                  <Link  to="/" >
-          <Button className="submit"
-      onClick={() =>
-        toast({
-          title: 'Login successfull.',
-          description: "We've Loged in your account.",
-          status: 'success',
-          duration: 9000,
-          isClosable: true,
-        })
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const handleChange = (e) => {
+    setUser({ ...user, [e.target.type]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await loginUser(user.email, user.password);
+      console.log("Logged In");
+    } catch (e) {
+      setError(e.message);
+      console.log(e.message);
+    }
+  };
+
+  const forgotPasswordHandler = async () => {
+    const email = emailRef.current.value;
+    if (email)
+      try {
+        await forgotPassword(email);
+        console.log("RESET mail sent");
+      } catch (e) {
+        setError(e.message);
+        console.log(e.message);
       }
-    >
-      Login
-    </Button>
-    </Link>
+  };
+  return (
+    <div>
+      <div className="whole">
+        <div className="box glow">
+          <div className="form">
+            <form onSubmit={handleSubmit} action="">
+              <h2>Login</h2>
+
+              <div className="inputBox">
+                <input
+                  type="email"
+                  value={user.email}
+                  placeholder="email"
+                  onChange={handleChange}
+                  required="required"
+                />
+                <span>Email</span>
+                <i></i>
+              </div>
+              <div className="inputBox">
+                <input
+                  type="password"
+                  value={user.password}
+                  placeholder="password"
+                  onChange={handleChange}
+                  required="required"
+                />
+                <span>Password</span>
+                <i></i>
+              </div>
+
+              <div className="signDiv">
+                <p>Have You Not Register Yet?</p>
+                <Link to="/sign">
+                  <h6 className="sign">Register</h6>
+                </Link>
+              </div>
+
+              <Link onClick={onOpen} color={"blue.500"}>
+                Forgot password?
+              </Link>
+              <GoogleButton onClick={continueWithGoogle} />
+              <Modal isOpen={isOpen} onClose={onClose}>
+                <ModalOverlay />
+                <ModalContent>
+                  <ModalCloseButton />
+                  <ModalBody>
+                    <Flex
+                      minH={"50vh"}
+                      align={"center"}
+                      justify={"center"}
+                      bg="gray.50"
+                    >
+                      <Stack
+                        spacing={4}
+                        w={"full"}
+                        maxW={"md"}
+                        bg="white"
+                        rounded={"xl"}
+                        boxShadow={"lg"}
+                        p={6}
+                        my={12}
+                      >
+                        <Heading
+                          lineHeight={1.1}
+                          fontSize={{ base: "2xl", md: "3xl" }}
+                        >
+                          Reset password
+                        </Heading>
+                        <Text
+                          fontSize={{ base: "sm", sm: "md" }}
+                          color="gray.800"
+                        >
+                          You&apos;ll get an email with a reset link
+                        </Text>
+                        <FormControl id="email">
+                          <Input
+                            placeholder="your-email@example.com"
+                            _placeholder={{ color: "gray.500" }}
+                            type="email"
+                            ref={emailRef}
+                          />
+                        </FormControl>
+                        <Stack spacing={6}>
+                          <Button
+                            bg={"blue.400"}
+                            color={"white"}
+                            _hover={{
+                              bg: "blue.500",
+                            }}
+                            onClick={forgotPasswordHandler}
+                          >
+                            Request Reset
+                          </Button>
+                        </Stack>
+                      </Stack>
+                    </Flex>
+                  </ModalBody>
+                </ModalContent>
+              </Modal>
+              <div>
+                <Link to="/">
+                  <Button
+                    className="submit"
+                    type="submit"
+                    onClick={() =>
+                      toast({
+                        title: "Login successfull.",
+                        description: "We've Loged in your account.",
+                        status: "success",
+                        duration: 9000,
+                        isClosable: true,
+                      })
+                    }
+                  >
+                    Login
+                  </Button>
+                </Link>
+                  {/* <button onClick={logoutUser}>Logout</button> */}
+              </div>
+            </form>
           </div>
         </div>
       </div>
-      </div>
     </div>
-  )
-}
+  );
+};
 
-export default DLogin
+export default DLogin;
