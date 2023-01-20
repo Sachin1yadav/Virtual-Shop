@@ -14,12 +14,12 @@ function App() {
  
   return (
     <div className="App">
+   
        <Navbar />
        <Box mt='72px'  >
        <Allroute/>
        </Box>
 
-      
     </div>
   );
 }
