@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { BsHeart } from "react-icons/bs";
 
 import { Link, useParams } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux";
@@ -137,7 +138,7 @@ const SinglePage = () => {
   //   }
   // };
 
-  if(loading) return <h3>Loading...</h3>;
+  // if(loading) return <h3>Loading...</h3>;
   if(error) return <h3>Error...</h3>;
   return (
     <div>
@@ -205,15 +206,20 @@ const SinglePage = () => {
           </p>
           <div className="btnWC">
 
-          <button className="wish" onClick={()=>likeFuc(itemDetail)}><span style={{
-            fontSize:'20px', textAlign:'center'
-          }} >♡</span> Add To Wishlist!</button>
+          <button className="wish" onClick={()=>likeFuc(itemDetail)}> 
+          <div> <p>Wishlist</p>
+            <span><BsHeart/></span></div>
+           
+         </button>
           <button className="cart" onClick={()=>addToCart(itemDetail)}>Add To Cart</button>
           </div>
         </div>
       </div>
       <div>
-        <Heading color={'white'}>Similar Products</Heading>
+        <div className="banner">
+         <img  src="https://m.media-amazon.com/images/S/al-eu-726f4d26-7fdb/4923d2c3-74ef-4550-99ec-d0b6533b5b22.jpg" alt="banner" />
+      </div>
+        <Heading  className="similar">You might be interested in</Heading>
         <div>
         <SimilarData
             data={similarData.filter((item) => item.Categories === itemDetail.Categories)}/>
@@ -224,9 +230,7 @@ const SinglePage = () => {
 
       {/* banner */}
 
-      <div className="banner">
-         <img  src="./shippingBanner.PNG" alt="banner" />
-      </div>
+      
 
       {/* recmended product */}
 

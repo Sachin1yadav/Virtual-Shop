@@ -46,7 +46,7 @@ function Home() {
           />
  {/*---------------------------------    carousel   ---------------------------------------*/}          
  {loading ?  <Loaderskeleton/> : <Box >
-          <Heading style={{color:"red",textAlign:"start",textDecoration:"underLine"}}>T-shirt</Heading>
+          <Heading style={{color:"black",textAlign:"start" }}>T-Shirt</Heading>
           <HomeProducts
             data={data.filter((item) => item.Categories === "t_shirt")}/>  
         </Box> }
@@ -67,19 +67,19 @@ function Home() {
           /> */}
 {/*---------------------------------    carousel   ---------------------------------------*/}          
 {loading ?  <Loaderskeleton/> :    <Box>
-          <Heading style={{color:"red",textAlign:"start",textDecoration:"underLine"}}>Jacket</Heading>
+          <Heading style={{color:"black",textAlign:"start" }}>Jacket</Heading>
           <HomeProducts
             data={data.filter((item) => item.Categories === "Jacket")}/>
         </Box>}
 
         {loading ?  <Loaderskeleton/> :     <Box>
-          <Heading style={{color:"red",textAlign:"start",textDecoration:"underLine"}}>Bags</Heading>
+          <Heading style={{color:"black",textAlign:"start" }}>Bags</Heading>
           <HomeProducts
             data={data.filter((item) => item.Categories === "bags")} />
         </Box>}
 
         {loading ?  <Loaderskeleton/> :     <Box>
-          <Heading style={{color:"red",textAlign:"start",textDecoration:"underLine"}}>Watch</Heading>
+          <Heading style={{color:"black",textAlign:"start" }}>Watch</Heading>
           <HomeProducts
             data={data.filter((item) => item.Categories === "watch")}/>
            </Box>}
