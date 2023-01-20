@@ -11,9 +11,7 @@ import {
   Stack,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
- 
 import "./Login.css";
- 
 import GoogleButton from "react-google-button";
 import { AuthContext } from "../Pages/login&signup/AuthContextProvider";
 import {
@@ -23,19 +21,16 @@ import {
   ModalContent,
   ModalOverlay,
 } from "@chakra-ui/modal";
- 
 const userInit = {
   email: "",
   password: "",
 };
- 
 const DLogin = () => {
   const toast = useToast();
   const [user, setUser] = useState(userInit);
   const [error, setError] = useState("");
   // const { logout } = useContext(AuthContext);
   const emailRef = useRef(null);
- 
   // const logoutUser = async () => {
   //   try {
   //     await logout();
@@ -43,18 +38,12 @@ const DLogin = () => {
   //     console.log(error.message);
   //   }
   // };
- 
-
   const { loginUser, forgotPassword, continueWithGoogle } =
     useContext(AuthContext);
-
   const { isOpen, onOpen, onClose } = useDisclosure();
-
   const handleChange = (e) => {
     setUser({ ...user, [e.target.type]: e.target.value });
   };
-
- 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -65,7 +54,6 @@ const DLogin = () => {
       console.log(e.message);
     }
   };
- 
   const forgotPasswordHandler = async () => {
     const email = emailRef.current.value;
     if (email)
@@ -78,19 +66,15 @@ const DLogin = () => {
       }
   };
   return (
- 
     <div className="MainDiv">
-       
         <div className="box">
           <div className="form">
             <form onSubmit={handleSubmit} action="">
               <h2>Login</h2>
- 
               <div className="inputBox">
                 <input
                   type="email"
                   value={user.email}
- 
                   onChange={handleChange}
                   required="required"
                 />
@@ -101,21 +85,18 @@ const DLogin = () => {
                 <input
                   type="password"
                   value={user.password}
- 
                   onChange={handleChange}
                   required="required"
                 />
                 <span>Password</span>
                 <i></i>
               </div>
- 
               <div className="forgetPass">
               <Link onClick={onOpen} color={"blue.500"}>
                 Forgot password?
               </Link>
               </div>
               <div className="Divsubmit">
-                 
                   <button
                     className="submit"
                     type="submit"
@@ -131,31 +112,19 @@ const DLogin = () => {
                   >
                     Login
                   </button>
-               
                   {/* <button onClick={logoutUser}>Logout</button> */}
               </div>
               <div className="orDiv">
                 <p>Or login with</p>
-                
               </div>
               <GoogleButton  style={{color:"white",width:"100%",borderRadius:"5px",backgroundColor:"black",border:"1px solid gray" }} onClick={continueWithGoogle} />
- 
-
               <div className="signDiv">
                 <p>Have You Not Register Yet?</p>
                 <Link to="/sign">
                   <h6 className="sign">Register</h6>
                 </Link>
               </div>
- 
-              
                <Modal isOpen={isOpen} onClose={onClose}>
- 
-
-              
-              <GoogleButton onClick={continueWithGoogle} />
-              <Modal isOpen={isOpen} onClose={onClose}>
- 
                 <ModalOverlay />
                 <ModalContent>
                   <ModalCloseButton />
@@ -213,39 +182,10 @@ const DLogin = () => {
                   </ModalBody>
                 </ModalContent>
               </Modal>
- 
-               
             </form>
           </div>
- 
-              <div>
-                <Link to="/">
-                  <Button
-                    className="submit"
-                    type="submit"
-                    onClick={() =>
-                      toast({
-                        title: "Login successfull.",
-                        description: "We've Loged in your account.",
-                        status: "success",
-                        duration: 9000,
-                        isClosable: true,
-                      })
-                    }
-                  >
-                    Login
-                  </Button>
-                </Link>
-                  {/* <button onClick={logoutUser}>Logout</button> */}
-              </div>
-            </form>
-          </div>
-        </div>
- 
       </div>
     </div>
   );
 };
- 
 export default DLogin;
- 

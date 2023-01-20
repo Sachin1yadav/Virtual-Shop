@@ -14,19 +14,7 @@ import { Heading, useToast } from "@chakra-ui/react";
 
 import "./SinglePage.scss";
 import { BsFillHeartFill } from "react-icons/bs";
-
-// import { FaAngleRight, FaHeart, FaAngleDown } from "react-icons/fa";
-
-// import {
-//   MdOutlineCrueltyFree,
-//   MdOutlineWaterDrop,
-//   MdSettings,
-//   MdOutlineAssignmentReturn,
-// } from "react-icons/md";
-
-
-import "./SinglePage.scss";
-import { BsFillHeartFill } from "react-icons/bs";
+import DemoSimiler from "../../DemoPagesBySachin/DemoSimiler";
 
  
  
@@ -198,17 +186,17 @@ const SinglePage = () => {
          <img  src="https://m.media-amazon.com/images/S/al-eu-726f4d26-7fdb/4923d2c3-74ef-4550-99ec-d0b6533b5b22.jpg" alt="banner" />
       </div>
         <Heading  className="similar">You might be interested in</Heading>
-        <div>
-        <SimilarData
+        <div >
+        <DemoSimiler
             data={similarData.filter((item) => item.Categories === itemDetail.Categories)}/>
         </div>
           </div>
   
       {/* banner */}
     
-      <div className="banner">
+      {/* <div className="banner">
          <img  src="./shippingBanner.PNG" alt="banner" />
-      </div>
+      </div> */}
 
       
 
@@ -237,37 +225,37 @@ const SinglePage = () => {
 };
 
 
-function SimilarData(data) {
-  return (
-    <div className="container">
-        {data.data.map((el, i) => {
-          return (
-            <div key={el.id} className="cord">
-                <div className="imgBox">
-                  <img  src={el.image[0]}  alt="" />
-                </div>
-                <div className="details">
-                  <div className="nameHeart">
-                    <h3>
-                    {el.name.length < 8 ? el.name : `${el.name.slice(0, 8)}`}   
-                    </h3>
-                    <p><BsFillHeartFill className="heart" /></p>
-                  </div>
-                  <h5>Price:{el.price}</h5>
-                  <h5>Rating:{el.rating}</h5>
-                  <div className="btn">
-                  <Link to={`/data/${el.id}`} >
-                                <button className="viweBtn">View</button>
-                  </Link> 
-                  </div>
-                </div>
-            </div>
-          )
+// function SimilarData(data) {
+//   return (
+//     <div className="container">
+//         {data.data.map((el, i) => {
+//           return (
+//             <div key={el.id} className="cord">
+//                 <div className="imgBox">
+//                   <img  src={el.image[0]}  alt="" />
+//                 </div>
+//                 <div className="details">
+//                   <div className="nameHeart">
+//                     <h3>
+//                     {el.name.length < 8 ? el.name : `${el.name.slice(0, 8)}`}   
+//                     </h3>
+//                     <p><BsFillHeartFill className="heart" /></p>
+//                   </div>
+//                   <h5>Price:{el.price}</h5>
+//                   <h5>Rating:{el.rating}</h5>
+//                   <div className="btn">
+//                   <Link to={`/data/${el.id}`} >
+//                                 <button className="viweBtn">View</button>
+//                   </Link> 
+//                   </div>
+//                 </div>
+//             </div>
+//           )
          
-        })}
-    </div>
+//         })}
+//     </div>
    
-  );
-}
+//   );
+// }
 
 export default SinglePage;

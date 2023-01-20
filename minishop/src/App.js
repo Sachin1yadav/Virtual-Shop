@@ -1,8 +1,8 @@
  
-
-function App() {
- 
 import './App.css';
+ 
+ 
+
 import Allroute from './Routes/AllRoutes';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import NavScrollExample from './components/Navbar/NavbarNew';
@@ -14,7 +14,7 @@ function App() {
  
   return (
     <div className="App">
-   
+
        <Navbar />
        <Box mt='72px'  >
        <Allroute/>
