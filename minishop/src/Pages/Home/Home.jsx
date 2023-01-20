@@ -101,15 +101,15 @@ export default Home;
 
 
 const imagesTop = ['https://s3.thingpic.com/images/WZ/1ChLD86XEtKdLmpiQHdW1nhF.jpeg',
-'https://s3.thingpic.com/images/WZ/1ChLD86XEtKdLmpiQHdW1nhF.jpeg',
-'https://s3.thingpic.com/images/WZ/1ChLD86XEtKdLmpiQHdW1nhF.jpeg',
+'https://cdn.shopify.com/s/files/1/0057/8938/4802/files/2000x650_f60dcd57-3f35-4f38-a32f-3f9666996225_1400x.jpg?v=1673538078',
+'https://cdn.shopify.com/s/files/1/0057/8938/4802/files/WSC-Desktop_dad0fc88-3fc8-4ed8-becb-b7901e4b37f4_1400x.jpg?v=1673853393',
 'https://s3.thingpic.com/images/WZ/1ChLD86XEtKdLmpiQHdW1nhF.jpeg',
 'https://s3.thingpic.com/images/WZ/1ChLD86XEtKdLmpiQHdW1nhF.jpeg',
 'https://s3.thingpic.com/images/WZ/1ChLD86XEtKdLmpiQHdW1nhF.jpeg'
 ]
 
-const slider2 = ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSr7VY_uPylvuiiTb4AsuCIALXIYGYUH4CfBg&usqp=CAU',
-'https://cdn.pixabay.com/photo/2018/01/16/10/18/headphones-3085681__340.jpg',
+const slider2 = ['https://images.unsplash.com/photo-1511370235399-1802cae1d32f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fHdhdGNofGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60',
+'https://images.unsplash.com/photo-1612817159949-195b6eb9e31a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjR8fHdhdGNofGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60',
 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYrgxY4EB0zTPGhJnsU_sJfLura-clv6pKvw&usqp=CAU',
 'https://cdn.pixabay.com/photo/2018/01/16/10/18/headphones-3085681__340.jpg',
 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYrgxY4EB0zTPGhJnsU_sJfLura-clv6pKvw&usqp=CAU',

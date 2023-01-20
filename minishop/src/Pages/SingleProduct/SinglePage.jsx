@@ -118,14 +118,14 @@ const SinglePage = () => {
       <div className="maindiv">
         <div className="imgDiv">
           <div className="curimg">
-            <img src={itemDetail?.image?.[img]} alt={itemDetail.name} />
+            <img src={itemDetail?.image?(itemDetail.image?.[img]):("https://media3.giphy.com/media/3oEjI6SIIHBdRxXI40/200w.gif?cid=6c09b9528g3llcf2o3218mjzzpt270ckvllpe9aew6nax25k&rid=200w.gif&ct=g")} alt={itemDetail.name} />
           </div>
           <div className="imagess">
             <div>
               {" "}
               <img
                 onClick={() => setImg(0)}
-                src={itemDetail?.image?.[0]}
+                src={itemDetail?.image?(itemDetail.image?.[0]):("https://media3.giphy.com/media/3oEjI6SIIHBdRxXI40/200w.gif?cid=6c09b9528g3llcf2o3218mjzzpt270ckvllpe9aew6nax25k&rid=200w.gif&ct=g")}
                 alt={itemDetail.name}
               />
             </div>
@@ -133,7 +133,7 @@ const SinglePage = () => {
               {" "}
               <img
                 onClick={() => setImg(1)}
-                src={itemDetail?.image?.[1]}
+                src={itemDetail?.image?(itemDetail.image?.[1]):("https://media3.giphy.com/media/3oEjI6SIIHBdRxXI40/200w.gif?cid=6c09b9528g3llcf2o3218mjzzpt270ckvllpe9aew6nax25k&rid=200w.gif&ct=g")}
                 alt={itemDetail.name}
               />
             </div>
@@ -141,7 +141,7 @@ const SinglePage = () => {
               {" "}
               <img
                 onClick={() => setImg(2)}
-                src={itemDetail?.image?.[2]}
+                src={itemDetail?.image?(itemDetail.image?.[2]):("https://media3.giphy.com/media/3oEjI6SIIHBdRxXI40/200w.gif?cid=6c09b9528g3llcf2o3218mjzzpt270ckvllpe9aew6nax25k&rid=200w.gif&ct=g")}
                 alt={itemDetail.name}
               />
             </div>
@@ -149,7 +149,7 @@ const SinglePage = () => {
               {" "}
               <img
                 onClick={() => setImg(3)}
-                src={itemDetail?.image?.[3]}
+                src={itemDetail?.image?(itemDetail.image?.[3]):("https://media3.giphy.com/media/3oEjI6SIIHBdRxXI40/200w.gif?cid=6c09b9528g3llcf2o3218mjzzpt270ckvllpe9aew6nax25k&rid=200w.gif&ct=g")}
                 alt={itemDetail.name}
               />
             </div>

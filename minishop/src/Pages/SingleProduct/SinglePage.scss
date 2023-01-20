@@ -47,13 +47,15 @@
     /* box-shadow: rgba(255, 254, 254, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px; */
     padding: 5px;
  margin-top: 40px;
-
+ @include mobile{
+    width: 100%;
+ }
   }
   .curimg{
     /* border: 2px solid rgb(238, 13, 13); */
     width: 80%;
     height: 400px;
-    
+    object-fit: cover;
     border-radius: 10px;
  margin-top: -0px;
  padding: 10px 10px 10px 10px;
@@ -112,7 +114,7 @@ color: rgb(247, 55, 55);
    text-align: start;
    padding: 1%;
    @include mobile{
-    width: 90%;
+    width: 95%;
     flex-direction: column;
     align-items: start;
   }
@@ -139,10 +141,12 @@ color: rgb(247, 55, 55);
     display: flex;
     margin: auto;
     width: 50%;
+
+    margin-top: 40px;
     justify-content: space-around;
     @include mobile{
         width: 90%;
-       
+        margin-top: 20px;
         align-items: center;
       }
 }
@@ -199,6 +203,9 @@ color: rgb(247, 55, 55);
     background-color: black;
     padding: 5px 20px;
     text-align: center;
+    @include mobile{
+         font-size: 10px;
+      }
 }
 
 .banner{
