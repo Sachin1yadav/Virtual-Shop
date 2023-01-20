@@ -1,27 +1,37 @@
 
-
+  .slick-prev:before, .slick-next:before {
+    font-size: 40px;
+    color: black;
+}
+.slick-slide > div {
+    width: 80%;
+    margin: 0 40px;
+}
+.slick-list {
+    margin: 0 -10px;
+} 
+  
+  
 .proMainDiv{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    width: 100%;
-    gap: 30px;
-    border-radius: 10px;
+    width: 90%;
+    margin: auto;
+    margin-top: 12px;
 }
 
 .prodiv{
     width: 250px;
+    margin: auto;
     height: 350px;
     background-color: white;
     padding: 10px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     border-radius: 10px;
-    margin: auto;
+    
 }
 .proName{
     font-weight: bolder;
     letter-spacing: 1px;
-font-size: 20px;
+    font-size: 20px;
 }
 .prodiv img{
     width: 100%;
