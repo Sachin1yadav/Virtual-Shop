@@ -1,22 +1,32 @@
 
+@import "../../Global.scss";
 
 .maindiv{
     width: 100%;
-    height: 100vh;
-    /* border: 1px solid red; */
+    height: auto;
+    // border: 1px solid red;  
     display: flex;
     gap: 30px;
     padding: 2%;
+    @include mobile{
+        flex-direction: column;
+        align-items: center;
+      }
 }
 
 .imgDiv{
     width: 40%;
     height: 90%;
     margin: auto;
-    /* border: 2px solid rgb(49, 0, 128); */
+    //  border: 2px solid rgb(49, 0, 128); 
     display: flex;
      flex-direction: column;
      justify-content: space-around;
+     @include mobile{
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+      }
 }
 
  
@@ -42,7 +52,8 @@
   .curimg{
     /* border: 2px solid rgb(238, 13, 13); */
     width: 80%;
-    height: 70%;
+    height: 400px;
+    
     border-radius: 10px;
  margin-top: -0px;
  padding: 10px 10px 10px 10px;
@@ -51,6 +62,12 @@
  align-content: center;
  margin: auto;
  /* background-color: rgb(255, 255, 255); */
+ @include mobile{
+    width: 95%;
+    height: 380px;
+    flex-direction: column;
+    align-items: center;
+  }
   }
   .curimg img{
    justify-content: center;
@@ -58,9 +75,9 @@
  height: 100%;
  /* border: 1px solid red; */
  width: 100%;
- margin: auto;
- box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
-  }
+ border-top-left-radius: 50px;
+  
+ box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;  }
   .imagess div{
    /* border: 1px solid red; */
    width: 100%;
@@ -71,10 +88,10 @@
   }
    .imagess div img{
      width: 100%;
-     height: 100%;
+     height: 100px;
      cursor: pointer;
      border-top-left-radius: 10px;
-     box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px;
+     /* box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px; */
      /* box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset; */
      /* box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset; */
      margin: auto;
@@ -82,7 +99,7 @@
 
    .name{
     font-weight: bolder;
-font-size: 25px;
+font-size: 20px;
 color: rgb(247, 55, 55);
    }
    .detailsdiv{
@@ -94,26 +111,27 @@ color: rgb(247, 55, 55);
    flex-direction: column;
    text-align: start;
    padding: 1%;
+   @include mobile{
+    width: 90%;
+    flex-direction: column;
+    align-items: start;
+  }
 }
 .catog{
     font-weight: bold;
-    font-size: 20px;
-    color: white;
+    font-size: 30px;
+    text-transform: uppercase;
+    
 }
-.price{
-    font-size: 17px;
-    font-weight: bold;
-    color: white;
-    margin-top: 14px;
-}
+ 
 .rating{
-    font-size: 17px;
+    font-size: 16px;
     font-weight: bold;
-    color: white;
+    
 }
 .discription{
     font-size: 17px;
-    color: white;
+    
     letter-spacing: 1px;
     margin-top: 14px;
 }
@@ -122,19 +140,24 @@ color: rgb(247, 55, 55);
     margin: auto;
     width: 50%;
     justify-content: space-around;
+    @include mobile{
+        width: 90%;
+       
+        align-items: center;
+      }
 }
 .wish{
     border: 1px solid rgb(164, 163, 163);
     padding: 5px 10px;
     /* background-color: rgb(126, 125, 125); */
     border-radius: 5px;
-    color: white;
+    
 }
 .cart{
     /* border: 1px solid red; */
     padding: 2px 10px;
     border-radius: 5px;
-    color: white;
+    
     background-color: rgb(253, 28, 28);
 }
 .cart:hover{
@@ -144,3 +167,47 @@ color: rgb(247, 55, 55);
     color: black;
     background-color: rgb(164, 163, 163);
 }
+ .price{
+   
+    font-size: 20px;
+    font-weight: bold;
+}
+.price span{
+    text-decoration: line-through;
+    color: rgb(119, 113, 113);
+}
+.offer{
+    color: green;
+}
+
+.ratingDiv{
+    display: flex;
+    justify-content: space-around;
+    width: 50px;
+    align-content: center;
+    color: green;
+
+}
+.ratingDiv span{
+    margin-top: 4px;
+    font-size: 15px;
+
+}
+ 
+.recFooter p{
+    color: rgb(134, 132, 132);
+    background-color: black;
+    padding: 5px 20px;
+    text-align: center;
+}
+
+.banner{
+    
+    width: 100%;
+    margin: auto;
+    background-color: white;
+   
+}
+
+
+ 
