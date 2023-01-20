@@ -5,7 +5,7 @@ import {
   HStack,
   Link,
   IconButton,
-  Button,
+  Button, 
   Menu,
   MenuButton,
   MenuList,
@@ -38,12 +38,9 @@ const NavLink = ({ children }) => (
   </Link>
 );
 
-export default function AdminNav() {
+export default function AdminNav({handleCategory}) {
   const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const handleCategory = (val)=>{
-    console.log(val)
-  }
   const dispatch = useDispatch()
   const handleSignout = ()=>{
     dispatch(adminLogout())
@@ -70,14 +67,14 @@ export default function AdminNav() {
               display={{ base: "none", md: "flex" }}
             >
               <NavLink>
-              <Select onChange={(e)=>handleCategory(e.value)} placeholder="Select Catagory">
+              <Select onChange={handleCategory} placeholder="Select Catagory">
                   <option value="t_shirt">T-shirt</option>
                   <option value="Jacket">Jacket</option>
-                  <option value="option3">Watche</option>
-                  <option value="option3">Mobile</option>
-                  <option value="option3">Headphone</option>
-                  <option value="option3">Bag</option>
-                  <option value="option3">Shoes</option>
+                  <option value="watch">Watch</option>
+                  <option value="mobile">Mobile</option>
+                  <option value="Headphones">Headphone</option>
+                  <option value="bags">Bag</option>
+                  <option value="shoes">Shoes</option>
               </Select>
               </NavLink>
               <NavLink>
