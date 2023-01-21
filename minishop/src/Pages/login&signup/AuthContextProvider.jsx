@@ -39,13 +39,13 @@ const AuthContextProvider = ({ children }) => {
       await signInWithPopup(auth, provider);
       setIsAuth(true);
     } catch (error) {
-      console.log(error.message);
+    //   console.log(error.message);
     }
   };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      console.log(currentUser);
+    //   console.log(currentUser);
       setUser(currentUser);
     });
     return () => {
