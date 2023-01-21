@@ -10,9 +10,9 @@ const initDetails = {
   expireYear: "2021",
 };
 
-const Payment = () => {
+const Payment = ({query}) => {
   const [details, setDetails] = useState(initDetails);
-
+console.log("pay",query)
   const toast = useToast();
   const navigate = useNavigate();
 
