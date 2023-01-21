@@ -6,7 +6,7 @@ export default function HomeProducts(data) {
     return (
       <div className="container">
           {data.data.map((el, i) => {
-            if(i<12){
+            if(i<8){
               return (
                 <div key={el.id} className="cord">
                 
