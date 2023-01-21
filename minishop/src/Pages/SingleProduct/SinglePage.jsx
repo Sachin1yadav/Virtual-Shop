@@ -1,42 +1,30 @@
 import { useEffect, useState } from "react";
+import { BsHeart } from "react-icons/bs";
 
 import { Link, useParams } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux";
 import { getSingleProduct } from "../../redux/SingleProducts/SingleProduct.actions";
 
 import axios from "axios";
-
-// import { useParams } from "react-router-dom"
-// import { useDispatch, useSelector } from "react-redux";
-// import { getSingleProduct } from "../../redux/SingleProducts/SingleProduct.actions";
 import { BsStarFill } from "react-icons/bs";
 
 
 import { Heading, useToast } from "@chakra-ui/react";
 
-// import { FaAngleRight, FaHeart, FaAngleDown } from "react-icons/fa";
-
-// import {
-//   MdOutlineCrueltyFree,
-//   MdOutlineWaterDrop,
-//   MdSettings,
-//   MdOutlineAssignmentReturn,
-// } from "react-icons/md";
-
 
 import "./SinglePage.scss";
 import { BsFillHeartFill } from "react-icons/bs";
+import DemoSimiler from "../../DemoPagesBySachin/DemoSimiler";
 
  
  
-
 const SinglePage = () => {
   const { id } = useParams();
   const [img, setImg] = useState(1);
   let rat = 4.3;
   let des =
     "Self-Timer | Type C and Mini HDMI, |9 Auto Focus Points | 35x Optical Zoom., Effective Pixels: 18 MP APS-C CMOS sensor-which is 25 times larger than a typical Smartphone sensor., WiFi | Full HD | Video Recording at 1080 p on 30fps.";
-  // let id =1;
+ 
   const {loading , error, itemDetail} = useSelector((store) => store.singleProduct);
   const dispatch = useDispatch();
 
@@ -57,26 +45,6 @@ const SinglePage = () => {
       getSimilarData();
   }, [dispatch, id, img]);
 
-  // const [itemDetail, setItemDetail] = useState({});
-
-  // const getitemDetail = async(id) => {
-  //    let res = await fetch(`https://b-tmart-api-5tjm.vercel.app/itemDetail/${id}`)
-  //    let itemDetail  = await res.json();
-  //    console.log('itemDetail:', itemDetail)
-  //    setItemDetail(itemDetail)
-  // }
-
-  // useEffect(() => {
-  //   // getitemDetail(id)
-  //   // fetch(`https://lackadaisical-volcano-larch.glitch.me/data/${id}`)
-  //   //   .then((res) => res.json())
-  //   //   .then((json) => {
-  //   //     setItemDetail(json);
-  //   //     console.log("singalpage", json);
-  //   //   })
-  //   //   .catch((e) => console.log(e));
-  // }, [id, img]);
-
  
 
   console.log(id);
@@ -86,7 +54,6 @@ const SinglePage = () => {
 
   const likeFuc = (itemDetail) => {
     toast({
-      // colorScheme:'yellow',
       title: "Added to wishlist",
       description: "We've added this item to wishlist",
       variant: "subtle",
@@ -95,10 +62,6 @@ const SinglePage = () => {
     });
     return axios.post(`https://busy-peplum-fawn.cyclic.app/wishList`, itemDetail);
   };
-
-  // const handleWishlist = (item) => {
-  //   return axios.post(`https://busy-peplum-fawn.cyclic.app/wishList`, item);
-  // };
 
   const addToCart = (itemDetail) => {
     toast({
@@ -111,6 +74,9 @@ const SinglePage = () => {
     });
     return axios.post(`https://lackadaisical-volcano-larch.glitch.me/cart`,{...itemDetail,qty:1});
   };
+
+  
+  if(loading) return <h3>Loading...</h3>;
 
   // const handleAddCart = (id) => {
   //   return axios.post(`https://b-tmart-api-5tjm.vercel.app/itemDetail/${id}`);
@@ -137,7 +103,8 @@ const SinglePage = () => {
   //   }
   // };
 
-  if(loading) return <h3>Loading...</h3>;
+  // if(loading) return <h3>Loading...</h3>;
+
   if(error) return <h3>Error...</h3>;
   return (
     <div>
@@ -205,28 +172,38 @@ const SinglePage = () => {
           </p>
           <div className="btnWC">
 
-          <button className="wish" onClick={()=>likeFuc(itemDetail)}><span style={{
-            fontSize:'20px', textAlign:'center'
-          }} >♡</span> Add To Wishlist!</button>
+          <button className="wish" onClick={()=>likeFuc(itemDetail)}> 
+          <div> <p>Wishlist</p>
+            <span><BsHeart/></span></div>
+           
+         </button>
           <button className="cart" onClick={()=>addToCart(itemDetail)}>Add To Cart</button>
           </div>
         </div>
       </div>
       <div>
-        <Heading color={'white'}>Similar Products</Heading>
-        <div>
-        <SimilarData
+        <div className="banner">
+         <img  src="https://m.media-amazon.com/images/S/al-eu-726f4d26-7fdb/4923d2c3-74ef-4550-99ec-d0b6533b5b22.jpg" alt="banner" />
+      </div>
+        <Heading  className="similar">You might be interested in</Heading>
+        <div >
+        <DemoSimiler
             data={similarData.filter((item) => item.Categories === itemDetail.Categories)}/>
         </div>
           </div>
-        
+  
+      {/* banner */}
+    
+      {/* <div className="banner">
+         <img  src="./shippingBanner.PNG" alt="banner" />
+      </div> */}
+
       
 
       {/* banner */}
 
-      <div className="banner">
-         <img  src="./shippingBanner.PNG" alt="banner" />
-      </div>
+      
+
 
       {/* recmended product */}
 
@@ -248,37 +225,37 @@ const SinglePage = () => {
 };
 
 
-function SimilarData(data) {
-  return (
-    <div className="container">
-        {data.data.map((el, i) => {
-          return (
-            <div key={el.id} className="cord">
-                <div className="imgBox">
-                  <img  src={el.image[0]}  alt="" />
-                </div>
-                <div className="details">
-                  <div className="nameHeart">
-                    <h3>
-                    {el.name.length < 8 ? el.name : `${el.name.slice(0, 8)}`}   
-                    </h3>
-                    <p><BsFillHeartFill className="heart" /></p>
-                  </div>
-                  <h5>Price:{el.price}</h5>
-                  <h5>Rating:{el.rating}</h5>
-                  <div className="btn">
-                  <Link to={`/data/${el.id}`} >
-                                <button className="viweBtn">View</button>
-                  </Link> 
-                  </div>
-                </div>
-            </div>
-          )
+// function SimilarData(data) {
+//   return (
+//     <div className="container">
+//         {data.data.map((el, i) => {
+//           return (
+//             <div key={el.id} className="cord">
+//                 <div className="imgBox">
+//                   <img  src={el.image[0]}  alt="" />
+//                 </div>
+//                 <div className="details">
+//                   <div className="nameHeart">
+//                     <h3>
+//                     {el.name.length < 8 ? el.name : `${el.name.slice(0, 8)}`}   
+//                     </h3>
+//                     <p><BsFillHeartFill className="heart" /></p>
+//                   </div>
+//                   <h5>Price:{el.price}</h5>
+//                   <h5>Rating:{el.rating}</h5>
+//                   <div className="btn">
+//                   <Link to={`/data/${el.id}`} >
+//                                 <button className="viweBtn">View</button>
+//                   </Link> 
+//                   </div>
+//                 </div>
+//             </div>
+//           )
          
-        })}
-    </div>
+//         })}
+//     </div>
    
-  );
-}
+//   );
+// }
 
 export default SinglePage;
