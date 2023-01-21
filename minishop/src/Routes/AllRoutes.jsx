@@ -20,7 +20,7 @@ function Allroute() {
 
         {/* <Route path="/login" element={<Login/>} />
         <Route path="/sign" element={<Sign/>} /> */}
-        <Route path="/cart" element={<Cart/>} />
+        <Route path="/cart" element={<PrivateRoute> <Cart/> </PrivateRoute> } />
         {/* <Route path="/products" element={<Products/>}></Route> */}
 
 
