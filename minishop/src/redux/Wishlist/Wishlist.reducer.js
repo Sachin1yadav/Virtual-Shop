@@ -1,25 +1,25 @@
 import {
-    ORDER_GET_LOADING,
-    ORDER_GET_SUCCESS,
-    ORDER_GET_ERROR,
-    ORDER_REMOVE
-} from "./Order.actionTypes"
+    WISHLIST_GET_ERROR,
+    WISHLIST_GET_LOADING,
+    WISHLIST_GET_SUCCESS,
+    WISHLIST_REMOVE
+} from "./Wishlist.actionTypes"
 
 let initialState = {
     loading:false,
     error:false,
-    orderData:[]
+    wishData:[],
 }
 
-export const orderReducer = (state = initialState ,{type,payload})=>{
+export const wishReducer = (state = initialState ,{type,payload})=>{
     switch(type){
-        case  ORDER_GET_LOADING:{
+        case  WISHLIST_GET_LOADING:{
             return {
                 ...state,
                 loading:true
             }
         }
-        case  ORDER_GET_ERROR:{
+        case  WISHLIST_GET_ERROR:{
             return {
                 ...state,
                 loading:false,
@@ -27,18 +27,18 @@ export const orderReducer = (state = initialState ,{type,payload})=>{
             }
         }
 
-        case  ORDER_GET_SUCCESS:{
+        case  WISHLIST_GET_SUCCESS:{
             return {
                 ...state,
                 loading:false,
-                orderData:payload,
+                wishData:payload,
             }
         }
 
-        case ORDER_REMOVE:{
+        case WISHLIST_REMOVE:{
             return {
                 ...state,
-                orderData:state.orderData.filter((order)=> order.id !== payload.id)
+                wishData:state.wishData.filter((wish)=> wish.id !== payload.id)
             }
         }
 
