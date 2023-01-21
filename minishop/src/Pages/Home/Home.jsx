@@ -1,15 +1,13 @@
-import { Box, Heading } from "@chakra-ui/react";
+import { Box, Heading, Image } from "@chakra-ui/react";
 import { useEffect ,useState} from "react";
  import React from "react";
  import "slick-carousel/slick/slick.css";
  import "slick-carousel/slick/slick-theme.css";
 import HomeProducts from "./HomeProducts";
 import "./Home.css";
-import { Carousel, SingleCarousel } from "./Carousel";
+import { Carousel } from "./Carousel";
 import { Loaderskeleton } from "./Carousel";
-import Navbar from "../../components/Navbar/Navbar";
-import Footer from "../../components/Footer/Footer";
-import NavScrollExample from "../../components/Navbar/NavbarNew";
+
 
 
 
@@ -38,16 +36,18 @@ function Home() {
   return (
     <Box>
       
-      <Box w={"100%"} m={"auto"}  >
-      <Carousel  
-          dots= {true} infinite= {true}
+      <Box w={"98%"} m={"auto"} mt='74px' >
+        <Image src="https://s3.thingpic.com/images/WZ/1ChLD86XEtKdLmpiQHdW1nhF.jpeg"  alt='1'/>
+      {/* <Carousel  
+          dots= {false} infinite= {true}
           slidesToShow = {1}
           slidesToScroll= {1}
           autoplay= {true} autoplaySpeed= {3000} pauseOnHover= {true } 
           Img={imagesTop}
-          />
+          /> */}
           </Box>
-    <Box w='90%' m={'auto'}  border='1px' >
+         
+    <Box w='90%' m={'auto'}  >
 {/*---------------------------------    carousel   ---------------------------------------*/}
         {/* <Carousel  
           dots= {true} infinite= {true}
@@ -63,13 +63,15 @@ function Home() {
             data={data.filter((item) => item.Categories === "t_shirt")}/>  
         </Box> }
 {/*---------------------------------    carousel   ---------------------------------------*/}        
-         <Carousel  
-          dots= {true} infinite= {true}
+<Box w={"98%"} m={"auto"} mt='74px' mb='50px'>
+      <Carousel  
+          dots= {false} infinite= {true}
           slidesToShow = {3}
           slidesToScroll= {1}
           autoplay= {true} autoplaySpeed= {3000} pauseOnHover= {true } 
           Img={slider2}
           />
+          </Box>
           {/* <SingleCarousel  
           dots= {true} infinite= {true}
           slidesToShow = {3}
@@ -103,7 +105,7 @@ function Home() {
         </Box>}
       
     </Box>
-    <Footer/>
+    
     </Box>
   );
 }
@@ -122,9 +124,9 @@ const imagesTop = ['https://s3.thingpic.com/images/WZ/1ChLD86XEtKdLmpiQHdW1nhF.j
 
 const slider2 = ['https://images.unsplash.com/photo-1511370235399-1802cae1d32f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fHdhdGNofGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60',
 'https://images.unsplash.com/photo-1612817159949-195b6eb9e31a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjR8fHdhdGNofGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60',
-'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYrgxY4EB0zTPGhJnsU_sJfLura-clv6pKvw&usqp=CAU',
+'https://cdn.shopify.com/s/files/1/0057/8938/4802/files/2000x650_f60dcd57-3f35-4f38-a32f-3f9666996225_1400x.jpg?v=1673538078',
 'https://cdn.pixabay.com/photo/2018/01/16/10/18/headphones-3085681__340.jpg',
-'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYrgxY4EB0zTPGhJnsU_sJfLura-clv6pKvw&usqp=CAU',
+'https://s3.thingpic.com/images/WZ/1ChLD86XEtKdLmpiQHdW1nhF.jpeg',
 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSr7VY_uPylvuiiTb4AsuCIALXIYGYUH4CfBg&usqp=CAU'
 
 ];
