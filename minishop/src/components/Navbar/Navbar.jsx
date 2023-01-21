@@ -17,10 +17,18 @@ import {
   DrawerContent,
   DrawerHeader,
   DrawerBody,
+  Divider,
 } from '@chakra-ui/react';
 import {  HamburgerIcon} from '@chakra-ui/icons';  
-import {FaUserCircle} from "react-icons/fa";
+import {FaUserCircle,FaShoppingBag, FaHeadphonesAlt,FaHeadphones} from "react-icons/fa";
 import {HiOutlineShoppingCart} from "react-icons/hi";
+import {IoShirtOutline} from  "react-icons/io5"; 
+import {GiMonclerJacket,GiSchoolBag} from  "react-icons/gi";  
+import {BsWatch,BsSpeakerFill,BsFillHeartFill,BsFacebook} from  "react-icons/bs"; 
+import {SiPuma,SiReebok, SiAdidas} from  "react-icons/si";
+import {CgAppleWatch} from  "react-icons/cg";
+import {BiLogIn} from  "react-icons/bi";
+import {FcGoogle} from  "react-icons/fc"; 
  import { ReactSearchAutocomplete } from 'react-search-autocomplete';
 import "./Navbar.css";
 
@@ -106,53 +114,188 @@ export default function Navbar ({display='flex'}){
           <DrawerHeader borderBottomWidth='1px'>Product Categories</DrawerHeader>
 
           <DrawerBody lineHeight={'38px'} >
-          <Box>T-Shirts</Box>
-          <Box>Jackets</Box>
-          <Box>Bags</Box>
-          <Box>Watch</Box>
+
+          <Box><Button
+         w={'full'}
+         onClick={()=>window.location = `/`}
+         colorScheme={'black'}  color={'black'}
+         rightIcon={<IoShirtOutline fontSize={"27"}  color={'green'}/>}>T-Shirts
+       </Button></Box>
+       <Divider orientation='horizontal' colorScheme={"blackAlpha"}    />
+          <Box><Button
+         w={'full'}
+         onClick={()=>window.location = `/`}
+         colorScheme={'black'}  color={'black'}
+         rightIcon={<GiMonclerJacket fontSize={"27"}  color={"#00FF00"} />}>Jackets
+       </Button></Box>
+       <Divider orientation='horizontal' colorScheme={"blackAlpha"}    />
+          <Box> <Button
+         w={'full'}
+         onClick={()=>window.location = `/`}
+         colorScheme={'black'}  color={'black'}
+         rightIcon={<GiSchoolBag fontSize={"27"} color={'#1F45FC'}/>}>Bags
+       </Button></Box>
+       <Divider orientation='horizontal' colorScheme={"blackAlpha"}    />
+          <Box> <Button
+         w={'full'}
+         onClick={()=>window.location = `/`}
+         colorScheme={'black'}  color={'black'}
+         rightIcon={<BsWatch fontSize={"27"} color={"#64E986"} />}>Watch
+       </Button></Box>
+       <Divider orientation='horizontal' colorScheme={"blackAlpha"}    />
+
           <Box color="white" >-</Box>
           <Box color="white">-</Box>
-          <Box   onClick={()=>window.location = `/DLogin`} >Login</Box>
-          <Box  onClick={()=>window.location = `/sign`} >Sign Up</Box>
-          <Box>Cart</Box>
-          <Box>Wishlist</Box>
-          <Box>Google App</Box>
-          <Box>Facebook Page</Box>
+
+          <Box   onClick={()=>window.location = `/DLogin`} ><Button
+         w={'full'}
+         onClick={()=>window.location = `/cart`}
+         colorScheme={'black'}  color={'black'}
+         rightIcon={<BiLogIn fontSize={"27"} color={'#0C090A'}/>}>Login
+       </Button></Box>
+
+ <Divider orientation='horizontal' colorScheme={"blackAlpha"}    />
+          <Box  onClick={()=>window.location = `/sign`} ><Button
+         w={'full'}
+         onClick={()=>window.location = `/cart`}
+         colorScheme={'black'}  color={'black'}
+         rightIcon={<FaUserCircle fontSize={"27"} color={'#123456'}/>}>Sign Up
+       </Button></Box>
+       <Divider orientation='horizontal' colorScheme={"blackAlpha"}    />
+          <Box><Button
+         w={'full'}
+         onClick={()=>window.location = `/cart`}
+         colorScheme={'black'}  color={'black'}
+         rightIcon={<HiOutlineShoppingCart fontSize={"27"} color={'#0C090A'}/>}>Cart
+       </Button></Box>
+       <Divider orientation='horizontal' colorScheme={"blackAlpha"}    />
+          <Box><Button
+         w={'full'}
+         onClick={()=>window.location = `/cart`}
+         colorScheme={'black'}  color={'black'}
+         rightIcon={<BsFillHeartFill fontSize={"27"} color={'red'}/>}>Wishlist
+       </Button></Box>
+       <Divider orientation='horizontal' colorScheme={"blackAlpha"}    />
+          <Box><Button
+         w={'full'}
+         onClick={()=>window.location = `/cart`}
+         colorScheme={'black'}  color={'black'}
+         rightIcon={<FcGoogle fontSize={"27"} color={'#0C090A'}/>}>App Store
+       </Button></Box>
+       <Divider orientation='horizontal' colorScheme={"blackAlpha"}    />
+          <Box><Button
+         w={'full'}
+         onClick={()=>window.location = `/cart`}
+         colorScheme={'black'}  color={'black'}
+         rightIcon={<BsFacebook fontSize={"27"} color={'blue'}/>}>Facebook Page
+       </Button></Box>
           </DrawerBody>
 
         </DrawerContent>
       </Drawer>
       
      <Box p='4'>
-    <Heading size='lg'display={{md:"none",lg:"block",base:"none"}} onClick={()=>window.location = `/`} >industryBuying</Heading>
+    <Heading size='lg'display={{sm:"none",md:"block",lg:"block",base:"none"}} onClick={()=>window.location = `/`} >industryBuying</Heading>
     </Box>
     <Spacer />
 {/*--------------------------------   Categories   ----------------------------------------------*/}    
      <Box >
       <Menu isLazy>
      <MenuButton> <Heading size='sm' display={{md:"none",lg:"block",base:"none"}}>CATEGORIES </Heading></MenuButton>
-     <MenuList color={'black'} mt={'15px'} w='600px' h='300px' >
+     <MenuList color={'black'} mt={'15px'} w='680px' h='280px' >
      {/* MenuItems are not rendered unless Menu is open */}
-     <SimpleGrid minChildWidth='100px' spacing='40px' >
-     <Box>Abrasive</Box>
-    <Box>Appliances</Box>
-    <Box>Bearings</Box>
-    <Box>Cleaning</Box>
-    <Box>Electrical</Box>
-    <Box>Electronic & Robotics</Box>
-    <Box>Fastners</Box>
-    <Box>Hand Tools</Box>
-    <Box>Hardware</Box>
-    <Box>Hydraulics</Box>
-    <Box>LED & Light</Box>
-    <Box>Machinery</Box>
+     <SimpleGrid minChildWidth='120px' spacing='40px' mt={'35px'}>
+     <Button
+         w={'full'}
+         onClick={()=>window.location = `/`}
+         colorScheme={'black'}  color={'black'}
+         leftIcon={<IoShirtOutline fontSize={"27"}  color={'green'}/>}>T-Shirts
+       </Button>
+     <Button
+         w={'full'}
+         onClick={()=>window.location = `/`}
+         colorScheme={'black'}  color={'black'}
+         leftIcon={<GiMonclerJacket fontSize={"27"}  color={"#00FF00"} />}>Jackets
+       </Button>
+     
+     <Button
+         w={'full'}
+         onClick={()=>window.location = `/`}
+         colorScheme={'black'}  color={'black'}
+         leftIcon={<GiSchoolBag fontSize={"27"} color={'#1F45FC'}/>}>Bags
+       </Button>
+     
+     <Button
+         w={'full'}
+         onClick={()=>window.location = `/`}
+         colorScheme={'black'}  color={'black'}
+         leftIcon={<BsWatch fontSize={"27"} color={"#64E986"} />}>Watch
+       </Button>
+
+    <Button
+         w={'full'}
+         onClick={()=>window.location = `/`}
+         colorScheme={'black'}  color={'black'}
+         leftIcon={<FaHeadphonesAlt fontSize={"27"} color={"#123456"} />}>Headphones
+       </Button>
+   
+    <Button
+         w={'full'}
+         onClick={()=>window.location = `/`}
+         colorScheme={'black'}  color={'black'}
+         leftIcon={<BsSpeakerFill fontSize={"27"} color={'red'}/>}>Boat Speakers
+       </Button>
+   
+    <Button
+         w={'full'}
+         onClick={()=>window.location = `/`}
+         colorScheme={'black'}  color={'black'}
+         leftIcon={<FaShoppingBag fontSize={"27"} color={'#804A00'}/>}>Office Bags
+       </Button>
+  
+    <Button
+         w={'full'}
+         onClick={()=>window.location = `/`}
+         colorScheme={'black'}  color={'black'}
+         leftIcon={<CgAppleWatch fontSize={"27"} color={"#8B8000"} />}>Fit Bands
+       </Button>
+    
+    <Button
+         w={'full'}
+         onClick={()=>window.location = `/`}
+         colorScheme={'black'}  color={'black'}
+         leftIcon={<SiPuma fontSize={"27"} color={'red'} />}>Puma
+       </Button>
+    
+    <Button
+         w={'full'}
+         onClick={()=>window.location = `/`}
+         colorScheme={'black'}  color={'black'}
+         leftIcon={<SiReebok fontSize={"27"} color={'blue'} />}>Reebok
+       </Button>
+    
+    <Button
+         w={'full'}
+         onClick={()=>window.location = `/`}
+         colorScheme={'black'}  color={'black'}
+         leftIcon={<SiAdidas fontSize={"27"} color={'#0C090A'}/>}>Adidas
+       </Button>
+   
+    <Button
+         w={'full'}
+         onClick={()=>window.location = `/`}
+         colorScheme={'black'}  color={'black'}
+         leftIcon={<FaHeadphones fontSize={"27"} color={"#FD1C03"}/>}>JBl
+       </Button>
      </SimpleGrid>
      </MenuList>
      </Menu>
      </Box>
      <Spacer />
  {/*--------------------------------   INPUT FIELD   ----------------------------------------------*/}
- <Box p='4'  boxSizing='borderBox' className='searchBox' width={{lg:"50%", md:"50%", sm:"80%",base:"80%"}}  >
+ <Box   boxSizing='borderBox' className='searchBox' width={{lg:"50%", md:"50%", sm:"90%",base:"100%"}}  
+ display={{sm:"block",md:"block",lg:"block",base:"block"}} 
+ >
           <Box   >
           <ReactSearchAutocomplete
             items={data}
@@ -185,7 +328,7 @@ export default function Navbar ({display='flex'}){
     <ButtonGroup gap='2'>
     {/*--------------------------------   Signin Button  ----------------------------------------------*/} 
      
-       <Flex alignItems={'center'}>
+       <Flex alignItems={'center'}  >
             <Menu>
               <MenuButton
                 as={Button}
@@ -211,6 +354,7 @@ export default function Navbar ({display='flex'}){
      {/*--------------------------------   Cart Button  ----------------------------------------------*/} 
        <Button
          w={'full'}
+         display={{md:"none",lg:"block",base:"none"}}
          maxW={'sm'}
          onClick={()=>window.location = `/cart`}
          colorScheme={'white'}
