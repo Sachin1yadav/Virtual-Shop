@@ -8,12 +8,14 @@ import axios from "axios";
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaHeart } from "react-icons/fa";
 
 const DemoSimiler = ({data}) => {
   console.log('datademo:', data);
-  const toast = useToast();
+
+  const navigate  = useNavigate();
+
   const settings = {
     dots: false,
     infinite: false,
@@ -49,17 +51,7 @@ const DemoSimiler = ({data}) => {
     ],
   };
 
-  const addToCart = (itemDetail) => {
-    toast({
-      // colorScheme:'yellow',
-      title: "Added to Cart",
-      description: "We've added this item to Cart",
-      variant: "subtle",
-      duration: 3000,
-      isClosable: true,
-    });
-    return axios.post(`https://lackadaisical-volcano-larch.glitch.me/cart`,{...itemDetail,qty:1});
-  };
+ 
   return (
     <div className="proMainDiv">
 
@@ -82,8 +74,8 @@ const DemoSimiler = ({data}) => {
                     <span>{el.rating}</span></div>
                   
                 </div>
-                <button className="addtocart" onClick={()=>addToCart(el)}>
-                  Add To Cart
+                <button className="addtocart" onClick={()=>navigate(`/data/${el.id}`)}>
+                    View Details
                 </button>
                 </div>
                
