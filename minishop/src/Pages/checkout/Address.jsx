@@ -1,8 +1,9 @@
 import React, { useState } from "react";
+import { Link, Navigate } from "react-router-dom";
 
 const initAdress = {
   house: "",
-	colony:"",
+  colony: "",
   city: "",
   state: "",
   country: "",
@@ -11,24 +12,29 @@ const initAdress = {
   phone: "",
 };
 
-const Checkout = () => {
+const Address = () => {
   const [address, setAddress] = useState(initAdress);
 
   const handleChange = (e) => {
     setAddress({ ...address, [e.target.placeholder]: e.target.value });
   };
 
-  console.log(address);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    <Navigate to="/payment" />;
+  };
 
+  console.log(address);
   return (
     <div>
       <h1>Delivery Address</h1>
-      <form action="">
+      <form onSubmit={handleSubmit} action="">
         <input
           type="text"
           value={address.house}
           onChange={handleChange}
           placeholder="house"
+          required
         />
         <br />
         <br />
@@ -37,6 +43,7 @@ const Checkout = () => {
           value={address.city}
           onChange={handleChange}
           placeholder="city"
+          required
         />
         <br />
         <br />
@@ -45,6 +52,7 @@ const Checkout = () => {
           value={address.colony}
           onChange={handleChange}
           placeholder="colony"
+          required
         />
         <br />
         <br />
@@ -53,6 +61,7 @@ const Checkout = () => {
           value={address.state}
           onChange={handleChange}
           placeholder="state"
+          required
         />
         <br />
         <br />
@@ -61,6 +70,7 @@ const Checkout = () => {
           value={address.country}
           onChange={handleChange}
           placeholder="country"
+          required
         />
         <br />
         <br />
@@ -69,6 +79,7 @@ const Checkout = () => {
           value={address.pincode}
           onChange={handleChange}
           placeholder="pincode"
+          required
         />
         <br />
         <br />
@@ -77,6 +88,7 @@ const Checkout = () => {
           value={address.landmark}
           onChange={handleChange}
           placeholder="landmark"
+          required
         />
         <br />
         <br />
@@ -85,18 +97,14 @@ const Checkout = () => {
           value={address.phone}
           onChange={handleChange}
           placeholder="phone"
+          required
         />
         <br />
         <br />
+        <input type="submit" title="use this address" />
       </form>
-			<h1>Enter you Credit Card details</h1>
-			<form action="">
-				<input type="text" placeholder="" />
-				<input type="text" />
-				<input type="text" />
-			</form>
     </div>
   );
 };
 
-export default Checkout;
+export default Address;
