@@ -1,6 +1,7 @@
 import { Box, Heading, Spacer, useToast } from "@chakra-ui/react";
 // import Cleave from "cleave.js";
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import "./Payment.css";
 
@@ -12,6 +13,10 @@ const initDetails = {
 };
 
 const Payment = () => {
+  
+  const totalAmount = useSelector((store)=> store.cart.totalPrice)
+  console.log('totalAmount:', totalAmount)
+
   const [details, setDetails] = useState(initDetails);
 
   const toast = useToast();

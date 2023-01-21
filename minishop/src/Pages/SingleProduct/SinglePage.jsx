@@ -9,12 +9,13 @@ import axios from "axios";
 import { BsStarFill } from "react-icons/bs";
 
 
-import { Heading, useToast } from "@chakra-ui/react";
+import { Button, Heading, useToast } from "@chakra-ui/react";
 
 
 import "./SinglePage.scss";
 import { BsFillHeartFill } from "react-icons/bs";
 import DemoSimiler from "../../DemoPagesBySachin/DemoSimiler";
+import { cartActions } from "../../redux/Cart/Cart.actions";
 
  
  
@@ -27,7 +28,7 @@ const SinglePage = () => {
  
   const {loading , error, itemDetail} = useSelector((store) => store.singleProduct);
   const dispatch = useDispatch();
-
+  const {cartData}=useSelector((store)=>store.cart)
 
   const [similarData, setSimilarData] = useState([]);
   const getSimilarData =async () => {
@@ -43,6 +44,7 @@ const SinglePage = () => {
   useEffect(() => {
       dispatch(getSingleProduct(id))
       getSimilarData();
+      dispatch(cartActions())
   }, [dispatch, id, img]);
 
  
@@ -77,31 +79,7 @@ const SinglePage = () => {
 
   
   if(loading) return <h3>Loading...</h3>;
-
-  // const handleAddCart = (id) => {
-  //   return axios.post(`https://b-tmart-api-5tjm.vercel.app/itemDetail/${id}`);
-  // };
-
-  // const hideDiv = {
-  //   display: "none",
-  //   width: "90%",
-  //   margin: "auto",
-  //   marginTop: "20px",
-  // };
-
-  // const [angle, setAngle] = useState(false);
-
-  // const handleReadMore = () => {
-  //   const targetDiv = document.getElementById("disHideDiv");
-  //   // document.getElementById("hideDiv").style.display = "block"
-  //   if (targetDiv.style.display !== "none") {
-  //     targetDiv.style.display = "none";
-  //     setAngle(false);
-  //   } else {
-  //     targetDiv.style.display = "block";
-  //     setAngle(true);
-  //   }
-  // };
+  
 
   // if(loading) return <h3>Loading...</h3>;
 
@@ -171,13 +149,22 @@ const SinglePage = () => {
             {itemDetail?.discription ? itemDetail?.discription : des}
           </p>
           <div className="btnWC">
-
-          <button className="wish" onClick={()=>likeFuc(itemDetail)}> 
+          <button className="wish" onClick={()=>likeFuc(itemDetail)}>
           <div> <p>Wishlist</p>
-            <span><BsHeart/></span></div>
-           
+          <span><BsHeart/></span></div>
          </button>
-          <button className="cart" onClick={()=>addToCart(itemDetail)}>Add To Cart</button>
+         {itemDetail.show?(
+          <div  style={{ width:"100%",display:"flex",justifyContent:"space-between"}}>
+          
+        {
+          cartData.some((p) => p.id === itemDetail.id) ? (
+                <Button isDisabled colorScheme='red' className="cart">Already In Cart</Button>
+            ) : (
+              <button className="cart" onClick={()=>addToCart(itemDetail)
+                 }>Add To Cart</button>
+            )}
+            </div>
+           ) :( <Button isDisabled colorScheme='red' className="cart">Out Of stock</Button  >)}
           </div>
         </div>
       </div>

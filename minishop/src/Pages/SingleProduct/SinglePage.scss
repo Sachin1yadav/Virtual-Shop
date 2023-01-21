@@ -1,8 +1,12 @@
 @import "../../Global.scss";
+<<<<<<< HEAD
+.maindiv{
+=======
 .maindiv {
+>>>>>>> 04b01ce9f4fd5992cbd8a9b43c771ecda8fd1157
     width: 100%;
     height: auto;
-    // border: 1px solid red;  
+    // border: 1px solid red;
     display: flex;
     gap: 30px;
     padding: 2%;
@@ -11,12 +15,16 @@
         align-items: center;
     }
 }
+<<<<<<< HEAD
+.imgDiv{
+=======
 
 .imgDiv {
+>>>>>>> 04b01ce9f4fd5992cbd8a9b43c771ecda8fd1157
     width: 40%;
     height: 90%;
     margin: auto;
-    //  border: 2px solid rgb(49, 0, 128); 
+    //  border: 2px solid rgb(49, 0, 128);
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -26,8 +34,12 @@
         align-items: center;
     }
 }
+<<<<<<< HEAD
+  .imagess{
+=======
 
 .imagess {
+>>>>>>> 04b01ce9f4fd5992cbd8a9b43c771ecda8fd1157
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -53,8 +65,56 @@
     /* border: 2px solid rgb(238, 13, 13); */
     width: 80%;
     height: 400px;
-    object-fit: cover;
+    // object-fit: cover;
+    overflow: hidden;
     border-radius: 10px;
+<<<<<<< HEAD
+ margin-top: -0px;
+ display: flex;
+ background-color: white;
+ padding: 10px 10px 10px 10px;
+ justify-content: center;
+ align-items: center;
+//    border: 2px solid rgb(255, 0, 8);
+  text-align: center;
+ margin: auto;
+ /* background-color: rgb(255, 255, 255); */
+ @include mobile{
+    width: 95%;
+    height: 380px;
+    flex-direction: column;
+    align-items: center;
+  }
+  }
+  .curimg img{
+   justify-content: center;
+//  align-content: center;
+ align-items: center;
+//  height: 100%;
+//   border: 1px solid red;
+ width: 100%;
+ border-top-left-radius: 50px;
+//  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;  }
+  }
+  .imagess div{
+   /* border: 1px solid red; */
+   width: 100%;
+   justify-content: center;
+   height: 90%;
+   margin: auto;
+  }
+   .imagess div img{
+     width: 100%;
+     height: 100px;
+     cursor: pointer;
+     border-top-left-radius: 10px;
+     /* box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px; */
+     /* box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset; */
+     /* box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset; */
+     margin: auto;
+   }
+   .name{
+=======
     margin-top: -0px;
     padding: 10px 10px 10px 10px;
     justify-content: center;
@@ -100,6 +160,7 @@
 }
 
 .name {
+>>>>>>> 04b01ce9f4fd5992cbd8a9b43c771ecda8fd1157
     font-weight: bolder;
     font-size: 20px;
     color: rgb(247, 55, 55);
@@ -126,8 +187,12 @@
     font-size: 30px;
     text-transform: uppercase;
 }
+<<<<<<< HEAD
+.rating{
+=======
 
 .rating {
+>>>>>>> 04b01ce9f4fd5992cbd8a9b43c771ecda8fd1157
     font-size: 16px;
     font-weight: bold;
 }
@@ -196,8 +261,12 @@
     color: black;
     background-color: rgb(234, 234, 231);
 }
+<<<<<<< HEAD
+ .price{
+=======
 
 .price {
+>>>>>>> 04b01ce9f4fd5992cbd8a9b43c771ecda8fd1157
     font-size: 20px;
     font-weight: bold;
 }
@@ -210,8 +279,12 @@
 .offer {
     color: green;
 }
+<<<<<<< HEAD
+.ratingDiv{
+=======
 
 .ratingDiv {
+>>>>>>> 04b01ce9f4fd5992cbd8a9b43c771ecda8fd1157
     display: flex;
     justify-content: space-around;
     width: 50px;
@@ -223,8 +296,12 @@
     margin-top: 4px;
     font-size: 15px;
 }
+<<<<<<< HEAD
+.recFooter p{
+=======
 
 .recFooter p {
+>>>>>>> 04b01ce9f4fd5992cbd8a9b43c771ecda8fd1157
     color: rgb(134, 132, 132);
     background-color: black;
     padding: 5px 20px;
@@ -233,8 +310,12 @@
         font-size: 10px;
     }
 }
+<<<<<<< HEAD
+.banner{
+=======
 
 .banner {
+>>>>>>> 04b01ce9f4fd5992cbd8a9b43c771ecda8fd1157
     width: 100%;
     margin: auto;
     // background-color: white;
@@ -245,10 +326,18 @@
     height: 180px;
     cursor: pointer;
 }
+<<<<<<< HEAD
+ .similar{
+=======
 
 .similar {
+>>>>>>> 04b01ce9f4fd5992cbd8a9b43c771ecda8fd1157
     color: black;
     // border: 1px solid red;
     text-align: start;
     padding: 0px 80px;
+<<<<<<< HEAD
+ }
+=======
 }
+>>>>>>> 04b01ce9f4fd5992cbd8a9b43c771ecda8fd1157

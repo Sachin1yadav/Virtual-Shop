@@ -10,6 +10,8 @@ import Cart from "../Pages/Cart/Cart";
 import Address from "../Pages/checkout/Address";
 import Payment from "../Pages/checkout/Payment";
 import PrivateRoute from "../Pages/login&signup/PrivateRoute";
+import Order from "../Pages/Order/Order";
+import Wishlist from "../Pages/Wishlist/Wishlist";
 
 
 function Allroute() {
@@ -20,7 +22,13 @@ function Allroute() {
 
         {/* <Route path="/login" element={<Login/>} />
         <Route path="/sign" element={<Sign/>} /> */}
+<<<<<<< HEAD
+        <Route path="/cart" element={<Cart/>} />
+        <Route path="/wishlist" element={<Wishlist/>} />
+        <Route path="/order" element={<Order/>} />
+=======
         <Route path="/cart" element={<PrivateRoute> <Cart/> </PrivateRoute> } />
+>>>>>>> 04b01ce9f4fd5992cbd8a9b43c771ecda8fd1157
         {/* <Route path="/products" element={<Products/>}></Route> */}
 
 

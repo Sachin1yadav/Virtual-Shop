@@ -1,10 +1,11 @@
 import {
     ORDER_GET_LOADING,
     ORDER_GET_SUCCESS,
-    ORDER_GET_ERROR
+    ORDER_GET_ERROR,
+    ORDER_REMOVE
 } from "./Order.actionTypes"
 
-import { getOrderAPI } from "./order.api"
+import { deleteOrder, getOrderAPI } from "./Order.api"
 
 export const orderActions = () => async(dispatch) => {
     dispatch({type: ORDER_GET_LOADING});
@@ -15,4 +16,9 @@ export const orderActions = () => async(dispatch) => {
     }catch(e){
         dispatch({type: ORDER_GET_ERROR})
     }
+}
+
+export const cancelOrder = (id) => async(dispatch) => {
+    let data1 =  await deleteOrder(id);
+    dispatch({type:ORDER_REMOVE,payload:id})
 }
