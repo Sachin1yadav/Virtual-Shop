@@ -10,6 +10,7 @@ const AdminHome = () => {
   const [error, setError] = useState(false);
   const [allprod, setAllProd] = useState([]);
   const [page, setPage] = useState(1);
+  const [view, setView ] = useState(true)
 
   useEffect(() => {
     getProducts();
@@ -54,10 +55,12 @@ const AdminHome = () => {
   // Catgory request on Changing category 
 
   const handleCategory = (e)=>{
-    if(e.target.value===''){
+    if(e.target.value===''){ 
       getProducts();
+      setView(true)
     }else{
       getCategory(e.target.value)
+      setView(false)
     }
   }
   const getCategory = async(val)=>{
@@ -72,13 +75,10 @@ const AdminHome = () => {
       <AdminNav handleCategory={handleCategory} />
 
       {/* ItemTable  */}
-
+      
       <ItemTable data={allprod} toggleshow={toggleshow} sloading={sloading} />
-
-
       {/* Pagination  */}
-
-      <Flex
+    {view &&  <Flex
         position="fixed"
         px="5"
         py="1"
@@ -87,7 +87,7 @@ const AdminHome = () => {
         left={"45%"}
         alignItems={"center"}
       >
-        {" "}
+        
         <Button
           isLoading={loading}
           variant={"outline"}
@@ -95,20 +95,20 @@ const AdminHome = () => {
           isDisabled={page === 1}
           onClick={() => setPage((val) => val - 1)}
         >
-          {" "}
-          <ChevronLeftIcon fontSize="xl" />{" "}
-        </Button>{" "}
-        <Text mx="5"> {page} </Text>{" "}
+          
+          <ChevronLeftIcon fontSize="xl" />
+        </Button>
+        <Text mx="5"> {page} </Text>
         <Button
           isLoading={loading}
           variant={"outline"}
           size="sm"
           onClick={() => setPage((val) => val + 1)}
         >
-          {" "}
-          <ChevronRightIcon fontSize={"xl"} />{" "}
-        </Button>{" "}
-      </Flex>
+          
+          <ChevronRightIcon fontSize={"xl"} />
+        </Button>
+      </Flex>}
     </>
   );
 };

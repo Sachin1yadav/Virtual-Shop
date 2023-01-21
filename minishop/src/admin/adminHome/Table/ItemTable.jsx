@@ -25,10 +25,10 @@ const ItemTable = ({ data, toggleshow,sloading }) => {
   }
 
   return (
-    <TableContainer p='6'>
+    <TableContainer mt='6' p='8'>
       <Table variant="striped" colorScheme="blue">
-        <Thead>
-          <Tr>
+        <Thead >
+          <Tr border='2px' left='0' right={'0'} >
             <Th>id</Th>
             <Th>Catagory</Th>
             <Th>Name</Th>
@@ -38,7 +38,7 @@ const ItemTable = ({ data, toggleshow,sloading }) => {
             <Th>Disable</Th>
           </Tr>
         </Thead>
-        <Tbody>
+        <Tbody mt='20'> 
           {data.map((el,id) => {
             return (
               <Tr key={id}>
