@@ -1,3 +1,18 @@
+
+  .slick-prev:before, .slick-next:before {
+    font-size: 30px;
+    color: grey;
+}
+.slick-slide > div {
+    width: 75%;
+    margin: auto;
+    margin: 0 40px;
+}
+.slick-list {
+    margin: 0 -10px;
+} 
+  
+
 body {
   margin: 0;
   pad: 0;
