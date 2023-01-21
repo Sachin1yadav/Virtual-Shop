@@ -24,7 +24,7 @@ const SinglePage = () => {
   const [img, setImg] = useState(1);
   let rat = 4.3;
   let des =
-    "Self-Timer | Type C and Mini HDMI, |9 Auto Focus Points | 35x Optical Zoom., Effective Pixels: 18 MP APS-C CMOS sensor-which is 25 times larger than a typical Smartphone sensor., WiFi | Full HD | Video Recording at 1080 p on 30fps.";
+    "Based on purchases by customers who wear your size, L will fit you best";
  
   const {loading , error, itemDetail} = useSelector((store) => store.singleProduct);
   const dispatch = useDispatch();
@@ -146,7 +146,20 @@ const SinglePage = () => {
           </div>
 
           <p className="discription">
-            {itemDetail?.discription ? itemDetail?.discription : des}
+            {itemDetail?.discription ? itemDetail?.discription : 
+            <>
+            <p>Based on purchases by customers who wear your size, L will fit you best.
+                Size Chart 
+                Care Instructions: Machine Wash
+                Fit Type: Regular Fit
+                Occasion : Leisure Sport
+                Pattern : Solid
+                Fit :Regular Fit
+                Material: 60%Cotton40%Polyester
+                Sleeves : Half Sleeves
+            </p>
+            </>
+            }
           </p>
           <div className="btnWC">
           <button className="wish" onClick={()=>likeFuc(itemDetail)}>
@@ -154,7 +167,7 @@ const SinglePage = () => {
           <span><BsHeart/></span></div>
          </button>
          {itemDetail.show?(
-          <div  style={{ width:"100%",display:"flex",justifyContent:"space-between"}}>
+          <div  >
           
         {
           cartData.some((p) => p.id === itemDetail.id) ? (
@@ -170,7 +183,7 @@ const SinglePage = () => {
       </div>
       <div>
         <div className="banner">
-         <img  src="https://assets.ajio.com/cms/AJIO/WEB/Earlybird-Strip-D-1440x128%20(1).gif" alt="banner" />
+         <img  src="https://assets.ajio.com/cms/AJIO/WEB/UHP-D-Fashionation-Coupon-header.gif" alt="banner" />
       </div>
         <Heading  className="similar">You might be interested in</Heading>
         <div >
@@ -196,7 +209,9 @@ const SinglePage = () => {
 
       <div className="recmend"></div>
        
-       
+      <div className="banner">
+         <img  src="https://assets.ajio.com/cms/AJIO/WEB/Earlybird-Strip-D-1440x128%20(1).gif" alt="banner" />
+      </div>
 
       {/* recmended product  footer*/}
       <div className="recFooter">
