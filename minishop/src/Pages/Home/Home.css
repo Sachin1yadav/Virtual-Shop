@@ -1,3 +1,18 @@
+
+  .slick-prev:before, .slick-next:before {
+    font-size: 30px;
+    color: grey;
+}
+.slick-slide > div {
+    width: 75%;
+    margin: auto;
+    margin: 0 40px;
+}
+.slick-list {
+    margin: 0 -10px;
+} 
+  
+
 body {
   margin: 0;
   pad: 0;
@@ -111,13 +126,22 @@ padding: 10px;
   color: rgb(209, 4, 4);
 }
 .viweBtn {
-  color: white;
+  /* color: white; */
   padding: 5px;
-  background-color: rgb(81, 81, 82);
+  color: black;
+  background: rgb(103,101,102);
+  background: radial-gradient(circle, rgba(103,101,102,1) 0%, rgba(155,173,196,1) 0%, rgba(138,161,189,1) 33%, rgba(143,170,203,1) 45%, rgba(148,181,219,1) 68%, rgba(123,147,175,1) 86%, rgba(123,147,175,1) 89%);
  margin-top: 100px;
   border-radius: 5px;
   width: 100px;
   margin: auto;
+  font-weight: bolder;
+  letter-spacing: 1px;
+}
+.viweBtn:hover{
+  /* color: white; */
+  background: rgb(103,101,102);
+  background: radial-gradient(circle, rgba(103,101,102,1) 0%, rgba(123,147,175,1) 75%);
 }
 .nameHeart {
   display: flex;
