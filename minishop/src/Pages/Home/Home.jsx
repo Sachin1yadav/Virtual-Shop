@@ -47,7 +47,7 @@ function Home() {
           Img={imagesTop}
           />
           </Box>
-    <Box w='90%' m={'auto'}  >
+    <Box w='90%' m={'auto'}  border='1px' >
 {/*---------------------------------    carousel   ---------------------------------------*/}
         {/* <Carousel  
           dots= {true} infinite= {true}
