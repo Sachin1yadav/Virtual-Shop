@@ -1,16 +1,17 @@
 
-  .slick-prev:before, .slick-next:before {
+  /* .slick-prev:before, .slick-next:before {
     font-size: 30px;
     color: grey;
 }
 .slick-slide > div {
-    width: 75%;
-    margin: auto;
-    margin: 0 40px;
+  border: 1px solid red;
+    width: 100%;
+   
+    
 }
 .slick-list {
     margin: 0 -10px;
-} 
+}  */
   
 
 body {
