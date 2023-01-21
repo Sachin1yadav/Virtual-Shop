@@ -170,7 +170,7 @@ const SinglePage = () => {
       </div>
       <div>
         <div className="banner">
-         <img  src="https://m.media-amazon.com/images/S/al-eu-726f4d26-7fdb/4923d2c3-74ef-4550-99ec-d0b6533b5b22.jpg" alt="banner" />
+         <img  src="https://assets.ajio.com/cms/AJIO/WEB/Earlybird-Strip-D-1440x128%20(1).gif" alt="banner" />
       </div>
         <Heading  className="similar">You might be interested in</Heading>
         <div >

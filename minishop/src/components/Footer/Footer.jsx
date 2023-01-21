@@ -2,13 +2,13 @@ import { Box, Flex, Spacer, Text } from '@chakra-ui/react'
 import React from 'react'
 import {FaFacebookF,FaTwitter,FaPinterestP,FaApple} from 'react-icons/fa';
 import {IoLogoGooglePlaystore} from "react-icons/io5";
- const Footer = () => {
+ const Footer = ({display='flex'}) => {
   return (
     <Box>
 {/*---------------------------------    Top Footer  --------------------------------------------*/}
-    <Flex minWidth='max-content' 
+    <Flex width='screen' 
     textAlign={'start'}
-     gap='2' lineHeight={'25px'}  mt={'40px'}  bg={'gray.700'} color={'whiteAlpha.800'} >
+     gap='2' lineHeight={'25px'}  mt={'60px'}  bg={'gray.700'} color={'whiteAlpha.800'} display={display} >
         
         <Box p='6' fontSize={'13px'}>
         <Text >LED Light</Text>
@@ -40,7 +40,7 @@ import {IoLogoGooglePlaystore} from "react-icons/io5";
       </Box>
 
       <Spacer />
-      <Box p='4' fontSize={'13px'}>
+      <Box p='4' fontSize={'13px'} display={{sm:"none",md:"block",lg:"block",base:"none"}}>
         <Text >Hydraulics</Text>
         <Text >IT & Electronics</Text>
         <Text >Industrial Automation</Text>
@@ -50,7 +50,7 @@ import {IoLogoGooglePlaystore} from "react-icons/io5";
       </Box>
 
       <Spacer />
-      <Box p='4' fontSize={'13px'}>
+      <Box p='4' fontSize={'13px'} display={{sm:"none",md:"block",lg:"block",base:"none"}}>
         <Text >Medical Supplies & Equipment</Text>
         <Text >Office Supplies</Text>
         <Text >Plumbing</Text>
@@ -60,8 +60,9 @@ import {IoLogoGooglePlaystore} from "react-icons/io5";
       </Box>
   </Flex>
   {/*---------------------------------    Bottom Footer  --------------------------------------------*/}
-  <Flex minWidth='max-content' 
+  <Flex width='screen' 
     textAlign={'start'}
+     display={display}
      gap='2' lineHeight={'32px'}   bg={'gray.900'} color={'white'} >
         
         <Box p='7' fontSize={'15px'}>
@@ -75,7 +76,7 @@ import {IoLogoGooglePlaystore} from "react-icons/io5";
       </Box>
         
       <Spacer />
-      <Box p='7' fontSize={'15px'}>
+      <Box p='7' fontSize={'15px'} display={{sm:"none",md:"block",lg:"block",base:"none"}}>
         <Text fontSize={'18px'} color={'white'} fontWeight={'600'} >Help</Text>
         <Text >FAQs </Text>
         <Text >Report Infringement</Text>
@@ -103,7 +104,7 @@ import {IoLogoGooglePlaystore} from "react-icons/io5";
       </Box>
 
       <Spacer />
-      <Box p='7' fontSize={'15px'}>
+      <Box p='7' fontSize={'15px'} display={{sm:"none",md:"block",lg:"block",base:"none"}}>
         <Text fontSize={'18px'} color={'white'} fontWeight={'600'}>Subscribe to Newsletter</Text>
         
         <Text fontSize={'12px'}>Sign up to get exclusive offers from our favorite brands</Text>

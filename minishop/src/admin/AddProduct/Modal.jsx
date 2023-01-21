@@ -49,10 +49,20 @@ const AdModal = ({showModal}) => {
                   </FormControl>
                   <FormControl mt={4}>
                     <FormLabel>Product Detail</FormLabel>
-                    <Textarea placeholder='Last name' />
+                    <Textarea placeholder='Product Description...' />
+                  </FormControl>
+                  <FormControl mt={4}>
+                    {/* <FormLabel>image</FormLabel>
+                    <Textarea placeholder='Last name' /> */}
+                    {/* <label id='profile_update' for='update_profile'>Update Profile<input type='file' id='update_profile' accept="image"></input> */}
+                    <FormLabel for='image1'>
+                      <Input type='file' accept='image' id='image1'  />
+                      <Input type='file' accept='image' id='image2'  />
+                      <Input type='file' accept='image' id='image3'  />
+                      <Input type='file' accept='image' id='image4'  />
+                    </FormLabel>
                   </FormControl>
                 </ModalBody>
-      
                 <ModalFooter>
                   <Button colorScheme='blue' mr={3}>
                     Save

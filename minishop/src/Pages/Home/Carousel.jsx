@@ -21,14 +21,14 @@ export  const Carousel = ({dots,
         autoplay:autoplay,
         autoplaySpeed:autoplaySpeed,
         pauseOnHover:pauseOnHover,
-        arrows:false
+         arrows:false
       };
     
     return (
-      <div color="green" width="100%">
+      <div  width="100%">
         <Slider {...settings}>
          {Img && Img.map((el,i)=>(
-        <div key={i} width='100%' >
+        <div key={i} style={{width:"100%"}} >
         <img src={el} alt={i} />
         </div>
          ))}
@@ -65,7 +65,7 @@ export  const Carousel = ({dots,
 
   export const Loaderskeleton = ()=>{
     return (
-        <SimpleGrid minChildWidth='200px' spacing='40px' color={'blue'} >
+        <SimpleGrid minChildWidth='260px' spacing='80px' color={'blue'} >
             <Skeleton height='230px' />
             <Skeleton height='230px' />
             <Skeleton height='230px' />

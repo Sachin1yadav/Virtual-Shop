@@ -36,6 +36,10 @@ import "./Navbar.css";
 import { useDispatch, useSelector } from "react-redux";
 import { userLogout } from "../../redux/Auth/auth.actions";
 import { addNewUser } from "../../redux/AddUser/User.actions";
+<<<<<<< HEAD
+=======
+
+>>>>>>> 04b01ce9f4fd5992cbd8a9b43c771ecda8fd1157
 export default function Navbar({ display = "flex" }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [data, setData] = useState([]);
@@ -93,6 +97,10 @@ export default function Navbar({ display = "flex" }) {
       </>
     );
   };
+<<<<<<< HEAD
+=======
+
+>>>>>>> 04b01ce9f4fd5992cbd8a9b43c771ecda8fd1157
   return (
     <Flex
       width="screen"
@@ -166,8 +174,15 @@ export default function Navbar({ display = "flex" }) {
          rightIcon={<BsWatch fontSize={"27"} color={"#64E986"} />}>Watch
        </Button></Box>
        <Divider orientation='horizontal' colorScheme={"blackAlpha"}    />
+<<<<<<< HEAD
           <Box color="white" >-</Box>
           <Box color="white">-</Box>
+=======
+
+          <Box color="white" >-</Box>
+          <Box color="white">-</Box>
+
+>>>>>>> 04b01ce9f4fd5992cbd8a9b43c771ecda8fd1157
           <Box   onClick={()=>nav(`/DLogin`)} ><Button
          w={'full'}
          onClick={()=>nav(`/cart`)}
@@ -283,6 +298,10 @@ export default function Navbar({ display = "flex" }) {
          colorScheme={'black'}  color={'black'}
          leftIcon={<BsWatch fontSize={"27"} color={"#64E986"} />}>Watch
        </Button>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 04b01ce9f4fd5992cbd8a9b43c771ecda8fd1157
     <Button
          w={'full'}
          onClick={()=>nav(`/`)}
@@ -363,7 +382,13 @@ export default function Navbar({ display = "flex" }) {
               zIndex: 100,
               borderRadius: "10px",
               boxShadow: "none",
+<<<<<<< HEAD
               height: "32px",
+=======
+
+              height: "32px",
+
+>>>>>>> 04b01ce9f4fd5992cbd8a9b43c771ecda8fd1157
               placeholderFontSize: "2.5vh",
               fontSize: "2.2vh",
             }}
@@ -424,4 +449,8 @@ export default function Navbar({ display = "flex" }) {
     </Box>
    </Flex>
 )
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 04b01ce9f4fd5992cbd8a9b43c771ecda8fd1157
