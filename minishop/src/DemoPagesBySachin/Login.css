@@ -1,0 +1,174 @@
+ 
+
+ 
+
+ .MainDiv{
+  border: 1px solid rgb(249, 249, 249);
+   
+height: 620px;
+ padding: 70px 0px 0px 0px;
+margin: 0;
+ 
+box-sizing: border-box;
+font-family: "Poppins", sans-serif;
+ }
+.box {
+  position: relative;
+  
+  width: 32%;
+  border-radius: 10px;
+  height: 500px;
+  margin: auto;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px; 
+   background: linear-gradient(0deg, black, black, rgb(44, 73, 73));
+}
+ 
+
+.form {
+  position: absolute;
+   
+  margin: auto;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: start;
+}
+.form h2 {
+  color: #45f3ff;
+  font-weight: bold;
+  text-align: center;
+  font-size: 40px;
+ 
+}
+.inputBox {
+  position: relative;
+ 
+  width: 320px;
+  margin: auto;
+  justify-content: center;
+  text-align: center;
+  align-content: center;
+  margin-top: 10px;
+}
+.inputBox input {
+  position: relative;
+  width: 100%;
+ 
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #23242a;
+  font-size: 1em;
+  letter-spacing: 0.05em;
+ 
+}
+.inputBox span {
+  position: absolute;
+  left: 0;
+  padding: 20px 0px 10px;
+  font-size: 1em;
+  color: #8f8f8f;
+  pointer-events: none;
+  letter-spacing: 0.05em;
+  transition: 0.5s;
+}
+.inputBox input:valid ~ span,
+.inputBox input:focus ~ span {
+  color: #45f3ff;
+  transform: translateX(0px) translateY(-34px);
+  font-size: 0.75em;
+}
+.inputBox i {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #00eeff;
+  border-radius: 4px;
+  transition: 0.5s;
+  pointer-events: none;
+  z-index: 9;
+}
+.inputBox input:valid ~ i,
+.inputBox input:focus ~ i {
+  height: 30px;
+}
+.forgetPass{
+ 
+  color: white;
+  text-align: start;
+  margin-top: 20px;
+}
+.submit {
+  border: none;
+  outline: none;
+  
+    padding: 7px 25px;  
+    background-color: rgb(206, 204, 201);
+   margin-top: 20px;
+  border-radius: 4px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  cursor: pointer;
+  width: 100%;  
+    margin-left: -250px;
+  margin: auto;
+  align-items: start;
+  align-content: start;
+}
+.submit:hover {
+  opacity: 0.5;
+  
+}
+.Divsubmit{
+ 
+  align-items: start;
+text-align: start;
+margin-top: 20px;
+}
+.signDiv {
+  display: flex;
+  justify-content: space-between;
+
+  margin-top: 25px;
+  width: 100%;
+  align-items: center;
+ 
+  margin-bottom: 20px;
+}
+.signDiv p {
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  color: white;
+}
+.sign {
+  color: #45f3ff;
+  font-size: 15px;
+ 
+  font-weight: lighter;
+}
+
+.sign:hover {
+  cursor: pointer;
+  color: red;
+}
+
+ 
+ 
+ 
+ 
+ .orDiv{
+ 
+  color:  rgb(153, 151, 151);
+  margin-top: 10px;
+  margin-bottom: 10px;
+ 
+  text-align: center;
+  font-weight: bold;
+ }
+.google{
+  border: 1px solid red;
+}
