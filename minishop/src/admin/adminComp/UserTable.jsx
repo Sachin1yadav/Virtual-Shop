@@ -14,7 +14,7 @@ import {
   Image,
 } from "@chakra-ui/react";
 
-const UserTable = ({ data,total, toggleshow,sloading }) => {
+const UserTable = ({ data,toggleshow,sloading }) => {
   const toast = useToast()
   const showMsg = (msg, status,el)=>{
     toggleshow(el.id)
@@ -56,7 +56,7 @@ const UserTable = ({ data,total, toggleshow,sloading }) => {
             );
           })}
         </Tbody>
-        <Tfoot><Text>Total Items in Inventory: {total} </Text> </Tfoot>
+        <Tfoot><Text>Total Users: {data.length} </Text> </Tfoot>
       </Table>
     </TableContainer>
   );

@@ -18,3 +18,12 @@ export const logoutUserApi = async(userData)=>{
           return err
     }
 }
+export const updateUserApi = async(userData)=>{
+    try{
+        let res = await axios.patch(`https://lackadaisical-volcano-larch.glitch.me/user/${userData.id}`,userData)
+        console.log(res)
+        // return res
+        }catch(err){
+          return err
+    }
+}

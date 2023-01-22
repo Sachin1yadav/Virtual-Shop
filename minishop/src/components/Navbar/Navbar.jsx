@@ -30,7 +30,7 @@ import {BiLogIn} from  "react-icons/bi";
 import {FcGoogle} from  "react-icons/fc"; 
 import "./Navbar.css";
 import { useDispatch, useSelector } from "react-redux";
-import { addNewUser, logoutUser } from "../../redux/AddUser/User.actions";
+import { addNewUser, logoutUser, updateUser } from "../../redux/AddUser/User.actions";
 import { userLogout } from "../../redux/Auth/auth.actions";
 export default function Navbar({ display = "flex" }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -41,6 +41,7 @@ export default function Navbar({ display = "flex" }) {
   useEffect(() => {
   if(isauth){
     dispatch(addNewUser(userData))
+    dispatch(updateUser(userData))
   }
 }, [dispatch, isauth, userData])
   const getHomeData = async () => {

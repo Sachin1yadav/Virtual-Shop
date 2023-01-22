@@ -1,5 +1,5 @@
 import { Flex, Heading } from '@chakra-ui/react'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect} from 'react'
 import { getAllUsers, getProdCatagoty, getProductsAdmin } from '../../redux/admin_data/admin.action'
 import AdminNav from '../adminHome/AdminNav'
 import { useDispatch, useSelector } from "react-redux";
