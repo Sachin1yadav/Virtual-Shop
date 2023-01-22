@@ -7,11 +7,12 @@ import HomeProducts from "./HomeProducts";
 import "./Home.css";
 import { Carousel } from "./Carousel";
 import { Loaderskeleton } from "./Carousel";
-import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
-import Slider from "react-slick";
+// import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
+// import Slider from "react-slick";
 
 
 import HomeCarouselDemo from './HomeCarouselDemo';
+import Navbar from "../../components/Navbar/Navbar";
 
 
 function Home() {
@@ -32,6 +33,8 @@ function Home() {
 }
   useEffect(() => {
     getHomeData()
+    document.title = 'Virtual Shop'
+
   }, []);
 
  
@@ -39,7 +42,9 @@ function Home() {
 
   
   return (
-    <Box>
+    <>
+     <Navbar/>
+    <Box mt='80px' >
       
       {/* <Box w={"98%"} m={"auto"} mt='74px' >
         <Image src="https://s3.thingpic.com/images/WZ/1ChLD86XEtKdLmpiQHdW1nhF.jpeg"  alt='1'/>
@@ -116,6 +121,7 @@ function Home() {
     </Box>
     
     </Box>
+   </>
   );
 }
 

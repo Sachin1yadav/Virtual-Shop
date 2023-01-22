@@ -16,6 +16,7 @@ import "./SinglePage.scss";
 import { BsFillHeartFill } from "react-icons/bs";
 import DemoSimiler from "../../DemoPagesBySachin/DemoSimiler";
 import { cartActions } from "../../redux/Cart/Cart.actions";
+import Navbar from "../../components/Navbar/Navbar";
 
  
  
@@ -78,15 +79,17 @@ const SinglePage = () => {
   };
 
   
-  if(loading) return <h3>Loading...</h3>;
+  // if(loading) return <h3 mt='80px' >Loading...</h3>;
   
 
   // if(loading) return <h3>Loading...</h3>;
 
-  if(error) return <h3>Error...</h3>;
+  // if(error) return <h3>Error...</h3>;
   return (
-    <div>
-      <div className="maindiv">
+    <>
+     <Navbar />
+    <div mt='80px'>
+      {loading || <div className="maindiv">
         <div className="imgDiv">
           <div className="curimg">
             <img src={itemDetail?.image?(itemDetail.image?.[img]):("https://media3.giphy.com/media/3oEjI6SIIHBdRxXI40/200w.gif?cid=6c09b9528g3llcf2o3218mjzzpt270ckvllpe9aew6nax25k&rid=200w.gif&ct=g")} alt={itemDetail.name} />
@@ -180,7 +183,7 @@ const SinglePage = () => {
            ) :( <Button isDisabled colorScheme='red' className="cart">Out Of stock</Button  >)}
           </div>
         </div>
-      </div>
+      </div>}
       <div>
         <div className="banner">
          <img  src="https://assets.ajio.com/cms/AJIO/WEB/UHP-D-Fashionation-Coupon-header.gif" alt="banner" />
@@ -223,6 +226,8 @@ const SinglePage = () => {
 
       </div>
     </div>
+
+    </>
   );
 };
 

@@ -25,7 +25,7 @@ const AdModal = ({showModal}) => {
         const { isOpen, onOpen, onClose } = useDisclosure()
         const [image1, setImage1] = useState()
         const dispatch= useDispatch()
-       
+       console.log(image1)
         // "Categories": "t_shirt",
         // "image": [
         // "https://m.media-amazon.com/images/I/81DM22NKVuL._AC_UL320_.jpg",
