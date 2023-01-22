@@ -13,13 +13,18 @@ import { orderReducer } from './Order/Order.reducer'
 
 import { singleReducer } from './SingleProducts/SingleProduct.reducer'
 
+import {authReducerfunc} from './Auth/auth.reducer';
+
 import { adminAuthReducer } from './admin_auth/admin.reducer'
+import { wishReducer } from './Wishlist/Wishlist.reducer'
 
 const rootReducer = combineReducers({
     cart:cartReducer,
     order:orderReducer,
+    wishlist:wishReducer,
     singleProduct: singleReducer,
-    adminAuth:adminAuthReducer
+    adminAuth:adminAuthReducer,
+    authUser:authReducerfunc
 })
 
 const composeEnhancer = window._REDUX_DEVTOOLS_EXTENSION_COMPOSE_ || compose;

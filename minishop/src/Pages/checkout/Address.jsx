@@ -1,5 +1,7 @@
+import { Heading } from "@chakra-ui/layout";
 import React, { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
+import "./Payment.css";
 
 const initAdress = {
   house: "",
@@ -27,62 +29,64 @@ const Address = () => {
   console.log(address);
   return (
     <div>
-      <h1>Delivery Address</h1>
-      <form onSubmit={handleSubmit} action="">
-        <input
-          type="text"
-          value={address.house}
-          onChange={handleChange}
-          placeholder="house"
-          required
-        />
-        <br />
-        <br />
-        <input
-          type="text"
-          value={address.city}
-          onChange={handleChange}
-          placeholder="city"
-          required
-        />
-        <br />
-        <br />
-        <input
-          type="text"
-          value={address.colony}
-          onChange={handleChange}
-          placeholder="colony"
-          required
-        />
-        <br />
-        <br />
-        <input
-          type="text"
-          value={address.state}
-          onChange={handleChange}
-          placeholder="state"
-          required
-        />
-        <br />
-        <br />
-        <input
-          type="text"
-          value={address.country}
-          onChange={handleChange}
-          placeholder="country"
-          required
-        />
-        <br />
-        <br />
-        <input
-          type="text"
-          value={address.pincode}
-          onChange={handleChange}
-          placeholder="pincode"
-          required
-        />
-        <br />
-        <br />
+      <Heading>Delivery Address</Heading>
+      <form
+        id="form"
+        onSubmit={handleSubmit}
+        style={{ margin: "auto", marginTop: "3rem" }}
+        action=""
+      >
+        <div style={{ display: "flex", gap: "1rem" }}>
+          <input
+            type="text"
+            value={address.house}
+            onChange={handleChange}
+            placeholder="house"
+            required
+          />
+          <input
+            type="text"
+            value={address.city}
+            onChange={handleChange}
+            placeholder="city"
+            required
+          />
+        </div>
+
+        <div style={{ display: "flex", gap: "1rem" }}>
+          <input
+            type="text"
+            value={address.colony}
+            onChange={handleChange}
+            placeholder="colony"
+            required
+          />
+          <input
+            type="text"
+            value={address.state}
+            onChange={handleChange}
+            placeholder="state"
+            required
+          />
+        </div>
+
+        <div style={{ display: "flex", gap: "1rem" }}>
+          <input
+            type="text"
+            value={address.country}
+            onChange={handleChange}
+            placeholder="country"
+            required
+          />
+          <input
+            type="text"
+            value={address.pincode}
+            onChange={handleChange}
+            placeholder="pincode"
+            required
+          />
+        </div>
+
         <input
           type="text"
           value={address.landmark}
@@ -90,8 +94,6 @@ const Address = () => {
           placeholder="landmark"
           required
         />
-        <br />
-        <br />
         <input
           type="text"
           value={address.phone}
@@ -99,9 +101,9 @@ const Address = () => {
           placeholder="phone"
           required
         />
-        <br />
-        <br />
-        <input type="submit" title="use this address" />
+        <button ml={0} colorScheme="blue" size="sm" fontSize="sm">
+          use this address
+        </button>
       </form>
     </div>
   );

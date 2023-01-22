@@ -1,4 +1,4 @@
-import { Box, Heading, Image } from "@chakra-ui/react";
+import { Box, Heading, IconButton, Image, useBreakpointValue } from "@chakra-ui/react";
 import { useEffect ,useState} from "react";
  import React from "react";
  import "slick-carousel/slick/slick.css";
@@ -7,8 +7,16 @@ import HomeProducts from "./HomeProducts";
 import "./Home.css";
 import { Carousel } from "./Carousel";
 import { Loaderskeleton } from "./Carousel";
+
 import DemoSimiler from "../../DemoPagesBySachin/DemoSimiler";
 
+// import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
+// import Slider from "react-slick";
+
+
+
+import HomeCarouselDemo from './HomeCarouselDemo';
+import Navbar from "../../components/Navbar/Navbar";
 
 
 function Home() {
@@ -29,23 +37,35 @@ function Home() {
 }
   useEffect(() => {
     getHomeData()
+    document.title = 'Virtual Shop'
+
   }, []);
 
-  //console.log("data", data);
+ 
+  
+
   
   return (
-    <Box>
+    <>
+     <Navbar/>
+    <Box mt='80px' >
       
-      <Box w={"100%"} m={"auto"} mt='73px' >
+
+      {/* <Box w={"98%"} m={"auto"} mt='74px' >
+
         <Image src="https://s3.thingpic.com/images/WZ/1ChLD86XEtKdLmpiQHdW1nhF.jpeg"  alt='1'/>
-      {/* <Carousel  
+     <Carousel  
           dots= {false} infinite= {true}
           slidesToShow = {1}
           slidesToScroll= {1}
           autoplay= {true} autoplaySpeed= {3000} pauseOnHover= {true } 
           Img={imagesTop}
-          /> */}
-          </Box>
+          />
+          </Box> */}
+          
+     {/* Carousal by kiran */}
+     <HomeCarouselDemo/> 
+         
          
     <Box w='90%' m={'auto'}  >
 {/*---------------------------------    carousel   ---------------------------------------*/}
@@ -128,6 +148,7 @@ function Home() {
     </Box>
     
     </Box>
+   </>
   );
 }
 

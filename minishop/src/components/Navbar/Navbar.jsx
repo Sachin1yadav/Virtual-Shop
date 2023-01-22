@@ -92,7 +92,7 @@ export default function Navbar({ display = "flex" }) {
     <Flex width='screen'
      alignItems='center'
       gap='2'
-        bg={'#232F3E'} color={'white'} position="fixed" zIndex={10} left={"0"} right='0' top='0'
+        bg={'#232f3e'} color={'white'} position="fixed" zIndex={10} left={"0"} right='0' top='0'
         display={display}
         >
 {/*-----------------------------------     Drawer  ----------------------------------*/}

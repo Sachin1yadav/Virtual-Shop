@@ -1,23 +1,25 @@
 import React, { useContext } from "react";
-import { Navigate } from "react-router-dom";
-import { AuthContext } from "./AuthContextProvider";
+import { useNavigate } from "react-router-dom";
 import { useToast } from "@chakra-ui/react";
+import { useSelector } from "react-redux";
+import DLogin from "../../DemoPagesBySachin/DLogin";
 
 const PrivateRoute = ({ children }) => {
-  const { isAuth } = useContext(AuthContext);
+  const isauth = useSelector((val) => val.authUser.isauth);
   const toast = useToast();
-
-  if (!isAuth) {
+  const nav = useNavigate()
+  if (isauth) {
+    return children;
+  }else{
     toast({
       title: "Login required",
       status: "error",
       description: "Please login first.",
       isClosable: true,
     });
-    return <Navigate to="/sign" />;
+    nav('/DLogin') 
+    return <DLogin/>
   }
-
-  return children;
 };
 
 export default PrivateRoute;
