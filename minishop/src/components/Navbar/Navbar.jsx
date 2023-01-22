@@ -30,7 +30,7 @@ import {BiLogIn} from  "react-icons/bi";
 import {FcGoogle} from  "react-icons/fc"; 
 import "./Navbar.css";
 import { useDispatch, useSelector } from "react-redux";
-import { addNewUser } from "../../redux/AddUser/User.actions";
+import { addNewUser, logoutUser } from "../../redux/AddUser/User.actions";
 import { userLogout } from "../../redux/Auth/auth.actions";
 export default function Navbar({ display = "flex" }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -60,7 +60,7 @@ export default function Navbar({ display = "flex" }) {
 
   const handleLogout= ()=>{
     dispatch(userLogout())
-    dispatch()
+    dispatch(logoutUser(userData))
     nav(`/DLogin`)
 
   }

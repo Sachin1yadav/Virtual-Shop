@@ -5,12 +5,7 @@ SIGNUP_SUCCESS,
 SIGNUP_FAIL,
 RESET_USER_DATA,
 LOGOUT_FAIL,
-USER_ADD_SUCCESS
 } from './auth.action.types'
-import axios from 'axios'
-
-// import React, { useContext, useEffect, useState } from "react";
-// import { createContext } from "react";
 import {
   signOut,
   sendPasswordResetEmail,
@@ -62,10 +57,12 @@ export const loginWithGoogle = () => async(dispatch)=>{
   try {
    let res =  await signInWithPopup(auth, provider);
   const userData = {
+    active:true,
     name:res.user.displayName,
     email:res.user.email,
     profile:res.user.photoURL,
-    id:res.user.uid
+    id:res.user.uid,
+    super:false
    }
    dispatch({type:LOGIN_SUCCESS,payload:userData})
   } catch (error) {

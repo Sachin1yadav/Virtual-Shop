@@ -1,26 +1,43 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import axios from "axios";
 import ItemTable from "./Table/ItemTable";
 import AdminNav from "./AdminNav";
 import { Button, Flex, Heading, Text } from "@chakra-ui/react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
-import { getProdCatagoty, getProductsAdmin } from "../../redux/admin_data/admin.action";
+import { getAllProducts, getProdCatagoty, getProductsAdmin } from "../../redux/admin_data/admin.action";
 import { useDispatch, useSelector } from "react-redux";
 const AdminHome = () => {
   const dispatch = useDispatch()
   const [sloading, setsLoading] = useState(false);
-  const {loading, error, products}= useSelector(val=>val.adminAll)
+  const {loading, error, products,allProd}= useSelector(val=>val.adminAll)
   const [page, setPage] = useState(1);
   const [view, setView ] = useState(true)
-  
-
+  const [total, setTotal ] = useState(0)
+  const [cat, setCat] = useState([])
   useEffect(() => {
     dispatch(getProductsAdmin(page));
   }, [dispatch, page]);
 
+  let obj = {}
+  const catagory = []
   useEffect(()=>{
-    
-  },[])
+    dispatch(getAllProducts())
+    if(allProd.length>0){
+      setTotal(allProd.length)
+      allProd.forEach((el)=>{
+        if(obj[el.Categories]===undefined){
+          obj[el.Categories]=1
+        }else{
+          obj[el.Categories]++
+        }
+      })
+    }
+    for(let key in obj){
+      catagory.push(key)
+    }
+    setCat(catagory)
+  },[allProd.length, dispatch])
 
   const toggleshow = (id) => {
     let dta = products.filter((el) => {
@@ -44,7 +61,6 @@ const AdminHome = () => {
     }
   };
   // Catgory request on Changing category 
-  const catagory = ['t_shirt']
   const handleCategory = (e)=>{
     if(e.target.value===''){ 
       dispatch(getProductsAdmin(page));
@@ -59,11 +75,11 @@ const AdminHome = () => {
   }
   return (
     <>
-      <AdminNav handleCategory={handleCategory} catagory={catagory} />
+      <AdminNav handleCategory={handleCategory} catagory={cat} />
 
       {/* ItemTable  */}
       
-      <ItemTable data={products} toggleshow={toggleshow} sloading={sloading} />
+      <ItemTable data={products} total={total} toggleshow={toggleshow} sloading={sloading} />
       {/* Pagination  */}
     {view &&  <Flex
         position="fixed"
@@ -87,6 +103,7 @@ const AdminHome = () => {
         </Button>
         <Text mx="5"> {page} </Text>
         <Button
+          isDisabled={page===Math.floor(total/10)}
           isLoading={loading}
           variant={"outline"}
           size="sm"
