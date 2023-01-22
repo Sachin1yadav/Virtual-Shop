@@ -126,37 +126,37 @@ export default function Navbar({ display = "flex" }) {
           <Box   display={{md:"none",lg:"none",sm:"block",base:"block"}} onClick={()=>nav(`/`)} >
         Home
        </Box>
-          <Box display={'flex'}  >
+          <Box display={'flex'} onClick={()=>nav(`/products/t_shirt`)} >
         T-Shirts
        </Box>
-       <Divider orientation='horizontal' colorScheme={"blackAlpha"}    />
+       <Divider orientation='horizontal'  onClick={()=>nav(`/products/Jacket`)}  />
           <Box display={'flex'} >
         Jackets
-       </Box>
-       <Divider orientation='horizontal' colorScheme={"blackAlpha"}    />
-          <Box display={'flex'} >
+       </Box >
+       <Divider orientation='horizontal'    />
+          <Box display={'flex'} onClick={()=>nav(`/products/bags`)}  >
          Bags
       </Box>
-       <Divider orientation='horizontal' colorScheme={"blackAlpha"}    />
-          <Box display={'flex'} >
+       <Divider orientation='horizontal'    />
+          <Box display={'flex'}  onClick={()=>nav(`/products/watch`)}>
           Watch
       </Box>
        <Divider orientation='horizontal' colorScheme={"blackAlpha"}    />
           <Box color="white" >-</Box>
-          <Box display={'flex'} justifyContent='space-between'>
+          <Box display={'flex'} justifyContent='space-between' onClick={()=>nav(`/cart`)}>
           Cart <HiOutlineShoppingCart fontSize={"27"} color={'#0C090A'}/>
       </Box>
        <Divider orientation='horizontal' colorScheme={"blackAlpha"}    />
-          <Box display={'flex'} justifyContent='space-between'>
+          <Box display={'flex'} justifyContent='space-between' onClick={()=>nav(`/wishlist`)} >
           Wishlist <BsFillHeartFill fontSize={"27"} color={'red'}/>
        </Box>
        <Divider orientation='horizontal' colorScheme={"blackAlpha"}    />
        <Box color="white" >-</Box>
-       <Box  display={'flex'} justifyContent='space-between'  >
+       <Box  display={'flex'} justifyContent='space-between' onClick={()=>nav(`/DLogin`)} >
             Login <BiLogIn fontSize={"27"} color={'#0C090A'} />
        </Box>
  <Divider orientation='horizontal' colorScheme={"blackAlpha"}    />
-          <Box display={'flex'} justifyContent='space-between'>
+          <Box display={'flex'} justifyContent='space-between' onClick={()=>nav(`/sign`)} >
             Sign Up <FaUserCircle fontSize={"27"} color={'#123456'}/>
        </Box>
        <Divider orientation='horizontal' colorScheme={"blackAlpha"}    />
@@ -165,13 +165,11 @@ export default function Navbar({ display = "flex" }) {
           App Store <FcGoogle fontSize={"27"} color={'#0C090A'}/>
        </Box>
        <Divider orientation='horizontal' colorScheme={"blackAlpha"}    />
-          <Box display={'flex'} justifyContent='space-between'>
-          Facebook Page <BsFacebook fontSize={"27"} color={'#123456'}/>
-       </Box>
+         
           </DrawerBody>
         </DrawerContent>
       </Drawer>
-     <Box w='130px' onClick={()=>nav(`/`)} >
+     <Box w='130px' onClick={()=>nav(`/`)}  display={{md:"block",lg:"block",base:"none"}}>
     {/* <Heading size='lg'display={{sm:"none",md:"block",lg:"block",base:"none"}} onClick={()=>nav `/`} >i</Heading> */}
     <Image src="https://user-images.githubusercontent.com/80110392/213902764-824a5310-8367-466f-8057-6e53bec9e1ed.png" alt='logo' w='100%'  />
     </Box>
@@ -235,7 +233,7 @@ export default function Navbar({ display = "flex" }) {
  {/*--------------------------------   INPUT FIELD   ----------------------------------------------*/}
  <Box   boxSizing='borderBox' className='searchBox' width={{lg:"50%", md:"50%", sm:"100%",base:"100%"}}
  display={{sm:"block",md:"block",lg:"block",base:"block"}}
- ml={{lg:"0px", md:"0px", sm:"-25px",base:"-80px"}}
+ ml={{lg:"0px", md:"0px", sm:"-23px",base:"-70px"}}
  >
           <ReactSearchAutocomplete
             items={data}
@@ -293,9 +291,9 @@ export default function Navbar({ display = "flex" }) {
                   </Center>
                 <MenuItem onClick={()=>nav(`/orders`)} >orders</MenuItem>
                 <MenuItem onClick={()=>nav(`/whishlist`)} >whishlist</MenuItem>
-                <MenuItem onClick={()=>nav(`/`)} >Profile</MenuItem>
+               
                 <MenuItem onClick={handleLogout} >Logout</MenuItem>
-                <MenuItem>Your Orders</MenuItem>
+                
               </MenuList> :<MenuList color='black' >
                 <MenuItem onClick={()=>nav(`/DLogin`)} >Log in</MenuItem>
                 <MenuItem onClick={()=>nav(`/sign`)} >Register</MenuItem>
