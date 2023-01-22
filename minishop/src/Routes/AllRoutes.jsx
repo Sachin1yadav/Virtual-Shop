@@ -10,8 +10,8 @@ import Cart from "../Pages/Cart/Cart";
 import Address from "../Pages/checkout/Address";
 import Payment from "../Pages/checkout/Payment";
 import PrivateRoute from "../Pages/login&signup/PrivateRoute";
-
-
+import WishList from"../DemoPagesBySachin/WishList"
+import Order from"../DemoPagesBySachin/Orders"
 function Allroute() {
   return (
     <>
@@ -31,6 +31,8 @@ function Allroute() {
         <Route path="/payment" element={<PrivateRoute><Payment /></PrivateRoute>} />
         {/* demoRoutes........................ */}
         <Route path="/DLogin" element={<DLogin/>} />
+        <Route path="/wishlist" element={<WishList/>} />
+        <Route path="/order" element={<Order/>} />
         <Route path="/sign" element={<DSign/>} />
         <Route path="/admin" element={<Admin/>}></Route>
       </Routes>

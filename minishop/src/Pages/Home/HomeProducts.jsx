@@ -1,8 +1,20 @@
-import { BsHeart } from "react-icons/bs";
-import { Link } from "react-router-dom";
+import { useToast } from "@chakra-ui/react";
+import { useEffect } from "react";
+import { BsFillHeartFill, BsHeart } from "react-icons/bs";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+// import { removeWishlistData, wishlistGetData } from '../../redux/';
 
 export default function HomeProducts(data) {
-
+  // const {    wishData} = useSelector((store) => store.wishlist);
+  // const toast = useToast();
+  // const navigate  = useNavigate();
+//   console.log('wishDat:', wishData)
+//   const dispatch = useDispatch();
+//   useEffect(() => {
+//     dispatch(wishlistGetData())
+// }, [ wishData.length]);
+// console.log("wish",wishData)
     return (
       <div className="container">
           {data.data.map((el, i) => {
@@ -22,7 +34,16 @@ export default function HomeProducts(data) {
             <h3>
             {el.name.length < 8 ? el.name : `${el.name.slice(0, 8)}`}   
             </h3>
-            <p><BsHeart className="heart" /></p>
+            
+            {data.data?.some((p) => p.id !== el.id) ? (
+                
+                   
+                   <p><BsHeart className="heart" /></p>
+                   
+                
+              ) : (
+                <p><BsFillHeartFill className="heart" /></p>
+              )}
             </div>
             <div>
             <h5>Price:{el.price}</h5>

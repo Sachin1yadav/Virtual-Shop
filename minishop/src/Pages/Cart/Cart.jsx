@@ -29,27 +29,22 @@ import {
 } from "../../redux/Cart/Cart.actions";
 import "./Cart.scss";
 import { FaShippingFast } from "react-icons/fa";
-import { AiFillDelete } from "react-icons/ai";
+import { AiFillDelete, AiOutlineHome } from "react-icons/ai";
 import { SlMinus, SlPlus } from "react-icons/sl";
-
 import { RiDeleteBinLine } from "react-icons/ri";
 import { TbDiscount2 } from "react-icons/tb";
 import { Link } from "react-router-dom";
-
+import Loading from "../Loading/Loading";
 const Cart = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const handelOnSubtmi=()=>{
-     
     onClose()
   }
   const {loading , error, cartData,totalPrice} = useSelector((store) => store.cart);
   console.log('totalPriceSelector:', totalPrice)
   console.log('cartData:', cartData)
-  
   const dispatch = useDispatch();
-  
   const [totalCartPrice,setTotalCartPrice] = useState(totalPrice);
-
   const updatePrice = () => {
     setTotalCartPrice(
       cartData.reduce(
@@ -58,43 +53,29 @@ const Cart = () => {
       )
     );
   }
- 
   console.log('totalCartPrice:', totalCartPrice)
   useEffect(() => {
     dispatch(cartActions())
     // if(cartData.length !== 0){
-      // let sum = cartData.reduce((acc,el) => 
-      // {  
-      //     let prc = (+el.price+152); 
-      //     acc += el.qty*prc; 
+      // let sum = cartData.reduce((acc,el) =>
+      // {
+      //     let prc = (+el.price+152);
+      //     acc += el.qty*prc;
       //     return acc
       // },0)
       // setTotalCartPrice(sum)
       updatePrice()
     // }
-
 }, [ cartData.length,totalPrice]);
 console.log('loading:', loading)
-
 console.log('After UseEffect totalSum:', totalCartPrice)
-
   //------Cart Total Price Function-------------------------------------------------------------------- //
-
-
   const [detailIcon,setDetailIcon] = useState(true);
-  
-  
    //------Offer Function-------------------------------------------------------------------- //
-  
-  
-
    const [apply,setApply] = useState("");
-
- 
    const offerClick = () => {
      console.log('val:', totalCartPrice)
      console.log("Apply text",apply);
- 
      if(apply === "VS50"){
       //  let dis = (30 / 100);
       // //  console.log("dis",dis)
@@ -108,17 +89,11 @@ console.log('After UseEffect totalSum:', totalCartPrice)
      }else if(apply !== "VS50"){
        alert("sahi se lga")
      }
- 
    }
-
    //------Price Details hide Function-------------------------------------------------------------------- //
   const paymentFun = () => {
-    
       alert(totalCartPrice)
   } //detail hoide div
-
- 
- 
   //------Quantity Increase Function-------------------------------------------------------------------- //
   const quantityIncre = async(id,qty) => {
       dispatch(updateCarts(id,{"qty":qty+1}))
@@ -126,21 +101,15 @@ console.log('After UseEffect totalSum:', totalCartPrice)
         dispatch(cartActions());
       });
   }
-
    //------Quantity Decrease Function----------------------------------------------------------------------- //
-
   const quantityDecre = async(id,qty) => {
     dispatch(updateCarts(id,{"qty":qty-1})).then(()=> {
       dispatch(cartActions());
     });
-    
   }
-
   // Loading And Error
-  // if(loading) return <h3>Loading...</h3>; 
+  // if(loading) return <Loading/>;
   // if(error) return <h3>Error...</h3>;
-  
-
   return (
     <>
       <div className="CartMainDiv">
@@ -148,7 +117,8 @@ console.log('After UseEffect totalSum:', totalCartPrice)
           <div className="firstDiv">
             <div className="CartDetails">
               <p>My Cart:[{cartData.length}]</p>
-              {/* <p>Total Ammount:₹{totalCartPrice}</p> */}
+              <Link to="/" ><p style={{fontSize:"30px"}}><AiOutlineHome/></p></Link>
+              
             </div>
             {cartData.map((e, id) => (
               <div className="cartProDiv" key={id}>
@@ -176,7 +146,7 @@ console.log('After UseEffect totalSum:', totalCartPrice)
                       -
                     </Button>
                     <Button variant="light">{ loading ? <Spinner/> : e.qty}</Button>
-                    <Button 
+                    <Button
                     onClick={()=> quantityIncre(e.id,e.qty)}
                     color="green" variant="light">
                       +
@@ -200,7 +170,6 @@ console.log('After UseEffect totalSum:', totalCartPrice)
               </div>
             ))}
           </div>
-
           <div className="secondDiv">
             <div className="secHeading">
               <p>PRICE DETAILS</p>
@@ -221,7 +190,7 @@ console.log('After UseEffect totalSum:', totalCartPrice)
             </div>
             <div className="secCoopan">
               <p>
-                Congrats! 😃 You can use Coupan code for Intresting Offers!{" "}
+                Congrats! :smiley: You can use Coupan code for Intresting Offers!{" "}
               </p>
               <div className="secCoopanInput">
                 <InputGroup
@@ -249,7 +218,6 @@ console.log('After UseEffect totalSum:', totalCartPrice)
                   </InputRightElement>
                 </InputGroup>
               </div>
-
               <div
                 className="secCoopanCode"
                 style={{
@@ -259,7 +227,6 @@ console.log('After UseEffect totalSum:', totalCartPrice)
                   textAlign: "left",
                 }}
               >
-                 
                        <Button
                        className="tap"
                      colorScheme='teal' variant='outline'
@@ -279,7 +246,6 @@ console.log('After UseEffect totalSum:', totalCartPrice)
              Check Out
           </button>
     </Link>
-           
           <Modal
             className="ordermodal"
             isCentered
@@ -292,18 +258,14 @@ console.log('After UseEffect totalSum:', totalCartPrice)
               <ModalHeader> </ModalHeader>
               <ModalCloseButton />
               <ModalBody>
-                 
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReO4PsZOqzxtG7IDo2_bZja_Q97FXTKUx0GQ&usqp=CAU"   style={{margin:"auto"}}    />
                 <p  style={{textAlign:"center"  }}> Woow! You Can use "VS50" </p>
               </ModalBody>
               <ModalFooter>
-                
-                 
                   <Button margin="auto" onClick={handelOnSubtmi} style={{cursor:"pointer"}} colorScheme="red">Congrats</Button>
-                  
               </ModalFooter>
             </ModalContent>
-          </Modal>  
+          </Modal>
           </div>
           </div>
         </div>

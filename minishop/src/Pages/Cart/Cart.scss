@@ -1,12 +1,8 @@
 @import "../../Global.scss";
-
-
 .CartMainDiv{
-     
     // border: 1px solid red;
     width: 100%;
     height: 100vh;
-    
 }
 .BothDiv{
     display: flex;
@@ -25,14 +21,12 @@ overflow-y: scroll;
 height: 100vh;
 background-color: white;
 box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-border-top-right-radius: 20px;
+border-top-left-radius: 20px;
 @include mobile{
     width: 100%;
     align-items: center;
   }
 }
-
-
 .CartDetails{
     // border: 1px solid red;
     background-color: white;
@@ -40,7 +34,7 @@ border-top-right-radius: 20px;
     font-size: 20px;
     // font-weight: bold;
     padding: 0px 20px;
-    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -51,7 +45,6 @@ border-top-right-radius: 20px;
         font-size: 18px;
       }
 }
-
 .cartProDiv{
     // border: 1px dotted rgb(139, 138, 138);
     border-bottom:1px dotted grey;
@@ -66,7 +59,6 @@ padding: 10px;
 @include mobile{
     flex-direction: column;
     height: 200px;
-     
   }
 //    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
@@ -81,7 +73,6 @@ padding: 10px;
         // flex-direction: column;
         width: 100%;
       }
-
 }
 .CartImgDiv{
     height: 100%;
@@ -96,12 +87,10 @@ padding: 10px;
     @include mobile{
         height: 90px;
          margin: auto;
-          
       }
 }
 .ProDivDetail{
     // border: 1px solid green;
-     
     width: 70%;
     text-align: start;
     justify-content: start;
@@ -157,17 +146,15 @@ justify-content: space-around;
  }
  .Qdiv Button:hover{
     background-color: rgb(222, 220, 220);
-     
  }
  .delBTN:hover{
     background-color: rgb(224, 223, 223);
  }
-
  .secondDiv{
     // border: 1px solid rgb(102, 255, 0);
     width: 40%;
     border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
     height: 500px;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;    background-color: rgb(255, 255, 255);
     display: flex;
@@ -205,7 +192,6 @@ font-size: 17px;
 font-weight: bold;
 letter-spacing: 1px;
 }
-
 .secCoopan
 {
     // border: 1px solid red;
@@ -235,9 +221,9 @@ text-align: center;
 color: gray;
  }
  .Checkout{
-    border: 1px solid #dc3545;
+    border: 1px solid #DC3545;
     text-align: center;
-    background-color: #df3c4c;
+    background-color: #DF3C4C;
     width: 60%;
     border-radius:5px;
     color: white;
@@ -249,12 +235,10 @@ color: gray;
     align-items: center;
  }
  .Checkout:hover{
-    background-color: #d82a3b;
+    background-color: #D82A3B;
  }
   .tap{
-     
     width: 40px;
     text-align: end;
-
     margin: auto;
   }

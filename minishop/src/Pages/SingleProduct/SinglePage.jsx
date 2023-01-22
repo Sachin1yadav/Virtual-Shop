@@ -9,27 +9,32 @@ import axios from "axios";
 import { BsStarFill } from "react-icons/bs";
 
 
-import { Heading, useToast } from "@chakra-ui/react";
+import { Button, Heading, useToast } from "@chakra-ui/react";
 
 
 import "./SinglePage.scss";
 import { BsFillHeartFill } from "react-icons/bs";
 import DemoSimiler from "../../DemoPagesBySachin/DemoSimiler";
 import Loading from "../Loading/Loading";
+import { cartActions } from "../../redux/Cart/Cart.actions";
 
  
  
 const SinglePage = () => {
   const { id } = useParams();
   const [img, setImg] = useState(1);
+  const[Alrady,setAlrady]=useState(true)
   let rat = 4.3;
   let des =
     "Self-Timer | Type C and Mini HDMI, |9 Auto Focus Points | 35x Optical Zoom., Effective Pixels: 18 MP APS-C CMOS sensor-which is 25 times larger than a typical Smartphone sensor., WiFi | Full HD | Video Recording at 1080 p on 30fps.";
  
-  const {loading , error, itemDetail} = useSelector((store) => store.singleProduct);
+  const {loading , error, itemDetail } = useSelector((store) => store.singleProduct);
   const dispatch = useDispatch();
+const {cartData}=useSelector((store)=>store.cart)
 
 
+
+console.log("cartdata",cartData)
   const [similarData, setSimilarData] = useState([]);
   const getSimilarData =async () => {
     try {
@@ -44,7 +49,8 @@ const SinglePage = () => {
   useEffect(() => {
       dispatch(getSingleProduct(id))
       getSimilarData();
-  }, [dispatch, id, img]);
+      dispatch(cartActions())
+  }, [dispatch, id, img,Alrady]);
 
  
 
@@ -73,6 +79,7 @@ const SinglePage = () => {
       duration: 3000,
       isClosable: true,
     });
+    setAlrady(!Alrady)
     return axios.post(`https://lackadaisical-volcano-larch.glitch.me/cart`,{...itemDetail,qty:1});
   };
 
@@ -81,33 +88,10 @@ const SinglePage = () => {
     <Loading/>
   };
 
-  // const handleAddCart = (id) => {
-  //   return axios.post(`https://b-tmart-api-5tjm.vercel.app/itemDetail/${id}`);
-  // };
-
-  // const hideDiv = {
-  //   display: "none",
-  //   width: "90%",
-  //   margin: "auto",
-  //   marginTop: "20px",
-  // };
-
-  // const [angle, setAngle] = useState(false);
-
-  // const handleReadMore = () => {
-  //   const targetDiv = document.getElementById("disHideDiv");
-  //   // document.getElementById("hideDiv").style.display = "block"
-  //   if (targetDiv.style.display !== "none") {
-  //     targetDiv.style.display = "none";
-  //     setAngle(false);
-  //   } else {
-  //     targetDiv.style.display = "block";
-  //     setAngle(true);
-  //   }
-  // };
+  
 
   // if(loading) return <h3>Loading...</h3>;
-
+// let cartData=[1,2,3]
   if(error) return <h3>Error...</h3>;
   return (
     <div>
@@ -175,14 +159,29 @@ const SinglePage = () => {
           </p>
           <div className="btnWC">
 
+         
+          
+
+
+         {itemDetail.show?(
+          <div  style={{ width:"100%",display:"flex",justifyContent:"space-between"}}>
           <button className="wish" onClick={()=>likeFuc(itemDetail)}> 
           <div> <p>Wishlist</p>
-            <span><BsHeart/></span></div>
-           
-         </button>
-         {itemDetail.show?(
-            <button className="cart" onClick={()=>addToCart(itemDetail)}>Add To Cart</button>)
-            :( <button className="cart"     >Out Of Stack</button>)}
+          <span><BsHeart/></span></div>
+         
+       </button>
+      
+        {cartData.some((p) => p.id === itemDetail.id) ? (
+             
+                <Button isDisabled colorScheme='red' className="cart">Already In Cart</Button>
+                 
+              
+            ) : (
+              <button className="cart" onClick={()=>addToCart(itemDetail)
+                 }>Add To Cart</button>
+            )}
+            </div>
+           ) :( <Button isDisabled colorScheme='red' className="cart">Out Of stock</Button  >)}
         
           </div>
         </div>

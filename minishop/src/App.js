@@ -1,15 +1,18 @@
 import './App.css';
-import Cart from './Pages/Cart/Cart';
+import Navbar from './components/Navbar/Navbar';
+import Order from './DemoPagesBySachin/Orders';
+import WishList from './DemoPagesBySachin/WishList';
+ 
  
 import Allroute from './Routes/AllRoutes';
 
 function App() {
   return (
     <div className="App">
-       
-      <Allroute/>
-      {/* <Cart/> */}
+        
       
+      <Allroute/>
+       
     </div>
   );
 }

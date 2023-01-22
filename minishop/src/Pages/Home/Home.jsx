@@ -10,6 +10,7 @@ import { Loaderskeleton } from "./Carousel";
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
 import NavScrollExample from "../../components/Navbar/NavbarNew";
+import Loading from "../Loading/Loading";
 
 
 
@@ -34,7 +35,11 @@ function Home() {
   }, []);
 
   //console.log("data", data);
-  
+  if(loading){
+    return <Loading/>
+  }else{
+
+ 
   return (
     <Box>
       
@@ -107,7 +112,7 @@ function Home() {
     </Box>
   );
 }
-
+}
 export default Home;
 
 
