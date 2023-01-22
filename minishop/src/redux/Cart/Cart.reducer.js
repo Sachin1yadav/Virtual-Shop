@@ -3,7 +3,8 @@ import {
     CART_GET_SUCCESS,
     CART_GET_ERROR,
     CART_UPDATE_DATA,
-    CART_REMOVE
+    CART_REMOVE,
+    TOTAL_PRICE
 } from "./Cart.actionTypes"
 
 let initialState = {
@@ -31,7 +32,9 @@ export const cartReducer = (state = initialState ,{type,payload})=>{
 
         case  CART_GET_SUCCESS:{
             let sum = payload.reduce(
-                (acc, el) => acc + (+el.price+152) * el.qty,
+                (acc, el) => {
+                    return acc + (+el.price+152) * el.qty
+                },
                 0
             )
             return {
@@ -61,6 +64,13 @@ export const cartReducer = (state = initialState ,{type,payload})=>{
             return {
                 ...state,
                 cartData:state.cartData.filter((cart)=> cart.id !== payload.id)
+            }
+        }
+
+        case TOTAL_PRICE : {
+            return {
+                ...state,
+                totalPrice:payload
             }
         }
 
