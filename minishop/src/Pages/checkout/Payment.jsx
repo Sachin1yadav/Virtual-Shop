@@ -1,4 +1,4 @@
-import { Box, Heading, Spacer, useToast } from "@chakra-ui/react";
+import { Box, Heading, Spacer, Text, useToast } from "@chakra-ui/react";
 // import Cleave from "cleave.js";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
@@ -41,6 +41,7 @@ const Payment = () => {
   return (
     <div style={{height:"40rem"}}>
       <Heading>Enter you Credit Card details</Heading>
+      <Text fontSize={20}>Total Amount will be deduct ₹ {totalAmount}</Text>
       <Box>
         <Spacer h="100" />
         <div
