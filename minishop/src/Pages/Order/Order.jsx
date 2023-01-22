@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 import { TbTruckDelivery } from 'react-icons/tb';
 
 import "./Order.scss"
+import Navbar from '../../components/Navbar/Navbar';
 
 const Order = () => {
 
@@ -26,7 +27,9 @@ const Order = () => {
     // console.log('date:', date)
 
     return (
-        <div className="CartMainDiv">
+      <>
+       <Navbar />
+        <div className="CartMainDiv" mt='80px'>
         <div className="firstDivOrder">
           <div className="CartDetailsOrder">
             <p>My Orders:[{orderData.length}]</p>
@@ -78,6 +81,7 @@ const Order = () => {
           ))}
         </div>
         </div>
+        </>
       );
 }
 

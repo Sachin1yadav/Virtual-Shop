@@ -2,9 +2,10 @@ import { Button, useToast } from '@chakra-ui/react';
 import axios from 'axios';
 import React, { useEffect } from 'react'
 import { AiFillDelete, AiOutlineHome } from 'react-icons/ai';
-import { BsStarFill } from 'react-icons/bs';
+// import { BsStarFill } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
+import Navbar from '../../components/Navbar/Navbar';
 import { removeWishlistData, wishlistGetData } from '../../redux/Wishlist/Wishlist.actions';
 
 import "./Wishlist.scss"
@@ -40,8 +41,9 @@ const Wishlist = () => {
   }
 
   return (
-
-    <div className="CartMainDiv">
+    <>
+     <Navbar />
+    <div className="CartMainDiv" mt='80px'>
         <div className="firstDivWish">
           <div className="CartDetailsWish">
             <p>My WishList:({wishData.length})</p>
@@ -117,6 +119,7 @@ const Wishlist = () => {
           ))}
         </div>
       </div>
+      </>
   )
 }
 

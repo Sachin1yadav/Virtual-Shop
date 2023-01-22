@@ -38,6 +38,7 @@ import { RiDeleteBinLine } from "react-icons/ri";
 import { TbDiscount2 } from "react-icons/tb";
 import { Link } from "react-router-dom";
 import Payment from "../checkout/Payment";
+import Navbar from "../../components/Navbar/Navbar";
 const Cart = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const handelOnSubtmi=()=>{
@@ -113,7 +114,8 @@ const toast = useToast();
   // if(error) return <h3>Error...</h3>;
   return (
     <>
-      <div className="CartMainDiv">
+     <Navbar />
+      <div className="CartMainDiv" mt='80px'>
         <div className="BothDiv">
           <div className="firstDiv">
             <div className="CartDetails">
