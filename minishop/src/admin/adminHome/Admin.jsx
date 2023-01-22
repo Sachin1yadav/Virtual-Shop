@@ -12,7 +12,7 @@ const AdminHome = () => {
   const {loading, error, products}= useSelector(val=>val.adminAll)
   const [page, setPage] = useState(1);
   const [view, setView ] = useState(true)
-
+  
 
   useEffect(() => {
     dispatch(getProductsAdmin(page));

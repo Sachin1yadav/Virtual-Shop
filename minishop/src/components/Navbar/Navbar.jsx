@@ -60,6 +60,7 @@ export default function Navbar({ display = "flex" }) {
 
   const handleLogout= ()=>{
     dispatch(userLogout())
+    dispatch()
     nav(`/DLogin`)
 
   }

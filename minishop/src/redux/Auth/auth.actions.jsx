@@ -41,7 +41,6 @@ export const  userSignup = async(email,password)=>(dispatch)=>{
   }catch(err){
     dispatch({type:SIGNUP_FAIL})
   }
-
 }
 // user signout 
 
@@ -49,7 +48,6 @@ export const  userSignup = async(email,password)=>(dispatch)=>{
 //   //   console.log(currentUser);
 //     setUser(currentUser);
 //   });
-
 export const userLogout = () => async(dispatch)=> {
   try{
     await signOut(auth);

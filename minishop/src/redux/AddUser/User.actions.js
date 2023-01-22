@@ -1,5 +1,5 @@
 import {USER_ADD_FAIL, USER_ADD_SUCCESS} from './User.actionTypes'
-import { addNewUserApi } from './User.api'
+import { addNewUserApi, logoutUserApi } from './User.api'
 
 export const addNewUser  = (userData)=> async(dispatch)=>{
   let newData = {
@@ -17,4 +17,13 @@ export const addNewUser  = (userData)=> async(dispatch)=>{
     }catch(err){
         dispatch ({type:USER_ADD_FAIL})
     }
+}
+
+export const logoutUser = (userdata)=> async(dispatch)=>{
+  let userStatus = {...userdata,active:false}
+  try{
+    let res = logoutUserApi(userStatus)
+  }catch(err){
+    console.log(err)
+  }
 }
