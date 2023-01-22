@@ -116,21 +116,18 @@ const toast = useToast();
       dispatch(cartValue(totalCartPrice));
   }
   //------Quantity Increase Function-------------------------------------------------------------------- //
-  const quantityIncre = async(el,pls) => {
+  const quantityIncre = async(el) => {
     let currUser = await dispatch(getUser(userData.id))
 
-    let updatedCurrUser = currUser.cart.filter(e=>{ 
+    let updatedCart = currUser.cart.map(e=>{
       if(e.id===el.id){
-        return 'yes I got the id'
+        e.qty=e.qty+1;
+        return e
+      }else{
+        return e
       }
-      else{
-        return null
-      }
-     })
-    console.log("userqnty should increse", updatedCurrUser)
-
-
-    dispatch(updateCarts())
+    })
+     dispatch(updateCarts({...currUser, cart:updatedCart }))
      
       .then(()=> {
         dispatch(cartActions());

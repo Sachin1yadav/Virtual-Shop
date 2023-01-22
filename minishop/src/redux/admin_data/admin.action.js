@@ -70,14 +70,8 @@ export const getAllUsers = ()=>async(dispatch)=>{
     try{
         dispatch({type:GET_USER_LOADING})
         let res = await getAllUsersApi();
-        console.log(res)
         dispatch({type:GET_USER_SUCCESS,payload:res})
     }catch(err){
         dispatch({type:GET_USER_ERROR})
     }
-}
-
-
-export const addProduct = (newUser) => (dispatch)=>{
-    
 }

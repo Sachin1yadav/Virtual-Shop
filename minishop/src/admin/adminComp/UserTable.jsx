@@ -1,4 +1,3 @@
-import { ViewIcon, EditIcon, ViewOffIcon } from "@chakra-ui/icons";
 import {
   Table,
   Thead,
@@ -8,26 +7,12 @@ import {
   Th,
   Td,
   TableContainer,
-  useToast,
-  Spinner,
   Text,
   Image,
 } from "@chakra-ui/react";
-
 const UserTable = ({ data,toggleshow,sloading }) => {
-  const toast = useToast()
-  const showMsg = (msg, status,el)=>{
-    toggleshow(el.id)
-    toast({
-      title: `${el.name + " " + msg }`,
-      status: status,
-      isClosable:true,
-      position:'top-right'
-    })
-  }
-
   return (
-    <TableContainer p='8'>
+    <TableContainer p='8' fontWeight="semibold">
       <Table variant="striped" colorScheme="blue">
         <Thead >
           <Tr border='2px' left='0' right={'0'} >
@@ -40,7 +25,7 @@ const UserTable = ({ data,toggleshow,sloading }) => {
             <Th>Orders</Th>
           </Tr>
         </Thead>
-        <Tbody mt='20'> 
+        <Tbody mt='20'>
           {data.map((el,id) => {
             return (
               <Tr key={id}>
@@ -48,18 +33,16 @@ const UserTable = ({ data,toggleshow,sloading }) => {
                 <Td w='20'  position={'relative'} ><Image border='1px' w='12' h='12' rounded='full' src={el.profile} /><Text h='4' w='4' rounded='full' bottom='3' right='6' bg={el.active?"green.500":"red.500"} position='absolute' ></Text> </Td>
                 <Td>{el.name}</Td>
                 <Td>{el.email}</Td>
-                <Td>{el.cart}</Td>
-                <Td cursor={'pointer'} > <EditIcon/> </Td>
-                { sloading? <Spinner w='6' />:
-                <Td>{el.show === true ?<ViewIcon fontSize={'xl'} cursor='pointer' onClick={()=>showMsg(`is out of Stock now`,'warning',el)} /> : <ViewOffIcon fontSize='xl' cursor='pointer' onClick={()=>showMsg(`is Back in Stock`,'success',el)} />}</Td>}
+                <Td cursor="pointer" >Cart</Td>
+                <Td > Wishlist</Td>
+                <Td > Orders</Td>
               </Tr>
             );
           })}
         </Tbody>
-        <Tfoot><Text>Total Users: {data.length} </Text> </Tfoot>
+        <Tfoot> <Text >Total Users: {data.length} </Text> </Tfoot>
       </Table>
     </TableContainer>
   );
 };
-
 export default UserTable;

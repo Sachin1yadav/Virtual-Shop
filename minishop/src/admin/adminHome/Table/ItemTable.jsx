@@ -37,7 +37,7 @@ const ItemTable = ({ data,total, toggleshow,sloading }) => {
 
   return (
     <>
-    <TableContainer mt='6' p='8'>
+    <TableContainer mt='6' fontWeight='semibold' p='8'>
       <Table variant="striped" colorScheme="blue">
         <Thead >
           <Tr border='2px' left='0' right={'0'} >

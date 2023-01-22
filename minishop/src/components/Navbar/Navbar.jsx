@@ -40,9 +40,6 @@ import {
 } from "react-bootstrap";
 import {
   cartActions,
-  cartValue,
-  deleteCartItem,
-  updateCarts,
 } from "../../redux/Cart/Cart.actions";
 
 export default function Navbar({ display = "flex" }) {
@@ -53,7 +50,7 @@ export default function Navbar({ display = "flex" }) {
   const { isauth, userData } = useSelector((val) => val.authUser);
   const dispatch = useDispatch()
 
-  const {loading , cartData} = useSelector((store) => store.cart);
+  const {cartData} = useSelector((store) => store.cart);
   
 
   useEffect(() => {
@@ -61,6 +58,7 @@ export default function Navbar({ display = "flex" }) {
   if(isauth){
     dispatch(addNewUser(userData))
   }
+// eslint-disable-next-line react-hooks/exhaustive-deps
 }, [cartData.length,isauth])
   const getHomeData = async () => {
     try {
@@ -352,7 +350,7 @@ export default function Navbar({ display = "flex" }) {
             </Dropdown>
           </Nav>  }
           {cartData?.length > 0 ? ( <Badge bg="danger" style={{height:"18px",marginRight:"40px",marginLeft:"-20px"}} >{cartData?.length}</Badge>)
-          :(console.log("badge"))
+          :""
       }
     </ButtonGroup>
     </Box>

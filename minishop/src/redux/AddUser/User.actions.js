@@ -15,6 +15,7 @@ export const getUser = (id) => async(dispatch) =>{
 
 export const addNewUser  = (userData)=> async(dispatch)=>{
   let newData = {
+    profile:userData.profile,
     active:true,
     name:userData.name,
     email:userData.email,
@@ -23,6 +24,7 @@ export const addNewUser  = (userData)=> async(dispatch)=>{
     whishList:[],
     orders:[],
   }
+  console.log(userData)
     try{
       let res = await addNewUserApi(newData)
       dispatch({type:USER_ADD_SUCCESS, payload:res})

@@ -74,7 +74,7 @@ const AdminHome = () => {
     return <Heading>Some Error from Server Occured</Heading>;
   }
   return (
-    <Box bg='black' >
+    <Box>
       <AdminNav handleCategory={handleCategory} catagory={cat} />
 
       {/* ItemTable  */}

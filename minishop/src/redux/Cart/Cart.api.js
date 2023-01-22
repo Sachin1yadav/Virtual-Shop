@@ -6,11 +6,14 @@ export const getCartAPI = async(userName) => {
 }
 
 
-export const updateCartApi =  (user,newData) => {
-    // return axios.patch(`https://lackadaisical-volcano-larch.glitch.me/user?name=${user.name}`,newData);
+export const updateCartApi =  async(newData) => {
+    try{
+        let res = await axios.post(`https://lackadaisical-volcano-larch.glitch.me/user?name=${newData.name}`,newData.cart);
+        console.log(res)
+    }catch(err){
+        console.log("errrroroeroer is",err)
+    }
 }
-
-
 export const deleteCart = async(id) => {
     try{
         let res =  await axios.delete(`https://lackadaisical-volcano-larch.glitch.me/cart/${id}`);

@@ -7,7 +7,7 @@ import UserTable from './UserTable';
 
 const AdmnUsers = () => {
   const dispatch = useDispatch()
-  const allUsers = useSelector(val=>val.adminAll.allUsers)
+  const allUsers = useSelector(val=>val.adminAll?.allUsers)
   const handleCategory = (e)=>{
     if(e.target.value===''){ 
       dispatch(getProductsAdmin(1));

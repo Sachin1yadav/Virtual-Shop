@@ -18,10 +18,10 @@ export const cartActions = (userName) => async(dispatch) => {
         dispatch({type: CART_GET_ERROR})
     }
 }
-export const updateCarts = (user,newData) => async(dispatch) => {  
+export const updateCarts = (newData) => async(dispatch) => {  
     try{
 
-        let data = await updateCartApi(user,newData);
+        let data = await updateCartApi(newData);
         // dispatch({type:CART_UPDATE_DATA,payload:data})
     }catch(e){
         dispatch({type:CART_GET_ERROR})
