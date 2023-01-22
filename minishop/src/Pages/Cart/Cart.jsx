@@ -77,7 +77,16 @@ const toast = useToast();
         (acc, el) => acc + (+el.price+152) * el.qty *50/100,
         0
       ));
-       setApply("")
+       setApply("");
+       toast({
+        title: "Applied Successfully",
+        description: "You have added VS50",
+        variant: "subtle",
+        status:'success',
+        position: 'top-right',
+        duration: 3000,
+        isClosable: true,
+      });
      }else if(apply !== "VS50"){
       toast({
         title: "Not Valid",

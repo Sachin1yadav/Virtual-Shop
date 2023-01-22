@@ -20,14 +20,14 @@ import {
   Image,
   Divider
 } from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { HamburgerIcon } from "@chakra-ui/icons";
 import { HiOutlineShoppingCart } from "react-icons/hi";
 import { ReactSearchAutocomplete } from "react-search-autocomplete";
 import {FaUserCircle} from "react-icons/fa";
 import {BsFillHeartFill,BsFacebook} from  "react-icons/bs";
 import {BiLogIn} from  "react-icons/bi";
-import {FcGoogle} from  "react-icons/fc"; 
+import {FcGoogle} from  "react-icons/fc";
 import "./Navbar.css";
 import { useDispatch, useSelector } from "react-redux";
 import { addNewUser, logoutUser, updateUser } from "../../redux/AddUser/User.actions";
@@ -170,7 +170,7 @@ export default function Navbar({ display = "flex" }) {
           </DrawerBody>
         </DrawerContent>
       </Drawer>
-     <Box w='130px' onClick={()=>nav(`/`)} >
+     <Box w='130px' onClick={()=>nav(`/`)} cursor='pointer'>
     {/* <Heading size='lg'display={{sm:"none",md:"block",lg:"block",base:"none"}} onClick={()=>nav `/`} >i</Heading> */}
     <Image src="https://user-images.githubusercontent.com/80110392/213902764-824a5310-8367-466f-8057-6e53bec9e1ed.png" alt='logo' w='100%'  />
     </Box>
