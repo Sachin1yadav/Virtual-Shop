@@ -1,5 +1,4 @@
 import { Box, Heading, Spacer, useToast } from "@chakra-ui/react";
-// import Cleave from "cleave.js";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -13,19 +12,16 @@ const initDetails = {
 };
 
 const Payment = () => {
-  
-  const totalAmount = useSelector((store)=> store.cart.totalPrice)
-  console.log('totalAmount:', totalAmount)
-
+  const totalAmount = useSelector((store) => store.cart.totalPrice);
   const [details, setDetails] = useState(initDetails);
-
   const toast = useToast();
   const navigate = useNavigate();
 
   const handleChange = (e) => {
     setDetails({ ...details, [e.target.name]: e.target.value });
+    console.log(e.target.value);
   };
-
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     toast({
@@ -39,23 +35,53 @@ const Payment = () => {
   };
 
   return (
-    <div style={{height:"40rem"}}>
+    <div>
       <Heading>Enter you Credit Card details</Heading>
       <Box>
         <Spacer h="100" />
         <div
           style={{
-            boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
             width: "40%",
             margin: "auto",
-            marginBottom:"10rem",
-            height:"20rem",
           }}
         >
           <form id="form" onSubmit={handleSubmit}>
-            
+            <div id="card">
+              <div className="header">
+                <div className="sticker"></div>
+                <div>
+                  <img className="logo" src='https://logos-world.net/wp-content/uploads/2020/04/Visa-Logo.png' alt="Card logo" />
+                </div>
+              </div>
+              <div className="body">
+                <h2 style={{ marginTop: "80px" }} id="creditCardNumber">
+                  {details.creditCardNum}
+                </h2>
+              </div>
+              <div className="footer">
+                <div>
+                  <h5>Card Holder</h5>
+                  <h3>{details.cardHolder}</h3>
+                </div>
+                <div>
+                  <h5>Expires</h5>
+                  <h3>
+                    {details.expireMonth} / {details.expireYear}
+                  </h3>
+                </div>
+              </div>
+            </div>
             <div className="input-container mt">
               <h4>Enter card number</h4>
+              {/* <Cleave
+              delimiter="-"
+              options={{
+                creditCard: true,
+                onCreditCardTypeChanged: handleType,
+              }}
+              onChange={handleChange}
+              placeholder="Please enter your credit card number"
+            /> */}
               <input
                 type="number"
                 name="creditCardNum"
@@ -65,12 +91,13 @@ const Payment = () => {
               />
             </div>
 
-            <div>
+            <div className="input-container">
               <h4>Card Holder Name</h4>
               <input
-                onChange={handleChange}
                 type="text"
-                name="CardHolder"
+                name="cardHolder"
+                value={details.cardHolder}
+                onChange={handleChange}
                 required
               />
             </div>

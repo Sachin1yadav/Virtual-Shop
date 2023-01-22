@@ -34,7 +34,7 @@ function Allroute() {
         <Route path="/admin" element={<AdminContext><Admin/> </AdminContext> }></Route>
         <Route path="/address" element={<PrivateRoute><Address /></PrivateRoute>} />
         <Route path="/admin/login" element={<AdminLogin/>}/>
-        <Route path="/payment" element={<PrivateRoute><Payment /></PrivateRoute>} />
+        <Route path="/payment" element={<Payment />} />
         {/* demoRoutes........................ */}
         <Route path="/DLogin" element={<DLogin/>} />
         <Route path="/sign" element={<DSign/>} />
