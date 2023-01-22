@@ -1,174 +1,148 @@
- 
-
- 
-
- .MainDiv{
-  border: 1px solid rgb(249, 249, 249);
-   
+.MainDivLog{
+  /* border: 1px solid rgb(249, 249, 249); */
 height: 620px;
  padding: 70px 0px 0px 0px;
 margin: 0;
- 
+ display: flex;
+ justify-content: center;
+ align-content: center;
+ text-align: center;
+ align-items: center;
 box-sizing: border-box;
 font-family: "Poppins", sans-serif;
  }
-.box {
-  position: relative;
-  
-  width: 32%;
+.boxLog {
+  /* border: 1px solid red; */
+  width: 35%;
   border-radius: 10px;
-  height: 500px;
+  height: 70vh;
   margin: auto;
-  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px; 
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
    background: linear-gradient(0deg, black, black, rgb(44, 73, 73));
 }
- 
-
-.form {
-  position: absolute;
-   
+.formLog {
+  /* border: 1px solid green; */
   margin: auto;
-  
+  /* width: 100%; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: start;
 }
-.form h2 {
-  color: #45f3ff;
+.LogHomeDiv h2 {
+  color: #45F3FF;
   font-weight: bold;
   text-align: center;
   font-size: 40px;
- 
+  /* border: 1px solid red; */
+  margin-left: 80px;
+  margin-bottom: 30px;
 }
-.inputBox {
-  position: relative;
- 
-  width: 320px;
-  margin: auto;
-  justify-content: center;
+.LogHomeDiv{
+  display: flex;
+  /* border: 1px solid red; */
+  justify-content: space-between;
+}
+.home{
+  color: #CBD0D1;
+  font-weight: bold;
   text-align: center;
-  align-content: center;
+  cursor: pointer;
+  font-size: 28px;
+  margin-right: -90px;
   margin-top: 10px;
 }
-.inputBox input {
-  position: relative;
+.home:hover{
+  color: #45F3FF;
+}
+.inputBoxLog {
+   /* border: 1px solid green; */
+   width: 120%;
+   height: 60px;
+   margin: auto;
+   margin-left: -50px;
+}
+.inputBoxLog input {
+   background-color: transparent;
+   width: 120%;
+ border-radius: 5px;
+ border-bottom: 2px solid rgb(242, 241, 241);
+}
+.inputBoxLog span {
+  /* background-color: red; */
+  color: rgb(242, 240, 240);
   width: 100%;
- 
-  background: transparent;
-  border: none;
-  outline: none;
-  color: #23242a;
-  font-size: 1em;
-  letter-spacing: 0.05em;
- 
 }
-.inputBox span {
-  position: absolute;
-  left: 0;
-  padding: 20px 0px 10px;
-  font-size: 1em;
-  color: #8f8f8f;
-  pointer-events: none;
-  letter-spacing: 0.05em;
-  transition: 0.5s;
-}
-.inputBox input:valid ~ span,
-.inputBox input:focus ~ span {
-  color: #45f3ff;
-  transform: translateX(0px) translateY(-34px);
-  font-size: 0.75em;
-}
-.inputBox i {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 2px;
-  background-color: #00eeff;
-  border-radius: 4px;
-  transition: 0.5s;
-  pointer-events: none;
-  z-index: 9;
-}
-.inputBox input:valid ~ i,
-.inputBox input:focus ~ i {
-  height: 30px;
-}
-.forgetPass{
- 
+.forgetPassLog{
   color: white;
   text-align: start;
   margin-top: 20px;
+  margin-left: -50px;
 }
-.submit {
+.submitLog {
   border: none;
   outline: none;
-  
-    padding: 7px 25px;  
+ /* border: 1px solid red; */
+    padding: 7px 25px;
     background-color: rgb(206, 204, 201);
    margin-top: 20px;
   border-radius: 4px;
   font-weight: bold;
   letter-spacing: 1px;
   cursor: pointer;
-  width: 100%;  
-    margin-left: -250px;
-  margin: auto;
-  align-items: start;
-  align-content: start;
+  width: 100%;
+  align-items: center;
+  align-content: center;
 }
-.submit:hover {
+.submitLog:hover {
   opacity: 0.5;
-  
 }
-.Divsubmit{
- 
+.DivsubmitLog{
+ /* border: 1px solid red; */
   align-items: start;
 text-align: start;
 margin-top: 20px;
+margin-left: -20px;
+width: 120%;
 }
-.signDiv {
+.signDivLog {
   display: flex;
   justify-content: space-between;
-
   margin-top: 25px;
-  width: 100%;
+  width: 120%;
   align-items: center;
- 
+ margin-left: -20px;
   margin-bottom: 20px;
 }
-.signDiv p {
+.signDivLog p {
   font-size: 13px;
   letter-spacing: 0.1em;
   color: white;
 }
-.sign {
-  color: #45f3ff;
+.signLog {
+  color: #45F3FF;
   font-size: 15px;
- 
   font-weight: lighter;
 }
-
-.sign:hover {
+.signLog:hover {
   cursor: pointer;
   color: red;
 }
-
- 
- 
- 
- 
- .orDiv{
- 
+ .orDivLog{
   color:  rgb(153, 151, 151);
   margin-top: 10px;
   margin-bottom: 10px;
- 
   text-align: center;
   font-weight: bold;
  }
-.google{
-  border: 1px solid red;
+.LogGoogle{
+  color:"white";
+  width:"100%";
+  border-radius:"5px";
+  background-color:"black";
+  border:"1px solid gray" ;
 }
+
+
+

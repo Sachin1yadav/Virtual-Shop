@@ -3,29 +3,22 @@ import React, { useEffect } from 'react'
 import { AiFillDelete, AiOutlineHome } from 'react-icons/ai';
 import { useDispatch, useSelector } from 'react-redux';
 import { cancelOrder, orderActions } from '../../redux/Order/Order.actions';
-
 import {FcShipped} from "react-icons/fc"
 import { getOrderAPI } from '../../redux/Order/Order.api';
 import { Link } from 'react-router-dom';
 import { TbTruckDelivery } from 'react-icons/tb';
-
 import "./Order.scss"
 import Navbar from '../../components/Navbar/Navbar';
-
 const Order = () => {
-
     const {loading , error, orderData} = useSelector((store) => store.order);
-    console.log('orderData:', orderData);
+    // console.log('orderData:', orderData);
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(orderActions())
-       
     }, [ orderData.length]);
-
     let today = new Date()
     let date = today.getDate() + '-' + parseInt(today.getMonth() + 1) + '-' + today.getFullYear()
     // console.log('date:', date)
-
     return (
       <>
        <Navbar />
@@ -39,7 +32,13 @@ const Order = () => {
               </p>
             </Link>
           </div>
-          {orderData.map((e, id) => (
+          {orderData.length===0?(
+            <div>
+              <img style={{margin:"auto"}} src="https://www.ewshopping.com/img/EmptyCart.jpg" alt="Your Wish list is Empty!!"/>
+  </div>
+          ):(
+            <div>
+              {orderData.map((e, id) => (
             <div className="cartProDivOrder" key={id}>
               <div className="CartImgDeatilsOrder">
                 <div className="CartImgDivOrder">
@@ -79,10 +78,11 @@ const Order = () => {
               </div>
             </div>
           ))}
+            </div>
+          )}
         </div>
         </div>
         </>
       );
 }
-
 export default Order

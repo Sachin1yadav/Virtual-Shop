@@ -45,10 +45,9 @@ const Cart = () => {
     onClose()
   }
   const {loading , error, cartData,totalPrice} = useSelector((store) => store.cart);
-  console.log('totalPriceSelector:', totalPrice);
+  // console.log('totalPriceSelector:', totalPrice);
 
-
-
+  // console.log('cartData:', cartData)
 
   const dispatch = useDispatch();
 
@@ -67,6 +66,7 @@ const Cart = () => {
       
     );
   }
+  // console.log('totalCartPrice:', totalCartPrice)
   useEffect(() => {
     dispatch(cartActions())
     
@@ -74,12 +74,13 @@ const Cart = () => {
     // }
 }, [ cartData.length,totalPrice]);
 
+// console.log('After UseEffect totalSum:', totalCartPrice)
 const toast = useToast();
    //------Offer Function-------------------------------------------------------------------- //
    const [apply,setApply] = useState("");
    const offerClick = () => {
-     console.log('val:', totalCartPrice)
-     console.log("Apply text",apply);
+    //  console.log('val:', totalCartPrice)
+    //  console.log("Apply text",apply);
      if(apply === "VS50"){
        setTotalCartPrice(cartData.reduce(
         (acc, el) => acc + changePrice(el.price) * el.qty *50/100,
@@ -264,7 +265,7 @@ const toast = useToast();
               </div>
             </div>
             <div className="checkoutDiv">
-            <Link to='/payment'  >
+            <Link to='/address'  >
             <button  className="Checkout" onClick={paymentFun}  >
              Check Out
           </button>
