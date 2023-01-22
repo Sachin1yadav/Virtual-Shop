@@ -35,7 +35,6 @@ export const cartReducer = (state = initialState ,{type,payload})=>{
         case  CART_GET_SUCCESS:{
             const changePrice = (str) => {
                 let res = str.replace(/\D/g, "");
-                console.log('res:', parseInt(res))
                 return parseInt(res);
             };
             let sum = payload.reduce(
