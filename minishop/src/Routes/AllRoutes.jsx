@@ -33,12 +33,11 @@ function Allroute() {
         <Route path="/data/:id" element={<SinglePage/>}></Route>
         <Route path="/admin" element={<AdminContext><Admin/> </AdminContext> }></Route>
         <Route path="/address" element={<PrivateRoute><Address /></PrivateRoute>} />
-        <Route path="/admin/login" element={<AdminLogin/>}></Route>
+        <Route path="/admin/login" element={<AdminLogin/>}/>
         <Route path="/payment" element={<PrivateRoute><Payment /></PrivateRoute>} />
         {/* demoRoutes........................ */}
         <Route path="/DLogin" element={<DLogin/>} />
         <Route path="/sign" element={<DSign/>} />
-        <Route path="/admin" element={<Admin/>}></Route>
       </Routes>
     </>
   );
