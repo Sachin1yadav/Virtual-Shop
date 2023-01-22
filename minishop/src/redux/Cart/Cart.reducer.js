@@ -14,6 +14,8 @@ let initialState = {
     totalPrice:0,
 }
 
+
+
 export const cartReducer = (state = initialState ,{type,payload})=>{
     switch(type){
         case  CART_GET_LOADING:{
@@ -31,9 +33,14 @@ export const cartReducer = (state = initialState ,{type,payload})=>{
         }
 
         case  CART_GET_SUCCESS:{
+            const changePrice = (str) => {
+                let res = str.replace(/\D/g, "");
+                console.log('res:', parseInt(res))
+                return parseInt(res);
+            };
             let sum = payload.reduce(
                 (acc, el) => {
-                    return acc + (+el.price+152) * el.qty
+                    return acc + changePrice(el.price) * el.qty
                 },
                 0
             )

@@ -23,27 +23,46 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import { HamburgerIcon } from "@chakra-ui/icons";
 import { HiOutlineShoppingCart } from "react-icons/hi";
+import {MdRemoveShoppingCart} from "react-icons/md"
 import { ReactSearchAutocomplete } from "react-search-autocomplete";
-import {FaUserCircle} from "react-icons/fa";
+import {FaShoppingCart, FaUserCircle} from "react-icons/fa";
 import {BsFillHeartFill,BsFacebook} from  "react-icons/bs";
 import {BiLogIn} from  "react-icons/bi";
 import {FcGoogle} from  "react-icons/fc";
 import "./Navbar.css";
 import { useDispatch, useSelector } from "react-redux";
-import { addNewUser, logoutUser, updateUser } from "../../redux/AddUser/User.actions";
+import { addNewUser, logoutUser } from "../../redux/AddUser/User.actions";
 import { userLogout } from "../../redux/Auth/auth.actions";
+import {
+  Badge,
+  Dropdown,
+  Nav,
+} from "react-bootstrap";
+import {
+  cartActions,
+  cartValue,
+  deleteCartItem,
+  updateCarts,
+} from "../../redux/Cart/Cart.actions";
+
 export default function Navbar({ display = "flex" }) {
+
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [data, setData] = useState([]);
   const nav = useNavigate();
   const { isauth, userData } = useSelector((val) => val.authUser);
   const dispatch = useDispatch()
+
+  const {loading , cartData} = useSelector((store) => store.cart);
+  console.log('cartData:', cartData)
+  
+
   useEffect(() => {
+    dispatch(cartActions())
   if(isauth){
     dispatch(addNewUser(userData))
-    dispatch(updateUser(userData))
   }
-}, [dispatch, isauth, userData])
+}, [cartData.length,isauth])
   const getHomeData = async () => {
     try {
       const res = await fetch(
@@ -271,11 +290,11 @@ export default function Navbar({ display = "flex" }) {
                 variant={'link'}
                 cursor={'pointer'}
                 minW={0}>
-                {isauth?<Image rounded={'full'} w='16' src={userData.profile} />  :<Button
+                {isauth?<Image rounded={'full'} w='12' src={userData.profile} />  :<Button
         w={'full'}
          maxW={'sm'}
          colorScheme={'white'}
-         leftIcon={<FaUserCircle fontSize={"27"} />}>
+         leftIcon={<FaUserCircle fontSize={"32"} />}>
        </Button>}
               </MenuButton>
              {isauth?<MenuList color='black' >
@@ -291,14 +310,51 @@ export default function Navbar({ display = "flex" }) {
             </Menu>
           </Flex>
      {/*--------------------------------   Cart Button  ----------------------------------------------*/}
-       <Button
-         w={'full'}
-         display={{md:"none",lg:"block",base:"none"}}
-         maxW={'sm'}
-         onClick={()=>nav(`/cart`)}
-         colorScheme={'white'}
-         leftIcon={<HiOutlineShoppingCart fontSize={"27"} />}>
-       </Button>
+     {
+          <Nav >
+            <Dropdown  style={{ height:"50px",padding:"0px"}}  variant="Danger" alignRight>
+              <Dropdown.Toggle variant="#232f3e">
+              <FaShoppingCart style={{ marginTop:"5px"}} color="white" fontSize="28px"    />
+              </Dropdown.Toggle>
+              <Dropdown.Menu style={{ maxHeight:"50vh" , minWidth:"50vw",color:"white",overflowY:"scroll"}}>
+                {cartData.length > 0 ? (
+                  <>
+                    {cartData.map((prod) => (
+                      <span className="cartitem" key={prod.id}>
+                        <img
+                          src={prod?.image[0]}
+                          className="cartItemImg"
+                          alt={prod.name}
+                        />
+                        <div className="cartItemDetail">
+                          <span  class="text" >{prod.name}</span>
+                          <span>{prod.price}</span>
+                        </div>
+                        <MdRemoveShoppingCart
+                        className="del"
+                          fontSize="20px"
+                          style={{cursor:"pointer",color:"black"}}
+                        />
+                      </span>
+                    ))}
+                    <Link to="/cart">
+                      <Button style={{ width: "95%", margin: "0 10px",backgroundColor:"red" ,color:"white"}}>
+                        Go To Cart
+                      </Button>
+                    </Link>
+                  </>
+                ) : (<Link to="/cart">
+                  <Button variant="danger" style={{ width: "95%", margin: "0 10px" }}>
+                        Cart Is Empty
+                      </Button>
+                      </Link>
+                )}
+              </Dropdown.Menu>
+            </Dropdown>
+          </Nav>  }
+          {cartData?.length > 0 ? ( <Badge bg="danger" style={{height:"18px",marginRight:"40px",marginLeft:"-20px"}} >{cartData?.length}</Badge>)
+          :(console.log("badge"))
+      }
     </ButtonGroup>
     </Box>
    </Flex>
