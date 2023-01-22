@@ -12,7 +12,7 @@ import Payment from "../Pages/checkout/Payment";
 import PrivateRoute from "../Pages/login&signup/PrivateRoute";
 import Order from "../Pages/Order/Order";
 import Wishlist from "../Pages/Wishlist/Wishlist";
-
+import Products from "../Pages/Products/Products";
 
 function Allroute() {
   return (
@@ -27,7 +27,7 @@ function Allroute() {
         <Route path="/order" element={<Order/>} />
 
         <Route path="/cart" element={<PrivateRoute> <Cart/> </PrivateRoute> } />
-        {/* <Route path="/products" element={<Products/>}></Route> */}
+         <Route path="/products/:Categories" element={<Products/>}></Route> 
 
 
         <Route path="/data/:id" element={<SinglePage/>}></Route>
