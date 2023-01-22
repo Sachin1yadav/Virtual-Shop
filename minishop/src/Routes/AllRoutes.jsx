@@ -10,8 +10,10 @@ import Cart from "../Pages/Cart/Cart";
 import Address from "../Pages/checkout/Address";
 import Payment from "../Pages/checkout/Payment";
 import PrivateRoute from "../Pages/login&signup/PrivateRoute";
-import WishList from"../DemoPagesBySachin/WishList"
-import Order from"../DemoPagesBySachin/Orders"
+import Order from "../Pages/Order/Order";
+import Wishlist from "../Pages/Wishlist/Wishlist";
+
+
 function Allroute() {
   return (
     <>
@@ -20,21 +22,22 @@ function Allroute() {
 
         {/* <Route path="/login" element={<Login/>} />
         <Route path="/sign" element={<Sign/>} /> */}
-        <Route path="/cart" element={<Cart/>} />
+
+        <Route path="/wishlist" element={<Wishlist/>} />
+        <Route path="/order" element={<Order/>} />
+
+        <Route path="/cart" element={<PrivateRoute> <Cart/> </PrivateRoute> } />
         {/* <Route path="/products" element={<Products/>}></Route> */}
 
 
         <Route path="/data/:id" element={<SinglePage/>}></Route>
         <Route path="/admin" element={<AdminContext><Admin/> </AdminContext> }></Route>
         <Route path="/address" element={<PrivateRoute><Address /></PrivateRoute>} />
-        <Route path="/admin/login" element={<AdminLogin/>}></Route>
+        <Route path="/admin/login" element={<AdminLogin/>}/>
         <Route path="/payment" element={<PrivateRoute><Payment /></PrivateRoute>} />
         {/* demoRoutes........................ */}
         <Route path="/DLogin" element={<DLogin/>} />
-        <Route path="/wishlist" element={<WishList/>} />
-        <Route path="/order" element={<Order/>} />
         <Route path="/sign" element={<DSign/>} />
-        <Route path="/admin" element={<Admin/>}></Route>
       </Routes>
     </>
   );

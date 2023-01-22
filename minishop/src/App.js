@@ -1,18 +1,21 @@
+ 
 import './App.css';
-import Navbar from './components/Navbar/Navbar';
-import Order from './DemoPagesBySachin/Orders';
-import WishList from './DemoPagesBySachin/WishList';
  
  
-import Allroute from './Routes/AllRoutes';
 
+import Allroute from './Routes/AllRoutes';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Box } from '@chakra-ui/react';
+import Footer from './components/Footer/Footer';
 function App() {
+  
+ 
   return (
     <div className="App">
-        
-      
-      <Allroute/>
-       
+       <Box>
+       <Allroute/>
+       </Box>
+       <Footer/>
     </div>
   );
 }

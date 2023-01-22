@@ -10,10 +10,10 @@ import {
   Input,
   Stack,
 } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 import GoogleButton from "react-google-button";
-import { AuthContext } from "../Pages/login&signup/AuthContextProvider";
+// import { AuthContext } from "../Pages/login&signup/AuthContextProvider";
 import {
   Modal,
   ModalBody,
@@ -21,11 +21,22 @@ import {
   ModalContent,
   ModalOverlay,
 } from "@chakra-ui/modal";
+import {useDispatch, useSelector} from 'react-redux'
+import { loginWithGoogle, userLogin } from "../redux/Auth/auth.actions";
+import { useEffect } from "react";
+import { AiFillHome } from "react-icons/ai";
+import { Tooltip } from "react-bootstrap";
 const userInit = {
   email: "",
   password: "",
 };
+
+
+
 const DLogin = () => {
+  const {isauth, userData}=useSelector(val=>val.authUser)
+  const nav = useNavigate()
+  const dispatch  = useDispatch()
   const toast = useToast();
   const [user, setUser] = useState(userInit);
   const [error, setError] = useState("");
@@ -38,27 +49,20 @@ const DLogin = () => {
   //     console.log(error.message);
   //   }
   // };
-  const { loginUser, forgotPassword, continueWithGoogle } =
-    useContext(AuthContext);
+  // const { loginUser, forgotPassword, continueWithGoogle } =useContext(AuthContext);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const handleChange = (e) => {
     setUser({ ...user, [e.target.type]: e.target.value });
   };
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-      await loginUser(user.email, user.password);
-      console.log("Logged In");
-    } catch (e) {
-      setError(e.message);
-      console.log(e.message);
-    }
+    dispatch(userLogin(user))
   };
   const forgotPasswordHandler = async () => {
     const email = emailRef.current.value;
     if (email)
       try {
-        await forgotPassword(email);
+        // await forgotPassword(email);
         console.log("RESET mail sent");
       } catch (e) {
         setError(e.message);
@@ -66,39 +70,59 @@ const DLogin = () => {
       }
   };
   return (
-    <div className="MainDiv">
-        <div className="box">
-          <div className="form">
+   <div className="MainDivLog">
+        <div className="boxLog">
+          <div className="formLog">
             <form onSubmit={handleSubmit} action="">
+              <div className="LogHomeDiv">
               <h2>Login</h2>
-              <div className="inputBox">
+              <div>
+              <Link to="/" >
+              {/* <Tooltip
+                  bg="gray.300"
+                  placement="bottom"
+                  
+                  label="Home Page"
+                > */}
+                 
+                  <h3 className="home"><AiFillHome/></h3>
+                  
+                {/* </Tooltip> */}
+                
+                </Link>
+                </div>
+              
+              </div>
+              <div className="inputBoxLog">
+              <span>Email</span>
                 <input
                   type="email"
                   value={user.email}
                   onChange={handleChange}
                   required="required"
                 />
-                <span>Email</span>
+              
                 <i></i>
               </div>
-              <div className="inputBox">
+              <div className="inputBoxLog">
+              <span>Password</span>
                 <input
                   type="password"
                   value={user.password}
                   onChange={handleChange}
                   required="required"
                 />
-                <span>Password</span>
+                 
                 <i></i>
               </div>
-              <div className="forgetPass">
+              <div className="forgetPassLog">
               <Link onClick={onOpen} color={"blue.500"}>
                 Forgot password?
               </Link>
               </div>
-              <div className="Divsubmit">
+              <div className="DivsubmitLog">
                   <button
-                    className="submit"
+                    className="submitLog"
                     type="submit"
                     onClick={() =>
                       toast({
@@ -114,14 +138,14 @@ const DLogin = () => {
                   </button>
                   {/* <button onClick={logoutUser}>Logout</button> */}
               </div>
-              <div className="orDiv">
+              <div className="orDivLog">
                 <p>Or login with</p>
               </div>
-              <GoogleButton  style={{color:"white",width:"100%",borderRadius:"5px",backgroundColor:"black",border:"1px solid gray" }} onClick={continueWithGoogle} />
-              <div className="signDiv">
+              <GoogleButton className="LogGoogle" style={{marginLeft:"-20px",color:"white",width:"120%",borderRadius:"5px",backgroundColor:"black",border:"1px solid gray" }} onClick={()=>dispatch(loginWithGoogle())} />
+              <div className="signDivLog">
                 <p>Have You Not Register Yet?</p>
                 <Link to="/sign">
-                  <h6 className="sign">Register</h6>
+                  <h6 className="signLog">Register</h6>
                 </Link>
               </div>
                <Modal isOpen={isOpen} onClose={onClose}>

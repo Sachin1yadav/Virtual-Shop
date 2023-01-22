@@ -7,7 +7,7 @@ import { getSingleProduct } from "../../redux/SingleProducts/SingleProduct.actio
 
 import axios from "axios";
 import { BsStarFill } from "react-icons/bs";
-
+import Loading from"../Loading/Loading"
 
 import { Button, Heading, useToast } from "@chakra-ui/react";
 
@@ -15,24 +15,24 @@ import { Button, Heading, useToast } from "@chakra-ui/react";
 import "./SinglePage.scss";
 import { BsFillHeartFill } from "react-icons/bs";
 import DemoSimiler from "../../DemoPagesBySachin/DemoSimiler";
-import Loading from "../Loading/Loading";
 import { cartActions } from "../../redux/Cart/Cart.actions";
+import Navbar from "../../components/Navbar/Navbar";
 
  
  
 const SinglePage = () => {
   const { id } = useParams();
   const [img, setImg] = useState(1);
-  const[Alrady,setAlrady]=useState(true)
+   
   let rat = 4.3;
   let des =
-    "Self-Timer | Type C and Mini HDMI, |9 Auto Focus Points | 35x Optical Zoom., Effective Pixels: 18 MP APS-C CMOS sensor-which is 25 times larger than a typical Smartphone sensor., WiFi | Full HD | Video Recording at 1080 p on 30fps.";
+    "A product description is a form of marketing copy used to describe and explain the benefits of your product. In other words, it provides all the information and details of your product on your ecommerce site. These product details can be one sentence, a short paragraph or bulleted. They can be serious, funny or quirky.";
  
   const {loading , error, itemDetail } = useSelector((store) => store.singleProduct);
   const dispatch = useDispatch();
 const {cartData}=useSelector((store)=>store.cart)
 
-
+//   const {cartData}=useSelector((store)=>store.cart)
 
 console.log("cartdata",cartData)
   const [similarData, setSimilarData] = useState([]);
@@ -50,7 +50,7 @@ console.log("cartdata",cartData)
       dispatch(getSingleProduct(id))
       getSimilarData();
       dispatch(cartActions())
-  }, [dispatch, id, img,Alrady]);
+  }, [dispatch, id, img]);
 
  
 
@@ -79,10 +79,12 @@ console.log("cartdata",cartData)
       duration: 3000,
       isClosable: true,
     });
-    setAlrady(!Alrady)
+    
     return axios.post(`https://lackadaisical-volcano-larch.glitch.me/cart`,{...itemDetail,qty:1});
   };
 
+  
+  // if(loading) return <h3 mt='80px' >Loading...</h3>;
   
   if(loading){
     <Loading/>
@@ -91,11 +93,13 @@ console.log("cartdata",cartData)
   
 
   // if(loading) return <h3>Loading...</h3>;
-// let cartData=[1,2,3]
-  if(error) return <h3>Error...</h3>;
+
+  // if(error) return <h3>Error...</h3>;
   return (
-    <div>
-      <div className="maindiv">
+    <>
+     <Navbar />
+    <div style={{marginTop:"75px"}} >
+        <div className="maindiv">
         <div className="imgDiv">
           <div className="curimg">
             <img src={itemDetail?.image?(itemDetail.image?.[img]):("https://media3.giphy.com/media/3oEjI6SIIHBdRxXI40/200w.gif?cid=6c09b9528g3llcf2o3218mjzzpt270ckvllpe9aew6nax25k&rid=200w.gif&ct=g")} alt={itemDetail.name} />
@@ -155,42 +159,39 @@ console.log("cartdata",cartData)
           </div>
 
           <p className="discription">
-            {itemDetail?.discription ? itemDetail?.discription : des}
+            {itemDetail?.discription ? itemDetail?.discription : 
+            <>
+            <p>
+                {des}
+            </p>
+            </>
+            }
           </p>
           <div className="btnWC">
-
-         
-          
-
-
-         {itemDetail.show?(
-          <div  style={{ width:"100%",display:"flex",justifyContent:"space-between"}}>
-          <button className="wish" onClick={()=>likeFuc(itemDetail)}> 
+          <button className="wish" onClick={()=>likeFuc(itemDetail)}>
           <div> <p>Wishlist</p>
           <span><BsHeart/></span></div>
-         
-       </button>
-      
-        {cartData.some((p) => p.id === itemDetail.id) ? (
-             
+         </button>
+         {itemDetail.show?(
+          <div  >
+          
+        {
+          cartData.some((p) => p.id === itemDetail.id) ? (
                 <Button isDisabled colorScheme='red' className="cart">Already In Cart</Button>
-                 
-              
             ) : (
               <button className="cart" onClick={()=>addToCart(itemDetail)
                  }>Add To Cart</button>
             )}
             </div>
            ) :( <Button isDisabled colorScheme='red' className="cart">Out Of stock</Button  >)}
-        
           </div>
         </div>
-      </div>
+      </div> 
       <div>
-        <div className="banner">
-         <img  src="https://m.media-amazon.com/images/S/al-eu-726f4d26-7fdb/4923d2c3-74ef-4550-99ec-d0b6533b5b22.jpg" alt="banner" />
+        <div className="bannner" >
+         <img  src="https://assets.ajio.com/cms/AJIO/WEB/060123-D-UHP-sponsorbrands-header.jpg" alt="banner" />
       </div>
-        <Heading  className="similar">You might be interested in</Heading>
+        <Heading  className="similar">similar products</Heading>
         <div >
         <DemoSimiler
             data={similarData.filter((item) => item.Categories === itemDetail.Categories)}/>
@@ -198,23 +199,13 @@ console.log("cartdata",cartData)
           </div>
   
       {/* banner */}
-    
-      {/* <div className="banner">
-         <img  src="./shippingBanner.PNG" alt="banner" />
-      </div> */}
-
-      
-
-      {/* banner */}
-
-      
-
-
-      {/* recmended product */}
+     
 
       <div className="recmend"></div>
        
-       
+      <div className="bannner2"  >
+         <img  src="https://assets.ajio.com/cms/AJIO/WEB/UHP-D-Fashionation-Coupon-header.gif" alt="banner" />
+      </div>
 
       {/* recmended product  footer*/}
       <div className="recFooter">
@@ -226,6 +217,8 @@ console.log("cartdata",cartData)
 
       </div>
     </div>
+
+    </>
   );
 };
 

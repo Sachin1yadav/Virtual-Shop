@@ -25,34 +25,37 @@ const DSign = () => {
     }
   };
   return (
-    <div>
+    <div className="MainDiv">
         <div className="box ">
           <div className="form">
             <form onSubmit={handleSubmit} action="">
               <h2>Register</h2>
               <div className="inputBox">
+              <span>Name</span>
                 <input required="required" />
-                <span>Name</span>
+                
                 <i></i>
               </div>
               <div className="inputBox">
+              <span>Email</span>
                 <input
                   type="email"
                   value={user.email}
                   onChange={handleChange}
                   required="required"
                 />
-                <span>Email</span>
+                
                 <i></i>
               </div>
               <div className="inputBox">
+              <span>Password</span>
                 <input
                   type="password"
                   value={user.password}
                   onChange={handleChange}
                   required="required"
                 />
-                <span>Password</span>
+           
                 <i></i>
               </div>
               <div className="signDiv">

@@ -1,5 +1,6 @@
 import {
   Button,
+  Flex,
   Heading,
   Input,
   InputGroup,
@@ -19,22 +20,25 @@ import {
   Thead,
   Tr,
   useDisclosure,
+  useToast,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   cartActions,
+  cartValue,
   deleteCartItem,
   updateCarts,
 } from "../../redux/Cart/Cart.actions";
 import "./Cart.scss";
 import { FaShippingFast } from "react-icons/fa";
-import { AiFillDelete, AiOutlineHome } from "react-icons/ai";
+import { AiFillDelete } from "react-icons/ai";
 import { SlMinus, SlPlus } from "react-icons/sl";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { TbDiscount2 } from "react-icons/tb";
 import { Link } from "react-router-dom";
-import Loading from "../Loading/Loading";
+import Payment from "../checkout/Payment";
+import Navbar from "../../components/Navbar/Navbar";
 const Cart = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const handelOnSubtmi=()=>{
@@ -56,44 +60,42 @@ const Cart = () => {
   console.log('totalCartPrice:', totalCartPrice)
   useEffect(() => {
     dispatch(cartActions())
-    // if(cartData.length !== 0){
-      // let sum = cartData.reduce((acc,el) =>
-      // {
-      //     let prc = (+el.price+152);
-      //     acc += el.qty*prc;
-      //     return acc
-      // },0)
-      // setTotalCartPrice(sum)
+    
       updatePrice()
     // }
 }, [ cartData.length,totalPrice]);
-console.log('loading:', loading)
+
 console.log('After UseEffect totalSum:', totalCartPrice)
-  //------Cart Total Price Function-------------------------------------------------------------------- //
-  const [detailIcon,setDetailIcon] = useState(true);
+const toast = useToast();
    //------Offer Function-------------------------------------------------------------------- //
    const [apply,setApply] = useState("");
    const offerClick = () => {
      console.log('val:', totalCartPrice)
      console.log("Apply text",apply);
      if(apply === "VS50"){
-      //  let dis = (30 / 100);
-      // //  console.log("dis",dis)
-      //  let totalValue = Math.floor(totalCartPrice - (totalCartPrice * dis))
-      //  console.log('VS300:', totalValue);
        setTotalCartPrice(cartData.reduce(
         (acc, el) => acc + (+el.price+152) * el.qty *50/100,
         0
       ));
        setApply("")
      }else if(apply !== "VS50"){
-       alert("sahi se lga")
+      toast({
+        title: "Not Valid",
+        description: "You have to add VS50",
+        variant: "subtle",
+        status:'error',
+        position: 'top-right',
+        duration: 3000,
+        isClosable: true,
+      });
      }
    }
+
    //------Price Details hide Function-------------------------------------------------------------------- //
   const paymentFun = () => {
-      alert(totalCartPrice)
-  } //detail hoide div
+      dispatch(cartValue(totalCartPrice));
+  } 
+
   //------Quantity Increase Function-------------------------------------------------------------------- //
   const quantityIncre = async(id,qty) => {
       dispatch(updateCarts(id,{"qty":qty+1}))
@@ -108,17 +110,17 @@ console.log('After UseEffect totalSum:', totalCartPrice)
     });
   }
   // Loading And Error
-  // if(loading) return <Loading/>;
+  // if(loading) return <h3>Loading...</h3>;
   // if(error) return <h3>Error...</h3>;
   return (
     <>
-      <div className="CartMainDiv">
+     <Navbar />
+      <div className="CartMainDiv" mt='80px'>
         <div className="BothDiv">
           <div className="firstDiv">
             <div className="CartDetails">
               <p>My Cart:[{cartData.length}]</p>
-              <Link to="/" ><p style={{fontSize:"30px"}}><AiOutlineHome/></p></Link>
-              
+              {/* <p>Total Ammount:₹{totalCartPrice}</p> */}
             </div>
             {cartData.map((e, id) => (
               <div className="cartProDiv" key={id}>
@@ -141,7 +143,7 @@ console.log('After UseEffect totalSum:', totalCartPrice)
                 <div className="QRdiv">
                   <div className="Qdiv">
                     <Button  onClick={()=> quantityDecre(e.id,e.qty)}
-                    disabled={e.qty === 1}
+                    isDisabled={e.qty === 1}
                     color="red" variant="light">
                       -
                     </Button>
@@ -206,7 +208,18 @@ console.log('After UseEffect totalSum:', totalCartPrice)
                     value={apply}
                     onChange={(e) => setApply(e.target.value)}
                   />
-                  <InputRightElement width="4.5rem">
+                  <InputRightElement width="8rem" >
+                    <Flex gap={2}>
+                  <Button
+                       className="tap"
+                     colorScheme='teal' variant='outline'
+                     margin="auto"
+                      h="1.75rem"
+                      size="lg"
+                      onClick={onOpen}
+                    >
+                      Tap!
+                    </Button>
                     <Button
                       colorScheme="teal"
                       h="1.75rem"
@@ -215,6 +228,7 @@ console.log('After UseEffect totalSum:', totalCartPrice)
                     >
                       Apply
                     </Button>
+                    </Flex>
                   </InputRightElement>
                 </InputGroup>
               </div>
@@ -227,16 +241,6 @@ console.log('After UseEffect totalSum:', totalCartPrice)
                   textAlign: "left",
                 }}
               >
-                       <Button
-                       className="tap"
-                     colorScheme='teal' variant='outline'
-                     margin="auto"
-                      h="1.75rem"
-                      size="lg"
-                      onClick={onOpen}
-                    >
-                      Tap!
-                    </Button>
                     <h3>You can Apply only one Once </h3>
               </div>
             </div>
@@ -274,4 +278,4 @@ console.log('After UseEffect totalSum:', totalCartPrice)
   );
 };
 
-export default Cart;
+export default Cart
