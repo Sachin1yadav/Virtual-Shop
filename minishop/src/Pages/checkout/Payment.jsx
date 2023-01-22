@@ -1,4 +1,18 @@
-import { Box, Heading, Spacer, useToast } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Heading,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
+  Spacer,
+  useDisclosure,
+  useToast,
+} from "@chakra-ui/react";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -16,22 +30,23 @@ const Payment = () => {
   const [details, setDetails] = useState(initDetails);
   const toast = useToast();
   const navigate = useNavigate();
-
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const handleChange = (e) => {
     setDetails({ ...details, [e.target.name]: e.target.value });
     console.log(e.target.value);
   };
-  
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    toast({
-      title: "Order Placed",
-      description: "Your Order Will Be Delivered in 5-6 Days",
-      status: "success",
-      duration: 6000,
-      isClosable: true,
-    });
-    navigate("/");
+    // toast({
+    //   title: "Order Placed",
+    //   description: "Your Order Will Be Delivered in 5-6 Days",
+    //   status: "success",
+    //   duration: 6000,
+    //   isClosable: true,
+    // });
+    // navigate("/");
+    onOpen();
   };
 
   return (
@@ -50,7 +65,11 @@ const Payment = () => {
               <div className="header">
                 <div className="sticker"></div>
                 <div>
-                  <img className="logo" src='https://logos-world.net/wp-content/uploads/2020/04/Visa-Logo.png' alt="Card logo" />
+                  <img
+                    className="logo"
+                    src="https://logos-world.net/wp-content/uploads/2020/04/Visa-Logo.png"
+                    alt="Card logo"
+                  />
                 </div>
               </div>
               <div className="body">
@@ -202,6 +221,27 @@ const Payment = () => {
             <button>Submit Payment</button>
           </form>
         </div>
+
+        <Modal isOpen={isOpen} onClose={onClose}>
+          <ModalContent style={{background:"#013341"}}>
+            <ModalHeader style={{ textAlign: "center", fontSize: "2rem",color:"white" }}>
+              Payment Successful
+            </ModalHeader>
+            <ModalCloseButton />
+            <ModalBody style={{ width: "80%", margin: "auto", height: "1rem" }}>
+              <img
+                style={{ width: "100%" }}
+                src="https://cdn.dribbble.com/users/4358240/screenshots/14825308/preview.gif"
+                alt="GIF"
+              />
+            </ModalBody>
+
+            <ModalFooter style={{display:"flex",justifyContent:"center"}}>
+              
+              <Button onClick={()=>navigate("/order")} variant="solid">See Orders</Button>
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
       </Box>
     </div>
   );

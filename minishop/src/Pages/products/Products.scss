@@ -1,10 +1,10 @@
  
 .heading{
     margin-top: 90px;
-    font-size: 50px;
+    font-size: 30px;
     text-align: start;
     padding-left: 30px;
-    font-weight: bold;
+    font-weight: bolder;
 }
 .proMainDiv{
     width: 90%;
@@ -15,13 +15,14 @@
 }
 .main_container{
     display: flex;
-    border:1px solid black;
 }
 .main_container>:first-child{
     width:350px;
-    border:1px solid red;
     background-color: white;
     margin-top: 3rem;
+    margin-left: 2rem;
+    height: 400px;
+    position: sticky;
 }
 .prodiv{
     width: 250px;
