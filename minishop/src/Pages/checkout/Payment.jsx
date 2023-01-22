@@ -1,7 +1,8 @@
+
 import {
-  Box,
+ 
   Button,
-  Heading,
+  
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -9,10 +10,12 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-  Spacer,
+  
   useDisclosure,
-  useToast,
+  
 } from "@chakra-ui/react";
+import { Box, Heading, Spacer, Text, useToast } from "@chakra-ui/react";
+// import Cleave from "cleave.js";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -52,6 +55,7 @@ const Payment = () => {
   return (
     <div>
       <Heading>Enter you Credit Card details</Heading>
+      <Text fontSize={20}>Total Amount will be deduct ₹ {totalAmount}</Text>
       <Box>
         <Spacer h="100" />
         <div

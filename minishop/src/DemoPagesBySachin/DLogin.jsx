@@ -56,6 +56,13 @@ const DLogin = () => {
     e.preventDefault();
     dispatch(userLogin(user))
   };
+
+ useEffect(()=>{
+    if(isauth === true){
+      window.location.href='/'
+    } // went to the home page after login
+ },[isauth])
+
   const forgotPasswordHandler = async () => {
     const email = emailRef.current.value;
     if (email)
@@ -107,6 +114,7 @@ const DLogin = () => {
                         title: "Login successfull.",
                         description: "We've Loged in your account.",
                         status: "success",
+                        position:'top-right',
                         duration: 9000,
                         isClosable: true,
                       })

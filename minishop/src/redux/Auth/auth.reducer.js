@@ -30,7 +30,6 @@ let userDetails = JSON.parse(localStorage.getItem("userData"))
             return {}
         }
         case RESET_USER_DATA:{
-          console.log('hogya logout')
             localStorage.removeItem("userData")
             return {...state, isauth:false,stauts:false}
         }
