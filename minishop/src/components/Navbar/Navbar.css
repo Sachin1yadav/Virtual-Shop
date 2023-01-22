@@ -1,16 +1,11 @@
-.searchBox{
-    width: 70vw;
-    
-}
-
 @media screen and (min-width: 430px) {
-   .searchBox {
+    .searchBox {
         width: 80%;
     }
-  }
+}
 
-  @media screen and (min-width: 680px) {
+@media screen and (min-width: 680px) {
     .searchBox {
-         width: 320px;
-     }
-   }
+        width: 320px;
+    }
+}
