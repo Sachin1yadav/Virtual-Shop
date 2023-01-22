@@ -1,4 +1,5 @@
 import { useToast } from "@chakra-ui/react";
+import axios from "axios";
 import { useEffect } from "react";
 import { BsFillHeartFill, BsHeart } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,6 +12,19 @@ import {
 export default function HomeProducts(data) {
   const { wishData } = useSelector((store) => store.wishlist);
   const toast = useToast();
+  const likeFuc = (itemDetail) => {
+    toast({
+      title: "Added to wishlist",
+      description: "We've added this item to wishlist",
+      variant: "subtle",
+      position:'top-right',
+      duration: 3000,
+      isClosable: true,
+    });
+    return axios.post(`https://lackadaisical-volcano-larch.glitch.me/wishlist`, itemDetail);
+  };
+ 
+ 
   const navigate = useNavigate();
   console.log("wishDat:", wishData);
   const dispatch = useDispatch();
@@ -45,11 +59,11 @@ export default function HomeProducts(data) {
 
                 {wishData?.some((p) => p.id === el.id) ? (
                   <p>
-                    <BsFillHeartFill className="heart" />
+                    <BsFillHeartFill  className="heart" />
                   </p>
                 ) : (
                   <p >
-                    <BsHeart className="heart"  />
+                    <BsHeart onClick={()=>likeFuc(el)} className="heart"  />
                   </p>
                 )}
               </div>

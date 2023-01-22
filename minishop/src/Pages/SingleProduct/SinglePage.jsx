@@ -1,25 +1,21 @@
 import { useEffect, useState } from "react";
 import { BsHeart } from "react-icons/bs";
-
 import { Link, useParams } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux";
 import { getSingleProduct } from "../../redux/SingleProducts/SingleProduct.actions";
-
 import axios from "axios";
 import { BsStarFill } from "react-icons/bs";
 import Loading from"../Loading/Loading"
+ 
 
 import { Button, Heading, useToast } from "@chakra-ui/react";
-
-
 import "./SinglePage.scss";
 import { BsFillHeartFill } from "react-icons/bs";
 import DemoSimiler from "../../DemoPagesBySachin/DemoSimiler";
 import { cartActions } from "../../redux/Cart/Cart.actions";
 import Navbar from "../../components/Navbar/Navbar";
+import { getUser, updateUser, userCartUpdate } from "../../redux/AddUser/User.actions";
 
- 
- 
 const SinglePage = () => {
   const { id } = useParams();
   const [img, setImg] = useState(1);
@@ -31,70 +27,69 @@ const SinglePage = () => {
   const {loading , error, itemDetail } = useSelector((store) => store.singleProduct);
   const dispatch = useDispatch();
 const {cartData}=useSelector((store)=>store.cart)
-
 //   const {cartData}=useSelector((store)=>store.cart)
-
-console.log("cartdata",cartData)
   const [similarData, setSimilarData] = useState([]);
+
+    //authentication cart
+    const { isauth, userData } = useSelector((val) => val.authUser);
+
   const getSimilarData =async () => {
     try {
         const res = await fetch("https://lackadaisical-volcano-larch.glitch.me/data");
         const data = await res.json();
-        setSimilarData(data);  
+        setSimilarData(data);
     } catch (error) {
         console.log("e", error);
     }
   }
-
   useEffect(() => {
       dispatch(getSingleProduct(id))
       getSimilarData();
       dispatch(cartActions())
   }, [dispatch, id, img]);
 
- 
-
-  console.log(id);
-  console.log("singleProductitemDetail", itemDetail);
-
   const toast = useToast();
-
   const likeFuc = (itemDetail) => {
     toast({
       title: "Added to wishlist",
       description: "We've added this item to wishlist",
       variant: "subtle",
+      position:'top-right',
       duration: 3000,
       isClosable: true,
     });
     return axios.post(`https://busy-peplum-fawn.cyclic.app/wishList`, itemDetail);
   };
+  
+  const addToCart = async(itemDetail) => {
 
-  const addToCart = (itemDetail) => {
-    toast({
-      // colorScheme:'yellow',
-      title: "Added to Cart",
-      description: "We've added this item to Cart",
-      variant: "subtle",
-      duration: 3000,
-      isClosable: true,
-    });
-    
-    return axios.post(`https://lackadaisical-volcano-larch.glitch.me/cart`,{...itemDetail,qty:1});
+    // userData.cart.push({...itemDetail,qty:1})
+
+    // toast({
+    //   title: "Added to Cart",
+    //   description: "We've added this item to Cart",
+    //   variant: "subtle",
+    //   position:'top-right',
+    //   duration: 3000,
+    //   isClosable: true,
+    // });
+
+   
+
+    let currUser = await dispatch(getUser(userData.id))
+    // console.log('currUser:', currUser.cart)
+    let cartItem = {...itemDetail,qty:1}
+    let newCartData = currUser.cart.push(cartItem)
+    console.log('newCartData:', newCartData)
+    // dispatch(userCartUpdate(newCartData))
+
+    // return axios.post(`https://lackadaisical-volcano-larch.glitch.me/cart`,{...itemDetail,qty:1});
   };
 
-  
-  // if(loading) return <h3 mt='80px' >Loading...</h3>;
-  
   if(loading){
     <Loading/>
   };
 
-  
-
-  // if(loading) return <h3>Loading...</h3>;
-
-  // if(error) return <h3>Error...</h3>;
   return (
     <>
      <Navbar />
@@ -147,7 +142,6 @@ console.log("cartdata",cartData)
             Price: ₹{itemDetail?.price} <span>₹{itemDetail?.og_price}</span>
           </p>
           <p className="offer">Offer: {itemDetail?.saving}</p>
-
           <div className="ratingDiv">
             {" "}
             <p className="rating">
@@ -157,9 +151,8 @@ console.log("cartdata",cartData)
               <BsStarFill />
             </span>
           </div>
-
           <p className="discription">
-            {itemDetail?.discription ? itemDetail?.discription : 
+            {itemDetail?.discription ? itemDetail?.discription :
             <>
             <p>
                 {des}
@@ -174,7 +167,6 @@ console.log("cartdata",cartData)
          </button>
          {itemDetail.show?(
           <div  >
-          
         {
           cartData.some((p) => p.id === itemDetail.id) ? (
                 <Button isDisabled colorScheme='red' className="cart">Already In Cart</Button>
@@ -186,7 +178,7 @@ console.log("cartdata",cartData)
            ) :( <Button isDisabled colorScheme='red' className="cart">Out Of stock</Button  >)}
           </div>
         </div>
-      </div> 
+      </div>
       <div>
         <div className="bannner" >
          <img  src="https://assets.ajio.com/cms/AJIO/WEB/060123-D-UHP-sponsorbrands-header.jpg" alt="banner" />
@@ -198,15 +190,11 @@ console.log("cartdata",cartData)
         </div>
           </div>
   
-      {/* banner */}
-     
-
-      <div className="recmend"></div>
+       
        
       <div className="bannner2"  >
          <img  src="https://assets.ajio.com/cms/AJIO/WEB/UHP-D-Fashionation-Coupon-header.gif" alt="banner" />
-      </div>
-
+       </div>
       {/* recmended product  footer*/}
       <div className="recFooter">
         <p>
@@ -214,46 +202,13 @@ console.log("cartdata",cartData)
           range of wireless earphones, earbuds, headphones, smart watches, and
           home audio. From workouts to adventures, boAt will get you sailing!
         </p>
-
       </div>
     </div>
-
-    </>
-  );
-};
-
-
-// function SimilarData(data) {
-//   return (
-//     <div className="container">
-//         {data.data.map((el, i) => {
-//           return (
-//             <div key={el.id} className="cord">
-//                 <div className="imgBox">
-//                   <img  src={el.image[0]}  alt="" />
-//                 </div>
-//                 <div className="details">
-//                   <div className="nameHeart">
-//                     <h3>
-//                     {el.name.length < 8 ? el.name : `${el.name.slice(0, 8)}`}   
-//                     </h3>
-//                     <p><BsFillHeartFill className="heart" /></p>
-//                   </div>
-//                   <h5>Price:{el.price}</h5>
-//                   <h5>Rating:{el.rating}</h5>
-//                   <div className="btn">
-//                   <Link to={`/data/${el.id}`} >
-//                                 <button className="viweBtn">View</button>
-//                   </Link> 
-//                   </div>
-//                 </div>
-//             </div>
-//           )
-         
-//         })}
-//     </div>
    
-//   );
-// }
+   
+    </>
+   
+    );
+  }
 
 export default SinglePage;

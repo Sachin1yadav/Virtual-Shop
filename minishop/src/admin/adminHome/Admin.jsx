@@ -1,36 +1,46 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import axios from "axios";
 import ItemTable from "./Table/ItemTable";
 import AdminNav from "./AdminNav";
 import { Button, Flex, Heading, Text } from "@chakra-ui/react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
+import { getAllProducts, getProdCatagoty, getProductsAdmin } from "../../redux/admin_data/admin.action";
+import { useDispatch, useSelector } from "react-redux";
 const AdminHome = () => {
-  const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch()
   const [sloading, setsLoading] = useState(false);
-  const [error, setError] = useState(false);
-  const [allprod, setAllProd] = useState([]);
+  const {loading, error, products,allProd}= useSelector(val=>val.adminAll)
   const [page, setPage] = useState(1);
   const [view, setView ] = useState(true)
-
+  const [total, setTotal ] = useState(0)
+  const [cat, setCat] = useState([])
   useEffect(() => {
-    getProducts();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page]);
+    dispatch(getProductsAdmin(page));
+  }, [dispatch, page]);
 
-  const getProducts = async () => {
-    try {
-      setLoading(true);
-      let res = await axios.get(
-        `https://lackadaisical-volcano-larch.glitch.me/data?_page=${page}&_limit=10`
-      );
-      setAllProd(res.data);
-      setLoading(false);
-    } catch (err) {
-      setError(true);
+  let obj = {}
+  const catagory = []
+  useEffect(()=>{
+    dispatch(getAllProducts())
+    if(allProd.length>0){
+      setTotal(allProd.length)
+      allProd.forEach((el)=>{
+        if(obj[el.Categories]===undefined){
+          obj[el.Categories]=1
+        }else{
+          obj[el.Categories]++
+        }
+      })
     }
-  };
+    for(let key in obj){
+      catagory.push(key)
+    }
+    setCat(catagory)
+  },[allProd.length, dispatch])
+
   const toggleshow = (id) => {
-    let dta = allprod.filter((el) => {
+    let dta = products.filter((el) => {
       if (el.id === id) {
         el.show = !el.show;
         return el;
@@ -38,7 +48,6 @@ const AdminHome = () => {
       return null;
     });
     editData(id, dta[0]);
-    console.log(dta)
   };
   const editData = async (id, data) => {
     try {
@@ -49,38 +58,32 @@ const AdminHome = () => {
       );
       setsLoading(false);
     } catch (err) {
-      setError(true);
     }
   };
   // Catgory request on Changing category 
-
   const handleCategory = (e)=>{
     if(e.target.value===''){ 
-      getProducts();
+      dispatch(getProductsAdmin(page));
       setView(true)
     }else{
-      getCategory(e.target.value)
+      dispatch(getProdCatagoty(e.target.value))
       setView(false)
     }
-  }
-  const getCategory = async(val)=>{
-    let res = await axios.get(`https://lackadaisical-volcano-larch.glitch.me/data?Categories=${val}`)
-    setAllProd(res.data)
   }
   if (error) {
     return <Heading>Some Error from Server Occured</Heading>;
   }
   return (
     <>
-      <AdminNav handleCategory={handleCategory} />
+      <AdminNav handleCategory={handleCategory} catagory={cat} />
 
       {/* ItemTable  */}
       
-      <ItemTable data={allprod} toggleshow={toggleshow} sloading={sloading} />
+      <ItemTable data={products} total={total} toggleshow={toggleshow} sloading={sloading} />
       {/* Pagination  */}
     {view &&  <Flex
         position="fixed"
-        px="5"
+        px="5" 
         py="1"
         rounded={"xl"}
         bottom="2"
@@ -100,6 +103,7 @@ const AdminHome = () => {
         </Button>
         <Text mx="5"> {page} </Text>
         <Button
+          isDisabled={page===Math.floor(total/10)}
           isLoading={loading}
           variant={"outline"}
           size="sm"

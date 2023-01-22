@@ -11,9 +11,10 @@ import {
   useToast,
   Spinner,
   Text,
+  Image,
 } from "@chakra-ui/react";
 
-const ItemTable = ({ data,total, toggleshow,sloading }) => {
+const UserTable = ({ data,toggleshow,sloading }) => {
   const toast = useToast()
   const showMsg = (msg, status,el)=>{
     toggleshow(el.id)
@@ -26,27 +27,27 @@ const ItemTable = ({ data,total, toggleshow,sloading }) => {
   }
 
   return (
-    <TableContainer mt='6' p='8'>
+    <TableContainer p='8'>
       <Table variant="striped" colorScheme="blue">
         <Thead >
           <Tr border='2px' left='0' right={'0'} >
             <Th>id</Th>
-            <Th>Catagory</Th>
+            <Th>Status</Th>
             <Th>Name</Th>
-            <Th>Brand</Th>
-            <Th>Image</Th>
-            <Th>Edit</Th>
-            <Th>Disable</Th>
+            <Th>Email</Th>
+            <Th>Cart</Th>
+            <Th>wishlist</Th>
+            <Th>Orders</Th>
           </Tr>
         </Thead>
         <Tbody mt='20'> 
           {data.map((el,id) => {
             return (
               <Tr key={id}>
-                <Td>{el.id}</Td>
-                <Td>{el.Categories}</Td>
-                <Td>{el.name.split(' ').slice(0,4).join(' ')}</Td>
-                <Td>{el.brand}</Td>
+                <Td>{el.id.split('').slice(0,6).join('')}...</Td>
+                <Td w='20'  position={'relative'} ><Image border='1px' w='12' h='12' rounded='full' src={el.profile} /><Text h='4' w='4' rounded='full' bottom='3' right='6' bg={el.active?"green.500":"red.500"} position='absolute' ></Text> </Td>
+                <Td>{el.name}</Td>
+                <Td>{el.email}</Td>
                 <Td>Image</Td>
                 <Td cursor={'pointer'} > <EditIcon/> </Td>
                 { sloading? <Spinner w='6' />:
@@ -55,10 +56,10 @@ const ItemTable = ({ data,total, toggleshow,sloading }) => {
             );
           })}
         </Tbody>
-        <Tfoot><Text>Total Items in Inventory: {total} </Text> </Tfoot>
+        <Tfoot><Text>Total Users: {data.length} </Text> </Tfoot>
       </Table>
     </TableContainer>
   );
 };
 
-export default ItemTable;
+export default UserTable;
