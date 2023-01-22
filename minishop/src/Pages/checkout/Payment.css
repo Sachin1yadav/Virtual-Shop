@@ -147,7 +147,7 @@
 #card .header {
 	display: flex;
 	justify-content: space-between;
-	height: 70px;
+	height: 0px;
 }
 
 #card .sticker {
@@ -161,6 +161,8 @@
 }
 
 #card .logo {
+	margin-top: 8rem;
+	margin-left: 18rem;
 	max-width: 60px;
 }
 
