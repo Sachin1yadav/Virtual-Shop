@@ -45,19 +45,28 @@ const Cart = () => {
     onClose()
   }
   const {loading , error, cartData,totalPrice} = useSelector((store) => store.cart);
-  console.log('totalPriceSelector:', totalPrice)
-  console.log('cartData:', cartData)
+  // console.log('totalPriceSelector:', totalPrice);
+
+  // console.log('cartData:', cartData)
+
   const dispatch = useDispatch();
+
+  const changePrice = (str) => {
+    let res = str.replace(/\D/g, "");
+    return parseInt(res);
+  };
+
   const [totalCartPrice,setTotalCartPrice] = useState(totalPrice);
   const updatePrice = () => {
     setTotalCartPrice(
       cartData.reduce(
-        (acc, el) => acc + (+el.price+152) * el.qty,
+        (acc, el) => acc + changePrice(el.price) * el.qty,
         0
       )
+      
     );
   }
-  console.log('totalCartPrice:', totalCartPrice)
+  // console.log('totalCartPrice:', totalCartPrice)
   useEffect(() => {
     dispatch(cartActions())
     
@@ -65,19 +74,28 @@ const Cart = () => {
     // }
 }, [ cartData.length,totalPrice]);
 
-console.log('After UseEffect totalSum:', totalCartPrice)
+// console.log('After UseEffect totalSum:', totalCartPrice)
 const toast = useToast();
    //------Offer Function-------------------------------------------------------------------- //
    const [apply,setApply] = useState("");
    const offerClick = () => {
-     console.log('val:', totalCartPrice)
-     console.log("Apply text",apply);
+    //  console.log('val:', totalCartPrice)
+    //  console.log("Apply text",apply);
      if(apply === "VS50"){
        setTotalCartPrice(cartData.reduce(
-        (acc, el) => acc + (+el.price+152) * el.qty *50/100,
+        (acc, el) => acc + changePrice(el.price) * el.qty *50/100,
         0
       ));
-       setApply("")
+       setApply("");
+       toast({
+        title: "Applied Successfully",
+        description: "You have added VS50",
+        variant: "subtle",
+        status:'success',
+        position: 'top-right',
+        duration: 3000,
+        isClosable: true,
+      });
      }else if(apply !== "VS50"){
       toast({
         title: "Not Valid",
@@ -90,6 +108,8 @@ const toast = useToast();
       });
      }
    }
+
+   
 
    //------Price Details hide Function-------------------------------------------------------------------- //
   const paymentFun = () => {
@@ -245,7 +265,7 @@ const toast = useToast();
               </div>
             </div>
             <div className="checkoutDiv">
-            <Link to='/payment'  >
+            <Link to='/address'  >
             <button  className="Checkout" onClick={paymentFun}  >
              Check Out
           </button>

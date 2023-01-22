@@ -4,109 +4,89 @@
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
-.box {
-  position: relative;
-  margin: 10% auto 0;
-  width: 50%;
-  height: 450px;
-
-  background: linear-gradient(0deg, black, black, rgb(44, 73, 73));
+.MainDiv{
+  height: 580px;
+ padding: 70px 0px 0px 0px;
+margin: 0;
+ display: flex;
+ justify-content: center;
+ align-content: center;
+ text-align: center;
+ align-items: center;
+box-sizing: border-box;
+font-family: "Poppins", sans-serif;
 }
-
-.form {
-  position: absolute;
-  z-index: 10;
+.box {
+  width: 35%;
+  border-radius: 10px;
+  height: 65vh;
   margin: auto;
- 
-  border-radius: 8px;
-  inset: 2px;
-  padding: 50px 40px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+   background: linear-gradient(0deg, black, black, rgb(44, 73, 73));
+}
+.form {
+    /* border: 1px solid green; */
+    margin: auto;
+    /* width: 100%; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: start;
 }
 .form h2 {
-  color: #45f3ff;
-  font-weight: 500;
-  font-size: 25px;
+  color: #45F3FF;
+  font-weight: bold;
   text-align: center;
-  letter-spacing: 0.1em;
+  font-size: 40px;
+  /* border: 1px solid red; */
+  margin-left: 40px;
+  margin-bottom: 30px;
 }
 .inputBox {
-  position: relative;
-  width: 60%;
-  margin-top: 35px;
+   /* border: 1px solid green; */
+   width: 120%;
+   height: 60px;
+   margin: auto;
+   margin-left: -50px;
 }
 .inputBox input {
-  position: relative;
-  width: 100%;
-  padding: 20px 10px 10px;
-  background: transparent;
-  border: none;
-  outline: none;
-  color: #23242a;
-  font-size: 1em;
-  letter-spacing: 0.05em;
-  z-index: 10;
+  background-color: transparent;
+   width: 120%;
+ border-radius: 5px;
+ border-bottom: 2px solid rgb(242, 241, 241);
 }
 .inputBox span {
-  position: absolute;
-  left: 0;
-  padding: 20px 0px 10px;
-  font-size: 1em;
-  color: #8f8f8f;
-  pointer-events: none;
-  letter-spacing: 0.05em;
-  transition: 0.5s;
+ /* background-color: red; */
+ color: rgb(242, 240, 240);
+ width: 100%;
 }
-.inputBox input:valid ~ span,
-.inputBox input:focus ~ span {
-  color: #45f3ff;
-  transform: translateX(0px) translateY(-34px);
-  font-size: 0.75em;
-}
-.inputBox i {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 2px;
-  background-color: #00eeff;
-  border-radius: 4px;
-  transition: 0.5s;
-  pointer-events: none;
-  z-index: 9;
-}
-.inputBox input:valid ~ i,
-.inputBox input:focus ~ i {
-  height: 30px;
-}
-
 .submit {
   border: none;
   outline: none;
-  background-color: #45f3ff;
-  padding: 11px 25px;
-  margin-top: 20px;
+ /* border: 1px solid red; */
+    padding: 7px 25px;
+    background-color: rgb(206, 204, 201);
+   margin-top: 20px;
   border-radius: 4px;
-  font-weight: 700;
+  font-weight: bold;
+  letter-spacing: 1px;
   cursor: pointer;
-  width: 100px;
-  margin-left: -250px;
+  width: 100%;
+  align-items: center;
+  align-content: center;
 }
 .submit:active {
   opacity: 0.5;
 }
-
 .signDiv {
   display: flex;
   justify-content: space-between;
-  width: 100%;
   margin-top: 25px;
-  width: 60%;
+  width: 120%;
   align-items: center;
- 
+ margin-left: -20px;
+  margin-bottom: 20px;
 }
 .signDiv p {
   font-size: 13px;
@@ -114,22 +94,18 @@
   color: white;
 }
 .sign {
-  color: #45f3ff;
-  font-size: 15px;
-  
+  color: #45F3FF;
+  font-size: 20px;
   font-weight: lighter;
 }
-
 .sign:hover {
   cursor: pointer;
   color: red;
 }
-
 .signDiv1 {
   display: flex;
   justify-content: space-between;
   width: 100%;
-
   margin-top: 10px;
 }
 .signDiv1 p {
@@ -138,63 +114,24 @@
   color: white;
 }
 .sign1 {
-  color: #45f3ff;
+  color: #45F3FF;
   font-size: 15px;
- 
   font-weight: lighter;
 }
-
 .sign1:hover {
   cursor: pointer;
   color: red;
 }
-
 .inputBox1 {
-  position: relative;
   width: 300px;
   margin-top: 20px;
 }
-.inputBox1 input {
-  position: relative;
-  width: 100%;
-  padding: 5px 20px 10px;
-  background: transparent;
-  border: none;
-  outline: none;
-  color: #23242a;
-  font-size: 1em;
-  letter-spacing: 0.05em;
-  z-index: 10;
-}
-.inputBox1 span {
-  position: absolute;
-  left: 0;
-  padding: 5px 0px 10px;
-  font-size: 1em;
-  color: #8f8f8f;
-  pointer-events: none;
-  letter-spacing: 0.05em;
-  transition: 0.5s;
-}
-.inputBox1 input:valid ~ span,
-.inputBox1 input:focus ~ span {
-  color: #45f3ff;
-  transform: translateX(0px) translateY(-20px);
-  font-size: 0.75em;
-}
-.inputBox1 i {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 2px;
-  background-color: #00eeff;
-  border-radius: 4px;
-  transition: 0.5s;
-  pointer-events: none;
-  z-index: 9;
-}
-.inputBox1 input:valid ~ i,
-.inputBox1 input:focus ~ i {
-  height: 30px;
-}
+
+
+
+
+
+
+
+
+

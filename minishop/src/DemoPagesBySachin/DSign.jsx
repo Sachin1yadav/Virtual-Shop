@@ -21,38 +21,38 @@ const DSign = () => {
       await createUser(user.email, user.password);
     } catch (e) {
       setError(e.message);
-      console.log(e.message);
+      // console.log(e.message);
     }
   };
   return (
-    <div>
+    <div className="MainDiv">
         <div className="box ">
           <div className="form">
             <form onSubmit={handleSubmit} action="">
               <h2>Register</h2>
               <div className="inputBox">
+              <span>Name</span>
                 <input required="required" />
-                <span>Name</span>
                 <i></i>
               </div>
               <div className="inputBox">
+              <span>Email</span>
                 <input
                   type="email"
                   value={user.email}
                   onChange={handleChange}
                   required="required"
                 />
-                <span>Email</span>
                 <i></i>
               </div>
               <div className="inputBox">
+              <span>Password</span>
                 <input
                   type="password"
                   value={user.password}
                   onChange={handleChange}
                   required="required"
                 />
-                <span>Password</span>
                 <i></i>
               </div>
               <div className="signDiv">
@@ -70,6 +70,7 @@ const DSign = () => {
                         title: "Register successfull.",
                         description: "Your Account have created.",
                         status: "success",
+                        position:'top-right',
                         duration: 9000,
                         isClosable: true,
                       })
