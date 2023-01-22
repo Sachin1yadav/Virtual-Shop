@@ -18,7 +18,7 @@ import {
     // Image
   } from '@chakra-ui/react'
   import { useDispatch } from 'react-redux'
-  import { addProduct, uploadImg1 } from '../../redux/addProd/prod.action'
+  import { addProduct, uploadImg1 } from '../../redux/admin_data/admin.action'
 import { useState } from 'react'
 
 const AdModal = ({showModal}) => {
