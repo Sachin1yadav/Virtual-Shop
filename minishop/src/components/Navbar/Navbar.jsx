@@ -31,6 +31,7 @@ import {FcGoogle} from  "react-icons/fc";
 import "./Navbar.css";
 import { useDispatch, useSelector } from "react-redux";
 import { addNewUser } from "../../redux/AddUser/User.actions";
+import { userLogout } from "../../redux/Auth/auth.actions";
 export default function Navbar({ display = "flex" }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [data, setData] = useState([]);
@@ -41,7 +42,7 @@ export default function Navbar({ display = "flex" }) {
   if(isauth){
     dispatch(addNewUser(userData))
   }
-}, [])
+}, [dispatch, isauth, userData])
   const getHomeData = async () => {
     try {
       const res = await fetch(
@@ -56,6 +57,15 @@ export default function Navbar({ display = "flex" }) {
   useEffect(() => {
     getHomeData();
   }, []);
+
+  const handleLogout= ()=>{
+    dispatch(userLogout())
+    nav(`/DLogin`)
+
+  }
+
+
+
   const handleOnSearch = (string, results) => {
     // onSearch will have as the first callback parameter
     // the string searched and for the second the results.
@@ -259,18 +269,23 @@ export default function Navbar({ display = "flex" }) {
                 variant={'link'}
                 cursor={'pointer'}
                 minW={0}>
-                <Button
+                {isauth?<Image rounded={'full'} w='16' src={userData.profile} />  :<Button
         w={'full'}
          maxW={'sm'}
          colorScheme={'white'}
          leftIcon={<FaUserCircle fontSize={"27"} />}>
-       </Button>
+       </Button>}
               </MenuButton>
-              <MenuList color='black' >
-                <MenuItem onClick={()=>nav(`/DLogin`)} >Login</MenuItem>
-                <MenuItem onClick={()=>nav(`/sign`)} >SignIn</MenuItem>
+             {isauth?<MenuList color='black' >
+                <MenuItem onClick={()=>nav(`/orders`)} >orders</MenuItem>
+                <MenuItem onClick={()=>nav(`/whishlist`)} >whishlist</MenuItem>
+                <MenuItem onClick={()=>nav(`/`)} >Profile</MenuItem>
+                <MenuItem onClick={handleLogout} >Logout</MenuItem>
                 <MenuItem>Your Orders</MenuItem>
-              </MenuList>
+              </MenuList> :<MenuList color='black' >
+                <MenuItem onClick={()=>nav(`/DLogin`)} >Log in</MenuItem>
+                <MenuItem onClick={()=>nav(`/sign`)} >Register</MenuItem>
+              </MenuList>}
             </Menu>
           </Flex>
      {/*--------------------------------   Cart Button  ----------------------------------------------*/}

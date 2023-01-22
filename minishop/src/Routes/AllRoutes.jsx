@@ -12,7 +12,8 @@ import Payment from "../Pages/checkout/Payment";
 import PrivateRoute from "../Pages/login&signup/PrivateRoute";
 import Order from "../Pages/Order/Order";
 import Wishlist from "../Pages/Wishlist/Wishlist";
-
+import AllUsers from '../admin/adminComp/AllUsers'
+import AllSellers from '../admin/adminComp/AllSellers'
 
 function Allroute() {
   return (
@@ -32,6 +33,8 @@ function Allroute() {
 
         <Route path="/data/:id" element={<SinglePage/>}></Route>
         <Route path="/admin" element={<AdminContext><Admin/> </AdminContext> }></Route>
+        <Route path="/admin/users" element={<AdminContext><AllUsers/> </AdminContext> }></Route>
+        <Route path="/admin/sellers" element={<AdminContext><AllSellers/> </AdminContext> }></Route>
         <Route path="/address" element={<PrivateRoute><Address /></PrivateRoute>} />
         <Route path="/admin/login" element={<AdminLogin/>}/>
         <Route path="/payment" element={<PrivateRoute><Payment /></PrivateRoute>} />

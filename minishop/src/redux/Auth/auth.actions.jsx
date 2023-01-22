@@ -83,7 +83,6 @@ export const loginWithGoogle = () => async(dispatch)=>{
 export const forgotPassword = (email) =>async(dispatch)=> {
   try{
     sendPasswordResetEmail(auth, email);
-
   }
   catch(er){
     console.log(er)

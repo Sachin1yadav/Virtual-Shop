@@ -14,7 +14,7 @@ import { orderReducer } from './Order/Order.reducer'
 import { singleReducer } from './SingleProducts/SingleProduct.reducer'
 
 import {authReducerfunc} from './Auth/auth.reducer';
-
+ import {adminAllData} from './admin_data/admin.reducer'
 import { adminAuthReducer } from './admin_auth/admin.reducer'
 import { wishReducer } from './Wishlist/Wishlist.reducer'
 
@@ -24,7 +24,8 @@ const rootReducer = combineReducers({
     wishlist:wishReducer,
     singleProduct: singleReducer,
     adminAuth:adminAuthReducer,
-    authUser:authReducerfunc
+    authUser:authReducerfunc,
+    adminAll:adminAllData
 })
 
 const composeEnhancer = window._REDUX_DEVTOOLS_EXTENSION_COMPOSE_ || compose;
