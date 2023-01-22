@@ -14,6 +14,7 @@ const PrivateRoute = ({ children }) => {
     toast({
       title: "Login required",
       status: "error",
+      position:'top-right',
       description: "Please login first.",
       isClosable: true,
     });

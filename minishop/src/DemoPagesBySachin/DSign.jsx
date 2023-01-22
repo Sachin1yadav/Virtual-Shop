@@ -70,6 +70,7 @@ const DSign = () => {
                         title: "Register successfull.",
                         description: "Your Account have created.",
                         status: "success",
+                        position:'top-right',
                         duration: 9000,
                         isClosable: true,
                       })
