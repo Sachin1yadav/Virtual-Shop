@@ -9,12 +9,13 @@ import axios from "axios";
 import { BsStarFill } from "react-icons/bs";
 
 
-import { Heading, useToast } from "@chakra-ui/react";
+import { Button, Heading, useToast } from "@chakra-ui/react";
 
 
 import "./SinglePage.scss";
 import { BsFillHeartFill } from "react-icons/bs";
 import DemoSimiler from "../../DemoPagesBySachin/DemoSimiler";
+import { cartActions } from "../../redux/Cart/Cart.actions";
 
  
  
@@ -23,11 +24,11 @@ const SinglePage = () => {
   const [img, setImg] = useState(1);
   let rat = 4.3;
   let des =
-    "Self-Timer | Type C and Mini HDMI, |9 Auto Focus Points | 35x Optical Zoom., Effective Pixels: 18 MP APS-C CMOS sensor-which is 25 times larger than a typical Smartphone sensor., WiFi | Full HD | Video Recording at 1080 p on 30fps.";
+    "Based on purchases by customers who wear your size, L will fit you best";
  
   const {loading , error, itemDetail} = useSelector((store) => store.singleProduct);
   const dispatch = useDispatch();
-
+  const {cartData}=useSelector((store)=>store.cart)
 
   const [similarData, setSimilarData] = useState([]);
   const getSimilarData =async () => {
@@ -43,6 +44,7 @@ const SinglePage = () => {
   useEffect(() => {
       dispatch(getSingleProduct(id))
       getSimilarData();
+      dispatch(cartActions())
   }, [dispatch, id, img]);
 
  
@@ -77,31 +79,7 @@ const SinglePage = () => {
 
   
   if(loading) return <h3>Loading...</h3>;
-
-  // const handleAddCart = (id) => {
-  //   return axios.post(`https://b-tmart-api-5tjm.vercel.app/itemDetail/${id}`);
-  // };
-
-  // const hideDiv = {
-  //   display: "none",
-  //   width: "90%",
-  //   margin: "auto",
-  //   marginTop: "20px",
-  // };
-
-  // const [angle, setAngle] = useState(false);
-
-  // const handleReadMore = () => {
-  //   const targetDiv = document.getElementById("disHideDiv");
-  //   // document.getElementById("hideDiv").style.display = "block"
-  //   if (targetDiv.style.display !== "none") {
-  //     targetDiv.style.display = "none";
-  //     setAngle(false);
-  //   } else {
-  //     targetDiv.style.display = "block";
-  //     setAngle(true);
-  //   }
-  // };
+  
 
   // if(loading) return <h3>Loading...</h3>;
 
@@ -168,22 +146,44 @@ const SinglePage = () => {
           </div>
 
           <p className="discription">
-            {itemDetail?.discription ? itemDetail?.discription : des}
+            {itemDetail?.discription ? itemDetail?.discription : 
+            <>
+            <p>Based on purchases by customers who wear your size, L will fit you best.
+                Size Chart 
+                Care Instructions: Machine Wash
+                Fit Type: Regular Fit
+                Occasion : Leisure Sport
+                Pattern : Solid
+                Fit :Regular Fit
+                Material: 60%Cotton40%Polyester
+                Sleeves : Half Sleeves
+            </p>
+            </>
+            }
           </p>
           <div className="btnWC">
-
-          <button className="wish" onClick={()=>likeFuc(itemDetail)}> 
+          <button className="wish" onClick={()=>likeFuc(itemDetail)}>
           <div> <p>Wishlist</p>
-            <span><BsHeart/></span></div>
-           
+          <span><BsHeart/></span></div>
          </button>
-          <button className="cart" onClick={()=>addToCart(itemDetail)}>Add To Cart</button>
+         {itemDetail.show?(
+          <div  >
+          
+        {
+          cartData.some((p) => p.id === itemDetail.id) ? (
+                <Button isDisabled colorScheme='red' className="cart">Already In Cart</Button>
+            ) : (
+              <button className="cart" onClick={()=>addToCart(itemDetail)
+                 }>Add To Cart</button>
+            )}
+            </div>
+           ) :( <Button isDisabled colorScheme='red' className="cart">Out Of stock</Button  >)}
           </div>
         </div>
       </div>
       <div>
         <div className="banner">
-         <img  src="https://assets.ajio.com/cms/AJIO/WEB/Earlybird-Strip-D-1440x128%20(1).gif" alt="banner" />
+         <img  src="https://assets.ajio.com/cms/AJIO/WEB/UHP-D-Fashionation-Coupon-header.gif" alt="banner" />
       </div>
         <Heading  className="similar">You might be interested in</Heading>
         <div >
@@ -209,7 +209,9 @@ const SinglePage = () => {
 
       <div className="recmend"></div>
        
-       
+      <div className="banner">
+         <img  src="https://assets.ajio.com/cms/AJIO/WEB/Earlybird-Strip-D-1440x128%20(1).gif" alt="banner" />
+      </div>
 
       {/* recmended product  footer*/}
       <div className="recFooter">

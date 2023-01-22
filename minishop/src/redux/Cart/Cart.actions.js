@@ -3,7 +3,8 @@ import {
     CART_GET_SUCCESS,
     CART_GET_ERROR,
     CART_UPDATE_DATA,
-    CART_REMOVE
+    CART_REMOVE,
+    TOTAL_PRICE
 } from "./Cart.actionTypes"
 
 import { deleteCart, getCartAPI, updateCart } from "./Cart.api"
@@ -36,4 +37,8 @@ export const deleteCartItem = (id) => async(dispatch) => {
     dispatch({type:CART_REMOVE,payload:id})
 }
 
+
+export const cartValue = (total) => (dispatch) => {
+    dispatch({type:TOTAL_PRICE,payload:total})
+}
 

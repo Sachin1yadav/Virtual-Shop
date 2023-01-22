@@ -36,7 +36,6 @@ import "./Navbar.css";
 import { useDispatch, useSelector } from "react-redux";
 import { userLogout } from "../../redux/Auth/auth.actions";
 import { addNewUser } from "../../redux/AddUser/User.actions";
-
 export default function Navbar({ display = "flex" }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [data, setData] = useState([]);
@@ -67,12 +66,10 @@ export default function Navbar({ display = "flex" }) {
     // the string searched and for the second the results.
     // console.log(string, results);
   };
-
   const handleOnHover = (result) => {
     // the item hovered
     //console.log(result);
   };
-
   const handleOnSelect = (item) => {
     // the item selected
     // console.log(item, item.id);
@@ -81,11 +78,9 @@ export default function Navbar({ display = "flex" }) {
   const handleOnClear = () => {
     //console.log("Cleared");
   };
-
   const handleOnFocus = () => {
     //console.log("Focused");
   };
-
   const formatResult = (item) => {
     return (
       <>
@@ -98,7 +93,6 @@ export default function Navbar({ display = "flex" }) {
       </>
     );
   };
-
   return (
     <Flex
       width="screen"
@@ -107,7 +101,7 @@ export default function Navbar({ display = "flex" }) {
       bg={"gray.800"}
       color={"white"}
       position="fixed"
-      zIndex={1}
+      zIndex={10}
       left={"0"}
       right="0"
       top="0"
@@ -172,10 +166,8 @@ export default function Navbar({ display = "flex" }) {
          rightIcon={<BsWatch fontSize={"27"} color={"#64E986"} />}>Watch
        </Button></Box>
        <Divider orientation='horizontal' colorScheme={"blackAlpha"}    />
-
           <Box color="white" >-</Box>
           <Box color="white">-</Box>
-
           <Box   onClick={()=>nav(`/DLogin`)} ><Button
          w={'full'}
          onClick={()=>nav(`/cart`)}
@@ -291,7 +283,6 @@ export default function Navbar({ display = "flex" }) {
          colorScheme={'black'}  color={'black'}
          leftIcon={<BsWatch fontSize={"27"} color={"#64E986"} />}>Watch
        </Button>
-
     <Button
          w={'full'}
          onClick={()=>nav(`/`)}
@@ -372,9 +363,7 @@ export default function Navbar({ display = "flex" }) {
               zIndex: 100,
               borderRadius: "10px",
               boxShadow: "none",
-
               height: "32px",
-
               placeholderFontSize: "2.5vh",
               fontSize: "2.2vh",
             }}

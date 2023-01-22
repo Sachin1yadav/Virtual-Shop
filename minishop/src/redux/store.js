@@ -16,10 +16,12 @@ import { singleReducer } from './SingleProducts/SingleProduct.reducer'
 import {authReducerfunc} from './Auth/auth.reducer';
 
 import { adminAuthReducer } from './admin_auth/admin.reducer'
+import { wishReducer } from './Wishlist/Wishlist.reducer'
 
 const rootReducer = combineReducers({
     cart:cartReducer,
     order:orderReducer,
+    wishlist:wishReducer,
     singleProduct: singleReducer,
     adminAuth:adminAuthReducer,
     authUser:authReducerfunc

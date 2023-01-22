@@ -1,39 +1,37 @@
 @import "../../Global.scss";
-.maindiv {
+.maindiv{
     width: 100%;
     height: auto;
-    // border: 1px solid red;  
+    // border: 1px solid red;
     display: flex;
     gap: 30px;
     padding: 2%;
-    @include mobile {
+    @include mobile{
         flex-direction: column;
         align-items: center;
-    }
+      }
 }
-
-.imgDiv {
+.imgDiv{
     width: 40%;
     height: 90%;
     margin: auto;
-    //  border: 2px solid rgb(49, 0, 128); 
+    //  border: 2px solid rgb(49, 0, 128);
     display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    @include mobile {
+     flex-direction: column;
+     justify-content: space-around;
+     @include mobile{
         width: 100%;
         flex-direction: column;
         align-items: center;
-    }
+      }
 }
-
-.imagess {
+  .imagess{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    width: 80%;
-    margin: auto;
-    height: 20%;
+    width:80% ;
+     margin: auto;
+     height: 20%;
     justify-content: center;
     /* border: 2px solid rgb(128, 255, 0); */
     border-radius: 5px;
@@ -43,124 +41,117 @@
     align-content: center;
     /* box-shadow: rgba(255, 254, 254, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px; */
     padding: 5px;
-    margin-top: 40px;
-    @include mobile {
-        width: 100%;
-    }
-}
-
-.curimg {
+ margin-top: 40px;
+ @include mobile{
+    width: 100%;
+ }
+  }
+  .curimg{
     /* border: 2px solid rgb(238, 13, 13); */
     width: 80%;
     height: 400px;
-    object-fit: cover;
+    // object-fit: cover;
+    overflow: hidden;
     border-radius: 10px;
-    margin-top: -0px;
-    padding: 10px 10px 10px 10px;
-    justify-content: center;
-    /* border: 2px solid rgb(255, 0, 8); */
-    align-content: center;
-    margin: auto;
-    /* background-color: rgb(255, 255, 255); */
-    @include mobile {
-        width: 95%;
-        height: 380px;
-        flex-direction: column;
-        align-items: center;
-    }
-}
-
-.curimg img {
-    justify-content: center;
-    align-content: center;
-    height: 100%;
-    /* border: 1px solid red; */
-    width: 100%;
-    border-top-left-radius: 50px;
-    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
-}
-
-.imagess div {
-    /* border: 1px solid red; */
-    width: 100%;
-    justify-content: center;
-    height: 90%;
-    margin: auto;
-}
-
-.imagess div img {
-    width: 100%;
-    height: 100px;
-    cursor: pointer;
-    border-top-left-radius: 10px;
-    /* box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px; */
-    /* box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset; */
-    /* box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset; */
-    margin: auto;
-}
-
-.name {
+ margin-top: -0px;
+ display: flex;
+ background-color: white;
+ padding: 10px 10px 10px 10px;
+ justify-content: center;
+ align-items: center;
+//    border: 2px solid rgb(255, 0, 8);
+  text-align: center;
+ margin: auto;
+ /* background-color: rgb(255, 255, 255); */
+ @include mobile{
+    width: 95%;
+    height: 380px;
+    flex-direction: column;
+    align-items: center;
+  }
+  }
+  .curimg img{
+   justify-content: center;
+//  align-content: center;
+ align-items: center;
+//  height: 100%;
+//   border: 1px solid red;
+ width: 100%;
+ border-top-left-radius: 50px;
+//  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;  }
+  }
+  .imagess div{
+   /* border: 1px solid red; */
+   width: 100%;
+   justify-content: center;
+   height: 90%;
+   margin: auto;
+  }
+   .imagess div img{
+     width: 100%;
+     height: 100px;
+     cursor: pointer;
+     border-top-left-radius: 10px;
+     /* box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px; */
+     /* box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset; */
+     /* box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset; */
+     margin: auto;
+   }
+   .name{
     font-weight: bolder;
-    font-size: 20px;
-    color: rgb(247, 55, 55);
-}
-
-.detailsdiv {
+font-size: 20px;
+color: rgb(247, 55, 55);
+   }
+   .detailsdiv{
     width: 60%;
     height: 80%;
     margin: auto;
     /* border: 1px solid green; */
-    display: flex;
+   display: flex;
+   flex-direction: column;
+   text-align: start;
+   padding: 1%;
+   @include mobile{
+    width: 95%;
     flex-direction: column;
-    text-align: start;
-    padding: 1%;
-    @include mobile {
-        width: 95%;
-        flex-direction: column;
-        align-items: start;
-    }
+    align-items: start;
+  }
 }
-
-.catog {
+.catog{
     font-weight: bold;
     font-size: 30px;
     text-transform: uppercase;
 }
-
-.rating {
+.rating{
     font-size: 16px;
     font-weight: bold;
 }
-
-.discription {
+.discription{
     font-size: 17px;
     letter-spacing: 1px;
     margin-top: 14px;
 }
-
-.btnWC {
+.btnWC{
     display: flex;
     width: 40%;
-    // border: 1px solid red;
+// border: 1px solid red;
     margin-top: 40px;
     justify-content: space-between;
     align-items: start;
-    @include mobile {
+    @include mobile{
         width: 90%;
         margin-top: 20px;
         align-items: flex-start;
-    }
+      }
 }
-
-.wish {
+.wish{
     border: 1px solid rgb(164, 163, 163);
     padding: 5px 10px;
     /* background-color: rgb(126, 125, 125); */
     border-radius: 5px;
-    padding: 5px 15px;
+    padding:5px 15px;
 }
-
-.wish div {
+.wish div{
     display: flex;
     flex-direction: row;
     gap: 10px;
@@ -169,16 +160,13 @@
     align-items: center;
     font-weight: bold;
 }
-
-.wish div span {
+.wish div span{
     color: red;
 }
-
-.wish div span:hover {
+.wish div span:hover{
     // background-color: red;
 }
-
-.cart {
+.cart{
     /* border: 1px solid red; */
     padding: 5px 15px;
     border-radius: 5px;
@@ -187,68 +175,61 @@
     color: white;
     font-weight: bold;
 }
-
-.cart:hover {
-    background-color: rgb(1, 75, 97);
+.cart:hover{
+    background-color: rgb(1,75,97);
 }
-
-.wish:hover {
+.wish:hover{
     color: black;
     background-color: rgb(234, 234, 231);
 }
-
-.price {
+ .price{
     font-size: 20px;
     font-weight: bold;
 }
-
-.price span {
+.price span{
     text-decoration: line-through;
     color: rgb(119, 113, 113);
 }
-
-.offer {
+.offer{
     color: green;
 }
-
-.ratingDiv {
+.ratingDiv{
     display: flex;
     justify-content: space-around;
     width: 50px;
     align-content: center;
     color: green;
 }
-
-.ratingDiv span {
+.ratingDiv span{
     margin-top: 4px;
     font-size: 15px;
 }
-
-.recFooter p {
+.recFooter p{
     color: rgb(134, 132, 132);
     background-color: black;
-    padding: 5px 20px;
+    padding: 10px 20px;
+    // margin-top: 20px;
+    // margin-bottom: -60px;
     text-align: center;
-    @include mobile {
-        font-size: 10px;
-    }
+    @include mobile{
+         font-size: 10px;
+      }
 }
-
-.banner {
+.banner{
     width: 100%;
     margin: auto;
+    // margin-top: -10px;
     // background-color: white;
 }
-
-.banner img {
+.banner img{
     width: 100%;
     height: 180px;
     cursor: pointer;
 }
-
-.similar {
+ .similar{
     color: black;
+    // margin-top: 10px;
     // border: 1px solid red;
     text-align: start;
-    padding: 0px 80px;
-}
+    padding: 10px 80px;
+ }
