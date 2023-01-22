@@ -1,11 +1,14 @@
 import axios from "axios";
-import { getProductsApi } from "./admin.api";
+import { getAllProductsApi, getAllUsersApi, getProductsApi } from "./admin.api";
 import {GET_PROD_LOADING,
     GET_PROD_SUCCESS,
+    GET_ALL_PROD_SUCCESS,
     GET_PROD_FAIL,
     ADD_PROD_LOADING,
     ADD_PROD_ERROR,
-    ADD_PROD_SUCCESS} from './admin.actoins.type'
+    ADD_PROD_SUCCESS,GET_USER_LOADING,
+    GET_USER_ERROR,
+    GET_USER_SUCCESS} from './admin.actoins.type'
     export const uploadImg1 =async()=>{
     let imgUrl;
     let img_address = document.getElementById('imageUpload');
@@ -37,11 +40,6 @@ import {GET_PROD_LOADING,
     img_div.append(img)
 }
 
-
-export const addProduct = (newUser) => (dispatch)=>{
-    
-}
-
 export const  getProductsAdmin = (page)=>async(dispatch)=>{
     dispatch({type:GET_PROD_LOADING})
     try{
@@ -51,7 +49,6 @@ export const  getProductsAdmin = (page)=>async(dispatch)=>{
         dispatch({type:GET_PROD_FAIL})
     }
 } 
-
 export const getProdCatagoty = (val)=>async(dispatch)=>{
 try{
     let res = await axios.get(`https://lackadaisical-volcano-larch.glitch.me/data?Categories=${val}`)
@@ -59,4 +56,28 @@ try{
 }catch(err){
     dispatch({type:GET_PROD_FAIL})
 }
+}
+export const getAllProducts = ()=>async(dispatch)=>{
+try{
+    let res = await getAllProductsApi()
+    dispatch({type:GET_ALL_PROD_SUCCESS,payload:res})
+}catch(err){
+    dispatch({type:GET_PROD_FAIL})
+}
+}
+
+export const getAllUsers = ()=>async(dispatch)=>{
+    try{
+        dispatch({type:GET_USER_LOADING})
+        let res = await getAllUsersApi();
+        console.log(res)
+        dispatch({type:GET_USER_SUCCESS,payload:res})
+    }catch(err){
+        dispatch({type:GET_USER_ERROR})
+    }
+}
+
+
+export const addProduct = (newUser) => (dispatch)=>{
+    
 }
