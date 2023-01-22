@@ -27,7 +27,7 @@ import { ReactSearchAutocomplete } from "react-search-autocomplete";
 import {FaUserCircle} from "react-icons/fa";
 import {BsFillHeartFill,BsFacebook} from  "react-icons/bs";
 import {BiLogIn} from  "react-icons/bi";
-import {FcGoogle} from  "react-icons/fc"; 
+import {FcGoogle} from  "react-icons/fc";
 import "./Navbar.css";
 import { useDispatch, useSelector } from "react-redux";
 import { addNewUser } from "../../redux/AddUser/User.actions";
