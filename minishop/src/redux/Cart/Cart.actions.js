@@ -7,25 +7,22 @@ import {
     TOTAL_PRICE
 } from "./Cart.actionTypes"
 
-import { deleteCart, getCartAPI, updateCart } from "./Cart.api"
+import { deleteCart, getCartAPI, updateCart, updateCartApi } from "./Cart.api"
 
-export const cartActions = () => async(dispatch) => {
+export const cartActions = (userName) => async(dispatch) => {
     dispatch({type: CART_GET_LOADING});
     try{
-        let data = await getCartAPI();
-        dispatch({type:CART_GET_SUCCESS,payload:data})
-
+        let data = await getCartAPI(userName);
+        dispatch({type:CART_GET_SUCCESS,payload:data[0].cart})
     }catch(e){
         dispatch({type: CART_GET_ERROR})
     }
 }
-
-export const updateCarts = (id,newChanges) => async(dispatch) => {  
-   
+export const updateCarts = (user,newData) => async(dispatch) => {  
     try{
 
-        let data = await updateCart(id,newChanges);
-        dispatch({type:CART_UPDATE_DATA,payload:data})
+        let data = await updateCartApi(user,newData);
+        // dispatch({type:CART_UPDATE_DATA,payload:data})
     }catch(e){
         dispatch({type:CART_GET_ERROR})
     }

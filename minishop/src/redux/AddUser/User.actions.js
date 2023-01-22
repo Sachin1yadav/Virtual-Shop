@@ -7,7 +7,6 @@ export const getUser = (id) => async(dispatch) =>{
     try{
       let res = await getUserApi(id)
       return res.data
-
     }catch(err){
       console.log(err)
     }
@@ -24,7 +23,6 @@ export const addNewUser  = (userData)=> async(dispatch)=>{
     whishList:[],
     orders:[],
   }
-  console.log(newData)
     try{
       let res = await addNewUserApi(newData)
       dispatch({type:USER_ADD_SUCCESS, payload:res})

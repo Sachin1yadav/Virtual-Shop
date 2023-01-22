@@ -58,28 +58,18 @@ const {cartData}=useSelector((store)=>store.cart)
   };
   
   const addToCart = async(itemDetail) => {
-
-    // userData.cart.push({...itemDetail,qty:1})
-
-    // toast({
-    //   title: "Added to Cart",
-    //   description: "We've added this item to Cart",
-    //   variant: "subtle",
-    //   position:'top-right',
-    //   duration: 3000,
-    //   isClosable: true,
-    // });
-
-   
-
     let currUser = await dispatch(getUser(userData.id))
-    // console.log('currUser:', currUser.cart)
-    let cartItem = {...itemDetail,qty:1}
-    let newCartData = currUser.cart.push(cartItem)
-    console.log('newCartData:', newCartData)
-    // dispatch(userCartUpdate(newCartData))
-
-    // return axios.post(`https://lackadaisical-volcano-larch.glitch.me/cart`,{...itemDetail,qty:1});
+    currUser.cart.push(itemDetail)
+    dispatch(userCartUpdate(currUser)).then(()=>{
+      toast({
+        title: "Added to Cart",
+        description: "We've added this item to Cart",
+        variant: "subtle",
+        position:'top-right',
+        duration: 3000,
+        isClosable: true,
+      })
+    });
   };
 
   if(loading){

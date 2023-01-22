@@ -39,19 +39,20 @@ import { TbDiscount2 } from "react-icons/tb";
 import { Link } from "react-router-dom";
 import Payment from "../checkout/Payment";
 import Navbar from "../../components/Navbar/Navbar";
+import { getUser, userCartUpdate } from "../../redux/AddUser/User.actions";
 const Cart = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const handelOnSubtmi=()=>{
     onClose()
   }
   const {loading , error, cartData,totalPrice} = useSelector((store) => store.cart);
-  console.log('totalPriceSelector:', totalPrice);
+  // console.log('totalPriceSelector:', totalPrice);
 
 
-
+// console.log( "CartData", cartData)
 
   const dispatch = useDispatch();
-
+  const { isauth, userData } = useSelector((val) => val.authUser);
   const changePrice = (str) => {
     let res = str.replace(/\D/g, "");
     return parseInt(res);
@@ -68,18 +69,18 @@ const Cart = () => {
     );
   }
   useEffect(() => {
-    dispatch(cartActions())
+    dispatch(cartActions(userData.name))
     
       updatePrice()
     // }
-}, [ cartData.length,totalPrice]);
+}, [cartData.length, dispatch, totalPrice, userData.name]);
 
 const toast = useToast();
    //------Offer Function-------------------------------------------------------------------- //
    const [apply,setApply] = useState("");
    const offerClick = () => {
-     console.log('val:', totalCartPrice)
-     console.log("Apply text",apply);
+    //  console.log('val:', totalCartPrice)
+    //  console.log("Apply text",apply);
      if(apply === "VS50"){
        setTotalCartPrice(cartData.reduce(
         (acc, el) => acc + changePrice(el.price) * el.qty *50/100,
@@ -108,25 +109,39 @@ const toast = useToast();
      }
    }
 
-   
+    
 
    //------Price Details hide Function-------------------------------------------------------------------- //
   const paymentFun = () => {
       dispatch(cartValue(totalCartPrice));
-  } 
-
+  }
   //------Quantity Increase Function-------------------------------------------------------------------- //
-  const quantityIncre = async(id,qty) => {
-      dispatch(updateCarts(id,{"qty":qty+1}))
+  const quantityIncre = async(el,pls) => {
+    let currUser = await dispatch(getUser(userData.id))
+
+    let updatedCurrUser = currUser.cart.filter(e=>{ 
+      if(e.id===el.id){
+        return 'yes I got the id'
+      }
+      else{
+        return null
+      }
+     })
+    console.log("userqnty should increse", updatedCurrUser)
+
+
+    dispatch(updateCarts())
+     
       .then(()=> {
         dispatch(cartActions());
       });
   }
    //------Quantity Decrease Function----------------------------------------------------------------------- //
-  const quantityDecre = async(id,qty) => {
-    dispatch(updateCarts(id,{"qty":qty-1})).then(()=> {
-      dispatch(cartActions());
-    });
+  const quantityDecre = async(el,min) => {
+    dispatch(userCartUpdate({...el, min}))
+      .then(()=> {
+        dispatch(cartActions());
+      });
   }
   // Loading And Error
   // if(loading) return <h3>Loading...</h3>;
@@ -161,14 +176,14 @@ const toast = useToast();
                 </div>
                 <div className="QRdiv">
                   <div className="Qdiv">
-                    <Button  onClick={()=> quantityDecre(e.id,e.qty)}
+                    <Button  onClick={()=> quantityDecre(e,e.qty--)}
                     isDisabled={e.qty === 1}
                     color="red" variant="light">
                       -
                     </Button>
                     <Button variant="light">{ loading ? <Spinner/> : e.qty}</Button>
                     <Button
-                    onClick={()=> quantityIncre(e.id,e.qty)}
+                    onClick={()=> quantityIncre(e,e.qty++)}
                     color="green" variant="light">
                       +
                     </Button>
@@ -281,7 +296,7 @@ const toast = useToast();
               <ModalHeader> </ModalHeader>
               <ModalCloseButton />
               <ModalBody>
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReO4PsZOqzxtG7IDo2_bZja_Q97FXTKUx0GQ&usqp=CAU"   style={{margin:"auto"}}    />
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReO4PsZOqzxtG7IDo2_bZja_Q97FXTKUx0GQ&usqp=CAU" alt=' '  style={{margin:"auto"}}    />
                 <p  style={{textAlign:"center"  }}> Woow! You Can use "VS50" </p>
               </ModalBody>
               <ModalFooter>

@@ -101,9 +101,8 @@ const AdModal = ({showModal}) => {
                     <Textarea placeholder='Product Description...' />
                   </FormControl>
                   <FormControl mt={4} >
-                    <FormLabel htmlFor='image1' border='2px' h='40' >
-                      <Image src={image1} />
-                      <Input type='file' accept='image' id='image1' onChange={()=>upload1}/>
+                    <FormLabel htmlFor='image1' >
+                      <Input type='file' accept='image' id='image1' onChange={()=>upload1}/> 
                     </FormLabel>
                     <FormLabel htmlFor='image2' >
                       <Input type='file' accept='image' id='image2'  />

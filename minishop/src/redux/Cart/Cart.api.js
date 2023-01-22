@@ -1,14 +1,13 @@
 import axios from "axios";
 
-export const getCartAPI = async() => {
-    let res =  await axios.get(`https://lackadaisical-volcano-larch.glitch.me/cart`);
-    // console.log('res:', res.data)
+export const getCartAPI = async(userName) => {
+    let res =  await axios.get(`https://lackadaisical-volcano-larch.glitch.me/user?name=${userName}`);
     return res.data;
 }
 
 
-export const updateCart =  (id,newValue) => {
-    return axios.patch(`https://lackadaisical-volcano-larch.glitch.me/cart/${id}`,newValue);
+export const updateCartApi =  (user,newData) => {
+    // return axios.patch(`https://lackadaisical-volcano-larch.glitch.me/user?name=${user.name}`,newData);
 }
 
 

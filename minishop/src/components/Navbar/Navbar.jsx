@@ -54,7 +54,6 @@ export default function Navbar({ display = "flex" }) {
   const dispatch = useDispatch()
 
   const {loading , cartData} = useSelector((store) => store.cart);
-  console.log('cartData:', cartData)
   
 
   useEffect(() => {

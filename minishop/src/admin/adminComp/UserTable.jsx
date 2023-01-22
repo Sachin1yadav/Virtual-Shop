@@ -48,7 +48,7 @@ const UserTable = ({ data,toggleshow,sloading }) => {
                 <Td w='20'  position={'relative'} ><Image border='1px' w='12' h='12' rounded='full' src={el.profile} /><Text h='4' w='4' rounded='full' bottom='3' right='6' bg={el.active?"green.500":"red.500"} position='absolute' ></Text> </Td>
                 <Td>{el.name}</Td>
                 <Td>{el.email}</Td>
-                <Td>Image</Td>
+                <Td>{el.cart}</Td>
                 <Td cursor={'pointer'} > <EditIcon/> </Td>
                 { sloading? <Spinner w='6' />:
                 <Td>{el.show === true ?<ViewIcon fontSize={'xl'} cursor='pointer' onClick={()=>showMsg(`is out of Stock now`,'warning',el)} /> : <ViewOffIcon fontSize='xl' cursor='pointer' onClick={()=>showMsg(`is Back in Stock`,'success',el)} />}</Td>}
