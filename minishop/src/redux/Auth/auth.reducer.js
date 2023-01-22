@@ -18,7 +18,7 @@ let userDetails = JSON.parse(localStorage.getItem("userData"))
     switch (type) {
         case LOGIN_SUCCESS:{
             localStorage.setItem("userData",JSON.stringify(payload))
-            return {...state, isauth:true}
+            return {...state,status:true, isauth:true}
         }
         case LOGIN_FAIL:{
             return {...state, status:false}
@@ -32,7 +32,7 @@ let userDetails = JSON.parse(localStorage.getItem("userData"))
         case RESET_USER_DATA:{
           console.log('hogya logout')
             localStorage.removeItem("userData")
-            return {...state, isauth:false}
+            return {...state, isauth:false,stauts:false}
         }
         default:{
             return {...state}

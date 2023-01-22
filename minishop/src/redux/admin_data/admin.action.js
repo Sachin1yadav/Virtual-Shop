@@ -1,9 +1,13 @@
-let imgUrl;
-
-
-
-
-export const uploadImg1 =async()=>{
+import axios from "axios";
+import { getProductsApi } from "./admin.api";
+import {GET_PROD_LOADING,
+    GET_PROD_SUCCESS,
+    GET_PROD_FAIL,
+    ADD_PROD_LOADING,
+    ADD_PROD_ERROR,
+    ADD_PROD_SUCCESS} from './admin.actoins.type'
+    export const uploadImg1 =async()=>{
+    let imgUrl;
     let img_address = document.getElementById('imageUpload');
     let filePath = img_address.files[0];
     let form = new FormData();
@@ -18,7 +22,7 @@ export const uploadImg1 =async()=>{
         let data = await res.json();
         imgUrl = data.data.display_url
     }catch(err){
-        console.log(err)
+        // console.log(err)
     }
     let loading = document.getElementById('image_label');
     loading.textContent = 'Select from Computer'
@@ -36,4 +40,23 @@ export const uploadImg1 =async()=>{
 
 export const addProduct = (newUser) => (dispatch)=>{
     
+}
+
+export const  getProductsAdmin = (page)=>async(dispatch)=>{
+    dispatch({type:GET_PROD_LOADING})
+    try{
+        let res = await  getProductsApi(page)
+        dispatch({type:GET_PROD_SUCCESS,payload:res})
+    }catch(err){
+        dispatch({type:GET_PROD_FAIL})
+    }
+} 
+
+export const getProdCatagoty = (val)=>async(dispatch)=>{
+try{
+    let res = await axios.get(`https://lackadaisical-volcano-larch.glitch.me/data?Categories=${val}`)
+    dispatch({type:GET_PROD_SUCCESS,payload:res.data})
+}catch(err){
+    dispatch({type:GET_PROD_FAIL})
+}
 }

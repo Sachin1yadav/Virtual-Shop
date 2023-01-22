@@ -4,33 +4,26 @@ import ItemTable from "./Table/ItemTable";
 import AdminNav from "./AdminNav";
 import { Button, Flex, Heading, Text } from "@chakra-ui/react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
+import { getProdCatagoty, getProductsAdmin } from "../../redux/admin_data/admin.action";
+import { useDispatch, useSelector } from "react-redux";
 const AdminHome = () => {
-  const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch()
   const [sloading, setsLoading] = useState(false);
-  const [error, setError] = useState(false);
-  const [allprod, setAllProd] = useState([]);
+  const {loading, error, products}= useSelector(val=>val.adminAll)
   const [page, setPage] = useState(1);
   const [view, setView ] = useState(true)
+  
 
   useEffect(() => {
-    getProducts();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page]);
+    dispatch(getProductsAdmin(page));
+  }, [dispatch, page]);
 
-  const getProducts = async () => {
-    try {
-      setLoading(true);
-      let res = await axios.get(
-        `https://lackadaisical-volcano-larch.glitch.me/data?_page=${page}&_limit=10`
-      );
-      setAllProd(res.data);
-      setLoading(false);
-    } catch (err) {
-      setError(true);
-    }
-  };
+  useEffect(()=>{
+    
+  },[])
+
   const toggleshow = (id) => {
-    let dta = allprod.filter((el) => {
+    let dta = products.filter((el) => {
       if (el.id === id) {
         el.show = !el.show;
         return el;
@@ -38,7 +31,6 @@ const AdminHome = () => {
       return null;
     });
     editData(id, dta[0]);
-    console.log(dta)
   };
   const editData = async (id, data) => {
     try {
@@ -49,38 +41,33 @@ const AdminHome = () => {
       );
       setsLoading(false);
     } catch (err) {
-      setError(true);
     }
   };
   // Catgory request on Changing category 
-
+  const catagory = ['t_shirt']
   const handleCategory = (e)=>{
     if(e.target.value===''){ 
-      getProducts();
+      dispatch(getProductsAdmin(page));
       setView(true)
     }else{
-      getCategory(e.target.value)
+      dispatch(getProdCatagoty(e.target.value))
       setView(false)
     }
-  }
-  const getCategory = async(val)=>{
-    let res = await axios.get(`https://lackadaisical-volcano-larch.glitch.me/data?Categories=${val}`)
-    setAllProd(res.data)
   }
   if (error) {
     return <Heading>Some Error from Server Occured</Heading>;
   }
   return (
     <>
-      <AdminNav handleCategory={handleCategory} />
+      <AdminNav handleCategory={handleCategory} catagory={catagory} />
 
       {/* ItemTable  */}
       
-      <ItemTable data={allprod} toggleshow={toggleshow} sloading={sloading} />
+      <ItemTable data={products} toggleshow={toggleshow} sloading={sloading} />
       {/* Pagination  */}
     {view &&  <Flex
         position="fixed"
-        px="5"
+        px="5" 
         py="1"
         rounded={"xl"}
         bottom="2"

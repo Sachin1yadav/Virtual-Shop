@@ -8,3 +8,12 @@ export const addNewUserApi  = async(userData)=>{
           return err
     }
 }
+
+export const logoutUserApi = async(userData)=>{
+    try{
+        let res = await axios.patch(`https://lackadaisical-volcano-larch.glitch.me/user/${userData.id}`,userData)
+        return res
+        }catch(err){
+          return err
+    }
+}
