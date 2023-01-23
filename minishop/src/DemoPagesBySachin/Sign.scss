@@ -1,3 +1,6 @@
+@import "../Global.scss";
+
+
 * {
     margin: 0;
     padding: 0;
@@ -24,7 +27,11 @@
     margin: auto;
     box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px; 
      background: linear-gradient(0deg, black, black, rgb(44, 73, 73));
-  }
+     @include mobile{
+      width: 85%;
+      margin: auto;
+    }
+    }
   
   .form {
      
@@ -38,14 +45,37 @@
       align-items: center;
       text-align: start;
   }
-  .form h2 {
+  .SingHomeDiv{
+    display: flex;
+      // border: 1px solid red;  
+    justify-content: space-between;
+  }
+  .SingHomeDiv h2 {
     color: #45f3ff;
     font-weight: bold;
     text-align: center;
     font-size: 40px;
     /* border: 1px solid red; */
-    margin-left: 40px;
+    margin-left: 50px;
     margin-bottom: 30px;
+
+  }
+  .homeSing{
+    color: #cbd0d1;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    font-size: 28px;
+    margin-right: -90px;
+    margin-top: 10px;
+    margin-left: 50px;
+    @include mobile{
+      margin-right: 0px;
+      // border: 1px solid red;
+    }
+  }
+  .homeSing:hover{
+    color: #45f3ff;
   }
   .inputBox {
      /* border: 1px solid green; */
@@ -53,6 +83,10 @@
      height: 60px;
      margin: auto;
      margin-left: -50px;
+     @include mobile{
+      width: 80%;
+      margin-left: 0px;
+    }
   }
   .inputBox input {
      
@@ -84,6 +118,11 @@
       
     align-items: center;
     align-content: center;
+    @include mobile{
+      width: 80%;
+      margin-left: 14px;
+      margin-top: 13px;
+    }
   }
   .submit:active {
     opacity: 0.5;
@@ -92,13 +131,18 @@
   .signDiv {
     display: flex;
     justify-content: space-between;
-  
+  // border: 1px solid red;
     margin-top: 25px;
-    width: 120%;
+    width: 145%;
+    margin-left: -50px;
     align-items: center;
-   margin-left: -20px;
+  //  margin-left: 0px;
     margin-bottom: 20px;
-   
+    @include mobile{
+      width: 80%;
+      margin-left: 14px;
+      // margin-top: 13px;
+    }
   }
   .signDiv p {
     font-size: 13px;

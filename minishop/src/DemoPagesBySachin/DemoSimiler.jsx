@@ -53,7 +53,7 @@ const DemoSimiler = ({data}) => {
 
  
   return (
-    <div className="proMainDiv">
+    <div className="proMainDivSlick">
 
     <Slider {...settings} >
           {

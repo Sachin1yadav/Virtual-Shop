@@ -11,7 +11,7 @@ import {
   Stack,
 } from "@chakra-ui/react";
 import { Link, useNavigate } from "react-router-dom";
-import "./Login.css";
+import "./Login.scss";
 import GoogleButton from "react-google-button";
 // import { AuthContext } from "../Pages/login&signup/AuthContextProvider";
 import {
@@ -149,7 +149,10 @@ const DLogin = () => {
               <div className="orDivLog">
                 <p>Or login with</p>
               </div>
-              <GoogleButton className="LogGoogle" style={{marginLeft:"-20px",color:"white",width:"120%",borderRadius:"5px",backgroundColor:"black",border:"1px solid gray" }} onClick={()=>dispatch(loginWithGoogle())} />
+              <div  className="LogGoogle">
+              <GoogleButton style={{marginLeft:"-20px",color:"white",width:"100%",borderRadius:"5px",backgroundColor:"black",border:"1px solid gray" }}  onClick={()=>dispatch(loginWithGoogle())} />
+
+              </div>
               <div className="signDivLog">
                 <p>Have You Not Register Yet?</p>
                 <Link to="/sign">

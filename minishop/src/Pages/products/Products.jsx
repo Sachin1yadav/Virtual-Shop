@@ -61,8 +61,8 @@ const Products = () => {
         </div>
       </div>
       <div className="main_container">
-        <div>
-          <LeftSideFilter setPrice={setPrice} setOrder={setOrder} />
+        <div  >
+          <LeftSideFilter setPrice={setPrice}  setOrder={setOrder} />
         </div>
         <div className="proMainDiv">
           {value?.map((el, index) => (

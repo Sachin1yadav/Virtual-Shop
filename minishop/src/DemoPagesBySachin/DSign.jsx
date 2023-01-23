@@ -1,8 +1,9 @@
 import React, { useContext, useState } from "react";
 import { useToast, Button } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import "./Sign.css";
+import "./Sign.scss";
 import { AuthContext } from "../Pages/login&signup/AuthContextProvider";
+import { AiFillHome } from "react-icons/ai";
 const userInit = {
   email: "",
   password: "",
@@ -29,7 +30,25 @@ const DSign = () => {
         <div className="box ">
           <div className="form">
             <form onSubmit={handleSubmit} action="">
+            <div className="SingHomeDiv">
               <h2>Register</h2>
+              <div>
+              <Link to="/" >
+              {/* <Tooltip
+                  bg="gray.300"
+                  placement="bottom"
+                  
+                  label="Home Page"
+                > */}
+                 
+                  <h3 className="homeSing"><AiFillHome/></h3>
+                  
+                {/* </Tooltip> */}
+                
+                </Link>
+                </div>
+              
+              </div>
               <div className="inputBox">
               <span>Name</span>
                 <input required="required" />

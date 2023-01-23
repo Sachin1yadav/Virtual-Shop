@@ -26,7 +26,7 @@ const Address = () => {
     <Navigate to="/payment" />;
   };
 
-  console.log(address);
+  // console.log(address);
   return (
     <div>
       <Heading>Delivery Address</Heading>
@@ -96,14 +96,16 @@ const Address = () => {
         />
         <input
           type="text"
+          maxLength={10}
+          minLength={10}
           value={address.phone}
           onChange={handleChange}
           placeholder="phone"
           required
         />
-        <button ml={0} colorScheme="blue" size="sm" fontSize="sm">
+        <Link to={'/payment'}><button ml={0} colorScheme="blue" size="sm" fontSize="sm">
           use this address
-        </button>
+        </button></Link>
       </form>
     </div>
   );

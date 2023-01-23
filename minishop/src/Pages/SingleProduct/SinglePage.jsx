@@ -6,33 +6,25 @@ import { getSingleProduct } from "../../redux/SingleProducts/SingleProduct.actio
 import axios from "axios";
 import { BsStarFill } from "react-icons/bs";
 import Loading from"../Loading/Loading"
- 
-
 import { Button, Heading, useToast } from "@chakra-ui/react";
 import "./SinglePage.scss";
 import { BsFillHeartFill } from "react-icons/bs";
 import DemoSimiler from "../../DemoPagesBySachin/DemoSimiler";
 import { cartActions } from "../../redux/Cart/Cart.actions";
 import Navbar from "../../components/Navbar/Navbar";
-import { getUser, updateUser, userCartUpdate } from "../../redux/AddUser/User.actions";
 
 const SinglePage = () => {
   const { id } = useParams();
   const [img, setImg] = useState(1);
-   
   let rat = 4.3;
   let des =
     "A product description is a form of marketing copy used to describe and explain the benefits of your product. In other words, it provides all the information and details of your product on your ecommerce site. These product details can be one sentence, a short paragraph or bulleted. They can be serious, funny or quirky.";
- 
   const {loading , error, itemDetail } = useSelector((store) => store.singleProduct);
   const dispatch = useDispatch();
 const {cartData}=useSelector((store)=>store.cart)
 //   const {cartData}=useSelector((store)=>store.cart)
+// console.log("cartdata",cartData)
   const [similarData, setSimilarData] = useState([]);
-
-    //authentication cart
-    const { isauth, userData } = useSelector((val) => val.authUser);
-
   const getSimilarData =async () => {
     try {
         const res = await fetch("https://lackadaisical-volcano-larch.glitch.me/data");
@@ -58,38 +50,23 @@ const {cartData}=useSelector((store)=>store.cart)
       duration: 3000,
       isClosable: true,
     });
-    return axios.post(`https://busy-peplum-fawn.cyclic.app/wishList`, itemDetail);
+    return axios.post(`https://lackadaisical-volcano-larch.glitch.me/wishlist`, itemDetail);
   };
   
-  const addToCart = async(itemDetail) => {
-
-    // userData.cart.push({...itemDetail,qty:1})
-
-    // toast({
-    //   title: "Added to Cart",
-    //   description: "We've added this item to Cart",
-    //   variant: "subtle",
-    //   position:'top-right',
-    //   duration: 3000,
-    //   isClosable: true,
-    // });
-
-   
-
-    let currUser = await dispatch(getUser(userData.id))
-    // console.log('currUser:', currUser.cart)
-    let cartItem = {...itemDetail,qty:1}
-    let newCartData = currUser.cart.push(cartItem)
-    console.log('newCartData:', newCartData)
-    // dispatch(userCartUpdate(newCartData))
-
-    // return axios.post(`https://lackadaisical-volcano-larch.glitch.me/cart`,{...itemDetail,qty:1});
+  const addToCart = (itemDetail) => {
+    toast({
+      title: "Added to Cart",
+      description: "We've added this item to Cart",
+      variant: "subtle",
+      position:'top-right',
+      duration: 3000,
+      isClosable: true,
+    });
+    return axios.post(`https://lackadaisical-volcano-larch.glitch.me/cart`,{...itemDetail,qty:1});
   };
-
   if(loading){
     <Loading/>
   };
-
   return (
     <>
      <Navbar />
@@ -189,12 +166,11 @@ const {cartData}=useSelector((store)=>store.cart)
             data={similarData.filter((item) => item.Categories === itemDetail.Categories)}/>
         </div>
           </div>
-  
-       
-       
+      {/* banner */}
+      <div className="recmend"></div>
       <div className="bannner2"  >
          <img  src="https://assets.ajio.com/cms/AJIO/WEB/UHP-D-Fashionation-Coupon-header.gif" alt="banner" />
-       </div>
+      </div>
       {/* recmended product  footer*/}
       <div className="recFooter">
         <p>
@@ -204,11 +180,8 @@ const {cartData}=useSelector((store)=>store.cart)
         </p>
       </div>
     </div>
-   
-   
     </>
-   
-    );
-  }
+  );
+};
 
 export default SinglePage;

@@ -1,7 +1,11 @@
  
+@import "../Global.scss";
 
  
-
+@include mobile{
+  flex-direction: column;
+  align-items: center;
+}
  .MainDivLog{
     /* border: 1px solid rgb(249, 249, 249); */
      
@@ -25,6 +29,10 @@
     margin: auto;
     box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px; 
      background: linear-gradient(0deg, black, black, rgb(44, 73, 73));
+     @include mobile{
+      width: 85%;
+      margin: auto;
+    }
   }
    
   
@@ -47,6 +55,7 @@
     /* border: 1px solid red; */
     margin-left: 80px;
     margin-bottom: 30px;
+
   }
   .LogHomeDiv{
     display: flex;
@@ -61,6 +70,10 @@
     font-size: 28px;
     margin-right: -90px;
     margin-top: 10px;
+    @include mobile{
+      margin-right: 0px;
+      // border: 1px solid red;
+    }
   }
   .home:hover{
     color: #45f3ff;
@@ -71,12 +84,19 @@
      height: 60px;
      margin: auto;
      margin-left: -50px;
+     @include mobile{
+      width: 80%;
+      margin-left: 0px;
+    }
   }
   .inputBoxLog input {
      background-color: transparent;
      width: 120%;
    border-radius: 5px;
    border-bottom: 2px solid rgb(242, 241, 241);
+   @include mobile{
+  
+  }
   }
   .inputBoxLog span {
     /* background-color: red; */
@@ -92,6 +112,10 @@
     text-align: start;
     margin-top: 20px;
     margin-left: -50px;
+    @include mobile{
+      margin-top: 15px;
+      margin-left: 0px;
+    }
   }
   .submitLog {
     border: none;
@@ -109,6 +133,11 @@
       
     align-items: center;
     align-content: center;
+    @include mobile{
+      width: 80%;
+      margin-left: 14px;
+      margin-top: 13px;
+    }
   }
   .submitLog:hover {
     opacity: 0.5;
@@ -131,6 +160,11 @@
     align-items: center;
    margin-left: -20px;
     margin-bottom: 20px;
+    @include mobile{
+      width: 110%;
+      // margin-left: -10px;
+      // border: 1px solid red;
+    }
   }
   .signDivLog p {
     font-size: 13px;
@@ -163,11 +197,17 @@
     font-weight: bold;
    }
    
-  .LogGoogle{
+  .LogGoogle  {
     color:"white";
-    width:"100%";
+    width:120%;
     border-radius:"5px";
     background-color:"black";
-    border:"1px solid gray" ;
+    border:"1px solid gray";
+     
+    @include mobile{
+      width: 95%;
+      margin-left: 14px;
+     
+    }
   }
-  
+  // style={{marginLeft:"-20px",color:"white",width:"120%",borderRadius:"5px",backgroundColor:"black",border:"1px solid gray" }}
