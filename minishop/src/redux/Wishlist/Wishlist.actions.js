@@ -7,10 +7,10 @@ import {
 
 import { getWishlistAPI,removeWishlist} from "./Wishlist.api"
 
-export const wishlistGetData = () => async(dispatch) => {
+export const wishlistGetData = (user) => async(dispatch) => {
     dispatch({type: WISHLIST_GET_LOADING});
     try{
-        let data = await getWishlistAPI();
+        let data = await getWishlistAPI(user);
         dispatch({type:WISHLIST_GET_SUCCESS,payload:data})
 
     }catch(e){
@@ -20,7 +20,7 @@ export const wishlistGetData = () => async(dispatch) => {
 
 
 export const removeWishlistData = (id) => async(dispatch) => {
-    let data1 =  await removeWishlist(id);
+     await removeWishlist(id);
     dispatch({type:WISHLIST_REMOVE,payload:id})
 }
 

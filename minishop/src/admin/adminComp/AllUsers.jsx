@@ -17,7 +17,7 @@ const AdmnUsers = () => {
   }
   useEffect(() => {
   dispatch(getAllUsers())
-  }, [])
+  }, [dispatch])
   
   const total = 0;
   const toggleshow=()=>{}

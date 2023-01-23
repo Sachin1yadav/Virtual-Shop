@@ -1,7 +1,6 @@
 import {
   Button,
   Flex,
-  Heading,
   Input,
   InputGroup,
   InputRightElement,
@@ -13,46 +12,34 @@ import {
   ModalHeader,
   ModalOverlay,
   Spinner,
-  Table,
-  Tbody,
-  Td,
-  Th,
-  Thead,
-  Tr,
+  Text,
   useDisclosure,
   useToast,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  cartActions,
-  cartValue,
-  deleteCartItem,
-  updateCarts,
+  cartActions
 } from "../../redux/Cart/Cart.actions";
 import "./Cart.scss";
-import { FaShippingFast } from "react-icons/fa";
-import { AiFillDelete } from "react-icons/ai";
-import { SlMinus, SlPlus } from "react-icons/sl";
-import { RiDeleteBinLine } from "react-icons/ri";
-import { TbDiscount2 } from "react-icons/tb";
-import { Link } from "react-router-dom";
-import Payment from "../checkout/Payment";
+import { AiFillDelete } from "react-icons/ai"; 
+import { useNavigate } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
-import { getUser, userCartUpdate } from "../../redux/AddUser/User.actions";
+import { updateUser} from "../../redux/AddUser/User.actions";
 const Cart = () => {
+  const {loading,user} =  useSelector(val=>val?.userAllData)
+  const currUser = user
+  const cartData = currUser.cart
+
   const { isOpen, onOpen, onClose } = useDisclosure();
   const handelOnSubtmi=()=>{
     onClose()
   }
-  const {loading , error, cartData,totalPrice} = useSelector((store) => store.cart);
-  // console.log('totalPriceSelector:', totalPrice);
 
-
-// console.log( "CartData", cartData)
+  const {totalPrice} = useSelector((store) => store.cart);
 
   const dispatch = useDispatch();
-  const { isauth, userData } = useSelector((val) => val.authUser);
+  const {userData } = useSelector((val) => val.authUser);
   const changePrice = (str) => {
     let res = str.replace(/\D/g, "");
     return parseInt(res);
@@ -61,28 +48,24 @@ const Cart = () => {
   const [totalCartPrice,setTotalCartPrice] = useState(totalPrice);
   const updatePrice = () => {
     setTotalCartPrice(
-      cartData.reduce(
+      cartData?.reduce(
         (acc, el) => acc + changePrice(el.price) * el.qty,
         0
       )
-      
     );
   }
   useEffect(() => {
     dispatch(cartActions(userData.name))
-    
       updatePrice()
-    // }
-}, [cartData.length, dispatch, totalPrice, userData.name]);
-
+    // } 
+// eslint-disable-next-line react-hooks/exhaustive-deps
+}, [dispatch, cartData?.length, totalPrice, userData.name]);
 const toast = useToast();
-   //------Offer Function-------------------------------------------------------------------- //
+   //------Offer Function-------------------- //
    const [apply,setApply] = useState("");
    const offerClick = () => {
-    //  console.log('val:', totalCartPrice)
-    //  console.log("Apply text",apply);
      if(apply === "VS50"){
-       setTotalCartPrice(cartData.reduce(
+       setTotalCartPrice(cartData?.reduce(
         (acc, el) => acc + changePrice(el.price) * el.qty *50/100,
         0
       ));
@@ -108,18 +91,39 @@ const toast = useToast();
       });
      }
    }
-
+    // --------------------------Delete cart item ----------------
+const deleteCartItem = (el)=>{
+// eslint-disable-next-line array-callback-return
+let cartUpdate =  currUser.cart.filter(e=>{
+  if(e.id!==el.id){
+    return el 
+  }
+})
+currUser.cart = cartUpdate
+dispatch(updateUser(currUser)).then(()=>dispatch(cartActions).then(()=>updatePrice()))
+}
     
-
+const nav = useNavigate()
    //------Price Details hide Function-------------------------------------------------------------------- //
   const paymentFun = () => {
-      dispatch(cartValue(totalCartPrice));
+    if(user.cart?.length===0){
+      toast({
+        title: "Cart Is Empty",
+        description: "Nothing To ckeckout",
+        variant: "subtle",
+        status:'error',
+        position: 'top-right',
+        duration: 3000,
+        isClosable: true,
+      });
+    }else{
+      dispatch(updateUser({...user,orders:cartData,cart:[]}))
+      nav('/address')
+    }
   }
   //------Quantity Increase Function-------------------------------------------------------------------- //
   const quantityIncre = async(el) => {
-    let currUser = await dispatch(getUser(userData.id))
-
-    let updatedCart = currUser.cart.map(e=>{
+  currUser.cart.map(e=>{
       if(e.id===el.id){
         e.qty=e.qty+1;
         return e
@@ -127,22 +131,25 @@ const toast = useToast();
         return e
       }
     })
-     dispatch(updateCarts({...currUser, cart:updatedCart }))
-     
-      .then(()=> {
+    dispatch(updateUser(currUser)).then(()=> {
         dispatch(cartActions());
-      });
+      })
+      updatePrice()
   }
    //------Quantity Decrease Function----------------------------------------------------------------------- //
-  const quantityDecre = async(el,min) => {
-    dispatch(userCartUpdate({...el, min}))
-      .then(()=> {
-        dispatch(cartActions());
-      });
+  const quantityDecre = async(el) => {
+    currUser.cart.map(e=>{
+      if(e.id===el.id){
+        e.qty=e.qty-1;
+        return e
+      }else{
+        return e
+      }
+    })
+    dispatch(updateUser(currUser))
+    updatePrice()
   }
-  // Loading And Error
-  // if(loading) return <h3>Loading...</h3>;
-  // if(error) return <h3>Error...</h3>;
+  
   return (
     <>
      <Navbar />
@@ -150,10 +157,10 @@ const toast = useToast();
         <div className="BothDiv">
           <div className="firstDiv">
             <div className="CartDetails">
-              <p>My Cart:[{cartData.length}]</p>
+              <p>My Cart:[{cartData?.length}]</p>
               {/* <p>Total Ammount:₹{totalCartPrice}</p> */}
             </div>
-            {cartData.map((e, id) => (
+            {cartData?.map((e, id) => (
               <div className="cartProDiv" key={id}>
                 <div className="CartImgDeatils">
                   <div className="CartImgDiv">
@@ -173,24 +180,21 @@ const toast = useToast();
                 </div>
                 <div className="QRdiv">
                   <div className="Qdiv">
-                    <Button  onClick={()=> quantityDecre(e,e.qty--)}
+                    <Button  onClick={()=> quantityDecre(e)}
                     isDisabled={e.qty === 1}
                     color="red" variant="light">
                       -
                     </Button>
                     <Button variant="light">{ loading ? <Spinner/> : e.qty}</Button>
                     <Button
-                    onClick={()=> quantityIncre(e,e.qty++)}
+                    onClick={()=> quantityIncre(e)}
                     color="green" variant="light">
                       +
                     </Button>
                   </div>
                   <div>
                     <Button
-                     onClick={()=>{
-                      dispatch(deleteCartItem(e.id)).then(()=> dispatch(cartActions()));
-                      // dispatch(cartActions());
-                      }}
+                     onClick={()=>deleteCartItem(e)}
                       type="button"
                       variant="light"
                       marginTop="-7px"
@@ -276,11 +280,11 @@ const toast = useToast();
               </div>
             </div>
             <div className="checkoutDiv">
-            <Link to='/payment'  >
+            <Text >
             <button  className="Checkout" onClick={paymentFun}  >
              Check Out
           </button>
-    </Link>
+    </Text>
           <Modal
             className="ordermodal"
             isCentered

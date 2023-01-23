@@ -1,7 +1,7 @@
 import axios from "axios";
 
-export const getWishlistAPI = async() => {
-    let res =  await axios.get(`https://busy-peplum-fawn.cyclic.app/wishList`);
+export const getWishlistAPI = async(user) => {
+    let res =  await axios.get(`https://busy-peplum-fawn.cyclic.app/${user.id}`);
     // console.log('res:', res.data)
     return res.data;
 }
