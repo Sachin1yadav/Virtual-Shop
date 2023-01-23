@@ -39,45 +39,63 @@ import { TbDiscount2 } from "react-icons/tb";
 import { Link } from "react-router-dom";
 import Payment from "../checkout/Payment";
 import Navbar from "../../components/Navbar/Navbar";
+import { getUser, userCartUpdate } from "../../redux/AddUser/User.actions";
 const Cart = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const handelOnSubtmi=()=>{
     onClose()
   }
   const {loading , error, cartData,totalPrice} = useSelector((store) => store.cart);
-  console.log('totalPriceSelector:', totalPrice)
-  console.log('cartData:', cartData)
+  // console.log('totalPriceSelector:', totalPrice);
+
+
+// console.log( "CartData", cartData)
+
   const dispatch = useDispatch();
+  const { isauth, userData } = useSelector((val) => val.authUser);
+  const changePrice = (str) => {
+    let res = str.replace(/\D/g, "");
+    return parseInt(res);
+  };
+
   const [totalCartPrice,setTotalCartPrice] = useState(totalPrice);
   const updatePrice = () => {
     setTotalCartPrice(
       cartData.reduce(
-        (acc, el) => acc + (+el.price+152) * el.qty,
+        (acc, el) => acc + changePrice(el.price) * el.qty,
         0
       )
+      
     );
   }
-  console.log('totalCartPrice:', totalCartPrice)
   useEffect(() => {
-    dispatch(cartActions())
+    dispatch(cartActions(userData.name))
     
       updatePrice()
     // }
-}, [ cartData.length,totalPrice]);
+}, [cartData.length, dispatch, totalPrice, userData.name]);
 
-console.log('After UseEffect totalSum:', totalCartPrice)
 const toast = useToast();
    //------Offer Function-------------------------------------------------------------------- //
    const [apply,setApply] = useState("");
    const offerClick = () => {
-     console.log('val:', totalCartPrice)
-     console.log("Apply text",apply);
+    //  console.log('val:', totalCartPrice)
+    //  console.log("Apply text",apply);
      if(apply === "VS50"){
        setTotalCartPrice(cartData.reduce(
-        (acc, el) => acc + (+el.price+152) * el.qty *50/100,
+        (acc, el) => acc + changePrice(el.price) * el.qty *50/100,
         0
       ));
-       setApply("")
+       setApply("");
+       toast({
+        title: "Applied Successfully",
+        description: "You have added VS50",
+        variant: "subtle",
+        status:'success',
+        position: 'top-right',
+        duration: 3000,
+        isClosable: true,
+      });
      }else if(apply !== "VS50"){
       toast({
         title: "Not Valid",
@@ -91,23 +109,36 @@ const toast = useToast();
      }
    }
 
+    
+
    //------Price Details hide Function-------------------------------------------------------------------- //
   const paymentFun = () => {
       dispatch(cartValue(totalCartPrice));
-  } 
-
+  }
   //------Quantity Increase Function-------------------------------------------------------------------- //
-  const quantityIncre = async(id,qty) => {
-      dispatch(updateCarts(id,{"qty":qty+1}))
+  const quantityIncre = async(el) => {
+    let currUser = await dispatch(getUser(userData.id))
+
+    let updatedCart = currUser.cart.map(e=>{
+      if(e.id===el.id){
+        e.qty=e.qty+1;
+        return e
+      }else{
+        return e
+      }
+    })
+     dispatch(updateCarts({...currUser, cart:updatedCart }))
+     
       .then(()=> {
         dispatch(cartActions());
       });
   }
    //------Quantity Decrease Function----------------------------------------------------------------------- //
-  const quantityDecre = async(id,qty) => {
-    dispatch(updateCarts(id,{"qty":qty-1})).then(()=> {
-      dispatch(cartActions());
-    });
+  const quantityDecre = async(el,min) => {
+    dispatch(userCartUpdate({...el, min}))
+      .then(()=> {
+        dispatch(cartActions());
+      });
   }
   // Loading And Error
   // if(loading) return <h3>Loading...</h3>;
@@ -142,14 +173,14 @@ const toast = useToast();
                 </div>
                 <div className="QRdiv">
                   <div className="Qdiv">
-                    <Button  onClick={()=> quantityDecre(e.id,e.qty)}
+                    <Button  onClick={()=> quantityDecre(e,e.qty--)}
                     isDisabled={e.qty === 1}
                     color="red" variant="light">
                       -
                     </Button>
                     <Button variant="light">{ loading ? <Spinner/> : e.qty}</Button>
                     <Button
-                    onClick={()=> quantityIncre(e.id,e.qty)}
+                    onClick={()=> quantityIncre(e,e.qty++)}
                     color="green" variant="light">
                       +
                     </Button>
@@ -262,7 +293,7 @@ const toast = useToast();
               <ModalHeader> </ModalHeader>
               <ModalCloseButton />
               <ModalBody>
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReO4PsZOqzxtG7IDo2_bZja_Q97FXTKUx0GQ&usqp=CAU"   style={{margin:"auto"}}    />
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReO4PsZOqzxtG7IDo2_bZja_Q97FXTKUx0GQ&usqp=CAU" alt=' '  style={{margin:"auto"}}    />
                 <p  style={{textAlign:"center"  }}> Woow! You Can use "VS50" </p>
               </ModalBody>
               <ModalFooter>

@@ -24,7 +24,7 @@ import { HamburgerIcon, CloseIcon, MoonIcon, SunIcon, AddIcon } from "@chakra-ui
 import {useDispatch, } from 'react-redux'
 import { adminLogout } from "../../redux/admin_auth/admin.actions";
 import AdModal from "../AddProduct/Modal";
-export default function AdminNav({handleCategory}) {
+export default function AdminNav({handleCategory,catagory}) {
   const navigate = useNavigate()
 
   const { colorMode, toggleColorMode } = useColorMode();
@@ -55,7 +55,7 @@ export default function AdminNav({handleCategory}) {
 
   return (
     <>
-      <Box position={"fixed"} left='0' right={'0'} bg={useColorModeValue("gray.100", "gray.900")} px={4}>
+      <Box fontWeight={'semibold'} position={"fixed"} left='0' right={'0'} bg={useColorModeValue("gray.100", "gray.900")} px={4}>
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
           <IconButton
             size={"md"}
@@ -75,13 +75,13 @@ export default function AdminNav({handleCategory}) {
             >
               <Link>
               <Select onChange={handleCategory} placeholder="Select Catagory">
-                  <option value="t_shirt">T-shirt</option>
-                  <option value="Jacket">Jacket</option>
-                  <option value="watch">Watch</option>
-                  <option value="mobile">Mobile</option>
-                  <option value="Headphones">Headphone</option>
-                  <option value="bags">Bag</option>
-                  <option value="shoes">Shoes</option>
+                  {catagory.map((el,id)=><option key={id} value={el}>{el}</option>)}
+                  {/* <option value="Jacket">Jacket</option>
+                  <option value="watch">watch</option>
+                  <option value="mobile">mobile</option>
+                  <option value="Headphones">Headphones</option>
+                  <option value="bags">bags</option>
+                  <option value="shoes">shoes</option> */}
               </Select>
               </Link>
               <Link onClick={showUsers} >

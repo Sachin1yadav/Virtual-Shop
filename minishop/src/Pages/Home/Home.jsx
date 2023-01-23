@@ -7,8 +7,12 @@ import HomeProducts from "./HomeProducts";
 import "./Home.css";
 import { Carousel } from "./Carousel";
 import { Loaderskeleton } from "./Carousel";
+
+import DemoSimiler from "../../DemoPagesBySachin/DemoSimiler";
+
 // import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 // import Slider from "react-slick";
+
 
 
 import HomeCarouselDemo from './HomeCarouselDemo';
@@ -46,7 +50,9 @@ function Home() {
      <Navbar/>
     <Box mt='80px' >
       
+
       {/* <Box w={"98%"} m={"auto"} mt='74px' >
+
         <Image src="https://s3.thingpic.com/images/WZ/1ChLD86XEtKdLmpiQHdW1nhF.jpeg"  alt='1'/>
      <Carousel  
           dots= {false} infinite= {true}
@@ -76,23 +82,17 @@ function Home() {
           <HomeProducts
             data={data.filter((item) => item.Categories === "t_shirt")}/>  
         </Box> }
+
+        <Box mt='80px' mb='60px' >
+          <DemoSimiler  data={data.filter((item) => item.Categories === "shoes")} />
+        </Box>
 {/*---------------------------------    carousel   ---------------------------------------*/}        
-<Box w={"98%"} m={"auto"} mt='74px' mb='50px'>
-      <Carousel  
-          dots= {false} infinite= {true}
-          slidesToShow = {3}
-          slidesToScroll= {1}
-          autoplay= {true} autoplaySpeed= {3000} pauseOnHover= {true } 
-          Img={slider2}
-          />
+          <Box w={"100%"} m={"auto"} mt='74px' mb='50px' backgroundColor={'white'} >
+            < Image src="https://thegenuineleather.com/wp-content/uploads/2022/10/MEN-LEATHER-JACKET.webp" m='auto' alt='1'/>
+     
           </Box>
-          {/* <SingleCarousel  
-          dots= {true} infinite= {true}
-          slidesToShow = {3}
-          slidesToScroll= {1}
-          Speed= {500} 
-          Img={data.filter((item) => item.Categories === "Jacket")}
-          /> */}
+          
+         
 {/*---------------------------------    carousel   ---------------------------------------*/}          
 {loading ?  <Loaderskeleton/> :    <Box>
           <Heading style={{color:"black",textAlign:"start" }}>Jacket</Heading>
@@ -100,22 +100,54 @@ function Home() {
             data={data.filter((item) => item.Categories === "Jacket")}/>
         </Box>}
 
+        <Box mt='40px' mb='40px' backgroundColor={'white'} >
+          <Carousel  
+          dots= {false} infinite= {true}
+          slidesToShow = {4}
+          slidesToScroll= {1}
+          autoplay= {true} autoplaySpeed= {3000} pauseOnHover= {true } 
+          Img={slider2}
+          />
+          </Box>
+
         {loading ?  <Loaderskeleton/> :     <Box>
           <Heading style={{color:"black",textAlign:"start" }}>Bags</Heading>
           <HomeProducts
             data={data.filter((item) => item.Categories === "bags")} />
         </Box>}
 
-        {loading ?  <Loaderskeleton/> :     <Box>
+        <Box mt='80px' mb='60px' >
+          <DemoSimiler  data={data.filter((item) => item.Categories === "t_shirt")} />
+        </Box>
+
+        <Box w={"100%"} m={"auto"} mt='74px' mb='50px' border='2px' >
+        <Image src="https://cdn.shopify.com/s/files/1/0057/8938/4802/files/WSC-Desktop_dad0fc88-3fc8-4ed8-becb-b7901e4b37f4_1400x.jpg?v=1673853393"  alt='3'/>
+       </Box>
+       {loading ?  <Loaderskeleton/> :     <Box>
           <Heading style={{color:"black",textAlign:"start" }}>Watch</Heading>
           <HomeProducts
             data={data.filter((item) => item.Categories === "watch")}/>
            </Box>}
-       
+
+          <Box w={"100%"} m={"auto"} mt='74px' mb='50px' border='2px' >
+        <Image src="https://cdn.shopify.com/s/files/1/0057/8938/4802/files/2000x650_f60dcd57-3f35-4f38-a32f-3f9666996225_1400x.jpg?v=1673538078"  alt='4'/>
+          </Box>
            {loading ?  <Loaderskeleton/> :  <Box>
           <Heading>Headphones</Heading>
           <HomeProducts
             data={data.filter((item) => item.Categories === "Headphones")}/>
+        </Box>}
+
+        {loading ?  <Loaderskeleton/> :  <Box>
+          <Heading>Mobiles</Heading>
+          <HomeProducts
+            data={data.filter((item) => item.Categories === "mobile")}/>
+        </Box>}
+
+        {loading ?  <Loaderskeleton/> :  <Box>
+          <Heading>Shoes</Heading>
+          <HomeProducts
+            data={data.filter((item) => item.Categories === "shoes")}/>
         </Box>}
       
     </Box>
@@ -137,12 +169,16 @@ const imagesTop = ['https://s3.thingpic.com/images/WZ/1ChLD86XEtKdLmpiQHdW1nhF.j
 'https://s3.thingpic.com/images/WZ/1ChLD86XEtKdLmpiQHdW1nhF.jpeg'
 ]
 
-const slider2 = ['https://images.unsplash.com/photo-1511370235399-1802cae1d32f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fHdhdGNofGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60',
-'https://images.unsplash.com/photo-1612817159949-195b6eb9e31a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjR8fHdhdGNofGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60',
-'https://cdn.shopify.com/s/files/1/0057/8938/4802/files/2000x650_f60dcd57-3f35-4f38-a32f-3f9666996225_1400x.jpg?v=1673538078',
-'https://cdn.pixabay.com/photo/2018/01/16/10/18/headphones-3085681__340.jpg',
-'https://s3.thingpic.com/images/WZ/1ChLD86XEtKdLmpiQHdW1nhF.jpeg',
-'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSr7VY_uPylvuiiTb4AsuCIALXIYGYUH4CfBg&usqp=CAU'
+const slider2 = ['https://cdn.shopify.com/s/files/1/0057/8938/4802/files/AB1000_445x.jpg?v=1671007984',
+'https://cdn.shopify.com/s/files/1/0057/8938/4802/files/stone_1_445x.png?v=1670244742',
+'https://cdn.shopify.com/s/files/1/0057/8938/4802/files/carousel_banner_445x.png?v=1671097960',
+'https://cdn.shopify.com/s/files/1/0057/8938/4802/files/AB1000_445x.jpg?v=1671007984',
+'https://cdn.shopify.com/s/files/1/0057/8938/4802/files/stone_1_445x.png?v=1670244742',
+'https://cdn.shopify.com/s/files/1/0057/8938/4802/files/carousel_banner_445x.png?v=1671097960',
+'https://cdn.shopify.com/s/files/1/0057/8938/4802/files/AB1000_445x.jpg?v=1671007984',
+'https://cdn.shopify.com/s/files/1/0057/8938/4802/files/stone_1_445x.png?v=1670244742',
+'https://cdn.shopify.com/s/files/1/0057/8938/4802/files/carousel_banner_445x.png?v=1671097960',
+
 
 ];
 
