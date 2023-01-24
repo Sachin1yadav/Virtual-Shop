@@ -133,7 +133,7 @@ const SinglePage = () => {
               <BsStarFill />
             </span>
           </div>
-          <p className="discription">
+          <div className="discription">
             {itemDetail?.discription ? itemDetail?.discription :
             <>
             <p>
@@ -141,7 +141,7 @@ const SinglePage = () => {
             </p>
             </>
             }
-          </p>
+          </div>
           <div className="btnWC">
           <button className="wish" onClick={()=>likeFuc(itemDetail)}>
           <div> <p>Wishlist</p>
