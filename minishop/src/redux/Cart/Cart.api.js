@@ -14,12 +14,4 @@ export const updateCartApi =  async(newData) => {
         console.log("errrroroeroer is",err)
     }
 }
-export const deleteCart = async(id) => {
-    try{
-        let res =  await axios.delete(`https://lackadaisical-volcano-larch.glitch.me/cart/${id}`);
-        return res;
-    }catch(err){
-        return err;
-    }
-}
    

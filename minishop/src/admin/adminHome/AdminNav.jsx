@@ -55,7 +55,7 @@ export default function AdminNav({handleCategory,catagory}) {
 
   return (
     <>
-      <Box fontWeight={'semibold'} position={"fixed"} left='0' right={'0'} bg={useColorModeValue("gray.100", "gray.900")} px={4}>
+      <Box fontWeight={'semibold'} position={"fixed"} left='0' right={'0'} bg={useColorModeValue("gray.100", "gray.900")} px={4} zIndex='10' >
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
           <IconButton
             size={"md"}

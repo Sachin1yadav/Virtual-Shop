@@ -6,23 +6,22 @@ import { AiFillDelete, AiOutlineHome } from 'react-icons/ai';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import Navbar from '../../components/Navbar/Navbar';
-import { removeWishlistData, wishlistGetData } from '../../redux/Wishlist/Wishlist.actions';
+import { updateUser } from '../../redux/AddUser/User.actions';
+import { wishlistGetData } from '../../redux/Wishlist/Wishlist.actions';
 
 import "./Wishlist.scss"
-
 const Wishlist = () => {
 
-    const {loading , error, wishData} = useSelector((store) => store.wishlist);
+    const {user} =  useSelector(val=>val?.userAllData)
+    const wishData= user.wishlist
     const toast = useToast();
     const navigate  = useNavigate();
-
-
-    console.log('cartData:', wishData)
     const dispatch = useDispatch();
     useEffect(() => {
       dispatch(wishlistGetData())
      
-  }, [ wishData.length]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ wishData?.length]);
 
   const addToCart = (itemDetail) => {
     toast({
@@ -36,8 +35,16 @@ const Wishlist = () => {
     return axios.post(`https://lackadaisical-volcano-larch.glitch.me/cart`,{...itemDetail,qty:1});
   };
 
-  const removeWishFun = (id) => {
-    dispatch(removeWishlistData(id)).then(()=> dispatch(wishlistGetData()));
+  const removeWishFun = (e) => {
+   // eslint-disable-next-line array-callback-return
+   let newWishdata =  wishData.filter(el=>{
+      if(el.id!==e.id){
+        return el
+      }
+    })
+    user.wishlist = newWishdata
+    dispatch(updateUser(user))
+    dispatch(wishlistGetData(user))
   }
 
   return (
@@ -46,77 +53,84 @@ const Wishlist = () => {
     <div className="CartMainDiv" mt='80px'>
         <div className="firstDivWish">
           <div className="CartDetailsWish">
-            <p>My WishList:({wishData.length})</p>
+            <p>My WishList:({wishData?.length})</p>
             <Link to="/">
               <p style={{ fontSize: "30px" }}>
                 <AiOutlineHome />
               </p>
             </Link>
           </div>
-          {wishData.map((e, id) => (
-            <div className="cartProDivWish" key={id}>
-              <div className="CartImgDeatilsWish">
-                <div className="CartImgDivWish">
-                  <img src={e?.image[0]} alt={e.price} />
-                </div>
-                <div className="ProDivDetailWish">
-                  {e.show ? (
-                    <p className="StockWish">In Stock</p>
-                  ) : (
-                    <p className="OutStockWish">Out Of Stock</p>
-                  )}
-                  <p className="ProdivnameWish">
-                    {e.name.length < 25 ? e.name : `${e.name.slice(0, 25)}...`}{" "}
-                  </p>
-                  <div className="ProdivpriceWish">
-                    <h4>Price: ₹{e.price}</h4>
-                    <p
-                      style={{ color: "gray", textDecoration: "line-through" }}
-                    >
-                      {e.og_price}
-                    </p>
-                    <p
-                      style={{
-                        color: "green",
-                        fontSize: "12px",
-                        fontWeight: "bold",
-                      }}
-                    >
-                      17% off
-                    </p>
-                  </div>
-                  <p className="ProdivratingWish">
-                    Rating: {e.raitng ? e.raitng : "4.3"}
-                  </p>
-                </div>
-              </div>
-              <div className="QRdivDiv">
-                <div className="QdivWish">
-                {e.show ? (
-                    <Button variant="light" onClick={()=> addToCart(e)}>Add To Cart</Button>
-                  ) : (
-                    <Button className="Explor" variant="light" onClick={()=>navigate('/')}>Explore Similar</Button>
-                  )}
-                </div>
-                <div>
-                  <Button
-                    onClick={() => {
-                    //   dispatch(removeWishlistData(e.id)).then(() =>
-                    //     dispatch(wishlistGetData())
-                    //   );
-                    removeWishFun(e.id)
-                    }}
-                    type="button"
-                    variant="light"
-                    marginTop="-7px"
-                    className="delBTNWish"
-                  >
-                    <AiFillDelete fontSize="20px" />
-                  </Button>
-                </div>
-              </div>
+{wishData?.length===0?( <div  >
+    <img style={{margin:"auto"}} src="https://2.bp.blogspot.com/-QfSOClZc8r0/XNr6srFlzjI/AAAAAAAAGlA/lzs505eFFiEdyAytzKkMabdUTihKywcqwCLcBGAs/s1600/EXAM360%2B-%2BNo%2BWishlist.png" alt="Your Wish list is Empty!!"/>
+  </div>):(
+    <div>
+     {wishData?.map((e, id) => (
+      <div className="cartProDivWish" key={id}>
+        <div className="CartImgDeatilsWish">
+          <div className="CartImgDivWish">
+            <img src={e?.image[0]} alt={e.price} />
+          </div>
+          <div className="ProDivDetailWish">
+            {e.show ? (
+              <p className="StockWish">In Stock</p>
+            ) : (
+              <p className="OutStockWish">Out Of Stock</p>
+            )}
+            <p className="ProdivnameWish">
+              {e.name.length < 25 ? e.name : `${e.name.slice(0, 25)}...`}{" "}
+            </p>
+            <div className="ProdivpriceWish">
+              <h4>Price: ₹{e.price}</h4>
+              <p
+                style={{ color: "gray", textDecoration: "line-through" }}
+              >
+                {e.og_price}
+              </p>
+              <p
+                style={{
+                  color: "green",
+                  fontSize: "12px",
+                  fontWeight: "bold",
+                }}
+              >
+                17% off
+              </p>
             </div>
-          ))}
+            <p className="ProdivratingWish">
+              Rating: {e.raitng ? e.raitng : "4.3"}
+            </p>
+          </div>
+        </div>
+        <div className="QRdivDiv">
+          <div className="QdivWish">
+          {e.show ? (
+              <Button variant="light" onClick={()=> addToCart(e)}>Add To Cart</Button>
+            ) : (
+              <Button className="Explor" variant="light" onClick={()=>navigate('/')}>Explore Similar</Button>
+            )}
+          </div>
+          <div>
+            <Button
+              onClick={() => {
+              //   dispatch(removeWishlistData(e.id)).then(() =>
+              //     dispatch(wishlistGetData())
+              //   );
+              removeWishFun(e)
+              }}
+              type="button"
+              variant="light"
+              marginTop="-7px"
+              className="delBTNWish"
+            >
+              <AiFillDelete fontSize="20px" />
+            </Button>
+          </div>
+        </div>
+      </div>
+    ))}
+    </div>
+  )
+}
         </div>
       </div>
       </>

@@ -1,11 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Metrophobic&display=swap');
-
 .App {
-
     font-family: 'Metrophobic', sans-serif;
     text-align: center;
     background-image: url("https://media.istockphoto.com/id/586058260/photo/white-wood-panel-texture-background.jpg?s=612x612&w=0&k=20&c=Hcuxx1LJp6O_EHGQAoeN4BNAQX8pIGuQStAOkpwHCBk=");
-
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -33,7 +30,6 @@
     from {
         transform: rotate(0deg);
     }
-
     to {
         transform: rotate(360deg);
     }

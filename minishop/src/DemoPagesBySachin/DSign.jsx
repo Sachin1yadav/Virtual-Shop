@@ -1,8 +1,9 @@
 import React, { useContext, useState } from "react";
 import { useToast, Button } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import "./Sign.css";
+import "./Sign.scss";
 import { AuthContext } from "../Pages/login&signup/AuthContextProvider";
+import { AiFillHome } from "react-icons/ai";
 const userInit = {
   email: "",
   password: "",
@@ -10,7 +11,6 @@ const userInit = {
 const DSign = () => {
   const toast = useToast();
   const [user, setUser] = useState(userInit);
-  const [error, setError] = useState("");
   const { createUser } = useContext(AuthContext);
   const handleChange = (e) => {
     setUser({ ...user, [e.target.type]: e.target.value });
@@ -20,39 +20,58 @@ const DSign = () => {
     try {
       await createUser(user.email, user.password);
     } catch (e) {
-      setError(e.message);
-      console.log(e.message);
     }
   };
   return (
-    <div>
+    <div className="MainDiv">
         <div className="box ">
           <div className="form">
             <form onSubmit={handleSubmit} action="">
+            <div className="SingHomeDiv">
               <h2>Register</h2>
+              <div>
+              <Link to="/" >
+              {/* <Tooltip
+                  bg="gray.300"
+                  placement="bottom"
+                  
+                  label="Home Page"
+                > */}
+                 
+                  <h3 className="homeSing"><AiFillHome/></h3>
+                  
+                {/* </Tooltip> */}
+                
+                </Link>
+                </div>
+              
+              </div>
               <div className="inputBox">
+              <span>Name</span>
                 <input required="required" />
-                <span>Name</span>
+                
                 <i></i>
               </div>
               <div className="inputBox">
+              <span>Email</span>
                 <input
                   type="email"
                   value={user.email}
                   onChange={handleChange}
                   required="required"
                 />
-                <span>Email</span>
+                
                 <i></i>
               </div>
               <div className="inputBox">
+              <span>Password</span>
                 <input
                   type="password"
                   value={user.password}
                   onChange={handleChange}
                   required="required"
                 />
-                <span>Password</span>
+           
                 <i></i>
               </div>
               <div className="signDiv">

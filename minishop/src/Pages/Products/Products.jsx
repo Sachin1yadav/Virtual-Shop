@@ -21,16 +21,14 @@ const Products = () => {
         `https://lackadaisical-volcano-larch.glitch.me/data/?q=${Categories}&_sort=${price}&_order=${order}`
       );
       const datas = await res.json();
-      console.log(datas);
       setValue(datas);
     } catch (error) {
-      console.log("e", error);
     }
   };
-  console.log("line22", Categories);
   useEffect(() => {
     getSimilarData();
-  }, [Categories, price]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [Categories, price, order]);
 
   return (
     <div>

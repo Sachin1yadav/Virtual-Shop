@@ -19,6 +19,6 @@ export const orderActions = () => async(dispatch) => {
 }
 
 export const cancelOrder = (id) => async(dispatch) => {
-    let data1 =  await deleteOrder(id);
+    await deleteOrder(id);
     dispatch({type:ORDER_REMOVE,payload:id})
 }

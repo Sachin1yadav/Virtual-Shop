@@ -2,7 +2,6 @@ import { Heading } from "@chakra-ui/layout";
 import React, { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import "./Payment.css";
-
 const initAdress = {
   house: "",
   colony: "",
@@ -13,20 +12,16 @@ const initAdress = {
   landmark: "",
   phone: "",
 };
-
 const Address = () => {
   const [address, setAddress] = useState(initAdress);
-
   const handleChange = (e) => {
     setAddress({ ...address, [e.target.placeholder]: e.target.value });
   };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     <Navigate to="/payment" />;
   };
-
-  console.log(address);
+  // console.log(address);
   return (
     <div>
       <Heading>Delivery Address</Heading>
@@ -52,7 +47,6 @@ const Address = () => {
             required
           />
         </div>
-
         <div style={{ display: "flex", gap: "1rem" }}>
           <input
             type="text"
@@ -69,7 +63,6 @@ const Address = () => {
             required
           />
         </div>
-
         <div style={{ display: "flex", gap: "1rem" }}>
           <input
             type="text"
@@ -86,7 +79,6 @@ const Address = () => {
             required
           />
         </div>
-
         <input
           type="text"
           value={address.landmark}
@@ -96,17 +88,27 @@ const Address = () => {
         />
         <input
           type="text"
+          maxLength={10}
+          minLength={10}
           value={address.phone}
           onChange={handleChange}
           placeholder="phone"
           required
         />
-        <button ml={0} colorScheme="blue" size="sm" fontSize="sm">
+        <Link to={'/payment'}><button ml={0} colorScheme="blue" size="sm" fontSize="sm">
           use this address
-        </button>
+        </button></Link>
       </form>
     </div>
   );
 };
-
 export default Address;
+
+
+
+
+
+
+
+
+
