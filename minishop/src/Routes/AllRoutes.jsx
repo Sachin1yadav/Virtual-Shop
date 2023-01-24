@@ -14,7 +14,7 @@ import Order from "../Pages/Order/Order";
 import Wishlist from "../Pages/Wishlist/Wishlist";
 import AllUsers from "../admin/adminComp/AllUsers";
 import AllSellers from "../admin/adminComp/AllSellers";
-import Products from "../Pages/Products/Products";
+import Products from "../Pages/products/Products";
 function Allroute() {
   return (
     <>

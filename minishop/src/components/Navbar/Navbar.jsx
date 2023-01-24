@@ -164,7 +164,6 @@ export default function Navbar({ display = "flex" }) {
           <Box  cursor={'pointer'}  display={'flex'}   onClick={()=>nav(`/products/Jacket`)}  >
         Jackets
        </Box >
-       <Divider orientation='horizontal'    />
           <Box cursor={'pointer'}  display={'flex'} onClick={()=>nav(`/products/bags`)}  >
          Bags
       </Box>

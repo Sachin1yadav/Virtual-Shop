@@ -33,28 +33,8 @@ function Home() {
     <>
      <Navbar/>
     <Box mt='65px' >
-      {/* <Box w={"98%"} m={"auto"} mt='74px' >
-        <Image src="https://s3.thingpic.com/images/WZ/1ChLD86XEtKdLmpiQHdW1nhF.jpeg"  alt='1'/>
-     <Carousel
-          dots= {false} infinite= {true}
-          slidesToShow = {1}
-          slidesToScroll= {1}
-          autoplay= {true} autoplaySpeed= {3000} pauseOnHover= {true }
-          Img={imagesTop}
-          />
-          </Box> */}
-     {/* Carousal by kiran */}
      <HomeCarouselDemo/>
     <Box w='90%' m={'auto'}  >
-{/*---------------------------------    carousel   ---------------------------------------*/}
-        {/* <Carousel
-          dots= {true} infinite= {true}
-          slidesToShow = {1}
-          slidesToScroll= {1}
-          autoplay= {true} autoplaySpeed= {3000} pauseOnHover= {true }
-          Img={imagesTop}
-          /> */}
- {/*---------------------------------    carousel   ---------------------------------------*/}
  {loading ?  <Loaderskeleton/> : <Box >
           <Heading style={{color:"black",textAlign:"center" }}>T-Shirt</Heading>
           <HomeProducts
@@ -122,7 +102,6 @@ function Home() {
   );
 }
 export default Home;
-
 const slider2 = ['https://cdn.shopify.com/s/files/1/0057/8938/4802/files/AB1000_445x.jpg?v=1671007984',
 'https://cdn.shopify.com/s/files/1/0057/8938/4802/files/stone_1_445x.png?v=1670244742',
 'https://cdn.shopify.com/s/files/1/0057/8938/4802/files/carousel_banner_445x.png?v=1671097960',
