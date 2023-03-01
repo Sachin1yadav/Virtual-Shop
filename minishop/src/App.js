@@ -1,8 +1,5 @@
  
 import './App.css';
- 
- 
-
 import Allroute from './Routes/AllRoutes';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Box } from '@chakra-ui/react';
@@ -13,7 +10,7 @@ function App() {
   return (
     <div className="App">
        <Box>
-       <Allroute/>
+          <Allroute/>
        </Box>
        <Footer/>
     </div>

@@ -16,7 +16,7 @@ import {
 import { useState } from "react";
 import { useRef } from "react";
 import EditModal from "../../AddProduct/EditModal";
-
+ 
 const ItemTable = ({ data,total, toggleshow,sloading }) => {
   const toast = useToast()
   const showMsg = (msg, status,el)=>{
@@ -30,11 +30,12 @@ const ItemTable = ({ data,total, toggleshow,sloading }) => {
   }
   const [dataa, setDataa] = useState({})
   const showModal = useRef(null)
-  const editItem  = (el)=>{ 
+ 
+  const editItem  = (el)=>{
    showModal.current.click()
    setDataa(el)
   }
-
+ 
   return (
     <>
     <TableContainer mt='6' fontWeight='semibold' p='8'>
@@ -50,7 +51,7 @@ const ItemTable = ({ data,total, toggleshow,sloading }) => {
             <Th>Disable</Th>
           </Tr>
         </Thead>
-        <Tbody mt='20'> 
+        <Tbody mt='20'>
           {data.map((el,id) => {
             return (
               <Tr key={id}>
@@ -73,5 +74,4 @@ const ItemTable = ({ data,total, toggleshow,sloading }) => {
     </>
   );
 };
-
 export default ItemTable;

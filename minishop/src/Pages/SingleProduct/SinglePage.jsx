@@ -12,7 +12,6 @@ import { BsFillHeartFill } from "react-icons/bs";
 import DemoSimiler from "../../DemoPagesBySachin/DemoSimiler";
 import { cartActions } from "../../redux/Cart/Cart.actions";
 import Navbar from "../../components/Navbar/Navbar";
-import { getUser, updateUser, userCartUpdate } from "../../redux/AddUser/User.actions";
 
 const SinglePage = () => {
   const { id } = useParams();
@@ -24,11 +23,8 @@ const SinglePage = () => {
   const dispatch = useDispatch();
 const {cartData}=useSelector((store)=>store.cart)
 //   const {cartData}=useSelector((store)=>store.cart)
+// console.log("cartdata",cartData)
   const [similarData, setSimilarData] = useState([]);
-
-    //authentication cart
-    const { isauth, userData } = useSelector((val) => val.authUser);
-
   const getSimilarData =async () => {
     try {
         const res = await fetch("https://lackadaisical-volcano-larch.glitch.me/data");
@@ -54,9 +50,21 @@ const {cartData}=useSelector((store)=>store.cart)
       duration: 3000,
       isClosable: true,
     });
-    return axios.post(`https://busy-peplum-fawn.cyclic.app/wishList`, itemDetail);
+    return axios.post(`https://lackadaisical-volcano-larch.glitch.me/wishlist`, itemDetail);
   };
   
+ 
+  const addToCart = (itemDetail) => {
+    toast({
+      title: "Added to Cart",
+      description: "We've added this item to Cart",
+      variant: "subtle",
+      position:'top-right',
+      duration: 3000,
+      isClosable: true,
+    });
+    return axios.post(`https://lackadaisical-volcano-larch.glitch.me/cart`,{...itemDetail,qty:1});
+ 
   const addToCart = async(itemDetail) => {
     let currUser = await dispatch(getUser(userData.id))
     currUser.cart.push(itemDetail)
@@ -70,12 +78,11 @@ const {cartData}=useSelector((store)=>store.cart)
         isClosable: true,
       })
     });
+   
   };
-
   if(loading){
     <Loading/>
   };
-
   return (
     <>
      <Navbar />

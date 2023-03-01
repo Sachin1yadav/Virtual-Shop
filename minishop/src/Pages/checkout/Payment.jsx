@@ -1,8 +1,11 @@
-
+ 
+import {
+  Button,
+ 
 import {
  
   Button,
-  
+ 
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -10,7 +13,9 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-  
+ 
+  useDisclosure,
+ 
   useDisclosure,
   
 } from "@chakra-ui/react";
@@ -20,14 +25,12 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import "./Payment.css";
-
 const initDetails = {
   creditCardNum: "",
   cardHolder: "",
   expireMonth: "January",
   expireYear: "2024",
 };
-
 const Payment = () => {
   const totalAmount = useSelector((store) => store.cart.totalPrice);
   const [details, setDetails] = useState(initDetails);
@@ -36,9 +39,12 @@ const Payment = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const handleChange = (e) => {
     setDetails({ ...details, [e.target.name]: e.target.value });
+ 
+    // console.log(e.target.value);
+ 
     console.log(e.target.value);
+ 
   };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     // toast({
@@ -51,16 +57,19 @@ const Payment = () => {
     // navigate("/");
     onOpen();
   };
-
   return (
     <div>
       <Heading>Enter you Credit Card details</Heading>
-      <Text fontSize={20}>Total Amount will be deduct ₹ {totalAmount}</Text>
+      <Text fontSize={20} fontWeight={'bold'} color='green'>Total Amount will be deduct ₹ {totalAmount}</Text>
       <Box>
         <Spacer h="100" />
         <div
           style={{
+ 
+            width: "30%",
+  
             width: "40%",
+ 
             margin: "auto",
           }}
         >
@@ -106,13 +115,16 @@ const Payment = () => {
               placeholder="Please enter your credit card number"
             /> */}
               <input
-                type="number"
+                type="text"
+                maxlength="16" minLength='16'
                 name="creditCardNum"
                 value={details.creditCardNum}
                 onChange={handleChange}
                 required
               />
             </div>
+<
+ 
 
             <div className="input-container">
               <h4>Card Holder Name</h4>
@@ -124,7 +136,6 @@ const Payment = () => {
                 required
               />
             </div>
-
             <div
               style={{
                 display: "flex",
@@ -221,11 +232,10 @@ const Payment = () => {
                 <input type="password" placeholder="CVV" required />
               </div>
             </div>
-
             <button>Submit Payment</button>
           </form>
         </div>
-
+ 
         <Modal isOpen={isOpen} onClose={onClose}>
           <ModalContent style={{background:"#013341"}}>
             <ModalHeader style={{ textAlign: "center", fontSize: "2rem",color:"white" }}>
@@ -239,9 +249,11 @@ const Payment = () => {
                 alt="GIF"
               />
             </ModalBody>
-
+ 
             <ModalFooter style={{display:"flex",justifyContent:"center"}}>
-              
+ 
+            <ModalFooter style={{display:"flex",justifyContent:"center"}}>
+ 
               <Button onClick={()=>navigate("/order")} variant="solid">See Orders</Button>
             </ModalFooter>
           </ModalContent>
@@ -250,5 +262,4 @@ const Payment = () => {
     </div>
   );
 };
-
 export default Payment;

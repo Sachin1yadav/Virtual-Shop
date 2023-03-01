@@ -1,14 +1,13 @@
 import axios from "axios";
 
 export const getWishlistAPI = async() => {
-    let res =  await axios.get(`https://busy-peplum-fawn.cyclic.app/wishList`);
-    // console.log('res:', res.data)
+    let res =  await axios.get(`https://lackadaisical-volcano-larch.glitch.me/wishlist`);
     return res.data;
 }
 
 export const removeWishlist = async(id) => {
     try{
-        let res =  await axios.delete(`https://busy-peplum-fawn.cyclic.app/wishList/${id}`);
+        let res =  await axios.delete(`https://lackadaisical-volcano-larch.glitch.me/wishlist/${id}`);
         return res;
     }catch(err){
         return err;

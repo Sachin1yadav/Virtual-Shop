@@ -4,12 +4,11 @@ import { getAllUsers, getProdCatagoty, getProductsAdmin } from '../../redux/admi
 import AdminNav from '../adminHome/AdminNav'
 import { useDispatch, useSelector } from "react-redux";
 import UserTable from './UserTable';
-
 const AdmnUsers = () => {
   const dispatch = useDispatch()
   const allUsers = useSelector(val=>val.adminAll?.allUsers)
   const handleCategory = (e)=>{
-    if(e.target.value===''){ 
+    if(e.target.value===''){
       dispatch(getProductsAdmin(1));
     }else{
       dispatch(getProdCatagoty(e.target.value))
@@ -18,15 +17,10 @@ const AdmnUsers = () => {
   useEffect(() => {
   dispatch(getAllUsers())
   }, [])
-  
   const total = 0;
   const toggleshow=()=>{}
   const sloading=false
   const catagory = ['user1']
-
-
-
-
   return (
     <>
      <AdminNav handleCategory={handleCategory} catagory={catagory} />
@@ -37,5 +31,4 @@ const AdmnUsers = () => {
     </>
   )
 }
-
 export default AdmnUsers

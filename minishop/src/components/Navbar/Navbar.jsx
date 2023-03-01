@@ -1,5 +1,13 @@
 import React, { useEffect, useState } from "react";
 import {
+  Badge,
+  
+  
+  Dropdown,
+   
+  Nav,
+} from "react-bootstrap";
+import {
   Box,
   Flex,
   Menu,
@@ -27,8 +35,12 @@ import { HamburgerIcon } from "@chakra-ui/icons";
 import { HiOutlineShoppingCart } from "react-icons/hi";
 import {MdRemoveShoppingCart} from "react-icons/md"
 import { ReactSearchAutocomplete } from "react-search-autocomplete";
-import {FaShoppingCart, FaUserCircle} from "react-icons/fa";
-import {BsFillHeartFill,BsFacebook} from  "react-icons/bs";
+import {FaUserCircle,FaShoppingBag, FaHeadphonesAlt,FaHeadphones, FaShoppingCart} from "react-icons/fa";
+import {IoShirtOutline} from  "react-icons/io5"; 
+import {GiMonclerJacket,GiSchoolBag} from  "react-icons/gi";  
+import {BsWatch,BsSpeakerFill,BsFillHeartFill,BsFacebook} from  "react-icons/bs"; 
+import {SiPuma,SiReebok, SiAdidas} from  "react-icons/si";
+import {CgAppleWatch} from  "react-icons/cg";
 import {BiLogIn} from  "react-icons/bi";
 import {FcGoogle} from  "react-icons/fc";
 import "./Navbar.css";
@@ -36,29 +48,30 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { addNewUser, logoutUser } from "../../redux/AddUser/User.actions";
 import { userLogout } from "../../redux/Auth/auth.actions";
-import {
-  Badge,
-  Dropdown,
-  Nav,
-} from "react-bootstrap";
+ 
 import {
   cartActions,
 } from "../../redux/Cart/Cart.actions";
-
-
+ 
 export default function Navbar({ display = "flex" }) {
-
+  // .....code by sachin.......
+  const {loading , cartData} = useSelector((store) => store.cart);
+  
+  console.log('cartData:', cartData)
+  
+  // ............
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [data, setData] = useState([]);
   const nav = useNavigate();
   const { isauth, userData } = useSelector((val) => val.authUser);
 
   const dispatch = useDispatch()
+ 
 
   const {cartData} = useSelector((store) => store.cart);
   
 
-
+ 
   useEffect(() => {
     dispatch(cartActions())
   if(isauth){
@@ -80,16 +93,19 @@ export default function Navbar({ display = "flex" }) {
   useEffect(() => {
     getHomeData();
   }, []);
-
   const handleLogout= ()=>{
     dispatch(userLogout())
 
     dispatch(logoutUser(userData))
-
+ 
+    nav(`/`)
+  }
+ 
     nav(`/DLogin`)
 
   }
 
+ 
   const handleOnSearch = (string, results) => {
     // onSearch will have as the first callback parameter
     // the string searched and for the second the results.
@@ -144,45 +160,52 @@ export default function Navbar({ display = "flex" }) {
         <DrawerContent>
           <DrawerHeader borderBottomWidth='1px'>Product Categories</DrawerHeader>
           <DrawerBody lineHeight={'38px'} alignItems="start" >
-          <Box   display={{md:"none",lg:"none",sm:"block",base:"block"}} onClick={()=>nav(`/`)} >
+          <Box cursor={'pointer'}  display={{md:"none",lg:"none",sm:"block",base:"block"}} onClick={()=>nav(`/`)} >
         Home
        </Box>
-          <Box display={'flex'} onClick={()=>nav(`/products/t_shirt`)} >
+ 
+          <Box cursor={'pointer'}  display={'flex'} onClick={()=>nav(`/products/t_shirt`)} >
         T-Shirts
        </Box>
-       <Divider orientation='horizontal'  onClick={()=>nav(`/products/Jacket`)}  />
-          <Box display={'flex'} >
+       <Divider orientation='horizontal' />
+          <Box  cursor={'pointer'}  display={'flex'}   onClick={()=>nav(`/products/Jacket`)}  >
         Jackets
        </Box >
        <Divider orientation='horizontal'    />
-          <Box display={'flex'} onClick={()=>nav(`/products/bags`)}  >
+          <Box cursor={'pointer'}  display={'flex'} onClick={()=>nav(`/products/bags`)}  >
          Bags
       </Box>
        <Divider orientation='horizontal'    />
-          <Box display={'flex'}  onClick={()=>nav(`/products/watch`)}>
+          <Box cursor={'pointer'} display={'flex'}  onClick={()=>nav(`/products/watch`)}>
+ 
+      
           Watch
       </Box>
        <Divider orientation='horizontal' colorScheme={"blackAlpha"}    />
           <Box color="white" >-</Box>
-          <Box display={'flex'} justifyContent='space-between' onClick={()=>nav(`/cart`)}>
+ 
+          <Box display={'flex'} justifyContent='space-between' cursor={'pointer'} onClick={()=>nav(`/cart`)}>
           Cart <HiOutlineShoppingCart fontSize={"27"} color={'#0C090A'}/>
       </Box>
        <Divider orientation='horizontal' colorScheme={"blackAlpha"}    />
-          <Box display={'flex'} justifyContent='space-between' onClick={()=>nav(`/wishlist`)} >
+          <Box display={'flex'} justifyContent='space-between' cursor={'pointer'} onClick={()=>nav(`/wishlist`)} >
+ 
           Wishlist <BsFillHeartFill fontSize={"27"} color={'red'}/>
        </Box>
        <Divider orientation='horizontal' colorScheme={"blackAlpha"}    />
        <Box color="white" >-</Box>
-       <Box  display={'flex'} justifyContent='space-between' onClick={()=>nav(`/DLogin`)} >
+
+       <Box  display={'flex'} justifyContent='space-between' cursor={'pointer'} onClick={()=>nav(`/DLogin`)} >
             Login <BiLogIn fontSize={"27"} color={'#0C090A'} />
        </Box>
  <Divider orientation='horizontal' colorScheme={"blackAlpha"}    />
-          <Box display={'flex'} justifyContent='space-between' onClick={()=>nav(`/sign`)} >
+          <Box display={'flex'} justifyContent='space-between' cursor={'pointer'} onClick={()=>nav(`/sign`)} >
+
             Sign Up <FaUserCircle fontSize={"27"} color={'#123456'}/>
        </Box>
        <Divider orientation='horizontal' colorScheme={"blackAlpha"}    />
        <Box color="white">-</Box>
-       <Box display={'flex'} justifyContent='space-between'>
+       <Box display={'flex'} cursor={'pointer'} justifyContent='space-between'>
           App Store <FcGoogle fontSize={"27"} color={'#0C090A'}/>
        </Box>
        <Divider orientation='horizontal' colorScheme={"blackAlpha"}    />
@@ -190,9 +213,8 @@ export default function Navbar({ display = "flex" }) {
           </DrawerBody>
         </DrawerContent>
       </Drawer>
-
-     <Box w='130px' onClick={()=>nav(`/`)} cursor='pointer' display={{md:"block",lg:"block",base:"none"}}>
-
+      <Box w='130px' onClick={()=>nav(`/`)} cursor='pointer' display={{md:"block",lg:"block",base:"none"}}>
+ 
     {/* <Heading size='lg'display={{sm:"none",md:"block",lg:"block",base:"none"}} onClick={()=>nav `/`} >i</Heading> */}
     <Image src="https://user-images.githubusercontent.com/80110392/213902764-824a5310-8367-466f-8057-6e53bec9e1ed.png" alt='logo' w='100%'  />
     </Box>
@@ -206,44 +228,60 @@ export default function Navbar({ display = "flex" }) {
      <SimpleGrid minChildWidth='135px' spacing='40px' mt={'15px'} textAlign={'start'}
      fontWeight='bold' m='auto' >
      <Box
+         cursor={'pointer'}
+ 
          onClick={()=>nav(`/products/t_shirt`)}
            color={'black'}
            > <Image  src='https://m.media-amazon.com/images/I/61rdavN+vvL._UL1440_.jpg' alt='1' width={'40%'} mb='10px' />
        T-Shirts
        </Box>
      <Box
+          cursor={'pointer'}
+ 
          onClick={()=>nav(`/products/Jacket`)}
            color={'black'}
          > <Image  src='https://m.media-amazon.com/images/I/4126+gKFRaL.jpg' alt='2' width={'40%'} mb='10px'/> Jackets
        </Box>
      <Box
+           cursor={'pointer'}
+ 
          onClick={()=>nav(`/products/bags`)} 
            color={'black'}
          >  <Image  src='https://m.media-amazon.com/images/I/81ArAQS-KkL._SY450_.jpg' alt='3' width={'50%'} mb='10px'/> Bags
        </Box>
      <Box
+           cursor={'pointer'}
+ 
          onClick={()=>nav(`/products/watch`)}
            color={'black'}
          > <Image  src='https://m.media-amazon.com/images/I/61Fn1C6+5YL._UL1500_.jpg' alt='4' width={'50%'} mb='10px'/> Watches
        </Box>
     <Box
+          cursor={'pointer'}
+ 
          onClick={()=>nav(`/products/Headphones`)}
            color={'black'}
          > <Image  src='https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/MX3X2?wid=2104&hei=2980&fmt=jpeg&qlt=95&.v=1580420156213' alt='5' mb='10px' width={'40%'}/>
        Headphones
        </Box>
      <Box
+           cursor={'pointer'}
+ 
          onClick={()=>nav(`/products/Headphones`)}
            color={'black'}
          > <Image  src='https://5.imimg.com/data5/SELLER/Default/2020/11/TF/TF/DU/99149733/boat-stone-1400-30-w-bluetooth-speaker-1000x1000.jpg' alt='6' mb='10px' width={'60%'}/>
          Boat Speakers
        </Box>
     <Box
+ 
          onClick={()=>nav(`/products/shoes`)}
            color={'black'}
         ><Image  src='https://m.media-amazon.com/images/I/61dU0vkPK8S._UL1500_.jpg' alt='7' mb='10px' width={'60%'}/> Shoes
        </Box>
         <Box
+ 
+          cursor={'pointer'}
+ 
          onClick={()=>nav(`/products/mobile`)}
            color={'black'}
          ><Image  src='https://m.media-amazon.com/images/I/71p4EwOzccL._SX569_.jpg' alt='8' mb='10px' width={'60%'}/> Mobiles
@@ -293,7 +331,7 @@ export default function Navbar({ display = "flex" }) {
                 variant={'link'}
                 cursor={'pointer'}
                 minW={0}>
-
+ 
                 {isauth?<Image rounded={'full'} w='16' src={userData.profile} />  :<Button
         w={'full'}
          maxW={'sm'}
@@ -313,12 +351,13 @@ export default function Navbar({ display = "flex" }) {
                   <Center>
                     <p>{userData.name}</p>
                   </Center>
-                <MenuItem onClick={()=>nav(`/orders`)} >orders</MenuItem>
-                <MenuItem onClick={()=>nav(`/whishlist`)} >whishlist</MenuItem>
+ 
+                <MenuItem onClick={()=>nav(`/order`)} >Your orders</MenuItem>
+                <MenuItem onClick={()=>nav(`/wishlist`)} >wishlist</MenuItem>
                
                 <MenuItem onClick={handleLogout} >Logout</MenuItem>
                 
-
+ 
               </MenuList> :<MenuList color='black' >
                 <MenuItem onClick={()=>nav(`/DLogin`)} >Log in</MenuItem>
                 <MenuItem onClick={()=>nav(`/sign`)} >Register</MenuItem>
@@ -360,9 +399,9 @@ export default function Navbar({ display = "flex" }) {
                     </Link>
                   </>
                 ) : (<Link to="/cart">
-                  <Button variant="danger" style={{ width: "95%", margin: "0 10px" }}>
-                        Cart Is Empty
-                      </Button>
+                  <div   style={{ width: "95%", margin: "0 10px" }}>
+                        <img style={{margin:"auto"}}  src="https://cdni.iconscout.com/illustration/premium/thumb/empty-cart-3613108-3020773.png" alt="Cart Is Empty" />
+                      </div>
                       </Link>
                 )}
               </Dropdown.Menu>

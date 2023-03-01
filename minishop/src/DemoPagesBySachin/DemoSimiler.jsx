@@ -3,8 +3,6 @@ import "./Demosimiler.scss";
 import { BsStarFill } from "react-icons/bs";
 import { Button, Text, useToast } from "@chakra-ui/react";
 import axios from "axios";
-
-
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -12,9 +10,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaHeart } from "react-icons/fa";
 
 const DemoSimiler = ({data}) => {
-
+ 
+  // console.log('datademo:', data);
+ 
   const navigate  = useNavigate();
-
   const settings = {
     dots: false,
     infinite: false,
@@ -50,42 +49,42 @@ const DemoSimiler = ({data}) => {
     ],
   };
  
- 
   return (
-    <div className="proMainDiv">
-
+    <div className="proMainDivSlick">
     <Slider {...settings} >
           {
                 data?.map((el,index) => (
+ 
+                <div className="prodivSlick">
+<div className="ProImgDivSlick">
+<img
+ 
                 <div key={index} className="prodiv">
 
                 <img
+ 
                   src={el?.image?.[1]}
                   alt="name"
                 />
-                <p className="proName">{el.brand}</p>
-                <div className="divPriceRating">
+</div>
+                <p className="proNameSlick">{el.name.length < 11
+                          ? el.name
+                          : `${el.name.slice(0, 11)}...`}</p>
+                <div className="divPriceRatingSlick">
                   <p className="proPrice">
                     Price: <span>₹ {el.price}</span>
                   </p>
-                  <div className="divStar">
-                    <p className="proRating"> <BsStarFill/></p>
+                  <div className="divStarSlick">
+                    <p className="proRatingSlick"> <BsStarFill/></p>
                     <span>{el.rating}</span></div>
-                  
                 </div>
                 <button className="addtocart" onClick={()=>navigate(`/data/${el.id}`)}>
-                    View Details
+                      Details
                 </button>
                 </div>
-               
               ))}
     </Slider>
-     
-      
-
     </div>
-
   );
 };
-
 export default DemoSimiler;
