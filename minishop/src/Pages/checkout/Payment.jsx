@@ -1,5 +1,11 @@
+ 
 import {
   Button,
+ 
+import {
+ 
+  Button,
+ 
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -7,7 +13,11 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+ 
   useDisclosure,
+ 
+  useDisclosure,
+  
 } from "@chakra-ui/react";
 import { Box, Heading, Spacer, Text, useToast } from "@chakra-ui/react";
 // import Cleave from "cleave.js";
@@ -29,7 +39,11 @@ const Payment = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const handleChange = (e) => {
     setDetails({ ...details, [e.target.name]: e.target.value });
+ 
     // console.log(e.target.value);
+ 
+    console.log(e.target.value);
+ 
   };
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -51,7 +65,11 @@ const Payment = () => {
         <Spacer h="100" />
         <div
           style={{
+ 
             width: "30%",
+  
+            width: "40%",
+ 
             margin: "auto",
           }}
         >
@@ -105,6 +123,9 @@ const Payment = () => {
                 required
               />
             </div>
+<
+ 
+
             <div className="input-container">
               <h4>Card Holder Name</h4>
               <input
@@ -214,6 +235,7 @@ const Payment = () => {
             <button>Submit Payment</button>
           </form>
         </div>
+ 
         <Modal isOpen={isOpen} onClose={onClose}>
           <ModalContent style={{background:"#013341"}}>
             <ModalHeader style={{ textAlign: "center", fontSize: "2rem",color:"white" }}>
@@ -227,7 +249,11 @@ const Payment = () => {
                 alt="GIF"
               />
             </ModalBody>
+ 
             <ModalFooter style={{display:"flex",justifyContent:"center"}}>
+ 
+            <ModalFooter style={{display:"flex",justifyContent:"center"}}>
+ 
               <Button onClick={()=>navigate("/order")} variant="solid">See Orders</Button>
             </ModalFooter>
           </ModalContent>

@@ -10,7 +10,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaHeart } from "react-icons/fa";
 
 const DemoSimiler = ({data}) => {
+ 
   // console.log('datademo:', data);
+ 
   const navigate  = useNavigate();
   const settings = {
     dots: false,
@@ -46,14 +48,21 @@ const DemoSimiler = ({data}) => {
       },
     ],
   };
+ 
   return (
     <div className="proMainDivSlick">
     <Slider {...settings} >
           {
                 data?.map((el,index) => (
+ 
                 <div className="prodivSlick">
 <div className="ProImgDivSlick">
 <img
+ 
+                <div key={index} className="prodiv">
+
+                <img
+ 
                   src={el?.image?.[1]}
                   alt="name"
                 />

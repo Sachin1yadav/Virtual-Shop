@@ -18,10 +18,13 @@ import {
     Grid,
   } from '@chakra-ui/react'
 // import { useState } from 'react'
+ 
+      
+
 const EditModal = ({show,data}) => {
         const { isOpen, onOpen, onClose } = useDisclosure()
         const initialRef = React.useRef(null)
-        const finalRef = React.useRef(null)
+        const finalRef = React.useRef(null) 
         const [product, setProduct] = useState({})
         const updateProduct = ()=>{
           onClose()
@@ -29,6 +32,7 @@ const EditModal = ({show,data}) => {
         const handleChange = (e)=>{
         setProduct({...product,[e.target.name]:e.target.value })
         }
+ 
         return (
           <>
             <Button h='0' p='0' m='0' w='0' ref={show} onClick={onOpen}></Button>
@@ -57,7 +61,9 @@ const EditModal = ({show,data}) => {
                   </FormControl>
                   <FormControl mt={4}>
                   </FormControl>
+ 
                   <Grid templateColumns={'repeat(2,1fr)'} gap='5' >
+ 
                    {data.image?.map((el,id)=><Image key={id} src={el} />)}
                   </Grid>
                     <FormLabel display='flex' >Product Detail <Text color='red' mx='1' >*</Text> </FormLabel>
@@ -74,4 +80,5 @@ const EditModal = ({show,data}) => {
           </>
         )
 }
+ 
 export default EditModal;

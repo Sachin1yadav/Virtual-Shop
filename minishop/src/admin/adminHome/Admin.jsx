@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import ItemTable from "./Table/ItemTable";
 import AdminNav from "./AdminNav";
-import { Button, Flex, Heading, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, Heading, Text } from "@chakra-ui/react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 import { getAllProducts, getProdCatagoty, getProductsAdmin } from "../../redux/admin_data/admin.action";
 import { useDispatch, useSelector } from "react-redux";
@@ -74,7 +74,7 @@ const AdminHome = () => {
     return <Heading>Some Error from Server Occured</Heading>;
   }
   return (
-    <>
+    <Box>
       <AdminNav handleCategory={handleCategory} catagory={cat} />
 
       {/* ItemTable  */}
@@ -113,7 +113,7 @@ const AdminHome = () => {
           <ChevronRightIcon fontSize={"xl"} />
         </Button>
       </Flex>}
-    </>
+    </Box>
   );
 };
 

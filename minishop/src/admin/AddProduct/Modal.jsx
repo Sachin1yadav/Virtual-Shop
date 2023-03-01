@@ -15,8 +15,9 @@ import {
     Textarea,
     Text,
   } from '@chakra-ui/react'
-const AdModal = ({showModal}) => {
+ const AdModal = ({showModal}) => {
         const { isOpen, onOpen, onClose } = useDisclosure()
+ 
         const initialRef = React.useRef(null)
         const finalRef = React.useRef(null)
         return (

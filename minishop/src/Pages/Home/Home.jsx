@@ -85,6 +85,7 @@ function Home() {
           <HomeProducts
             data={data.filter((item) => item.Categories === "Jacket")}/>
         </Box>}
+ 
         <Box mt='40px' mb='40px' backgroundColor={'white'} >
           <Carousel  
           dots= {false} infinite= {true}
@@ -94,6 +95,7 @@ function Home() {
           Img={slider2}
           />
           </Box>
+ 
         {loading ?  <Loaderskeleton/> :     <Box>
           <Heading style={{color:"black",textAlign:"center" }}>Bags</Heading>
           <HomeProducts
@@ -143,6 +145,7 @@ const imagesTop = ['https://s3.thingpic.com/images/WZ/1ChLD86XEtKdLmpiQHdW1nhF.j
 'https://s3.thingpic.com/images/WZ/1ChLD86XEtKdLmpiQHdW1nhF.jpeg',
 'https://s3.thingpic.com/images/WZ/1ChLD86XEtKdLmpiQHdW1nhF.jpeg'
 ]
+  
 const slider2 = ['https://cdn.shopify.com/s/files/1/0057/8938/4802/files/AB1000_445x.jpg?v=1671007984',
 'https://cdn.shopify.com/s/files/1/0057/8938/4802/files/stone_1_445x.png?v=1670244742',
 'https://cdn.shopify.com/s/files/1/0057/8938/4802/files/carousel_banner_445x.png?v=1671097960',
@@ -152,4 +155,11 @@ const slider2 = ['https://cdn.shopify.com/s/files/1/0057/8938/4802/files/AB1000_
 'https://cdn.shopify.com/s/files/1/0057/8938/4802/files/AB1000_445x.jpg?v=1671007984',
 'https://cdn.shopify.com/s/files/1/0057/8938/4802/files/stone_1_445x.png?v=1670244742',
 'https://cdn.shopify.com/s/files/1/0057/8938/4802/files/carousel_banner_445x.png?v=1671097960',
+ 
 ];
+ 
+
+
+];
+
+ 

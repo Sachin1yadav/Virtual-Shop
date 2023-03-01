@@ -128,9 +128,11 @@
     }
 }
 #card .header {
+ 
     display: flex;
     justify-content: space-between;
     height: 0px;
+ 
 }
 #card .sticker {
     width: 50px;
@@ -142,9 +144,11 @@
     border-radius: 5px;
 }
 #card .logo {
+ 
     margin-top: 8rem;
     margin-left: 18rem;
     max-width: 60px;
+ 
 }
 #card .body {
     display: flex;

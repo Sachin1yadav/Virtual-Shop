@@ -1,5 +1,17 @@
 import {USER_ADD_FAIL, USER_ADD_SUCCESS} from './User.actionTypes'
-import { addNewUserApi, logoutUserApi, updateUserApi } from './User.api'
+ 
+import { addNewUserApi, getUserApi, logoutUserApi, updateUserApi, userCartUpdateApi } from './User.api'
+
+
+export const getUser = (id) => async(dispatch) =>{
+    try{
+      let res = await getUserApi(id)
+      return res.data
+    }catch(err){
+      console.log(err)
+    }
+}
+ 
 
 export const addNewUser  = (userData)=> async(dispatch)=>{
   let newData = {
@@ -11,7 +23,7 @@ export const addNewUser  = (userData)=> async(dispatch)=>{
     cart:[],
     whishList:[],
   }
-  console.log(newData)
+  console.log(userData)
     try{
       let res = await addNewUserApi(newData)
       dispatch({type:USER_ADD_SUCCESS, payload:res})

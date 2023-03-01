@@ -53,6 +53,7 @@ const {cartData}=useSelector((store)=>store.cart)
     return axios.post(`https://lackadaisical-volcano-larch.glitch.me/wishlist`, itemDetail);
   };
   
+ 
   const addToCart = (itemDetail) => {
     toast({
       title: "Added to Cart",
@@ -63,6 +64,21 @@ const {cartData}=useSelector((store)=>store.cart)
       isClosable: true,
     });
     return axios.post(`https://lackadaisical-volcano-larch.glitch.me/cart`,{...itemDetail,qty:1});
+ 
+  const addToCart = async(itemDetail) => {
+    let currUser = await dispatch(getUser(userData.id))
+    currUser.cart.push(itemDetail)
+    dispatch(userCartUpdate(currUser)).then(()=>{
+      toast({
+        title: "Added to Cart",
+        description: "We've added this item to Cart",
+        variant: "subtle",
+        position:'top-right',
+        duration: 3000,
+        isClosable: true,
+      })
+    });
+   
   };
   if(loading){
     <Loading/>
