@@ -1,15 +1,10 @@
 import { useToast } from "@chakra-ui/react";
 import axios from "axios";
-import { useEffect } from "react";
 import { BsFillHeartFill, BsHeart } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 import { Link} from "react-router-dom";
 import { updateUser } from "../../redux/AddUser/User.actions";
-import {
-  wishlistGetData,
-} from "../../redux/Wishlist/Wishlist.actions";
 export default function HomeProducts(data) {
-  // const { wishData } = useSelector((store) => store.wishlist);
   const {user} =  useSelector(val=>val?.userAllData)
   const wishData = user?.wishlist
   const toast = useToast();
@@ -28,12 +23,8 @@ export default function HomeProducts(data) {
     return axios.post(`https://lackadaisical-volcano-larch.glitch.me/wishlist`, itemDetail);
   };
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(wishlistGetData());
-  }, [dispatch, wishData?.length]);
   return (
     <div className="container">
-      {/* eslint-disable-next-line array-callback-return */}
       {data?.data?.map((el,i)=> {
         if(i<8){
           return (
@@ -70,12 +61,6 @@ export default function HomeProducts(data) {
                   <h5>Price:{el.price}</h5>
                   <h5>Rating:{el.rating}</h5>
                 </div>
-                {/* <p> <BsFillHeartFill className="heart" /></p> */}
-                {/* <p>
-                Lorem ipsum dolor sit, orrupti ip consequatur voluptatum facilis
-                animi commodi dolor sed cupiditate quam corrupti quisquam vero,
-                aliquid odio.
-              </p>{" "} */}
                 <div className="btn">
                   <Link to={`/data/${el.id}`}>
                     <button className="viweBtn">View</button>
@@ -84,20 +69,9 @@ export default function HomeProducts(data) {
               </div>
             </div>
           );
+        }else{
+          return null
         }
-        // (<Box  key={el.id}  height='350px' border='1px' >
-        //     <Image src={el.image[0]}  alt={el.price} w='50%' margin={'auto'} />
-        //     <h2> {el.name.length < 8 ? el.name : `${el.name.slice(0, 8)}`} </h2>
-        //       <Box >
-        //         <Box ><Heading fontSize={'14px'} >Price:</Heading><span> {el.price}</span></Box>
-        //         <Box ><Heading fontSize={'14px'}>Ratting:</Heading> <span>{el.rating}</span></Box>
-        //         <Box >
-        //           <Link to={`/data/${el.id}`} >
-        //             <Text>View Details</Text>
-        //           </Link>
-        //         </Box>
-        //     </Box>
-        // </Box>)
       })}
     </div>
   );

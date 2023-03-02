@@ -1,11 +1,11 @@
 import axios from "axios"
 export const getUserApi = async (id) => {
-    return await axios.get(`https://lackadaisical-volcano-larch.glitch.me/user/${id}`)
+    return await axios.get(`${process.env.REACT_APP_BASE_URL}/user/${id}`)
 }
 
 export const addNewUserApi  = async(userData)=>{
     try{
-        let res = await axios.post(`https://lackadaisical-volcano-larch.glitch.me/user`,userData)
+        let res = await axios.post(`${process.env.REACT_APP_BASE_URL}/user`,userData)
         return res
         }catch(err){
          console.log(err)
@@ -13,9 +13,7 @@ export const addNewUserApi  = async(userData)=>{
 }
 export const updateUserApi = async(userData)=>{
     try{
-        let res = await axios.patch(`https://lackadaisical-volcano-larch.glitch.me/user/${userData.id}`,userData)
+        let res = await axios.patch(`${process.env.REACT_APP_BASE_URL}/user/${userData.id}`,userData)
         return res
-        }catch(err){
-        //   return err
-    }
+        }catch(err){}
 }

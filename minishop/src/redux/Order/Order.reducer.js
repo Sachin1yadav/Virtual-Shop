@@ -4,13 +4,11 @@ import {
     ORDER_GET_ERROR,
     ORDER_REMOVE
 } from "./Order.actionTypes"
-
 let initialState = {
     loading:false,
     error:false,
     orderData:[]
 }
-
 export const orderReducer = (state = initialState ,{type,payload})=>{
     switch(type){
         case  ORDER_GET_LOADING:{
@@ -41,7 +39,6 @@ export const orderReducer = (state = initialState ,{type,payload})=>{
                 orderData:state.orderData.filter((order)=> order.id !== payload.id)
             }
         }
-
         default : {
             return state;
         }

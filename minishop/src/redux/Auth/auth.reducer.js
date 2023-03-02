@@ -4,7 +4,6 @@ import {
   SIGNUP_SUCCESS,
   SIGNUP_FAIL,
   RESET_USER_DATA,
-//   LOGOUT_FAIL
   } from './auth.action.types'
 
 let userDetails = JSON.parse(localStorage.getItem("userData"))
@@ -24,10 +23,11 @@ let userDetails = JSON.parse(localStorage.getItem("userData"))
             return {...state, status:false}
         }
         case SIGNUP_SUCCESS:{
-            return {}
+          console.log(payload)
+            return {...state}
         }
         case SIGNUP_FAIL:{
-            return {}
+            return {...state}
         }
         case RESET_USER_DATA:{
             localStorage.removeItem("userData")

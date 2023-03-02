@@ -9,7 +9,6 @@ let initialState = {
     error:false,
     itemDetail:{}
 }
-
 export const singleReducer = (state = initialState ,{type,payload})=>{
     switch(type){
         case  SINGLE_GET_LOADING:{

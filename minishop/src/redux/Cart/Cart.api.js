@@ -1,17 +1,16 @@
 import axios from "axios";
 
 export const getCartAPI = async(userName) => {
-    let res =  await axios.get(`https://lackadaisical-volcano-larch.glitch.me/user?name=${userName}`);
+    let res =  await axios.get(`${process.env.REACT_APP_BASE_URL}/user?name=${userName}`);
     return res.data;
 }
 
 
 export const updateCartApi =  async(newData) => {
     try{
-        let res = await axios.post(`https://lackadaisical-volcano-larch.glitch.me/user?name=${newData.name}`,newData.cart);
-        console.log(res)
+         await axios.post(`${process.env.REACT_APP_BASE_URL}/user?name=${newData.name}`,newData.cart);
     }catch(err){
-        console.log("errrroroeroer is",err)
+        console.log(err)
     }
 }
    

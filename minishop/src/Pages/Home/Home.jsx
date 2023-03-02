@@ -10,18 +10,18 @@ import { Loaderskeleton } from "./Carousel";
 import DemoSimiler from "../../DemoPagesBySachin/DemoSimiler";
 import HomeCarouselDemo from './HomeCarouselDemo';
 import Navbar from "../../components/Navbar/Navbar";
+import {Slider} from '../../components/Slider'
 function Home() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const getHomeData =async () => {
     setLoading(true);
     try {
-        const res = await fetch("https://lackadaisical-volcano-larch.glitch.me/data");
+        const res = await fetch(`${process.env.REACT_APP_BASE_URL}/data`);
         const HomeData = await res.json();
         setData(HomeData);
         setLoading(false);
     } catch (error) {
-        // console.log("e", error);
         setLoading(false);
     }
 }
@@ -43,11 +43,11 @@ function Home() {
         <Box mt='80px' mb='60px' >
           <DemoSimiler  data={data.filter((item) => item.Categories === "shoes")} />
         </Box>
-{/*---------------------------------    carousel   ---------------------------------------*/}
+{/*---------------------    carousel   -------------------*/}
           <Box w={"100%"} m={"auto"} mt='74px' mb='50px' backgroundColor={'white'} >
             < Image src="https://thegenuineleather.com/wp-content/uploads/2022/10/MEN-LEATHER-JACKET.webp" m='auto' alt='1'/>
           </Box>
-{/*---------------------------------    carousel   ---------------------------------------*/}
+{/*-------------    carousel   --------------------*/}
 {loading ?  <Loaderskeleton/> :    <Box>
           <Heading style={{color:"#232f3e",textAlign:"center" }}>Jacket</Heading>
           <HomeProducts
@@ -59,7 +59,7 @@ function Home() {
           slidesToShow = {4}
           slidesToScroll= {1}
           autoplay= {true} autoplaySpeed= {3000} pauseOnHover= {true }
-          Img={slider2}
+          Img={Slider}
           />
           </Box>
         {loading ?  <Loaderskeleton/> :     <Box>
@@ -73,7 +73,7 @@ function Home() {
         <Box w={"100%"} m={"auto"} mt='74px' mb='50px' border='2px' >
         <Image src="https://cdn.shopify.com/s/files/1/0057/8938/4802/files/WSC-Desktop_dad0fc88-3fc8-4ed8-becb-b7901e4b37f4_1400x.jpg?v=1673853393"  alt='3'/>
        </Box>
-       {loading ?  <Loaderskeleton/> :     <Box>
+       {loading ?  <Loaderskeleton/> : <Box>
           <Heading style={{color:"#232f3e",textAlign:"center" }}>Watch</Heading>
           <HomeProducts
             data={data.filter((item) => item.Categories === "watch")}/>
@@ -102,13 +102,3 @@ function Home() {
   );
 }
 export default Home;
-const slider2 = ['https://cdn.shopify.com/s/files/1/0057/8938/4802/files/AB1000_445x.jpg?v=1671007984',
-'https://cdn.shopify.com/s/files/1/0057/8938/4802/files/stone_1_445x.png?v=1670244742',
-'https://cdn.shopify.com/s/files/1/0057/8938/4802/files/carousel_banner_445x.png?v=1671097960',
-'https://cdn.shopify.com/s/files/1/0057/8938/4802/files/AB1000_445x.jpg?v=1671007984',
-'https://cdn.shopify.com/s/files/1/0057/8938/4802/files/stone_1_445x.png?v=1670244742',
-'https://cdn.shopify.com/s/files/1/0057/8938/4802/files/carousel_banner_445x.png?v=1671097960',
-'https://cdn.shopify.com/s/files/1/0057/8938/4802/files/AB1000_445x.jpg?v=1671007984',
-'https://cdn.shopify.com/s/files/1/0057/8938/4802/files/stone_1_445x.png?v=1670244742',
-'https://cdn.shopify.com/s/files/1/0057/8938/4802/files/carousel_banner_445x.png?v=1671097960',
-];

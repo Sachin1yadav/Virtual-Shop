@@ -6,7 +6,6 @@ import {
 } from "./Order.actionTypes"
 
 import { deleteOrder, getOrderAPI } from "./Order.api"
-
 export const orderActions = () => async(dispatch) => {
     dispatch({type: ORDER_GET_LOADING});
     try{

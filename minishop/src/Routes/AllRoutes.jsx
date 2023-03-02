@@ -36,7 +36,6 @@ function Allroute() {
             </PrivateRoute>
           }
         />
-        <Route path="/order" element={<Order />} />
         <Route
           path="/cart"
           element={
@@ -56,7 +55,7 @@ function Allroute() {
           path="/admin"
           element={
             <AdminContext>
-              <Admin />{" "}
+              <Admin />
             </AdminContext>
           }
         ></Route>
@@ -64,7 +63,7 @@ function Allroute() {
           path="/admin/users"
           element={
             <AdminContext>
-              <AllUsers />{" "}
+              <AllUsers />
             </AdminContext>
           }
         ></Route>
@@ -72,7 +71,7 @@ function Allroute() {
           path="/admin/sellers"
           element={
             <AdminContext>
-              <AllSellers />{" "}
+              <AllSellers />
             </AdminContext>
           }
         ></Route>

@@ -1,4 +1,4 @@
-import React, { useState,useRef } from 'react'
+import React, { useState} from 'react'
 import {SlMinus ,SlPlus} from "react-icons/sl"
 import {FaShippingFast} from "react-icons/fa"
 
@@ -7,22 +7,6 @@ const CartComponent = ({price,qty,id,cartData}) => {
 
     const detailsHide = () => {
         const targetDiv = document.getElementById("details");
-
-        // cartData.map((ele) => {
-         
-        //   if(id === ele.id){
-        //     if (targetDiv.style.display !== "none"){
-        //         targetDiv.style.display = "none";
-        //       setDetailIcon(false);
-        //     }else{
-        //         targetDiv.style.display = "block";
-        //       setDetailIcon(true)
-        //     }
-        //   }
-        // })
-
-
-        // const targetDiv = document.getElementById("cartdetails");
         if (targetDiv.style.display !== "none"){
             targetDiv.style.display = "none";
             setDetailIcon(false);
@@ -32,7 +16,6 @@ const CartComponent = ({price,qty,id,cartData}) => {
         }
         
 }
-
   return (
     <div>
         <div>

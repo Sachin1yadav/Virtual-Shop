@@ -26,7 +26,7 @@ const SinglePage = () => {
     //authentication cart
   const getSimilarData =async () => {
     try {
-        const res = await fetch("https://lackadaisical-volcano-larch.glitch.me/data");
+        const res = await fetch(`${process.env.REACT_APP_BASE_URL}/data`);
         const data = await res.json();
         setSimilarData(data);
     } catch (error) {

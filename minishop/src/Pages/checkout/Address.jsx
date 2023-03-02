@@ -21,7 +21,6 @@ const Address = () => {
     e.preventDefault();
     <Navigate to="/payment" />;
   };
-  // console.log(address);
   return (
     <div>
       <Heading>Delivery Address</Heading>

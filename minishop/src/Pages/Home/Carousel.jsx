@@ -38,7 +38,7 @@ export  const Carousel = ({dots,
     );
   }
 
-//--------------------------------------------  SingleCarousel  ------------------------------------------//
+//---------------------  SingleCarousel  ---------------------------//
 
   export  const SingleCarousel = ({dots,
     infinite,

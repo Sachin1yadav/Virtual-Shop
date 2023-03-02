@@ -5,7 +5,6 @@ import {
     MenuButton,
     MenuItem,
     MenuList,
-    useToast,
   } from "@chakra-ui/react";
   import { AiOutlineDown } from "react-icons/ai";
   
@@ -14,7 +13,6 @@ import {
       setPrice(e.target.value);
       setOrder(e.target.name);
     };
-  
     return (
       <Box>
         <Menu>

@@ -14,29 +14,26 @@ const Products = () => {
   const navigate = useNavigate();
   const [price, setPrice] = useState("");
   const [order, setOrder] = useState("");
-
   const getSimilarData = async () => {
     try {
       const res = await fetch(
         `https://lackadaisical-volcano-larch.glitch.me/data/?q=${Categories}&_sort=${price}&_order=${order}`
       );
       const datas = await res.json();
-      console.log(datas);
       setValue(datas);
     } catch (error) {
       console.log("e", error);
     }
   };
-  console.log("line22", Categories);
   useEffect(() => {
     getSimilarData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [Categories, price]);
 
   return (
     <div>
       <Navbar />
       <h1 className="heading">Products - {value.length}</h1>
-
       <div
         style={{
           display: "flex",

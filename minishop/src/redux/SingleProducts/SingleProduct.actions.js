@@ -3,9 +3,7 @@ import {
     SINGLE_GET_SUCCESS,
     SINGLE_GET_ERROR
 } from "./SingleProduct.actionTypes"
-
 import { getSingleProductAPI } from "./SingleProduct.api"
-
 export const getSingleProduct = (id) => async(dispatch) => {
     dispatch({type: SINGLE_GET_LOADING});
     try{

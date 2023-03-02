@@ -8,10 +8,8 @@ LOGOUT_FAIL,
 } from './auth.action.types'
 import {
   signOut,
-  sendPasswordResetEmail,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  // onAuthStateChanged,
   signInWithPopup,
 } from "firebase/auth";
 import { auth, provider } from "../../config";
@@ -21,14 +19,13 @@ import { auth, provider } from "../../config";
 export const userLogin  = async(user)=> (dispatch)=>{
   try{    
     let res =  signInWithEmailAndPassword(auth, user.email, user.password);
-    dispatch({type:LOGIN_SUCCESS,payload:res})
+    console.log(res)
+    // dispatch({type:LOGIN_SUCCESS,payload:res})
   }catch(err){
     dispatch({type:LOGIN_FAIL,})
   }
 }
-
 // user signup using data 
-
 export const  userSignup = async(email,password)=>(dispatch)=>{
   try{
     let res = createUserWithEmailAndPassword(auth, email, password);
@@ -38,11 +35,6 @@ export const  userSignup = async(email,password)=>(dispatch)=>{
   }
 }
 // user signout 
-
-// const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-//   //   console.log(currentUser);
-//     setUser(currentUser);
-//   });
 export const userLogout = () => async(dispatch)=> {
   try{
     await signOut(auth);
@@ -52,7 +44,6 @@ export const userLogout = () => async(dispatch)=> {
   }
 };
 // user login using google auth
-
 export const loginWithGoogle = () => async(dispatch)=>{
   try {
    let res =  await signInWithPopup(auth, provider);
@@ -67,18 +58,5 @@ export const loginWithGoogle = () => async(dispatch)=>{
    dispatch({type:LOGIN_SUCCESS,payload:userData})
   } catch (error) {
     dispatch({type:LOGIN_FAIL})
-  }
-};
-
-
-
-
-// forgot password  functionality
-export const forgotPassword = (email) =>async(dispatch)=> {
-  try{
-    sendPasswordResetEmail(auth, email);
-  }
-  catch(er){
-    console.log(er)
   }
 };

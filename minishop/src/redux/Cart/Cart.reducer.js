@@ -14,8 +14,6 @@ let initialState = {
     totalPrice:0,
 }
 
-
-
 export const cartReducer = (state = initialState ,{type,payload})=>{
     switch(type){
         case  CART_GET_LOADING:{

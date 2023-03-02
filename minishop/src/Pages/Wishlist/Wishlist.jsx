@@ -1,31 +1,21 @@
 import { Button, useToast } from '@chakra-ui/react';
 import axios from 'axios';
-import React, { useEffect } from 'react'
 import { AiFillDelete, AiOutlineHome } from 'react-icons/ai';
-// import { BsStarFill } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import Navbar from '../../components/Navbar/Navbar';
 import { updateUser } from '../../redux/AddUser/User.actions';
-import { wishlistGetData } from '../../redux/Wishlist/Wishlist.actions';
 
 import "./Wishlist.scss"
 const Wishlist = () => {
-
     const {user} =  useSelector(val=>val?.userAllData)
     const wishData= user.wishlist
     const toast = useToast();
     const navigate  = useNavigate();
     const dispatch = useDispatch();
-    useEffect(() => {
-      dispatch(wishlistGetData())
-     
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [ wishData?.length]);
 
   const addToCart = (itemDetail) => {
     toast({
-      // colorScheme:'yellow',
       title: "Added to Cart",
       description: "We've added this item to Cart",
       variant: "subtle",
@@ -44,7 +34,6 @@ const Wishlist = () => {
     })
     user.wishlist = newWishdata
     dispatch(updateUser(user))
-    dispatch(wishlistGetData(user))
   }
 
   return (
@@ -112,9 +101,6 @@ const Wishlist = () => {
           <div>
             <Button
               onClick={() => {
-              //   dispatch(removeWishlistData(e.id)).then(() =>
-              //     dispatch(wishlistGetData())
-              //   );
               removeWishFun(e)
               }}
               type="button"

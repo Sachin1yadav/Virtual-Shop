@@ -105,7 +105,7 @@ dispatch(updateUser(currUser)).then(()=>dispatch(cartActions).then(()=>updatePri
 }
     
 const nav = useNavigate()
-   //------Price Details hide Function-------------------------------------------------------------------- //
+   //-------------------Price Details hide Function----------------- //
   const paymentFun = () => {
     if(user.cart?.length===0){
       toast({
@@ -122,7 +122,7 @@ const nav = useNavigate()
       nav('/address')
     }
   }
-  //------Quantity Increase Function-------------------------------------------------------------------- //
+  //------Quantity Increase Function---------------------------------- //
   const quantityIncre = async(el) => {
   currUser.cart.map(e=>{
       if(e.id===el.id){
@@ -137,7 +137,7 @@ const nav = useNavigate()
       })
       updatePrice()
   }
-   //------Quantity Decrease Function----------------------------------------------------------------------- //
+   //------Quantity Decrease Function------------------------------ //
   const quantityDecre = async(el) => {
     currUser.cart.map(e=>{
       if(e.id===el.id){
@@ -159,7 +159,6 @@ const nav = useNavigate()
           <div className="firstDiv">
             <div className="CartDetails">
               <p>My Cart:[{cartData?.length}]</p>
-              {/* <p>Total Ammount:₹{totalCartPrice}</p> */}
             </div>
             {
               cartData?.length ===0 ? <div style={{ width: "100%", margin: "0 10px" }}>

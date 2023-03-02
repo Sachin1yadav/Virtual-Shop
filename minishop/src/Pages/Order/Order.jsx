@@ -15,12 +15,11 @@ const Order = () => {
     let date = today.getDate() + '-' + parseInt(today.getMonth() + 1) + '-' + today.getFullYear()
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [elem, setElem] = useState({})
-  //                 -------- delete function of an order modal will open -------
+  //   -------- delete function of an order modal will open -------
   const deleteOrder = (el)=>{
     onOpen()
     setElem(el)
   }
-
     return (
       <>
        <Navbar />
