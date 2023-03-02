@@ -15,9 +15,9 @@ import {
     Textarea,
     Text,
   } from '@chakra-ui/react'
- const AdModal = ({showModal}) => {
+
+const AdModal = ({showModal}) => {
         const { isOpen, onOpen, onClose } = useDisclosure()
- 
         const initialRef = React.useRef(null)
         const finalRef = React.useRef(null)
         return (
@@ -32,14 +32,14 @@ import {
               <ModalOverlay />
               <ModalContent>
                 <ModalHeader>Add Product</ModalHeader>
-                <ModalCloseButton />
+                <ModalCloseButton/>
                 <ModalBody pb={6}>
                   <FormControl>
-                    <FormLabel display='flex' >Category <Text color='red' mx='1' >*</Text> </FormLabel>
+                    <FormLabel display='flex'>Category <Text color='red' mx='1' >*</Text> </FormLabel>
                     <Input ref={initialRef} placeholder='Product Catagory' />
                   </FormControl>
                   <FormControl>
-                  <FormLabel display='flex' >Product Brand <Text color='red' mx='1' >*</Text> </FormLabel>
+                  <FormLabel display='flex'>Product Brand <Text color='red' mx='1' >*</Text> </FormLabel>
                     <Input ref={initialRef} placeholder='Product Brand' required />
                   </FormControl>
                   <FormControl>
@@ -72,4 +72,5 @@ import {
           </>
         )
 }
+
 export default AdModal

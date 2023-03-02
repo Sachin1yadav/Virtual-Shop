@@ -3,15 +3,20 @@ import axios from "axios";
 import { useEffect } from "react";
 import { BsFillHeartFill, BsHeart } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link} from "react-router-dom";
+import { updateUser } from "../../redux/AddUser/User.actions";
 import {
-  removeWishlistData,
   wishlistGetData,
 } from "../../redux/Wishlist/Wishlist.actions";
 export default function HomeProducts(data) {
-  const { wishData } = useSelector((store) => store.wishlist);
+  // const { wishData } = useSelector((store) => store.wishlist);
+  const {user} =  useSelector(val=>val?.userAllData)
+  const wishData = user?.wishlist
   const toast = useToast();
   const likeFuc = (itemDetail) => {
+    user.wishlist.push(itemDetail)
+    dispatch(updateUser(user))
+    
     toast({
       title: "Added to wishlist",
       description: "We've added this item to wishlist",
@@ -22,16 +27,14 @@ export default function HomeProducts(data) {
     });
     return axios.post(`https://lackadaisical-volcano-larch.glitch.me/wishlist`, itemDetail);
   };
-  const navigate = useNavigate();
-  // console.log("wishDat:", wishData);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(wishlistGetData());
-  }, [wishData.length]);
-  // console.log("wish", wishData);
+  }, [dispatch, wishData?.length]);
   return (
     <div className="container">
-      {data.data.map((el, i) => {
+      {/* eslint-disable-next-line array-callback-return */}
+      {data?.data?.map((el,i)=> {
         if(i<8){
           return (
             <div key={el.id} className="cord">
@@ -82,7 +85,6 @@ export default function HomeProducts(data) {
             </div>
           );
         }
-      
         // (<Box  key={el.id}  height='350px' border='1px' >
         //     <Image src={el.image[0]}  alt={el.price} w='50%' margin={'auto'} />
         //     <h2> {el.name.length < 8 ? el.name : `${el.name.slice(0, 8)}`} </h2>

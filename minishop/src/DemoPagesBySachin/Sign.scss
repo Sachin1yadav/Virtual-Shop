@@ -1,0 +1,181 @@
+@import "../Global.scss";
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+.MainDiv {
+    height: 580px;
+    padding: 70px 0px 0px 0px;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+    align-items: center;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+.box {
+    width: 35%;
+    border-radius: 10px;
+    height: 65vh;
+    margin: auto;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+    background: linear-gradient(0deg, black, black, rgb(44, 73, 73));
+    @include mobile {
+        width: 85%;
+        margin: auto;
+    }
+}
+
+.form {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: start;
+}
+
+.SingHomeDiv {
+    display: flex;
+    justify-content: space-between;
+}
+
+.SingHomeDiv h2 {
+    color: #45f3ff;
+    font-weight: bold;
+    text-align: center;
+    font-size: 40px;
+    margin-left: 50px;
+    margin-bottom: 30px;
+}
+
+.homeSing {
+    color: #cbd0d1;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    font-size: 28px;
+    margin-right: -90px;
+    margin-top: 10px;
+    margin-left: 50px;
+    @include mobile {
+        margin-right: 0px;
+    }
+}
+
+.homeSing:hover {
+    color: #45f3ff;
+}
+
+.inputBox {
+    width: 120%;
+    height: 60px;
+    margin: auto;
+    margin-left: -50px;
+    @include mobile {
+        width: 80%;
+        margin-left: 0px;
+    }
+}
+
+.inputBox input {
+    background-color: transparent;
+    width: 120%;
+    border-radius: 5px;
+    border-bottom: 2px solid rgb(242, 241, 241);
+}
+
+.inputBox span {
+    color: rgb(242, 240, 240);
+    width: 100%;
+}
+
+.submit {
+    border: none;
+    outline: none;
+    padding: 7px 25px;
+    background-color: rgb(206, 204, 201);
+    margin-top: 20px;
+    border-radius: 4px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    cursor: pointer;
+    width: 100%;
+    align-items: center;
+    align-content: center;
+    @include mobile {
+        width: 80%;
+        margin-left: 14px;
+        margin-top: 13px;
+    }
+}
+
+.submit:active {
+    opacity: 0.5;
+}
+
+.signDiv {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+    width: 145%;
+    margin-left: -50px;
+    align-items: center;
+    margin-bottom: 20px;
+    @include mobile {
+        width: 80%;
+        margin-left: 14px;
+    }
+}
+
+.signDiv p {
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    color: white;
+}
+
+.sign {
+    color: #45f3ff;
+    font-size: 20px;
+    font-weight: lighter;
+}
+
+.sign:hover {
+    cursor: pointer;
+    color: red;
+}
+
+.signDiv1 {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.signDiv1 p {
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    color: white;
+}
+
+.sign1 {
+    color: #45f3ff;
+    font-size: 15px;
+    font-weight: lighter;
+}
+
+.sign1:hover {
+    cursor: pointer;
+    color: red;
+}
+
+.inputBox1 {
+    width: 300px;
+    margin-top: 20px;
+}

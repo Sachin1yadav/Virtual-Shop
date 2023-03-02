@@ -1,17 +1,16 @@
 import { useEffect, useState } from "react";
 import { BsHeart } from "react-icons/bs";
-import { Link, useParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux";
 import { getSingleProduct } from "../../redux/SingleProducts/SingleProduct.actions";
-import axios from "axios";
 import { BsStarFill } from "react-icons/bs";
 import Loading from"../Loading/Loading"
 import { Button, Heading, useToast } from "@chakra-ui/react";
 import "./SinglePage.scss";
-import { BsFillHeartFill } from "react-icons/bs";
 import DemoSimiler from "../../DemoPagesBySachin/DemoSimiler";
 import { cartActions } from "../../redux/Cart/Cart.actions";
 import Navbar from "../../components/Navbar/Navbar";
+import {updateUser} from "../../redux/AddUser/User.actions";
 
 const SinglePage = () => {
   const { id } = useParams();
@@ -19,12 +18,12 @@ const SinglePage = () => {
   let rat = 4.3;
   let des =
     "A product description is a form of marketing copy used to describe and explain the benefits of your product. In other words, it provides all the information and details of your product on your ecommerce site. These product details can be one sentence, a short paragraph or bulleted. They can be serious, funny or quirky.";
-  const {loading , error, itemDetail } = useSelector((store) => store.singleProduct);
+  const {loading , itemDetail } = useSelector((store) => store.singleProduct);
   const dispatch = useDispatch();
-const {cartData}=useSelector((store)=>store.cart)
-//   const {cartData}=useSelector((store)=>store.cart)
-// console.log("cartdata",cartData)
   const [similarData, setSimilarData] = useState([]);
+  const usersApiData =  useSelector(val=>val.userAllData?.user)
+  const cartData = usersApiData.cart
+    //authentication cart
   const getSimilarData =async () => {
     try {
         const res = await fetch("https://lackadaisical-volcano-larch.glitch.me/data");
@@ -38,37 +37,28 @@ const {cartData}=useSelector((store)=>store.cart)
       dispatch(getSingleProduct(id))
       getSimilarData();
       dispatch(cartActions())
-  }, [dispatch, id, img]);
+    }, [dispatch, id, img]);
 
   const toast = useToast();
+
   const likeFuc = (itemDetail) => {
-    toast({
-      title: "Added to wishlist",
-      description: "We've added this item to wishlist",
-      variant: "subtle",
-      position:'top-right',
-      duration: 3000,
-      isClosable: true,
+    usersApiData.wishlist.push(itemDetail)
+    dispatch(updateUser(usersApiData)).then(()=>{
+      toast({
+        title: "Added to wishlist",
+        description: "We've added this item to wishlist",
+        variant: "subtle",
+        position:'top-right',
+        duration: 3000,
+        isClosable: true,
+      });
     });
-    return axios.post(`https://lackadaisical-volcano-larch.glitch.me/wishlist`, itemDetail);
   };
   
- 
-  const addToCart = (itemDetail) => {
-    toast({
-      title: "Added to Cart",
-      description: "We've added this item to Cart",
-      variant: "subtle",
-      position:'top-right',
-      duration: 3000,
-      isClosable: true,
-    });
-    return axios.post(`https://lackadaisical-volcano-larch.glitch.me/cart`,{...itemDetail,qty:1});
- 
   const addToCart = async(itemDetail) => {
-    let currUser = await dispatch(getUser(userData.id))
-    currUser.cart.push(itemDetail)
-    dispatch(userCartUpdate(currUser)).then(()=>{
+    
+    usersApiData.cart.push(itemDetail)
+    dispatch(updateUser(usersApiData)).then(()=>{
       toast({
         title: "Added to Cart",
         description: "We've added this item to Cart",
@@ -77,12 +67,14 @@ const {cartData}=useSelector((store)=>store.cart)
         duration: 3000,
         isClosable: true,
       })
-    });
-   
+    })
+    dispatch(cartActions())
   };
+
   if(loading){
     <Loading/>
   };
+
   return (
     <>
      <Navbar />
@@ -144,7 +136,7 @@ const {cartData}=useSelector((store)=>store.cart)
               <BsStarFill />
             </span>
           </div>
-          <p className="discription">
+          <div className="discription">
             {itemDetail?.discription ? itemDetail?.discription :
             <>
             <p>
@@ -152,7 +144,7 @@ const {cartData}=useSelector((store)=>store.cart)
             </p>
             </>
             }
-          </p>
+          </div>
           <div className="btnWC">
           <button className="wish" onClick={()=>likeFuc(itemDetail)}>
           <div> <p>Wishlist</p>
@@ -161,7 +153,7 @@ const {cartData}=useSelector((store)=>store.cart)
          {itemDetail.show?(
           <div  >
         {
-          cartData.some((p) => p.id === itemDetail.id) ? (
+          cartData?.some((p) => p.id === itemDetail.id) ? (
                 <Button isDisabled colorScheme='red' className="cart">Already In Cart</Button>
             ) : (
               <button className="cart" onClick={()=>addToCart(itemDetail)

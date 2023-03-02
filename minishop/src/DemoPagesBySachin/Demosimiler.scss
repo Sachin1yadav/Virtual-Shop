@@ -1,21 +1,26 @@
-.slick-prev:before, .slick-next:before {
+.slick-prev:before,
+.slick-next:before {
     font-size: 30px;
     color: grey;
 }
-.slick-slide > div {
+
+.slick-slide>div {
     width: 75%;
     margin: auto;
     margin: 0 40px;
 }
+
 .slick-list {
     margin: 0 -10px;
 }
-.proMainDivSlick{
+
+.proMainDivSlick {
     width: 90%;
     margin: auto;
     margin-top: 12px;
 }
-.prodivSlick{
+
+.prodivSlick {
     width: 250px;
     margin: auto;
     height: 300px;
@@ -23,68 +28,73 @@
     padding: 10px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     border-radius: 10px;
-    // border: 1px solid red;
 }
-.proNameSlick{
+
+.proNameSlick {
     font-weight: bolder;
     letter-spacing: 1px;
     font-size: 20px;
 }
-.ProImgDivSlick{
-    // border: 2px solid green ;
+
+.ProImgDivSlick {
     height: 65%;
 }
-.prodivSlick img{
+
+.prodivSlick img {
     width: 100%;
     height: 100%;
     margin: auto;
 }
- .proRatingSlick {
+
+.proRatingSlick {
     font-size: 18px;
 }
-.proRatingSlick span   {
+
+.proRatingSlick span {
     font-weight: bold;
     font-size: 20px;
     color: rgb(248, 57, 57);
 }
-.addtocart{
+
+.addtocart {
     border: 1px solid teal;
-    // background-color: rgb(67, 67, 67);
     padding: 5px 15px;
-    // color:  rgb(255, 251, 251);
     border-radius: 5px;
     margin: auto;
     font-weight: bold;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     margin-top: 5px;
 }
-.addtocart:hover{
+
+.addtocart:hover {
     border: none;
-// color:white;
-background: rgb(103,101,102);
-background: radial-gradient(circle, rgba(103,101,102,1) 0%, rgba(123,147,175,1) 75%);
+    background: rgb(103, 101, 102);
+    background: radial-gradient(circle, rgba(103, 101, 102, 1) 0%, rgba(123, 147, 175, 1) 75%);
 }
-.divPriceRatingSlick{
+
+.divPriceRatingSlick {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     width: 90%;
-    margin:  auto;
+    margin: auto;
 }
-.divStarSlick{
+
+.divStarSlick {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    // border: 1px solid red;
     gap: 5px;
     margin-top: 3px;
     text-align: center;
     align-content: center;
 }
-.divStarSlick p{
+
+.divStarSlick p {
     margin-top: 2px;
     color: green;
 }
-.divStarSlick span{
-    color:rgb(9, 10, 9) ;
+
+.divStarSlick span {
+    color: rgb(9, 10, 9);
 }

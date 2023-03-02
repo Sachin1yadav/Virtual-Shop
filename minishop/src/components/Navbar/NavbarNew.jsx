@@ -63,9 +63,6 @@ function NavScrollExample() {
          maxW={'sm'}
          colorScheme={'white'}
          leftIcon={<FaUserCircle fontSize={"27"} />}>
-         {/* <Center>
-           <Text>Sign In</Text>
-         </Center> */}
        </Button>
               </MenuButton>
               <MenuList color='black' >
@@ -75,17 +72,7 @@ function NavScrollExample() {
               </MenuList>
             </Menu>
           </Flex>
- {/*--------------------------------   Trck order Button  ----------------------------------------------*/}    
-       {/* <Button
-         w={'full'}
-         maxW={'sm'}
-         colorScheme={'white'}
-         leftIcon={<SlLocationPin fontSize={"27"} />}>
-         <Center>
-           <Text>Track Order</Text>
-         </Center>
-       </Button> */}
-     
+
      {/*--------------------------------   Cart Button  ----------------------------------------------*/} 
      
        <Button
@@ -93,9 +80,6 @@ function NavScrollExample() {
          maxW={'sm'}
          colorScheme={'white'}
          leftIcon={<HiOutlineShoppingCart fontSize={"27"} />}>
-         {/* <Center>
-           <Text>CART</Text>
-         </Center> */}
        </Button>
      
     </ButtonGroup>

@@ -1,26 +1,14 @@
- 
 import {
   Button,
- 
-import {
- 
-  Button,
- 
   Modal,
   ModalBody,
   ModalCloseButton,
   ModalContent,
   ModalFooter,
   ModalHeader,
-  ModalOverlay,
- 
   useDisclosure,
- 
-  useDisclosure,
-  
 } from "@chakra-ui/react";
-import { Box, Heading, Spacer, Text, useToast } from "@chakra-ui/react";
-// import Cleave from "cleave.js";
+import { Box, Heading, Spacer, Text} from "@chakra-ui/react";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -34,27 +22,13 @@ const initDetails = {
 const Payment = () => {
   const totalAmount = useSelector((store) => store.cart.totalPrice);
   const [details, setDetails] = useState(initDetails);
-  const toast = useToast();
   const navigate = useNavigate();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const handleChange = (e) => {
     setDetails({ ...details, [e.target.name]: e.target.value });
- 
-    // console.log(e.target.value);
- 
-    console.log(e.target.value);
- 
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    // toast({
-    //   title: "Order Placed",
-    //   description: "Your Order Will Be Delivered in 5-6 Days",
-    //   status: "success",
-    //   duration: 6000,
-    //   isClosable: true,
-    // });
-    // navigate("/");
     onOpen();
   };
   return (
@@ -65,11 +39,7 @@ const Payment = () => {
         <Spacer h="100" />
         <div
           style={{
- 
             width: "30%",
-  
-            width: "40%",
- 
             margin: "auto",
           }}
         >
@@ -105,15 +75,6 @@ const Payment = () => {
             </div>
             <div className="input-container mt">
               <h4>Enter card number</h4>
-              {/* <Cleave
-              delimiter="-"
-              options={{
-                creditCard: true,
-                onCreditCardTypeChanged: handleType,
-              }}
-              onChange={handleChange}
-              placeholder="Please enter your credit card number"
-            /> */}
               <input
                 type="text"
                 maxlength="16" minLength='16'
@@ -123,9 +84,6 @@ const Payment = () => {
                 required
               />
             </div>
-<
- 
-
             <div className="input-container">
               <h4>Card Holder Name</h4>
               <input
@@ -235,7 +193,6 @@ const Payment = () => {
             <button>Submit Payment</button>
           </form>
         </div>
- 
         <Modal isOpen={isOpen} onClose={onClose}>
           <ModalContent style={{background:"#013341"}}>
             <ModalHeader style={{ textAlign: "center", fontSize: "2rem",color:"white" }}>
@@ -249,11 +206,7 @@ const Payment = () => {
                 alt="GIF"
               />
             </ModalBody>
- 
             <ModalFooter style={{display:"flex",justifyContent:"center"}}>
- 
-            <ModalFooter style={{display:"flex",justifyContent:"center"}}>
- 
               <Button onClick={()=>navigate("/order")} variant="solid">See Orders</Button>
             </ModalFooter>
           </ModalContent>

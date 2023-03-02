@@ -66,8 +66,7 @@ export const loginWithGoogle = () => async(dispatch)=>{
    }
    dispatch({type:LOGIN_SUCCESS,payload:userData})
   } catch (error) {
-    console.log('google failed',error)
-    dispatch({type:LOGIN_FAIL,payload:error})
+    dispatch({type:LOGIN_FAIL})
   }
 };
 

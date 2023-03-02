@@ -1,44 +1,40 @@
-import { Button, Heading, Spinner, Text } from '@chakra-ui/react';
-import React, { useEffect } from 'react'
-import { AiFillDelete, AiOutlineHome } from 'react-icons/ai';
-import { useDispatch, useSelector } from 'react-redux';
-import { cancelOrder, orderActions } from '../../redux/Order/Order.actions';
-import {FcShipped} from "react-icons/fc"
-import { getOrderAPI } from '../../redux/Order/Order.api';
+import { Button, Modal, useDisclosure} from '@chakra-ui/react';
+import {AiOutlineHome } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import { TbTruckDelivery } from 'react-icons/tb';
 import "./Order.scss"
 import Navbar from '../../components/Navbar/Navbar';
+import DelOrderModal from './DelOrderModal';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
+
 const Order = () => {
-    const {loading , error, orderData} = useSelector((store) => store.order);
-    // console.log('orderData:', orderData);
-    const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(orderActions())
-    }, [ orderData.length]);
+  const {user} =  useSelector(val=>val?.userAllData)
+    const orderData = user.orders;
     let today = new Date()
     let date = today.getDate() + '-' + parseInt(today.getMonth() + 1) + '-' + today.getFullYear()
-    // console.log('date:', date)
+    const { isOpen, onOpen, onClose } = useDisclosure()
+    const [elem, setElem] = useState({})
+  //                 -------- delete function of an order modal will open -------
+  const deleteOrder = (el)=>{
+    onOpen()
+    setElem(el)
+  }
+
     return (
       <>
        <Navbar />
         <div className="CartMainDiv" mt='80px'>
         <div className="firstDivOrder">
           <div className="CartDetailsOrder">
-            <p>My Orders:[{orderData.length}]</p>
+            <p>My Orders:[{orderData?.length}]</p>
             <Link to="/">
               <p style={{ fontSize: "30px" }}>
                 <AiOutlineHome />
               </p>
             </Link>
           </div>
-          {orderData.length===0?(
-            <div>
-              <img style={{margin:"auto"}} src="https://www.ewshopping.com/img/EmptyCart.jpg" alt="Your Wish list is Empty!!"/>
-  </div>
-          ):(
-            <div>
-              {orderData.map((e, id) => (
+          {orderData?.map((e, id) => (
             <div className="cartProDivOrder" key={id}>
               <div className="CartImgDeatilsOrder">
                 <div className="CartImgDivOrder">
@@ -61,9 +57,7 @@ const Order = () => {
               <div className="QRdiv">
                 <div>
                   <Button
-                    onClick={() => {
-                        dispatch(cancelOrder(e.id)).then(()=> dispatch(orderActions()));
-                    }}
+                    onClick={()=>deleteOrder(e)}
                     type="button"
                     variant="light"
                     marginTop="-7px"
@@ -71,18 +65,19 @@ const Order = () => {
                     colorScheme="red"
                     color="red"
                   >
-                    {/* <AiFillDelete fontSize="20px" /> */}
                     Cancel
                   </Button>
                 </div>
               </div>
             </div>
           ))}
-            </div>
-          )}
         </div>
         </div>
+        <Modal onClose={onClose} isOpen={isOpen}>
+        <DelOrderModal onClose={onClose} data={elem} />
+        </Modal>
         </>
       );
 }
+
 export default Order

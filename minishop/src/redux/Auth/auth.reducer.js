@@ -18,7 +18,7 @@ let userDetails = JSON.parse(localStorage.getItem("userData"))
     switch (type) {
         case LOGIN_SUCCESS:{
             localStorage.setItem("userData",JSON.stringify(payload))
-            return {...state,status:true, isauth:true}
+            return {...state,status:true, isauth:true,userData:payload}
         }
         case LOGIN_FAIL:{
             return {...state, status:false}

@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from "react";
+import React, {useRef, useState } from "react";
 import {
   useToast,
   Button,
@@ -10,10 +10,9 @@ import {
   Input,
   Stack,
 } from "@chakra-ui/react";
-import { Link, useNavigate } from "react-router-dom";
-import "./Login.css";
+import { Link, useNavigate} from "react-router-dom";
+import "./Login.scss";
 import GoogleButton from "react-google-button";
-// import { AuthContext } from "../Pages/login&signup/AuthContextProvider";
 import {
   Modal,
   ModalBody,
@@ -25,28 +24,18 @@ import {useDispatch, useSelector} from 'react-redux'
 import { loginWithGoogle, userLogin } from "../redux/Auth/auth.actions";
 import { useEffect } from "react";
 import { AiFillHome } from "react-icons/ai";
-import { Tooltip } from "react-bootstrap";
 const userInit = {
   email: "",
   password: "",
 };
 const DLogin = () => {
-  const {isauth, userData}=useSelector(val=>val.authUser)
-  const nav = useNavigate()
-  const dispatch  = useDispatch()
+  const {isauth}=useSelector(val=>val.authUser)
+  const dispatch  = useDispatch();
+  const nav = useNavigate();
   const toast = useToast();
   const [user, setUser] = useState(userInit);
-  const [error, setError] = useState("");
-  // const { logout } = useContext(AuthContext);
   const emailRef = useRef(null);
-  // const logoutUser = async () => {
-  //   try {
-  //     await logout();
-  //   } catch (error) {
-  //     console.log(error.message);
-  //   }
-  // };
-  // const { loginUser, forgotPassword, continueWithGoogle } =useContext(AuthContext);
+
   const { isOpen, onOpen, onClose } = useDisclosure();
   const handleChange = (e) => {
     setUser({ ...user, [e.target.type]: e.target.value });
@@ -55,17 +44,21 @@ const DLogin = () => {
     e.preventDefault();
     dispatch(userLogin(user))
   };
+ useEffect(()=>{
+    if(isauth === true){
+      window.location.href='/'
+    } // went to the home page after login
+ },[isauth])
+
   const forgotPasswordHandler = async () => {
     const email = emailRef.current.value;
     if (email)
       try {
-        // await forgotPassword(email);
         console.log("RESET mail sent");
       } catch (e) {
-        setError(e.message);
-        console.log(e.message);
       }
   };
+
   return (
    <div className="MainDivLog">
         <div className="boxLog">
@@ -75,13 +68,12 @@ const DLogin = () => {
               <h2>Login</h2>
               <div>
               <Link to="/" >
-                <Tooltip
-                  hasArrow label='Search places' bg='gray.300' color='black'
-                >
+
                   <h3 className="home"><AiFillHome/></h3>
-                  </Tooltip>
+                
                 </Link>
                 </div>
+              
               </div>
               <div className="inputBoxLog">
               <span>Email</span>
@@ -91,6 +83,7 @@ const DLogin = () => {
                   onChange={handleChange}
                   required="required"
                 />
+              
                 <i></i>
               </div>
               <div className="inputBoxLog">
@@ -101,6 +94,7 @@ const DLogin = () => {
                   onChange={handleChange}
                   required="required"
                 />
+                 
                 <i></i>
               </div>
               <div className="forgetPassLog">
@@ -113,27 +107,28 @@ const DLogin = () => {
                     className="submitLog"
                     type="submit"
                     onClick={() =>
-                      toast({
+                     { toast({
                         title: "Login successfull.",
                         description: "We've Loged in your account.",
                         status: "success",
+                        position:'top-right',
                         duration: 9000,
                         isClosable: true,
                       })
+                      nav("/");
+                      }
                     }
                   >
                     Login
                   </button>
-                  {/* <button onClick={logoutUser}>Logout</button> */}
               </div>
               <div className="orDivLog">
                 <p>Or login with</p>
               </div>
-              <GoogleButton className="LogGoogle" style={{marginLeft:"-20px",color:"white",width:"120%",borderRadius:"5px",backgroundColor:"black",border:"1px solid gray" }} onClick={()=>
-                dispatch(loginWithGoogle()).then(()=>{
-                  window.location.href="/cart"
-                })
-                } />
+              <div  className="LogGoogle">
+              <GoogleButton style={{marginLeft:"-20px",color:"white",width:"100%",borderRadius:"5px",backgroundColor:"black",border:"1px solid gray" }}  onClick={()=>dispatch(loginWithGoogle())} />
+​
+              </div>
               <div className="signDivLog">
                 <p>Have You Not Register Yet?</p>
                 <Link to="/sign">

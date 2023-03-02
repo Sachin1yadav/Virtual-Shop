@@ -1,0 +1,8 @@
+@media only screen and (max-width: 500px) {
+    #cart_dropdown {
+        display: none;
+    }
+    #badge {
+        display: none;
+    }
+}

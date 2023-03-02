@@ -1,12 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  Badge,
-  
-  
-  Dropdown,
-   
-  Nav,
-} from "react-bootstrap";
+import './Navbar.css'
 import {
   Box,
   Flex,
@@ -28,57 +21,53 @@ import {
   Image,
   Divider,
   Center,
-  Avatar
+  Avatar,
+  Text,
 } from "@chakra-ui/react";
 import { Link, useNavigate } from "react-router-dom";
 import { HamburgerIcon } from "@chakra-ui/icons";
 import { HiOutlineShoppingCart } from "react-icons/hi";
 import {MdRemoveShoppingCart} from "react-icons/md"
 import { ReactSearchAutocomplete } from "react-search-autocomplete";
-import {FaUserCircle,FaShoppingBag, FaHeadphonesAlt,FaHeadphones, FaShoppingCart} from "react-icons/fa";
-import {IoShirtOutline} from  "react-icons/io5"; 
-import {GiMonclerJacket,GiSchoolBag} from  "react-icons/gi";  
-import {BsWatch,BsSpeakerFill,BsFillHeartFill,BsFacebook} from  "react-icons/bs"; 
-import {SiPuma,SiReebok, SiAdidas} from  "react-icons/si";
-import {CgAppleWatch} from  "react-icons/cg";
+import {FaShoppingCart, FaUserCircle} from "react-icons/fa";
+import {BsFillHeartFill} from  "react-icons/bs";
 import {BiLogIn} from  "react-icons/bi";
 import {FcGoogle} from  "react-icons/fc";
 import "./Navbar.css";
 import { useDispatch, useSelector } from "react-redux";
-
-import { addNewUser, logoutUser } from "../../redux/AddUser/User.actions";
+import { addNewUser,  updateUser } from "../../redux/AddUser/User.actions";
 import { userLogout } from "../../redux/Auth/auth.actions";
- 
+import {
+  Badge,
+  Dropdown,
+  Nav,
+} from "react-bootstrap";
 import {
   cartActions,
 } from "../../redux/Cart/Cart.actions";
- 
+
 export default function Navbar({ display = "flex" }) {
-  // .....code by sachin.......
-  const {loading , cartData} = useSelector((store) => store.cart);
-  
-  console.log('cartData:', cartData)
-  
-  // ............
+
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [data, setData] = useState([]);
   const nav = useNavigate();
-  const { isauth, userData } = useSelector((val) => val.authUser);
-
+  const { isauth,userData } = useSelector((val) => val.authUser);
+  const user = useSelector(val=>val?.userAllData.user)
   const dispatch = useDispatch()
- 
-
-  const {cartData} = useSelector((store) => store.cart);
-  
-
- 
+  const [profImg, setProfImg] = useState("https://www.w3schools.com/howto/img_avatar.png")
+  const currUser =  useSelector(val=>val?.userAllData?.user)
+  const cartData = currUser.cart
   useEffect(() => {
     dispatch(cartActions())
   if(isauth){
     dispatch(addNewUser(userData))
+    dispatch(updateUser({...userData,active:true}))
+    if(user.profile){
+      setProfImg(user.profile)
+    }
   }
-}, [cartData.length,isauth])
-
+// eslint-disable-next-line react-hooks/exhaustive-deps
+}, [cartData?.length,isauth])
   const getHomeData = async () => {
     try {
       const res = await fetch(
@@ -93,38 +82,40 @@ export default function Navbar({ display = "flex" }) {
   useEffect(() => {
     getHomeData();
   }, []);
+
   const handleLogout= ()=>{
-    dispatch(userLogout())
-
-    dispatch(logoutUser(userData))
- 
-    nav(`/`)
-  }
- 
-    nav(`/DLogin`)
-
+    dispatch(updateUser({...userData,active:false}))
+    .then(()=>
+    dispatch(userLogout()).then(()=>nav(`/`)))
   }
 
- 
+  const deleteItem = (el)=>{
+    // eslint-disable-next-line array-callback-return
+    let cartUpdate =  user?.cart.filter(e=>{
+      if(e.id!==el.id){
+        return el 
+      }
+    })
+    user.cart = cartUpdate
+    dispatch(updateUser({...user,cart:cartUpdate})).then(()=>dispatch(cartActions))
+  }
+
+
   const handleOnSearch = (string, results) => {
-    // onSearch will have as the first callback parameter
-    // the string searched and for the second the results.
-    // console.log(string, results);
+   
   };
   const handleOnHover = (result) => {
-    // the item hovered
-    //console.log(result);
+   
   };
   const handleOnSelect = (item) => {
-    // the item selected
-    // console.log(item, item.id);
+    
    nav(`/data/${item.id}`);
   };
   const handleOnClear = () => {
-    //console.log("Cleared");
+   
   };
   const handleOnFocus = () => {
-    //console.log("Focused");
+    
   };
   const formatResult = (item) => {
     return (
@@ -158,12 +149,15 @@ export default function Navbar({ display = "flex" }) {
       <Drawer placement={'left'} onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay />
         <DrawerContent>
-          <DrawerHeader borderBottomWidth='1px'>Product Categories</DrawerHeader>
+          <DrawerHeader borderBottomWidth='1px' display={'flex'} justifyContent='space-between'>
+            <Image w='32' rounded='xl' src='https://user-images.githubusercontent.com/80110392/213902764-824a5310-8367-466f-8057-6e53bec9e1ed.png' /> 
+            <Link to='/admin'><Text><Image w='10' rounded='xl' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTujrzgl8Qu9sKePaJ48EnzZ_PhHLsdwzKnKw&usqp=CAU' />Admin</Text></Link>
+            
+          </DrawerHeader>
           <DrawerBody lineHeight={'38px'} alignItems="start" >
           <Box cursor={'pointer'}  display={{md:"none",lg:"none",sm:"block",base:"block"}} onClick={()=>nav(`/`)} >
         Home
        </Box>
- 
           <Box cursor={'pointer'}  display={'flex'} onClick={()=>nav(`/products/t_shirt`)} >
         T-Shirts
        </Box>
@@ -171,36 +165,29 @@ export default function Navbar({ display = "flex" }) {
           <Box  cursor={'pointer'}  display={'flex'}   onClick={()=>nav(`/products/Jacket`)}  >
         Jackets
        </Box >
-       <Divider orientation='horizontal'    />
           <Box cursor={'pointer'}  display={'flex'} onClick={()=>nav(`/products/bags`)}  >
          Bags
       </Box>
        <Divider orientation='horizontal'    />
           <Box cursor={'pointer'} display={'flex'}  onClick={()=>nav(`/products/watch`)}>
- 
-      
           Watch
       </Box>
        <Divider orientation='horizontal' colorScheme={"blackAlpha"}    />
           <Box color="white" >-</Box>
- 
           <Box display={'flex'} justifyContent='space-between' cursor={'pointer'} onClick={()=>nav(`/cart`)}>
           Cart <HiOutlineShoppingCart fontSize={"27"} color={'#0C090A'}/>
       </Box>
        <Divider orientation='horizontal' colorScheme={"blackAlpha"}    />
           <Box display={'flex'} justifyContent='space-between' cursor={'pointer'} onClick={()=>nav(`/wishlist`)} >
- 
           Wishlist <BsFillHeartFill fontSize={"27"} color={'red'}/>
        </Box>
        <Divider orientation='horizontal' colorScheme={"blackAlpha"}    />
        <Box color="white" >-</Box>
-
        <Box  display={'flex'} justifyContent='space-between' cursor={'pointer'} onClick={()=>nav(`/DLogin`)} >
             Login <BiLogIn fontSize={"27"} color={'#0C090A'} />
        </Box>
  <Divider orientation='horizontal' colorScheme={"blackAlpha"}    />
           <Box display={'flex'} justifyContent='space-between' cursor={'pointer'} onClick={()=>nav(`/sign`)} >
-
             Sign Up <FaUserCircle fontSize={"27"} color={'#123456'}/>
        </Box>
        <Divider orientation='horizontal' colorScheme={"blackAlpha"}    />
@@ -213,9 +200,7 @@ export default function Navbar({ display = "flex" }) {
           </DrawerBody>
         </DrawerContent>
       </Drawer>
-      <Box w='130px' onClick={()=>nav(`/`)} cursor='pointer' display={{md:"block",lg:"block",base:"none"}}>
- 
-    {/* <Heading size='lg'display={{sm:"none",md:"block",lg:"block",base:"none"}} onClick={()=>nav `/`} >i</Heading> */}
+     <Box w='130px' onClick={()=>nav(`/`)} cursor='pointer' display={{md:"block",lg:"block",base:"none"}}>
     <Image src="https://user-images.githubusercontent.com/80110392/213902764-824a5310-8367-466f-8057-6e53bec9e1ed.png" alt='logo' w='100%'  />
     </Box>
     <Spacer />
@@ -228,60 +213,52 @@ export default function Navbar({ display = "flex" }) {
      <SimpleGrid minChildWidth='135px' spacing='40px' mt={'15px'} textAlign={'start'}
      fontWeight='bold' m='auto' >
      <Box
-         cursor={'pointer'}
- 
+        cursor={'pointer'}
          onClick={()=>nav(`/products/t_shirt`)}
            color={'black'}
            > <Image  src='https://m.media-amazon.com/images/I/61rdavN+vvL._UL1440_.jpg' alt='1' width={'40%'} mb='10px' />
        T-Shirts
        </Box>
      <Box
-          cursor={'pointer'}
- 
+         cursor={'pointer'}
          onClick={()=>nav(`/products/Jacket`)}
            color={'black'}
          > <Image  src='https://m.media-amazon.com/images/I/4126+gKFRaL.jpg' alt='2' width={'40%'} mb='10px'/> Jackets
        </Box>
      <Box
-           cursor={'pointer'}
- 
+          cursor={'pointer'}
          onClick={()=>nav(`/products/bags`)} 
            color={'black'}
          >  <Image  src='https://m.media-amazon.com/images/I/81ArAQS-KkL._SY450_.jpg' alt='3' width={'50%'} mb='10px'/> Bags
        </Box>
      <Box
-           cursor={'pointer'}
- 
+          cursor={'pointer'}
          onClick={()=>nav(`/products/watch`)}
            color={'black'}
          > <Image  src='https://m.media-amazon.com/images/I/61Fn1C6+5YL._UL1500_.jpg' alt='4' width={'50%'} mb='10px'/> Watches
        </Box>
     <Box
-          cursor={'pointer'}
- 
+         cursor={'pointer'}
          onClick={()=>nav(`/products/Headphones`)}
            color={'black'}
          > <Image  src='https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/MX3X2?wid=2104&hei=2980&fmt=jpeg&qlt=95&.v=1580420156213' alt='5' mb='10px' width={'40%'}/>
        Headphones
        </Box>
      <Box
-           cursor={'pointer'}
- 
+          cursor={'pointer'}
          onClick={()=>nav(`/products/Headphones`)}
            color={'black'}
          > <Image  src='https://5.imimg.com/data5/SELLER/Default/2020/11/TF/TF/DU/99149733/boat-stone-1400-30-w-bluetooth-speaker-1000x1000.jpg' alt='6' mb='10px' width={'60%'}/>
          Boat Speakers
        </Box>
     <Box
- 
+        cursor={'pointer'}
          onClick={()=>nav(`/products/shoes`)}
            color={'black'}
         ><Image  src='https://m.media-amazon.com/images/I/61dU0vkPK8S._UL1500_.jpg' alt='7' mb='10px' width={'60%'}/> Shoes
        </Box>
         <Box
- 
           cursor={'pointer'}
- 
          onClick={()=>nav(`/products/mobile`)}
            color={'black'}
          ><Image  src='https://m.media-amazon.com/images/I/71p4EwOzccL._SX569_.jpg' alt='8' mb='10px' width={'60%'}/> Mobiles
@@ -331,8 +308,7 @@ export default function Navbar({ display = "flex" }) {
                 variant={'link'}
                 cursor={'pointer'}
                 minW={0}>
- 
-                {isauth?<Image rounded={'full'} w='16' src={userData.profile} />  :<Button
+                { isauth?<Image rounded={'full'} w='12' mt='2' src={profImg} />:<Button
         w={'full'}
          maxW={'sm'}
          colorScheme={'white'}
@@ -351,13 +327,11 @@ export default function Navbar({ display = "flex" }) {
                   <Center>
                     <p>{userData.name}</p>
                   </Center>
- 
                 <MenuItem onClick={()=>nav(`/order`)} >Your orders</MenuItem>
                 <MenuItem onClick={()=>nav(`/wishlist`)} >wishlist</MenuItem>
                
                 <MenuItem onClick={handleLogout} >Logout</MenuItem>
                 
- 
               </MenuList> :<MenuList color='black' >
                 <MenuItem onClick={()=>nav(`/DLogin`)} >Log in</MenuItem>
                 <MenuItem onClick={()=>nav(`/sign`)} >Register</MenuItem>
@@ -366,15 +340,15 @@ export default function Navbar({ display = "flex" }) {
           </Flex>
      {/*--------------------------------   Cart Button  ----------------------------------------------*/}
      {
-          <Nav >
-            <Dropdown  style={{ height:"50px",padding:"0px"}}  variant="Danger" alignRight>
-              <Dropdown.Toggle variant="#232f3e">
-              <FaShoppingCart style={{ marginTop:"5px"}} color="white" fontSize="28px"    />
+          <Nav id="cart_dropdown">
+            <Dropdown style={{ height:"50px",padding:"0px"}} variant="Danger" >
+              <Dropdown.Toggle variant="link">
+              <FaShoppingCart style={{ marginTop:"10px"  }} color="white" fontSize="30px" />
               </Dropdown.Toggle>
-              <Dropdown.Menu style={{ maxHeight:"50vh" , minWidth:"50vw",color:"white",overflowY:"scroll"}}>
-                {cartData.length > 0 ? (
+              <Dropdown.Menu style={{ maxHeight:"50vh" , minWidth:"30vw",color:"white",overflowY:"scroll"}}>
+                {cartData?.length > 0 ? (
                   <>
-                    {cartData.map((prod) => (
+                    {cartData?.map((prod) => (
                       <span className="cartitem" key={prod.id}>
                         <img
                           src={prod?.image[0]}
@@ -382,13 +356,14 @@ export default function Navbar({ display = "flex" }) {
                           alt={prod.name}
                         />
                         <div className="cartItemDetail">
-                          <span  class="text" >{prod.name}</span>
+                          <span  className="text" >{prod.name}</span>
                           <span>{prod.price}</span>
                         </div>
                         <MdRemoveShoppingCart
                         className="del"
                           fontSize="20px"
                           style={{cursor:"pointer",color:"black"}}
+                          onClick={()=>deleteItem(prod)}
                         />
                       </span>
                     ))}
@@ -400,14 +375,14 @@ export default function Navbar({ display = "flex" }) {
                   </>
                 ) : (<Link to="/cart">
                   <div   style={{ width: "95%", margin: "0 10px" }}>
-                        <img style={{margin:"auto"}}  src="https://cdni.iconscout.com/illustration/premium/thumb/empty-cart-3613108-3020773.png" alt="Cart Is Empty" />
+                        <img style={{margin:"auto"}}  src="https://bakestudio.in/assets/images/cart/empty-cart.gif" alt="Cart Is Empty" />
                       </div>
                       </Link>
                 )}
               </Dropdown.Menu>
             </Dropdown>
           </Nav>  }
-          {cartData?.length > 0 ? ( <Badge bg="danger" style={{height:"18px",marginRight:"40px",marginLeft:"-20px"}} >{cartData?.length}</Badge>)
+          {cartData?.length > 0 ? ( <Badge id='badge' bg="danger" style={{height:"18px",marginRight:"40px",marginLeft:"-20px"}} >{cartData?.length}</Badge>)
           :""
       }
     </ButtonGroup>
