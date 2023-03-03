@@ -34,17 +34,17 @@ function Home() {
      <Navbar/>
     <Box mt='65px' >
      <HomeCarouselDemo/>
-    <Box w='90%' m={'auto'}  >
+    <Box w='100%' m={'auto'}  >
  {loading ?  <Loaderskeleton/> : <Box >
           <Heading style={{color:"#232f3e",textAlign:"center" }}>T-Shirt</Heading>
           <HomeProducts
             data={data.filter((item) => item.Categories === "t_shirt")}/>
         </Box> }
-        <Box mt='80px' mb='60px' >
+        <Box mt='10px' mb='10px' >
           <DemoSimiler  data={data.filter((item) => item.Categories === "shoes")} />
         </Box>
 {/*---------------------    carousel   -------------------*/}
-          <Box w={"100%"} m={"auto"} mt='74px' mb='50px' backgroundColor={'white'} >
+          <Box w={"100%"} m={"auto"} mt='15px' mb='10px' backgroundColor={'white'} >
             < Image src="https://thegenuineleather.com/wp-content/uploads/2022/10/MEN-LEATHER-JACKET.webp" m='auto' alt='1'/>
           </Box>
 {/*-------------    carousel   --------------------*/}
@@ -53,7 +53,7 @@ function Home() {
           <HomeProducts
             data={data.filter((item) => item.Categories === "Jacket")}/>
         </Box>}
-        <Box mt='40px' mb='40px' backgroundColor={'white'} >
+        <Box mt='15px' mb='10px' backgroundColor={'white'} >
           <Carousel
           dots= {false} infinite= {true}
           slidesToShow = {4}
@@ -67,10 +67,10 @@ function Home() {
           <HomeProducts
             data={data.filter((item) => item.Categories === "bags")} />
         </Box>}
-        <Box mt='80px' mb='60px' >
+        <Box mt='10px' mb='10px' >
           <DemoSimiler  data={data.filter((item) => item.Categories === "t_shirt")} />
         </Box>
-        <Box w={"100%"} m={"auto"} mt='74px' mb='50px' border='2px' >
+        <Box w={"100%"} m={"auto"} mt='15px' mb='15px' border='2px' >
         <Image src="https://cdn.shopify.com/s/files/1/0057/8938/4802/files/WSC-Desktop_dad0fc88-3fc8-4ed8-becb-b7901e4b37f4_1400x.jpg?v=1673853393"  alt='3'/>
        </Box>
        {loading ?  <Loaderskeleton/> : <Box>
@@ -78,7 +78,7 @@ function Home() {
           <HomeProducts
             data={data.filter((item) => item.Categories === "watch")}/>
            </Box>}
-          <Box w={"100%"} m={"auto"} mt='74px' mb='50px' border='2px' >
+          <Box w={"100%"} m={"auto"} mt='15px' mb='15px' border='2px' >
         <Image src="https://cdn.shopify.com/s/files/1/0057/8938/4802/files/2000x650_f60dcd57-3f35-4f38-a32f-3f9666996225_1400x.jpg?v=1673538078"  alt='4'/>
           </Box>
            {loading ?  <Loaderskeleton/> :  <Box>

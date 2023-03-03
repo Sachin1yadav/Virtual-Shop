@@ -57,7 +57,7 @@ const Products = () => {
         </div>
       </div>
       <div className="main_container">
-        <div>
+        <div className="LEFTSIDERFILTER">
           <LeftSideFilter setPrice={setPrice} setOrder={setOrder} />
         </div>
         <div className="proMainDiv">

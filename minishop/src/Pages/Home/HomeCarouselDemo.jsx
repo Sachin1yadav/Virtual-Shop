@@ -6,8 +6,8 @@ function HomeCarouselDemo() {
     <>
       <Carousel fade={true} slide={false} pause={false}>
         {
-          TopSlider.map((el)=>(
-            <Carousel.Item interval={2000}>
+          TopSlider.map((el,i)=>(
+            <Carousel.Item interval={2000} key={i}>
           <img
             className="d-block "
             style={{ width: "220vh" , height:'70vh'}}

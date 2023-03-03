@@ -96,3 +96,14 @@ background: radial-gradient(circle, rgba(103,101,102,1) 0%, rgba(123,147,175,1) 
 .divStar span{
     color:rgb(9, 10, 9) ;
 }
+
+
+
+
+@media (max-width: 768px) {
+    .LEFTSIDERFILTER{
+        display: none;
+    }
+}
+
+
