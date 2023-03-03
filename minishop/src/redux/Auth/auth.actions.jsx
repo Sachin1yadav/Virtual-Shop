@@ -13,23 +13,38 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 import { auth, provider } from "../../config";
+import {addNewUserApi} from "../AddUser/User.api";
+import {getUserApi} from "../AddUser/User.api";
 
 // user Login using email and password
 
-export const userLogin  = async(user)=> (dispatch)=>{
+export const userLogin  = (user)=> async(dispatch)=>{
   try{    
-    let res =  signInWithEmailAndPassword(auth, user.email, user.password);
-    console.log(res)
-    // dispatch({type:LOGIN_SUCCESS,payload:res})
+    let res =  await signInWithEmailAndPassword(auth, user.email, user.password);
+    //console.log("res",res.user.uid)
+    let response = await getUserApi(res.user.uid)
+     dispatch({type:LOGIN_SUCCESS,payload:response.data})
   }catch(err){
     dispatch({type:LOGIN_FAIL,})
   }
 }
 // user signup using data 
-export const  userSignup = async(email,password)=>(dispatch)=>{
+export const  userSignup = (email,password,name)=> async(dispatch)=>{
   try{
-    let res = createUserWithEmailAndPassword(auth, email, password);
-    dispatch({type:SIGNUP_SUCCESS,payload:res})
+    let res = await createUserWithEmailAndPassword(auth, email, password);
+    let obj={
+      profile:"",
+      active:true,
+      name:name,
+      email:email,
+      id:res.user.uid,
+      cart:[],
+      wishlist:[],
+      orders:[],
+    }
+    let response = await addNewUserApi(obj);
+      dispatch({type:LOGIN_SUCCESS,payload:response.data})
+    
   }catch(err){
     dispatch({type:SIGNUP_FAIL})
   }

@@ -8,7 +8,7 @@ export const addNewUserApi  = async(userData)=>{
         let res = await axios.post(`${process.env.REACT_APP_BASE_URL}/user`,userData)
         return res
         }catch(err){
-         console.log(err)
+            return console.log(err)
     }
 }
 export const updateUserApi = async(userData)=>{

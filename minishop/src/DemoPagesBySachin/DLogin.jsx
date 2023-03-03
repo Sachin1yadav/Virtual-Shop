@@ -18,17 +18,18 @@ const DLogin = () => {
   const toast = useToast();
   const [user, setUser] = useState(userInit);
   const handleChange = (e) => {
-    console.log(e.target.value);
+    
     setUser({ ...user, [e.target.name]: e.target.value });
   };
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(userLogin(user));
+    
   };
   useEffect(() => {
-    if (isauth === true) {
-      window.location.href = "/";
-    } // went to the home page after login
+    if (isauth) {
+      nav("/");
+    } 
   }, [isauth]);
 
   return (
@@ -72,17 +73,6 @@ const DLogin = () => {
               <button
                 className="submitLog"
                 type="submit"
-                onClick={() => {
-                  toast({
-                    title: "Login successfull.",
-                    description: "We've Loged in your account.",
-                    status: "success",
-                    position: "top-right",
-                    duration: 9000,
-                    isClosable: true,
-                  });
-                  nav("/");
-                }}
               >
                 Login
               </button>

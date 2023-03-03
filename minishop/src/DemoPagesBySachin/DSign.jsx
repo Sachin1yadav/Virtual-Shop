@@ -1,27 +1,36 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useToast, Button } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import { Link ,useNavigate} from "react-router-dom";
 import "./Sign.scss";
 import { AuthContext } from "../Pages/login&signup/AuthContextProvider";
 import { AiFillHome } from "react-icons/ai";
+import { useDispatch, useSelector } from "react-redux";
+import { userSignup } from "../redux/Auth/auth.actions";
 const userInit = {
   email: "",
   password: "",
+  name:""
 };
 const DSign = () => {
   const toast = useToast();
   const [user, setUser] = useState(userInit);
-  const { createUser } = useContext(AuthContext);
+  const nav = useNavigate();
+   const isAuth = useSelector(val=>val.authUser.isauth);
+  const dispatch = useDispatch();
   const handleChange = (e) => {
-    setUser({ ...user, [e.target.type]: e.target.value });
+    setUser({ ...user, [e.target.name]: e.target.value });
   };
-  const handleSubmit = async (e) => {
+  const handleSubmit =  (e) => {
     e.preventDefault();
-    try {
-      await createUser(user.email, user.password);
-    } catch (e) {
-    }
+    dispatch(userSignup(user.email, user.password,user.name));
   };
+
+useEffect(()=>{
+if(isAuth){
+  nav("/")
+}
+},[isAuth])
+
   return (
     <div className="MainDiv">
         <div className="box ">
@@ -40,7 +49,12 @@ const DSign = () => {
               </div>
               <div className="inputBox">
               <span>Name</span>
-                <input required="required" />
+                <input 
+                type="text"
+                name="name"
+                value={user.name}
+                onChange={handleChange}
+                required="required" />
                 
                 <i></i>
               </div>
@@ -48,6 +62,7 @@ const DSign = () => {
               <span>Email</span>
                 <input
                   type="email"
+                  name="email"
                   value={user.email}
                   onChange={handleChange}
                   required="required"
@@ -59,6 +74,7 @@ const DSign = () => {
               <span>Password</span>
                 <input
                   type="password"
+                  name="password"
                   value={user.password}
                   onChange={handleChange}
                   required="required"
@@ -76,16 +92,6 @@ const DSign = () => {
                   <Button
                   type="submit"
                     className="submit"
-                    onClick={() =>
-                      toast({
-                        title: "Register successfull.",
-                        description: "Your Account have created.",
-                        status: "success",
-                        position:'top-right',
-                        duration: 9000,
-                        isClosable: true,
-                      })
-                    }
                   >
                     Register
                   </Button>

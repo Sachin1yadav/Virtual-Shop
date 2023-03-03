@@ -23,7 +23,8 @@ let userDetails = JSON.parse(localStorage.getItem("userData"))
             return {...state, status:false}
         }
         case SIGNUP_SUCCESS:{
-          console.log(payload)
+          localStorage.setItem("userData",JSON.stringify(payload))
+         
             return {...state}
         }
         case SIGNUP_FAIL:{
