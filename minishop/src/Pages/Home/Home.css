@@ -1,17 +1,4 @@
-/* .slick-prev:before, .slick-next:before {
-    font-size: 30px;
-    color: grey;
-}
-.slick-slide > div {
-  border: 1px solid red;
-    width: 100%;
-   
-    
-}
-.slick-list {
-    margin: 0 -10px;
-}  */
-
+ 
 body {
     margin: 0;
     pad: 0;
@@ -20,33 +7,32 @@ body {
 }
 
 .container {
-    max-width: 100%;
+     /* width: 1000vw; */
     display: flex;
-    gap: 50px;
+    gap: 9px;
     flex-wrap: wrap;
     justify-content: center;
-}
+    /* border: 2px solid red; */
+  }
 
 .cord {
     position: relative;
     margin: 20px 0;
-    width: 250px;
-    height: 300px;
+    width: 200px;
+    height: 250px;
     background-color: #fff;
     transform-style: preserve-3d;
     transform: perspective(2000px);
     transition: 1s;
     border-top-right-radius: 25px;
     box-shadow: inset 300px 0 50px rgba(0, 0, 0, 0.5);
-    /* border: 1px solid red; */
+    border: 1px dotted gray;
 }
-
+ 
 .firstName {
-    /* border: 1px solid red; */
-    background-color: white;
-    color: black;
+     color: black;
     font-weight: bolder;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
 }
 
 .cord:hover {
@@ -59,14 +45,10 @@ body {
     position: relative;
     width: 100%;
     height: 100%;
-    /* border: 1px solid #000; */
-    /* box-shadow: rgba(1, 0, 0, 0 ) 0px 4px 0px -1px,
-    rgba(0, 0, 0, 0 ) 0px 2px 0px -1px; */
     box-shadow: rgba(14, 30, 37, 0.12) 6px 0px 0px 0px, rgba(14, 30, 37, 0.32) 0px 0px 0px px;
     transform-origin: left;
     box-sizing: border-box;
     background-color: rgb(255, 255, 255);
-    /* background-image: url("https://cdn.pixabay.com/photo/2016/11/03/14/06/wood-1794340__340.jpg"); */
     padding: 20px;
     z-index: 1;
     transition: 1s;
@@ -82,8 +64,7 @@ body {
     width: 100%;
     height: 100%;
     padding: 10px;
-    /* border: 1px solid red; */
-    /* object-fit: cover; */
+  
 }
 
 .cord:hover .imgBox {
@@ -104,26 +85,26 @@ body {
     object-fit: cover;
     justify-content: space-around;
     align-items: center;
-    /* backgroundIMG-https://cdn.pixabay.com/photo/2016/10/22/01/54/wood-1759566__340.jpg */
-    /* background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTplfV2TcDIiFBpJQrq6671D6nwt0NQvTBYEQ&usqp=CAU"); */
-}
+     
+ }
 
 .details h3 {
     color: rgb(0, 0, 0);
-    font-size: 30px;
+    font-size: 20px;
     font-weight: bolder;
     margin: auto;
 }
 
 .details h5 {
     color: rgb(242, 47, 8);
-    font-size: 20px;
+    font-size: 17px;
     font-weight: bolder;
     margin: auto;
+    
 }
 
 .heart {
-    font-size: 28px;
+    font-size: 25px;
     color: red;
     cursor: pointer;
     margin-top: 1px;
@@ -159,4 +140,17 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+@media (max-width: 768px) {
+    .cord{
+        width: 310px;
+    height: 350px;
+    }
+    .details h3 {
+         font-size: 30px;  
+    }
+    .details h5 {
+        font-size: 20px;
+    }
 }

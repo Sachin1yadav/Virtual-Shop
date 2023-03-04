@@ -4,8 +4,8 @@ import SinglePage from "../Pages/SingleProduct/SinglePage";
 import Admin from "../admin/adminHome/Admin";
 import AdminLogin from "../admin/adminAuth/AdminLogin";
 import AdminContext from "../admin/adminContext/AdminContext";
-import DSign from "../DemoPagesBySachin/DSign";
-import DLogin from "../DemoPagesBySachin/DLogin";
+import Signup from "../Pages/login&signup/Signup";
+import Login from "../Pages/login&signup/Login";
 import Cart from "../Pages/Cart/Cart";
 import Address from "../Pages/checkout/Address";
 import Payment from "../Pages/checkout/Payment";
@@ -14,7 +14,7 @@ import Order from "../Pages/Order/Order";
 import Wishlist from "../Pages/Wishlist/Wishlist";
 import AllUsers from "../admin/adminComp/AllUsers";
 import AllSellers from "../admin/adminComp/AllSellers";
-import Products from "../Pages/products/Products";
+import Products from "../Pages/Products/Products";
 function Allroute() {
   return (
     <>
@@ -92,8 +92,8 @@ function Allroute() {
             </PrivateRoute>
           }
         />
-        <Route path="/DLogin" element={<DLogin />} />
-        <Route path="/sign" element={<DSign />} />
+        <Route path="/Login" element={<Login />} />
+        <Route path="/sign" element={<Signup />} />
       </Routes>
     </>
   );

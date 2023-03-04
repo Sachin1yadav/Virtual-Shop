@@ -1,5 +1,7 @@
 import { useToast } from "@chakra-ui/react";
 import axios from "axios";
+import "./Home.css";
+
 import { BsFillHeartFill, BsHeart } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 import { Link} from "react-router-dom";
@@ -26,7 +28,7 @@ export default function HomeProducts(data) {
   return (
     <div className="container">
       {data?.data?.map((el,i)=> {
-        if(i<8){
+        if(i<10){
           return (
             <div key={el.id} className="cord">
               <div className="imgBox">
