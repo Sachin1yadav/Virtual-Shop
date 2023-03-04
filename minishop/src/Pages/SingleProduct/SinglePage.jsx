@@ -7,7 +7,7 @@ import { BsStarFill } from "react-icons/bs";
 import Loading from"../Loading/Loading"
 import { Button, Heading, useToast } from "@chakra-ui/react";
 import "./SinglePage.scss";
-import DemoSimiler from "../../DemoPagesBySachin/DemoSimiler";
+import Similer from "../Similer/Similer";
 import { cartActions } from "../../redux/Cart/Cart.actions";
 import Navbar from "../../components/Navbar/Navbar";
 import {updateUser} from "../../redux/AddUser/User.actions";
@@ -170,7 +170,7 @@ const SinglePage = () => {
       </div>
         <Heading  className="similar">similar products</Heading>
         <div >
-        <DemoSimiler
+        <Similer
             data={similarData.filter((item) => item.Categories === itemDetail.Categories)}/>
         </div>
           </div>

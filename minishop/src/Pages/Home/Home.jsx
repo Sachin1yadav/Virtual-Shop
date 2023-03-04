@@ -7,7 +7,7 @@ import HomeProducts from "./HomeProducts";
 import "./Home.css";
 import { Carousel } from "./Carousel";
 import { Loaderskeleton } from "./Carousel";
-import DemoSimiler from "../../DemoPagesBySachin/DemoSimiler";
+import Similer from "../Similer/Similer";
 import HomeCarouselDemo from './HomeCarouselDemo';
 import Navbar from "../../components/Navbar/Navbar";
 import {Slider} from '../../components/Slider'
@@ -41,7 +41,7 @@ function Home() {
             data={data.filter((item) => item.Categories === "t_shirt")}/>
         </Box> }
         <Box mt='10px' mb='10px' >
-          <DemoSimiler  data={data.filter((item) => item.Categories === "shoes")} />
+          <Similer  data={data.filter((item) => item.Categories === "shoes")} />
         </Box>
 {/*---------------------    carousel   -------------------*/}
           <Box w={"100%"} m={"auto"} mt='15px' mb='10px' backgroundColor={'white'} >
@@ -68,7 +68,7 @@ function Home() {
             data={data.filter((item) => item.Categories === "bags")} />
         </Box>}
         <Box mt='10px' mb='10px' >
-          <DemoSimiler  data={data.filter((item) => item.Categories === "t_shirt")} />
+          <Similer  data={data.filter((item) => item.Categories === "t_shirt")} />
         </Box>
         <Box w={"100%"} m={"auto"} mt='15px' mb='15px' border='2px' >
         <Image src="https://cdn.shopify.com/s/files/1/0057/8938/4802/files/WSC-Desktop_dad0fc88-3fc8-4ed8-becb-b7901e4b37f4_1400x.jpg?v=1673853393"  alt='3'/>

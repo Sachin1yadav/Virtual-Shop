@@ -183,7 +183,7 @@ export default function Navbar({ display = "flex" }) {
        </Box>
        <Divider orientation='horizontal' colorScheme={"blackAlpha"}    />
        <Box color="white" >-</Box>
-       <Box  display={'flex'} justifyContent='space-between' cursor={'pointer'} onClick={()=>nav(`/DLogin`)} >
+       <Box  display={'flex'} justifyContent='space-between' cursor={'pointer'} onClick={()=>nav(`/Login`)} >
             Login <BiLogIn fontSize={"27"} color={'#0C090A'} />
        </Box>
  <Divider orientation='horizontal' colorScheme={"blackAlpha"}    />
@@ -333,7 +333,7 @@ export default function Navbar({ display = "flex" }) {
                 <MenuItem onClick={handleLogout} >Logout</MenuItem>
                 
               </MenuList> :<MenuList color='black' >
-                <MenuItem onClick={()=>nav(`/DLogin`)} >Log in</MenuItem>
+                <MenuItem onClick={()=>nav(`/Login`)} >Log in</MenuItem>
                 <MenuItem onClick={()=>nav(`/sign`)} >Register</MenuItem>
               </MenuList>}
             </Menu>

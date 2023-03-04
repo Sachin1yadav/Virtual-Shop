@@ -1,11 +1,11 @@
 import React from "react";
-import "./Demosimiler.scss";
+import "./Similer.scss";
 import { BsStarFill } from "react-icons/bs";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useNavigate } from "react-router-dom";
-const DemoSimiler = ({ data }) => {
+const Similer = ({ data }) => {
   const navigate = useNavigate();
   const settings = {
     dots: false,
@@ -76,4 +76,4 @@ const DemoSimiler = ({ data }) => {
     </div>
   );
 };
-export default DemoSimiler;
+export default Similer;

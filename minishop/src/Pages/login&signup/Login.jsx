@@ -4,14 +4,14 @@ import { Link, useNavigate } from "react-router-dom";
 import "./Login.scss";
 import GoogleButton from "react-google-button";
 import { useDispatch, useSelector } from "react-redux";
-import { loginWithGoogle, userLogin } from "../redux/Auth/auth.actions";
+import { loginWithGoogle, userLogin } from "../../redux/Auth/auth.actions";
 import { useEffect } from "react";
 import { AiFillHome } from "react-icons/ai";
 const userInit = {
   email: "",
   password: "",
 };
-const DLogin = () => {
+const Login = () => {
   const { isauth } = useSelector((val) => val.authUser);
   const dispatch = useDispatch();
   const nav = useNavigate();
@@ -116,4 +116,4 @@ const DLogin = () => {
     </div>
   );
 };
-export default DLogin;
+export default Login;

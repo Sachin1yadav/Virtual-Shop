@@ -2,13 +2,13 @@ import React, { useContext, useState } from "react";
 import { useToast, Button } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import "./Sign.scss";
-import { AuthContext } from "../Pages/login&signup/AuthContextProvider";
+import { AuthContext } from "./AuthContextProvider";
 import { AiFillHome } from "react-icons/ai";
 const userInit = {
   email: "",
   password: "",
 };
-const DSign = () => {
+const Signup = () => {
   const toast = useToast();
   const [user, setUser] = useState(userInit);
   const { createUser } = useContext(AuthContext);
@@ -68,7 +68,7 @@ const DSign = () => {
               </div>
               <div className="signDiv">
                 <p>Already have an account?</p>
-                <Link to="/DLogin">
+                <Link to="/Login">
                   <h6 className="sign">Login</h6>
                 </Link>
               </div>
@@ -96,4 +96,4 @@ const DSign = () => {
     </div>
   );
 };
-export default DSign;
+export default Signup;
