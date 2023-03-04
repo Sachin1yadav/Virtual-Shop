@@ -86,7 +86,9 @@ export default function Navbar({ display = "flex" }) {
   const handleLogout= ()=>{
     dispatch(updateUser({...userData,active:false}))
     .then(()=>
-    dispatch(userLogout()).then(()=>nav(`/`)))
+    dispatch(userLogout()).then(()=> nav(`/`)))
+    
+    window.location.reload()
   }
 
   const deleteItem = (el)=>{
@@ -102,20 +104,20 @@ export default function Navbar({ display = "flex" }) {
 
 
   const handleOnSearch = (string, results) => {
-   
+   // required for navbar search functionality
   };
   const handleOnHover = (result) => {
-   
+   // required for navbar search functionality
   };
   const handleOnSelect = (item) => {
-    
+    // required for navbar search functionality
    nav(`/data/${item.id}`);
   };
   const handleOnClear = () => {
-   
+   // required for navbar search functionality
   };
   const handleOnFocus = () => {
-    
+    // required for navbar search functionality
   };
   const formatResult = (item) => {
     return (

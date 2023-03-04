@@ -13,24 +13,59 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 import { auth, provider } from "../../config";
-
+import {addNewUserApi} from "../AddUser/User.api";
+import {getUserApi} from "../AddUser/User.api";
 // user Login using email and password
 
-export const userLogin  = async(user)=> (dispatch)=>{
+export const userLogin  = (user,toast)=> async(dispatch)=>{
   try{    
-    let res =  signInWithEmailAndPassword(auth, user.email, user.password);
-    console.log(res)
-    // dispatch({type:LOGIN_SUCCESS,payload:res})
+    let res =  await signInWithEmailAndPassword(auth, user.email, user.password);
+    //console.log("res",res.user.uid)
+    let response = await getUserApi(res.user.uid)
+     dispatch({type:LOGIN_SUCCESS,payload:response.data})
+     toast({
+      title: 'Login Success',
+      description: "Success",
+      status: 'success',
+      duration: 2000,
+      isClosable: true,
+    })
   }catch(err){
+    toast({
+      title: 'Invalid credentials.',
+      description: "Please try again",
+      status: 'error',
+      duration: 2000,
+      isClosable: true,
+    })
     dispatch({type:LOGIN_FAIL,})
   }
 }
 // user signup using data 
-export const  userSignup = async(email,password)=>(dispatch)=>{
+export const  userSignup = (email,password,name,toast)=> async(dispatch)=>{
   try{
-    let res = createUserWithEmailAndPassword(auth, email, password);
-    dispatch({type:SIGNUP_SUCCESS,payload:res})
+    let res = await createUserWithEmailAndPassword(auth, email, password);
+    let obj={
+      profile:"",
+      active:true,
+      name:name,
+      email:email,
+      id:res.user.uid,
+      cart:[],
+      wishlist:[],
+      orders:[],
+    }
+    let response = await addNewUserApi(obj);
+      dispatch({type:LOGIN_SUCCESS,payload:response.data})
+    
   }catch(err){
+    toast({
+      title: 'User Already exists',
+      description: "Please login now",
+      status: 'error',
+      duration: 2000,
+      isClosable: true,
+    })
     dispatch({type:SIGNUP_FAIL})
   }
 }
