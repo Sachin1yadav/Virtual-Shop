@@ -237,11 +237,11 @@ const nav = useNavigate()
                 <p style={{ color: "green" }}>Free</p>
               </div>
             </div>
-            <div className="secCoopan">
+            <div className="secCoupon">
               <p>
                 Congrats! :smiley: You can use Coupan code for Intresting Offers!{" "}
               </p>
-              <div className="secCoopanInput">
+              <div className="secCouponInput">
                 <InputGroup
                   width="80%"
                   border={"1px dotted gray"}
@@ -280,7 +280,7 @@ const nav = useNavigate()
                 </InputGroup>
               </div>
               <div
-                className="secCoopanCode"
+                className="secCouponCode"
                 style={{
                   padding: "10px",
                   fontSize: "20px",

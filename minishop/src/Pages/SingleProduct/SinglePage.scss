@@ -108,6 +108,7 @@
     font-weight: bolder;
     font-size: 20px;
     color: rgb(247, 55, 55);
+    text-align: start;
 }
 
 .detailsdiv {
@@ -119,6 +120,8 @@
     flex-direction: column;
     text-align: flex-start;
     padding: 1%;
+    text-align: start;
+
     @include mobile {
         width: 95%;
         flex-direction: column;
