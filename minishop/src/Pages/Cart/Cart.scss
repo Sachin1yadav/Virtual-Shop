@@ -1,24 +1,31 @@
 @import "../../Global.scss";
 .CartMainDiv{
-    // border: 1px solid red;
-    width: 100%;
-    height: 100vh;
+     width: 100%;
+     @include mobile{
+       
+        margin-top: 50px;
+
+      }
 }
 .BothDiv{
     display: flex;
     flex-direction: row;
     gap: 30px;
       padding: 20px;
+       min-height: 50vh;
+max-height: 80vh;
       @include mobile{
         flex-direction: column;
         align-items: center;
+          height: 100vh;
+
       }
 }
 .firstDiv{
 // border: 1px solid red;
 width: 60%;
 overflow-y: scroll;
-height: 100vh;
+min-height: 40vh;
 background-color: white;
 box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 border-top-right-radius: 20px;
@@ -28,8 +35,7 @@ border-top-right-radius: 20px;
   }
 }
 .CartDetails{
-    // border: 1px solid red;
-    background-color: white;
+     background-color: white;
     text-align: start;
     font-size: 20px;
     // font-weight: bold;
@@ -40,7 +46,7 @@ border-top-right-radius: 20px;
     justify-content: space-between;
     font-weight: bold;
     color: gray;
-    border: 1px solid rgb(75, 73, 73);
+    // border: 1px solid rgb(75, 73, 73);
     @include mobile{
         font-size: 18px;
       }
@@ -151,11 +157,11 @@ justify-content: space-around;
     background-color: rgb(224, 223, 223);
  }
  .secondDiv{
-    // border: 1px solid rgb(102, 255, 0);
+    
     width: 40%;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
-    height: 500px;
+    height: 400px;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;    background-color: rgb(255, 255, 255);
     display: flex;
     flex-direction: column;
@@ -192,7 +198,7 @@ font-size: 17px;
 font-weight: bold;
 letter-spacing: 1px;
 }
-.secCoopan
+.secCoupon
 {
     // border: 1px solid red;
     height: 150px;
@@ -200,20 +206,20 @@ letter-spacing: 1px;
     display: flex;
     flex-direction: column;
 }
-.secCoopanInput{
+.secCouponInput{
     // border: 2px solid green;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
 }
- .secCoopan p{
+ .secCoupon p{
     color: rgb(255, 6, 6) ;
     font-size: 15px;
  }
- .secCoopanCode p{
+ .secCouponCode p{
     color: black;
  }
- .secCoopanCode h3{
+ .secCouponCode h3{
     font-size: 15px;
 // border: 1px solid red;
 margin: auto;
