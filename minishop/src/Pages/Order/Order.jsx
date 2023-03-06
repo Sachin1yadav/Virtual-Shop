@@ -9,7 +9,9 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 
 const Order = () => {
-  const { user } = useSelector((val) => val?.userAllData);
+  // const { user } = useSelector((val) => val?.userAllData);
+  const {userData } = useSelector((val) => val.authUser);
+  const user = userData
   const orderData = user.orders;
   let today = new Date();
   let date =

@@ -4,3 +4,6 @@ export const SIGNUP_SUCCESS = 'action/signup/success';
 export const SIGNUP_FAIL = 'action/signup/fail';
 export const RESET_USER_DATA = 'action/reset';
 export const LOGOUT_FAIL = 'acion/logout/fail'
+export const USER_UPDATE_LOADING = 'user/update/loading'
+export const USER_UPDATE_SUCCESS = 'user/update/success' 
+export const USER_UPDATE_FAILED = 'user/update/failed' 

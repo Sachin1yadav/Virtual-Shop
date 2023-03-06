@@ -2,17 +2,18 @@ import { ModalCloseButton, ModalContent, ModalOverlay, Text,} from '@chakra-ui/r
 import React from 'react'
 import { Button, ModalBody, ModalFooter, ModalHeader } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import { updateUser } from '../../redux/AddUser/User.actions'
+import { updateUser } from '../../redux/Auth/auth.actions'
 
 const DelOrderModal = ({onClose,data}) => {
-    const {loading,user} =  useSelector(val=>val?.userAllData)
+  const { loading,userData } = useSelector((val) => val.authUser);
+  const user = userData
     const dispatch = useDispatch();
     const handleDelete = ()=>{
         // eslint-disable-next-line array-callback-return
         let updatedOrders = user.orders.filter(el=>{
             if(el.id!==data.id){return el}
         })
-        dispatch(updateUser({...user,orders:updatedOrders}))
+        dispatch(updateUser(user.id,{orders:updatedOrders}))
         .then(()=>onClose())
     }
   return (

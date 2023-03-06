@@ -1,19 +1,17 @@
 import { useToast } from "@chakra-ui/react";
-import axios from "axios";
 import "./Home.css";
-
 import { BsFillHeartFill, BsHeart } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 import { Link} from "react-router-dom";
-import { updateUser } from "../../redux/AddUser/User.actions";
+import { updateUser } from "../../redux/Auth/auth.actions";
 export default function HomeProducts(data) {
-  const {user} =  useSelector(val=>val?.userAllData)
+  const {userData } = useSelector((val) => val.authUser);
+  const user = userData 
   const wishData = user?.wishlist
   const toast = useToast();
   const likeFuc = (itemDetail) => {
-    user.wishlist.push(itemDetail)
-    dispatch(updateUser(user))
-    
+    user?.wishlist?.push(itemDetail)
+    dispatch(updateUser(user.id,{wishlist:user.wishlist}))
     toast({
       title: "Added to wishlist",
       description: "We've added this item to wishlist",
@@ -22,7 +20,6 @@ export default function HomeProducts(data) {
       duration: 3000,
       isClosable: true,
     });
-    return axios.post(`https://lackadaisical-volcano-larch.glitch.me/wishlist`, itemDetail);
   };
   const dispatch = useDispatch();
   return (
