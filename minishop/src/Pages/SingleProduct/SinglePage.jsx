@@ -10,7 +10,7 @@ import "./SinglePage.scss";
 import Similer from "../Similer/Similer";
 import { cartActions } from "../../redux/Cart/Cart.actions";
 import Navbar from "../../components/Navbar/Navbar";
-import {updateUser} from "../../redux/AddUser/User.actions";
+import { updateUser } from "../../redux/Auth/auth.actions";
 
 const SinglePage = () => {
   const { id } = useParams();
@@ -19,10 +19,10 @@ const SinglePage = () => {
   let des =
     "A product description is a form of marketing copy used to describe and explain the benefits of your product. In other words, it provides all the information and details of your product on your ecommerce site. These product details can be one sentence, a short paragraph or bulleted. They can be serious, funny or quirky.";
   const {loading , itemDetail } = useSelector((store) => store.singleProduct);
+  const {userData } = useSelector((val) => val.authUser);
   const dispatch = useDispatch();
   const [similarData, setSimilarData] = useState([]);
-  const usersApiData =  useSelector(val=>val.userAllData?.user)
-  const cartData = usersApiData.cart
+  const cartData = userData.cart
     //authentication cart
   const getSimilarData =async () => {
     try {
@@ -42,8 +42,8 @@ const SinglePage = () => {
   const toast = useToast();
 
   const likeFuc = (itemDetail) => {
-    usersApiData.wishlist.push(itemDetail)
-    dispatch(updateUser(usersApiData)).then(()=>{
+    userData.wishlist.push(itemDetail)
+    dispatch(updateUser(userData.id,{wishlist:userData.wishlist})).then(()=>{
       toast({
         title: "Added to wishlist",
         description: "We've added this item to wishlist",
@@ -56,9 +56,8 @@ const SinglePage = () => {
   };
   
   const addToCart = async(itemDetail) => {
-    
-    usersApiData.cart.push(itemDetail)
-    dispatch(updateUser(usersApiData)).then(()=>{
+    userData.cart.push(itemDetail)
+    dispatch(updateUser(userData.id,{cart:userData.cart})).then(()=>{
       toast({
         title: "Added to Cart",
         description: "We've added this item to Cart",

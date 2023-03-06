@@ -35,11 +35,22 @@ function Home() {
     <Box mt='65px' >
      <HomeCarouselDemo/>
     <Box w='100%' m={'auto'}  >
- {loading ?  <Loaderskeleton/> : <Box >
-          <Heading style={{color:"#232f3e",textAlign:"center" }}>T-Shirt</Heading>
+    {loading ?  <Loaderskeleton/> :  <Box>
+          <Heading style={{color:"#232f3e",textAlign:"center" }}>Electronics</Heading>
           <HomeProducts
-            data={Alldata.filter((item) => item.Categories === "t_shirt")}/>
-        </Box> }
+            data={Alldata.filter((item) => item.Categories === "Headphones")}/>
+        </Box>}
+           {loading ?  <Loaderskeleton/> :  <Box>
+          <Heading style={{color:"#232f3e",}}>Mobiles</Heading>
+          <HomeProducts
+            data={Alldata.filter((item) => item.Categories === "mobile")}/>
+        </Box>}
+          <Image m={'auto'} src="https://cdn.shopify.com/s/files/1/0057/8938/4802/files/WSC-Desktop_dad0fc88-3fc8-4ed8-becb-b7901e4b37f4_1400x.jpg?v=1673853393"  alt='3'/>
+        {loading ?  <Loaderskeleton/> : <Box>
+          <Heading style={{color:"#232f3e",textAlign:"center" }}>Watch</Heading>
+          <HomeProducts
+            data={Alldata.filter((item) => item.Categories === "watch")}/>
+           </Box>}
         <Box mt='10px' mb='10px' >
           <Similer  data={Alldata.filter((item) => item.Categories === "shoes")} />
         </Box>
@@ -53,7 +64,7 @@ function Home() {
           <HomeProducts
             data={Alldata.filter((item) => item.Categories === "Jacket")}/>
         </Box>}
-        <Box mt='15px' mb='10px' backgroundColor={'white'} >
+        <Box mt='15px' mb='10px' backgroundColor={'white'} w='98%' margin={'auto'} >
           <Carousel
           dots= {false} infinite= {true}
           slidesToShow = {4}
@@ -67,30 +78,17 @@ function Home() {
           <HomeProducts
             data={Alldata.filter((item) => item.Categories === "bags")} />
         </Box>}
-        <Box mt='10px' mb='10px' >
+        <Box my='20'>
           <Similer  data={Alldata.filter((item) => item.Categories === "t_shirt")} />
         </Box>
-        <Box w={"100%"} m={"auto"} mt='15px' mb='15px' border='2px' >
-        <Image src="https://cdn.shopify.com/s/files/1/0057/8938/4802/files/WSC-Desktop_dad0fc88-3fc8-4ed8-becb-b7901e4b37f4_1400x.jpg?v=1673853393"  alt='3'/>
-       </Box>
-       {loading ?  <Loaderskeleton/> : <Box>
-          <Heading style={{color:"#232f3e",textAlign:"center" }}>Watch</Heading>
-          <HomeProducts
-            data={Alldata.filter((item) => item.Categories === "watch")}/>
-           </Box>}
-          <Box w={"100%"} m={"auto"} mt='15px' mb='15px' border='2px' >
-        <Image src="https://cdn.shopify.com/s/files/1/0057/8938/4802/files/2000x650_f60dcd57-3f35-4f38-a32f-3f9666996225_1400x.jpg?v=1673538078"  alt='4'/>
+          <Box w={"100%"} my='10'>
+        <Image src="https://cdn.shopify.com/s/files/1/0057/8938/4802/files/2000x650_f60dcd57-3f35-4f38-a32f-3f9666996225_1400x.jpg?v=1673538078" m={"auto"} alt='4'/>
           </Box>
-           {loading ?  <Loaderskeleton/> :  <Box>
-          <Heading style={{color:"#232f3e",textAlign:"center" }}>Headphones</Heading>
+          {loading ?  <Loaderskeleton/> : <Box >
+          <Heading style={{color:"#232f3e",textAlign:"center" }}>T-Shirt</Heading>
           <HomeProducts
-            data={Alldata.filter((item) => item.Categories === "Headphones")}/>
-        </Box>}
-        {loading ?  <Loaderskeleton/> :  <Box>
-          <Heading style={{color:"#232f3e",textAlign:"center" }}>Mobiles</Heading>
-          <HomeProducts
-            data={Alldata.filter((item) => item.Categories === "mobile")}/>
-        </Box>}
+            data={Alldata.filter((item) => item.Categories === "t_shirt")}/>
+        </Box> }
         {loading ?  <Loaderskeleton/> :  <Box>
           <Heading style={{color:"#232f3e",textAlign:"center" }}>Shoes</Heading>
           <HomeProducts

@@ -35,16 +35,12 @@ import {BiLogIn} from  "react-icons/bi";
 import {FcGoogle} from  "react-icons/fc";
 import "./Navbar.css";
 import { useDispatch, useSelector } from "react-redux";
-import { addNewUser,  updateUser } from "../../redux/AddUser/User.actions";
-import { userLogout } from "../../redux/Auth/auth.actions";
+import { updateUser, userLogout } from "../../redux/Auth/auth.actions";
 import {
   Badge,
   Dropdown,
   Nav,
 } from "react-bootstrap";
-import {
-  cartActions,
-} from "../../redux/Cart/Cart.actions";
 
 export default function Navbar({ display = "flex" }) {
 
@@ -52,26 +48,19 @@ export default function Navbar({ display = "flex" }) {
   const [data, setData] = useState([]);
   const nav = useNavigate();
   const { isauth,userData } = useSelector((val) => val.authUser);
-  const user = useSelector(val=>val?.userAllData.user)
   const dispatch = useDispatch()
   const [profImg, setProfImg] = useState("https://www.w3schools.com/howto/img_avatar.png")
-  const currUser =  useSelector(val=>val?.userAllData?.user)
-  const cartData = currUser.cart
+  const user = userData
+  const cartData = userData?.cart
   useEffect(() => {
-    dispatch(cartActions())
-  if(isauth){
-    dispatch(addNewUser(userData))
-    dispatch(updateUser({...userData,active:true}))
-    if(user.profile){
+    if(user){
       setProfImg(user.profile)
     }
-  }
-// eslint-disable-next-line react-hooks/exhaustive-deps
-}, [cartData?.length,isauth])
+}, [user])
   const getHomeData = async () => {
     try {
       const res = await fetch(
-        "https://lackadaisical-volcano-larch.glitch.me/data"
+        `${process.env.REACT_APP_BASE_URL}/data`
       );
       const HomeData = await res.json();
       setData(HomeData);
@@ -84,11 +73,10 @@ export default function Navbar({ display = "flex" }) {
   }, []);
 
   const handleLogout= ()=>{
-    dispatch(updateUser({...userData,active:false}))
+    dispatch(updateUser(user.id,{active:false}))
     .then(()=>
-    dispatch(userLogout()).then(()=> nav(`/`)))
-    
-    window.location.reload()
+    dispatch(userLogout()).then(()=> nav(`/`))
+    )
   }
 
   const deleteItem = (el)=>{
@@ -98,11 +86,8 @@ export default function Navbar({ display = "flex" }) {
         return el 
       }
     })
-    user.cart = cartUpdate
-    dispatch(updateUser({...user,cart:cartUpdate})).then(()=>dispatch(cartActions))
+    dispatch(updateUser(user.id,{cart:cartUpdate}))
   }
-
-
   const handleOnSearch = (string, results) => {
    // required for navbar search functionality
   };
@@ -305,29 +290,23 @@ export default function Navbar({ display = "flex" }) {
     <Flex alignItems={'center'}  >
             <Menu>
               <MenuButton
-                as={Button}
                 rounded={'full'}
                 variant={'link'}
                 cursor={'pointer'}
                 minW={0}>
-                { isauth?<Image rounded={'full'} w='12' mt='2' src={profImg} />:<Button
-        w={'full'}
-         maxW={'sm'}
-         colorScheme={'white'}
-         leftIcon={<FaUserCircle fontSize={"27"} />}>
-       </Button>}
+                { isauth?<Image rounded={'full'} w='12' mt='2' src={profImg} />:<FaUserCircle fontSize={"30"} />}
               </MenuButton>
              {isauth?<MenuList color='black' >
                 <Center>
                   <Avatar
                       size={'2xl'}
-                      src={userData.profile}
+                      src={userData?.profile}
                       alt='profile'
                     />
                   </Center>
                   <br />
                   <Center>
-                    <p>{userData.name}</p>
+                    <p>{userData?.name}</p>
                   </Center>
                 <MenuItem onClick={()=>nav(`/order`)} >Your orders</MenuItem>
                 <MenuItem onClick={()=>nav(`/wishlist`)} >wishlist</MenuItem>
@@ -384,7 +363,7 @@ export default function Navbar({ display = "flex" }) {
               </Dropdown.Menu>
             </Dropdown>
           </Nav>  }
-          {cartData?.length > 0 ? ( <Badge id='badge' bg="danger" style={{height:"18px",marginRight:"40px",marginLeft:"-20px"}} >{cartData?.length}</Badge>)
+          { isauth&&cartData?.length > 0 ? ( <Badge id='badge' bg="danger" style={{height:"18px",marginRight:"40px",marginLeft:"-20px"}} >{cartData?.length}</Badge>)
           :""
       }
     </ButtonGroup>

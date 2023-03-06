@@ -18,19 +18,12 @@ import {
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  cartActions
-} from "../../redux/Cart/Cart.actions";
 import "./Cart.scss";
 import { AiFillDelete } from "react-icons/ai"; 
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
-import { updateUser} from "../../redux/AddUser/User.actions";
+import { updateUser } from "../../redux/Auth/auth.actions";
 const Cart = () => {
-  const {loading,user} =  useSelector(val=>val?.userAllData)
-  const currUser = user
-  const cartData = currUser.cart
-
   const { isOpen, onOpen, onClose } = useDisclosure();
   const handelOnSubtmi=()=>{
     onClose()
@@ -39,7 +32,8 @@ const Cart = () => {
   const {totalPrice} = useSelector((store) => store.cart);
 
   const dispatch = useDispatch();
-  const {userData } = useSelector((val) => val.authUser);
+  const {userData,loading } = useSelector((val) => val.authUser);
+  const cartData  = userData.cart
   const changePrice = (str) => {
     let res = str.replace(/\D/g, "");
     return parseInt(res);
@@ -55,11 +49,10 @@ const Cart = () => {
     );
   }
   useEffect(() => {
-    dispatch(cartActions(userData.name))
       updatePrice()
     // } 
 // eslint-disable-next-line react-hooks/exhaustive-deps
-}, [dispatch, cartData?.length, totalPrice, userData.name]);
+}, [cartData?.length, totalPrice, userData.name]);
 
 const toast = useToast();
    //------Offer Function-------------------- //
@@ -95,19 +88,18 @@ const toast = useToast();
     // --------------------------Delete cart item ----------------
 const deleteCartItem = (el)=>{
 // eslint-disable-next-line array-callback-return
-let cartUpdate =  currUser.cart.filter(e=>{
+let cartUpdate =  userData.cart.filter(e=>{
   if(e.id!==el.id){
     return el 
   }
 })
-currUser.cart = cartUpdate
-dispatch(updateUser(currUser)).then(()=>dispatch(cartActions).then(()=>updatePrice()))
+userData.cart = cartUpdate
+dispatch(updateUser(userData.id,{cart:userData.cart})).then(()=>updatePrice())
 }
-    
 const nav = useNavigate()
    //-------------------Price Details hide Function----------------- //
   const paymentFun = () => {
-    if(user.cart?.length===0){
+    if(userData.cart?.length===0){
       toast({
         title: "Cart Is Empty",
         description: "Nothing To ckeckout",
@@ -118,13 +110,13 @@ const nav = useNavigate()
         isClosable: true,
       });
     }else{
-      dispatch(updateUser({...user,orders:cartData,cart:[]}))
+      dispatch(updateUser(userData.id,{orders:cartData,cart:[]}))
       nav('/address')
     }
   }
   //------Quantity Increase Function---------------------------------- //
   const quantityIncre = async(el) => {
-  currUser.cart.map(e=>{
+  userData.cart.map(e=>{
       if(e.id===el.id){
         e.qty=e.qty+1;
         return e
@@ -132,14 +124,13 @@ const nav = useNavigate()
         return e
       }
     })
-    dispatch(updateUser(currUser)).then(()=> {
-        dispatch(cartActions());
+    dispatch(updateUser(userData.id,{cart:userData.cart})).then(()=> {
       })
       updatePrice()
   }
    //------Quantity Decrease Function------------------------------ //
   const quantityDecre = async(el) => {
-    currUser.cart.map(e=>{
+    userData.cart.map(e=>{
       if(e.id===el.id){
         e.qty=e.qty-1;
         return e
@@ -147,7 +138,7 @@ const nav = useNavigate()
         return e
       }
     })
-    dispatch(updateUser(currUser))
+    dispatch(updateUser(userData.id,{cart:userData.cart}))
     updatePrice()
   }
   
@@ -288,7 +279,7 @@ const nav = useNavigate()
                   textAlign: "left",
                 }}
               >
-                    <h3>You can Apply only one Once </h3>
+                    <h3>You can Apply only Once </h3>
               </div>
             </div>
             <div className="checkoutDiv">

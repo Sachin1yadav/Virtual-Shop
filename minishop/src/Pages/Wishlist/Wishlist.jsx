@@ -1,14 +1,14 @@
 import { Button, useToast } from "@chakra-ui/react";
-import axios from "axios";
 import { AiFillDelete, AiOutlineHome } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
-import { updateUser } from "../../redux/AddUser/User.actions";
+import { updateUser } from "../../redux/Auth/auth.actions";
 
 import "./Wishlist.scss";
 const Wishlist = () => {
-  const { user } = useSelector((val) => val?.userAllData);
+  const { userData } = useSelector((val) => val.authUser);
+  const user = userData
   const wishData = user.wishlist;
   const toast = useToast();
   const navigate = useNavigate();
@@ -22,10 +22,15 @@ const Wishlist = () => {
       duration: 3000,
       isClosable: true,
     });
-    return axios.post(`https://lackadaisical-volcano-larch.glitch.me/cart`, {
-      ...itemDetail,
-      qty: 1,
-    });
+    // eslint-disable-next-line array-callback-return
+    let newWishlist = userData.wishlist.filter(el=>{
+      if(el.id!==itemDetail.id){
+        return el
+      }
+    })
+    userData.wishlist=newWishlist
+    userData.cart.push(itemDetail)
+    dispatch(updateUser(userData.id,{cart:userData.cart,wishlist:newWishlist}))
   };
 
   const removeWishFun = (e) => {
@@ -36,7 +41,7 @@ const Wishlist = () => {
       }
     });
     user.wishlist = newWishdata;
-    dispatch(updateUser(user));
+    dispatch(updateUser(user.id,{wishlist:user.wishlist}));
   };
 
   return (
@@ -107,7 +112,7 @@ const Wishlist = () => {
                   <div className="QRdivDiv">
                     <div className="QdivWish">
                       {item.show ? (
-                        <Button variant="light" onClick={() => addToCart(item)}>
+                        <Button variant="light" onClick={() =>addToCart(item)}>
                           Add To Cart
                         </Button>
                       ) : (

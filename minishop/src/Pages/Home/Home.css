@@ -1,19 +1,10 @@
- 
-body {
-    margin: 0;
-    pad: 0;
-    /* border: 1px solid red; */
-    box-sizing: border-box;
-}
-
 .container {
-     /* width: 1000vw; */
+    /* width: 100vw; */
     display: flex;
-    gap: 9px;
+    gap: 20px;
     flex-wrap: wrap;
     justify-content: center;
-    /* border: 2px solid red; */
-  }
+}
 
 .cord {
     position: relative;
@@ -28,9 +19,9 @@ body {
     box-shadow: inset 300px 0 50px rgba(0, 0, 0, 0.5);
     border: 1px dotted gray;
 }
- 
+
 .firstName {
-     color: black;
+    color: black;
     font-weight: bolder;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
 }
@@ -64,7 +55,6 @@ body {
     width: 100%;
     height: 100%;
     padding: 10px;
-  
 }
 
 .cord:hover .imgBox {
@@ -85,8 +75,7 @@ body {
     object-fit: cover;
     justify-content: space-around;
     align-items: center;
-     
- }
+}
 
 .details h3 {
     color: rgb(0, 0, 0);
@@ -100,7 +89,6 @@ body {
     font-size: 17px;
     font-weight: bolder;
     margin: auto;
-    
 }
 
 .heart {
@@ -143,12 +131,12 @@ body {
 }
 
 @media (max-width: 768px) {
-    .cord{
+    .cord {
         width: 310px;
-    height: 350px;
+        height: 350px;
     }
     .details h3 {
-         font-size: 30px;  
+        font-size: 30px;
     }
     .details h5 {
         font-size: 20px;

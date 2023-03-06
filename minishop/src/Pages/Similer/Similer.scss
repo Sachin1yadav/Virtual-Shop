@@ -3,10 +3,11 @@
     font-size: 30px;
     color: grey;
 }
-.slick-slide{
-    // border: 2px solid black;
 
+.slick-slide {
+    // border: 2px solid black;
 }
+
 .slick-slide>div {
     width: 75%;
     margin: auto;
@@ -41,7 +42,9 @@
 }
 
 .ProImgDivSlick {
-    height: 65%;
+    height: 60%;
+    width: 60%;
+    margin: auto;
 }
 
 .prodivSlick img {

@@ -1,10 +1,12 @@
 import {
-  LOGIN_SUCCESS,
+LOGIN_SUCCESS,
 LOGIN_FAIL,
-SIGNUP_SUCCESS,
 SIGNUP_FAIL,
 RESET_USER_DATA,
 LOGOUT_FAIL,
+USER_UPDATE_LOADING,
+USER_UPDATE_SUCCESS,
+USER_UPDATE_FAILED
 } from './auth.action.types'
 import {
   signOut,
@@ -13,7 +15,7 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 import { auth, provider } from "../../config";
-import {addNewUserApi} from "../AddUser/User.api";
+import {addNewUserApi, updateUserApi} from "../AddUser/User.api";
 import {getUserApi} from "../AddUser/User.api";
 // user Login using email and password
 
@@ -55,6 +57,7 @@ export const  userSignup = (email,password,name,toast)=> async(dispatch)=>{
       wishlist:[],
       orders:[],
     }
+    console.log(res)
     let response = await addNewUserApi(obj);
       dispatch({type:LOGIN_SUCCESS,payload:response.data})
     
@@ -88,10 +91,24 @@ export const loginWithGoogle = () => async(dispatch)=>{
     email:res.user.email,
     profile:res.user.photoURL,
     id:res.user.uid,
-    super:false
-   }
-   dispatch({type:LOGIN_SUCCESS,payload:userData})
+    super:false,
+    cart:[],
+    wishlist:[],
+    orders:[],
+   } 
+   let newUser= await addNewUserApi(userData)
+   dispatch({type:LOGIN_SUCCESS,payload:newUser})
   } catch (error) {
     dispatch({type:LOGIN_FAIL})
   }
 };
+
+export const updateUser = (id,data)=>async(dispatch)=>{
+try{
+  dispatch({type:USER_UPDATE_LOADING})
+   let res = await updateUserApi(id,data)
+  dispatch({type:USER_UPDATE_SUCCESS,payload:res})
+}catch(err){
+  dispatch({type:USER_UPDATE_FAILED})
+}
+}
