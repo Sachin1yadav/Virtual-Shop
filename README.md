@@ -47,7 +47,7 @@ On this project we focused on implementing a shopping cart.
 ![VS15](https://user-images.githubusercontent.com/49937312/221932324-2e521c9a-ed45-4d0c-8159-58b782c8eb7a.png)
 
 
-# Details
+# All Products
 
 ![VS6](https://user-images.githubusercontent.com/49937312/221932459-75777818-9a71-4b64-90c8-3f37452b8b32.png)
 ![VS7](https://user-images.githubusercontent.com/49937312/221932537-10e0be56-e8b4-450e-93ce-71436deafce6.png)
